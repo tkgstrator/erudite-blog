@@ -1,10 +1,11 @@
 ---
-import Link from "@/components/Link.astro";
-import { Badge } from "@/components/ui/badge";
-import { formatDate } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import Link from "@/components/Link.astro";
+import { Badge } from "@/components/ui/badge";
+import { SITE } from "@/consts";
+import { formatDate } from "@/lib/utils";
 
 interface Props {
 	project: CollectionEntry<"projects">;
@@ -47,9 +48,9 @@ const { project } = Astro.props;
             <span class="flex items-center gap-x-1.5">
               <Icon name="lucide:calendar" class="size-3" />
               <span>
-                {formatDate(project.data.startDate)}
+                {formatDate(project.data.startDate, SITE.locale)}
                 {project.data.endDate
-                  ? ` → ${formatDate(project.data.endDate)}`
+                  ? ` → ${formatDate(project.data.endDate, SITE.locale)}`
                   : ' → Present'}
               </span>
             </span>

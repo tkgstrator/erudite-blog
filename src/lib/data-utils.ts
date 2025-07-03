@@ -223,28 +223,42 @@ export async function getSubpostCount(parentId: string): Promise<number> {
 	return subposts.length;
 }
 
-export async function getCombinedReadingTime(postId: string): Promise<string> {
+export async function getCombinedReadingTime(
+	postId: string,
+	locale: string = "en-US",
+): Promise<string> {
 	const post = await getPostById(postId);
-	if (!post) return readingTime(0);
+	if (!post) return readingTime({ words: 0, characters: 0 });
 
-	let totalWords = calculateWordCountFromHtml(post.body);
+	let { words, characters } = calculateWordCountFromHtml(post.body);
 
 	if (!isSubpost(postId)) {
 		const subposts = await getSubpostsForParent(postId);
 		for (const subpost of subposts) {
-			totalWords += calculateWordCountFromHtml(subpost.body);
+			const subpostCount = calculateWordCountFromHtml(subpost.body);
+			words += subpostCount.words;
+			characters += subpostCount.characters;
 		}
 	}
 
-	return readingTime(totalWords);
+	return readingTime(
+		{
+			words,
+			characters,
+		},
+		locale,
+	);
 }
 
-export async function getPostReadingTime(postId: string): Promise<string> {
+export async function getPostReadingTime(
+	postId: string,
+	locale: string = "en-US",
+): Promise<string> {
 	const post = await getPostById(postId);
-	if (!post) return readingTime(0);
+	if (!post) return readingTime({ words: 0, characters: 0 });
 
 	const wordCount = calculateWordCountFromHtml(post.body);
-	return readingTime(wordCount);
+	return readingTime(wordCount, locale);
 }
 
 export type TOCHeading = {

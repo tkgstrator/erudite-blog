@@ -12,6 +12,7 @@ import TOCHeader from "@/components/TOCHeader.astro";
 import TOCSidebar from "@/components/TOCSidebar.astro";
 import { badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import {
 	getAdjacentPosts,
@@ -49,7 +50,7 @@ const hasChildPosts = await hasSubposts(currentPostId);
 const subpostCount = !isCurrentSubpost
 	? await getSubpostCount(currentPostId)
 	: 0;
-const postReadingTime = await getPostReadingTime(currentPostId);
+const postReadingTime = await getPostReadingTime(currentPostId, SITE.locale);
 const combinedReadingTime =
 	hasChildPosts && !isCurrentSubpost
 		? await getCombinedReadingTime(currentPostId)
@@ -164,7 +165,7 @@ const tocSections = await getTOCSections(currentPostId);
           <div
             class="flex w-full items-center justify-center gap-2 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0"
           >
-            <span>{formatDate(post.data.date)}</span>
+            <span>{formatDate(post.data.date, SITE.locale)}</span>
           </div>
 
           <div

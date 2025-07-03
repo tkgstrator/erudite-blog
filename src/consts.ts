@@ -1,14 +1,14 @@
-import type { IconMap, SocialLink, Site } from "@/types";
+import type { IconMap, Site, SocialLink } from "@/types";
 
 export const SITE: Site = {
 	title: "astro-erudite",
 	description:
 		"astro-erudite is a opinionated, unstyled blogging template—built with Astro, Tailwind, and shadcn/ui.",
 	href: "https://astro-erudite.vercel.app",
-	author: "jktrn",
-	locale: "en-US",
-	featuredPostCount: 2,
-	postsPerPage: 3,
+	author: "plat",
+	locale: "ja-JP",
+	featuredPostCount: 10,
+	postsPerPage: 10,
 };
 
 export const NAV_LINKS: SocialLink[] = [
@@ -28,16 +28,12 @@ export const NAV_LINKS: SocialLink[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
 	{
-		href: "https://github.com/jktrn",
+		href: "https://github.com/p1atdev",
 		label: "GitHub",
 	},
 	{
-		href: "https://twitter.com/enscry",
-		label: "Twitter",
-	},
-	{
-		href: "mailto:jason@enscribe.dev",
-		label: "Email",
+		href: "https://bsky.app/profile/p1at.dev",
+		label: "Bluesky",
 	},
 	{
 		href: "/rss.xml",
@@ -50,6 +46,7 @@ export const ICON_MAP: IconMap = {
 	GitHub: "lucide:github",
 	LinkedIn: "lucide:linkedin",
 	Twitter: "lucide:twitter",
+	Bluesky: "tabler:brand-bluesky",
 	Email: "lucide:mail",
 	RSS: "lucide:rss",
 };

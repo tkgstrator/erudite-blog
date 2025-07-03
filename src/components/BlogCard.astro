@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import AvatarComponent from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { SITE } from "@/consts";
 import {
 	getCombinedReadingTime,
 	getSubpostCount,
@@ -19,8 +20,8 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const formattedDate = formatDate(entry.data.date);
-const readTime = await getCombinedReadingTime(entry.id);
+const formattedDate = formatDate(entry.data.date, SITE.locale);
+const readTime = await getCombinedReadingTime(entry.id, SITE.locale);
 const authors = await parseAuthors(entry.data.authors ?? []);
 const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
 ---
@@ -60,7 +61,10 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
         }
         <span>{formattedDate}</span>
         <Separator orientation="vertical" className="h-4!" />
-        <span>{readTime}</span>
+        <span>
+          <Icon name="lucide:hourglass" class="size-3 inline" />
+          {readTime}
+        </span>
         {
           subpostCount > 0 && (
             <>
