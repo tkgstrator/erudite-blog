@@ -28,7 +28,7 @@ const licenseToUrl = (type: License["type"], version?: string) => {
       return `${baseUrl}/${type}/${version ?? "4.0"}/`;
     }
   })();
-  return url + "/deed." + SITE.locale.split("-")[0];
+  return url + "deed." + SITE.locale.split("-")[0];
 };
 
 const typTextMap: Record<License["type"], string> = {
