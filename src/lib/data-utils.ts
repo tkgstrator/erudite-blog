@@ -163,7 +163,10 @@ export function groupPostsByYear(
 	return posts.reduce(
 		(acc: Record<string, CollectionEntry<"blog">[]>, post) => {
 			const year = post.data.date.getFullYear().toString();
-			(acc[year] ?? []).push(post);
+			if (!acc[year]) {
+				acc[year] = [];
+			}
+			acc[year].push(post);
 			return acc;
 		},
 		{},
