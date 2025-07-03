@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
 import AvatarComponent from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -9,9 +12,6 @@ import {
 	parseAuthors,
 } from "@/lib/data-utils";
 import { formatDate } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
 import Link from "./Link.astro";
 
 interface Props {
@@ -26,27 +26,13 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
 ---
 
 <div
-  class="hover:bg-secondary/50 rounded-xl border p-4 transition-colors duration-300 ease-in-out"
+  class="hover:bg-secondary/50 rounded-xl border transition-colors duration-300 ease-in-out"
 >
   <Link
     href={`/${entry.collection}/${entry.id}`}
-    class="flex flex-col gap-4 sm:flex-row"
+    class="grid-rows-subgrid grid grid-cols-1  gap-4 sm:flex-row relative group"
   >
-    {
-      entry.data.image && (
-        <div class="max-w-3xs sm:shrink-0">
-          <Image
-            src={entry.data.image}
-            alt={entry.data.title}
-            width={1200}
-            height={630}
-            class="object-cover"
-          />
-        </div>
-      )
-    }
-
-    <div class="grow">
+    <div class="grow py-4 px-6">
       <h3 class="mb-1 text-lg font-medium">{entry.data.title}</h3>
       <p class="text-muted-foreground mb-2 text-sm">{entry.data.description}</p>
 
@@ -100,6 +86,21 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
           </div>
         )
       }
+
+      {
+        entry.data.image && (
+          <div class="absolute right-0 top-0 bottom-0 max-h-full max-w-2/3 -z-10 sm:shrink-0">
+            <Image
+              src={entry.data.image}
+              alt={entry.data.title}
+              width={1200}
+              height={630}
+              class="object-cover h-full mask-l-from-5% md:mask-l-from-10% group-hover:mask-l-from-40% brightness-50 group-hover:brightness-100 transition duration-300 ease-in-out"
+            />
+          </div>
+        )
+      }
     </div>
+
   </Link>
 </div>
