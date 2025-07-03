@@ -3,6 +3,7 @@ import Link from "@/components/Link.astro";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SITE } from "@/consts";
 import {
+  formatTotal,
   getCombinedReadingTime,
   getParentId,
   getParentPost,
@@ -73,7 +74,12 @@ const subpostsWithReadingTime = await Promise.all(
                             activePostReadingTime && (
                             <span>
                               {" "}
-                              ({activePostCombinedReadingTime} total)
+                              (
+                              {formatTotal(
+                                activePostCombinedReadingTime,
+                                SITE.locale,
+                              )}
+                              )
                             </span>
                           )}
                       </span>
@@ -102,7 +108,12 @@ const subpostsWithReadingTime = await Promise.all(
                             activePostReadingTime && (
                             <span>
                               {" "}
-                              ({activePostCombinedReadingTime} total)
+                              (
+                              {formatTotal(
+                                activePostCombinedReadingTime,
+                                SITE.locale,
+                              )}
+                              )
                             </span>
                           )}
                       </span>

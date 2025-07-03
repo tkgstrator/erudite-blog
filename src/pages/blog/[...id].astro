@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import {
+  formatTotal,
   getAdjacentPosts,
   getAllPostsAndSubposts,
   getCombinedReadingTime,
@@ -53,7 +54,7 @@ const subpostCount = !isCurrentSubpost
 const postReadingTime = await getPostReadingTime(currentPostId, SITE.locale);
 const combinedReadingTime =
   hasChildPosts && !isCurrentSubpost
-    ? await getCombinedReadingTime(currentPostId)
+    ? await getCombinedReadingTime(currentPostId, SITE.locale)
     : null;
 
 const tocSections = await getTOCSections(currentPostId);
@@ -116,7 +117,7 @@ const tocSections = await getTOCSections(currentPostId);
           alt={post.data.title}
           width={1200}
           height={630}
-          class="col-span-full mx-auto w-full max-w-5xl object-cover"
+          class="col-span-full mx-auto w-full max-w-3xl object-cover"
         />
       )
     }
@@ -178,7 +179,7 @@ const tocSections = await getTOCSections(currentPostId);
                   combinedReadingTime !== postReadingTime && (
                     <span class="text-muted-foreground">
                       {" "}
-                      ({combinedReadingTime} total)
+                      ({formatTotal(combinedReadingTime, SITE.locale)})
                     </span>
                   )
               }
@@ -284,6 +285,31 @@ const tocSections = await getTOCSections(currentPostId);
           );
         });
       }
+    });
+  </script>
+
+  <script>
+    // ヘッダーをスクロールしたら上に飛ばす
+    // 上にスクロールするか、画面の一番上になったら戻す
+    document.addEventListener("astro:page-load", () => {
+      const header = document.getElementById("header");
+      if (!header) return;
+      let lastScrollY = 0;
+
+      window.addEventListener("scroll", () => {
+        const headerHeight = header ? header.offsetHeight : 0;
+        // important: ヘッダーを操作して高さが変化するとスクロールが起こった判定になり、
+        // クリックしただけでヘッダーが隠れてしまう。そのため、ヘッダーの高さを除いたスクロール位置を計算する。
+        const currentScrollY = window.scrollY - headerHeight;
+        const scrollDiff = currentScrollY - lastScrollY;
+        lastScrollY = currentScrollY;
+
+        if (scrollDiff < 0 || currentScrollY <= headerHeight) {
+          header.style.transform = "translateY(0)";
+        } else if (scrollDiff > 0) {
+          header.style.transform = "translateY(-100%)";
+        }
+      });
     });
   </script>
 </Layout>

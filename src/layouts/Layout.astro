@@ -23,7 +23,8 @@ const { class: className } = Astro.props;
   <body>
     <div class="flex h-fit min-h-screen flex-col gap-y-6 font-sans">
       <div
-        class="bg-background/50 sticky top-0 z-50 divide-y backdrop-blur-sm xl:divide-none"
+        id="header"
+        class="bg-background/50 sticky top-0 z-50 divide-y backdrop-blur-sm transition-transform duration-300 ease-in-out xl:divide-none"
       >
         <Header />
         <slot name="subposts-navigation" />

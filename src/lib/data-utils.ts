@@ -261,6 +261,17 @@ export async function getPostReadingTime(
 	return readingTime(wordCount, locale);
 }
 
+export function formatTotal(text: string, locale: string = "en-US"): string {
+	switch (locale) {
+		case "ja-JP": {
+			return `合計 ${text}`;
+		}
+		default: {
+			return `${text} total`;
+		}
+	}
+}
+
 export type TOCHeading = {
 	slug: string;
 	text: string;
