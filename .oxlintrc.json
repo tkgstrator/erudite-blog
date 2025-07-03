@@ -1,0 +1,17 @@
+// .oxlintrc.json
+{
+  "overrides": [
+    {
+      "files": ["**/*.astro", "**/*.svelte", "**/*.vue"],
+        "rules": {
+
+        }
+      
+    }
+  ],
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.astro/**"
+  ]
+}

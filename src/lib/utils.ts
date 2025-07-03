@@ -60,6 +60,20 @@ export function readingTimeNumber(count: TextLengthCount): number {
 	return readingTimeMinutes;
 }
 
+export function subpostCountToString(
+	count: number,
+	locale: string = "en-US",
+): string {
+	switch (locale) {
+		case "ja-JP": {
+			return `${count} 件`;
+		}
+		default: {
+			return `${count} subpost${count === 1 ? "" : "s"}`;
+		}
+	}
+}
+
 export function getHeadingMargin(depth: number): string {
 	const margins: Record<number, string> = {
 		3: "ml-4",

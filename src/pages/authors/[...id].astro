@@ -7,11 +7,11 @@ import Layout from "@/layouts/Layout.astro";
 import { getAllAuthors, getPostsByAuthor } from "@/lib/data-utils";
 
 export async function getStaticPaths() {
-	const authors = await getAllAuthors();
-	return authors.map((author) => ({
-		params: { id: author.id },
-		props: { author },
-	}));
+  const authors = await getAllAuthors();
+  return authors.map((author) => ({
+    params: { id: author.id },
+    props: { author },
+  }));
 }
 
 const { author } = Astro.props;
@@ -27,8 +27,8 @@ const authorPosts = await getPostsByAuthor(author.id);
   />
   <Breadcrumbs
     items={[
-      { href: '/authors', label: 'Authors', icon: 'lucide:users' },
-      { label: author.data.name, icon: 'lucide:user' },
+      { href: "/authors", label: "Authors", icon: "lucide:users" },
+      { label: author.data.name, icon: "lucide:user" },
     ]}
   />
 

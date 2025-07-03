@@ -1,22 +1,22 @@
 ---
-import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
-import { Icon } from "astro-icon/components";
 import AvatarComponent from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { SITE } from "@/consts";
 import {
-	getCombinedReadingTime,
-	getSubpostCount,
-	isSubpost,
-	parseAuthors,
+  getCombinedReadingTime,
+  getSubpostCount,
+  isSubpost,
+  parseAuthors,
 } from "@/lib/data-utils";
-import { formatDate } from "@/lib/utils";
+import { formatDate, subpostCountToString } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
 import Link from "./Link.astro";
 
 interface Props {
-	entry: CollectionEntry<"blog">;
+  entry: CollectionEntry<"blog">;
 }
 
 const { entry } = Astro.props;
@@ -31,9 +31,9 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
 >
   <Link
     href={`/${entry.collection}/${entry.id}`}
-    class="grid-rows-subgrid grid grid-cols-1  gap-4 sm:flex-row relative group"
+    class="group relative grid grid-cols-1 grid-rows-subgrid gap-4 sm:flex-row"
   >
-    <div class="grow py-4 px-6">
+    <div class="grow px-6 py-4">
       <h3 class="mb-1 text-lg font-medium">{entry.data.title}</h3>
       <p class="text-muted-foreground mb-2 text-sm">{entry.data.description}</p>
 
@@ -62,7 +62,7 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
         <span>{formattedDate}</span>
         <Separator orientation="vertical" className="h-4!" />
         <span>
-          <Icon name="lucide:hourglass" class="size-3 inline" />
+          <Icon name="lucide:hourglass" class="inline size-3" />
           {readTime}
         </span>
         {
@@ -71,7 +71,7 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
               <Separator orientation="vertical" className="h-4!" />
               <span class="flex items-center gap-1">
                 <Icon name="lucide:file-text" class="size-3" />
-                {subpostCount} subpost{subpostCount === 1 ? '' : 's'}
+                {subpostCountToString(subpostCount)}
               </span>
             </>
           )
@@ -93,18 +93,17 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
 
       {
         entry.data.image && (
-          <div class="absolute right-0 top-0 bottom-0 max-h-full max-w-2/3 -z-10 sm:shrink-0">
+          <div class="absolute top-0 right-0 bottom-0 -z-10 max-h-full max-w-2/3 sm:shrink-0">
             <Image
               src={entry.data.image}
               alt={entry.data.title}
               width={1200}
               height={630}
-              class="object-cover h-full mask-l-from-5% md:mask-l-from-10% group-hover:mask-l-from-40% brightness-50 group-hover:brightness-100 transition duration-300 ease-in-out"
+              class="h-full mask-l-from-5% object-cover brightness-50 transition duration-300 ease-in-out group-hover:mask-l-from-40% group-hover:brightness-100 md:mask-l-from-10%"
             />
           </div>
         )
       }
     </div>
-
   </Link>
 </div>

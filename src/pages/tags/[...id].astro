@@ -6,21 +6,21 @@ import Layout from "@/layouts/Layout.astro";
 import { getAllTags, getPostsByTag } from "@/lib/data-utils";
 
 export async function getStaticPaths() {
-	const tagMap = await getAllTags();
-	const uniqueTags = Array.from(tagMap.keys());
+  const tagMap = await getAllTags();
+  const uniqueTags = Array.from(tagMap.keys());
 
-	return Promise.all(
-		uniqueTags.map(async (tag) => {
-			const posts = await getPostsByTag(tag);
-			return {
-				params: { id: tag },
-				props: {
-					tag,
-					posts,
-				},
-			};
-		}),
-	);
+  return Promise.all(
+    uniqueTags.map(async (tag) => {
+      const posts = await getPostsByTag(tag);
+      return {
+        params: { id: tag },
+        props: {
+          tag,
+          posts,
+        },
+      };
+    }),
+  );
 }
 
 const { tag, posts } = Astro.props;
@@ -35,8 +35,8 @@ const { tag, posts } = Astro.props;
   />
   <Breadcrumbs
     items={[
-      { href: '/tags', label: 'Tags', icon: 'lucide:tags' },
-      { label: tag, icon: 'lucide:tag' },
+      { href: "/tags", label: "Tags", icon: "lucide:tags" },
+      { label: tag, icon: "lucide:tag" },
     ]}
   />
 

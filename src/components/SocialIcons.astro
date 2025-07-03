@@ -1,12 +1,12 @@
 ---
-import { Icon } from "astro-icon/components";
 import Link from "@/components/Link.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { ICON_MAP } from "@/consts";
 import type { SocialLink } from "@/types";
+import { Icon } from "astro-icon/components";
 
 interface Props {
-	links: SocialLink[];
+  links: SocialLink[];
 }
 
 const { links } = Astro.props;
@@ -20,13 +20,13 @@ const { links } = Astro.props;
           href={href}
           aria-label={label}
           title={label}
-          class={buttonVariants({ variant: 'outline', size: 'icon' })}
+          class={buttonVariants({ variant: "outline", size: "icon" })}
           external
         >
           <Icon
             name={
               ICON_MAP[label as keyof typeof ICON_MAP] ||
-              'lucide:message-circle-question'
+              "lucide:message-circle-question"
             }
             class="size-4"
           />

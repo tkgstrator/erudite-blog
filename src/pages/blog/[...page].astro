@@ -1,5 +1,4 @@
 ---
-import type { PaginateFunction } from "astro";
 import BlogCard from "@/components/BlogCard.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import PageHead from "@/components/PageHead.astro";
@@ -7,21 +6,22 @@ import PaginationComponent from "@/components/ui/pagination";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { getAllPosts, groupPostsByYear } from "@/lib/data-utils";
+import type { PaginateFunction } from "astro";
 
 export async function getStaticPaths({
-	paginate,
+  paginate,
 }: {
-	paginate: PaginateFunction;
+  paginate: PaginateFunction;
 }) {
-	const allPosts = await getAllPosts();
-	return paginate(allPosts, { pageSize: SITE.postsPerPage });
+  const allPosts = await getAllPosts();
+  return paginate(allPosts, { pageSize: SITE.postsPerPage });
 }
 
 const { page } = Astro.props;
 
 const postsByYear = groupPostsByYear(page.data);
 const years = Object.keys(postsByYear).sort(
-	(a, b) => parseInt(b) - parseInt(a),
+  (a, b) => parseInt(b) - parseInt(a),
 );
 ---
 
@@ -29,8 +29,8 @@ const years = Object.keys(postsByYear).sort(
   <PageHead slot="head" title="Blog" />
   <Breadcrumbs
     items={[
-      { label: 'Blog', href: '/blog', icon: 'lucide:library-big' },
-      { label: `Page ${page.currentPage}`, icon: 'lucide:book-copy' },
+      { label: "Blog", href: "/blog", icon: "lucide:library-big" },
+      { label: `Page ${page.currentPage}`, icon: "lucide:book-copy" },
     ]}
   />
 

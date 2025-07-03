@@ -1,7 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import { render } from "astro:content";
-import { Icon } from "astro-icon/components";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Link from "@/components/Link.astro";
 import PostHead from "@/components/PostHead.astro";
@@ -15,26 +12,29 @@ import { Button } from "@/components/ui/button";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import {
-	getAdjacentPosts,
-	getAllPostsAndSubposts,
-	getCombinedReadingTime,
-	getParentId,
-	getParentPost,
-	getPostReadingTime,
-	getSubpostCount,
-	getTOCSections,
-	hasSubposts,
-	isSubpost,
-	parseAuthors,
+  getAdjacentPosts,
+  getAllPostsAndSubposts,
+  getCombinedReadingTime,
+  getParentId,
+  getParentPost,
+  getPostReadingTime,
+  getSubpostCount,
+  getTOCSections,
+  hasSubposts,
+  isSubpost,
+  parseAuthors,
 } from "@/lib/data-utils";
-import { formatDate } from "@/lib/utils";
+import { formatDate, subpostCountToString } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
-	const posts = await getAllPostsAndSubposts();
-	return posts.map((post) => ({
-		params: { id: post.id },
-		props: post,
-	}));
+  const posts = await getAllPostsAndSubposts();
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: post,
+  }));
 }
 
 const post = Astro.props;
@@ -48,13 +48,13 @@ const parentPost = isCurrentSubpost ? await getParentPost(currentPostId) : null;
 
 const hasChildPosts = await hasSubposts(currentPostId);
 const subpostCount = !isCurrentSubpost
-	? await getSubpostCount(currentPostId)
-	: 0;
+  ? await getSubpostCount(currentPostId)
+  : 0;
 const postReadingTime = await getPostReadingTime(currentPostId, SITE.locale);
 const combinedReadingTime =
-	hasChildPosts && !isCurrentSubpost
-		? await getCombinedReadingTime(currentPostId)
-		: null;
+  hasChildPosts && !isCurrentSubpost
+    ? await getCombinedReadingTime(currentPostId)
+    : null;
 
 const tocSections = await getTOCSections(currentPostId);
 ---
@@ -84,25 +84,25 @@ const tocSections = await getTOCSections(currentPostId);
     <div class="col-start-2">
       <Breadcrumbs
         items={[
-          { href: '/blog', label: 'Blog', icon: 'lucide:library-big' },
+          { href: "/blog", label: "Blog", icon: "lucide:library-big" },
           ...(isCurrentSubpost && parentPost
             ? [
                 {
                   href: `/blog/${parentPost.id}`,
                   label: parentPost.data.title,
-                  icon: 'lucide:book-open',
+                  icon: "lucide:book-open",
                 },
                 {
                   href: `/blog/${currentPostId}`,
                   label: post.data.title,
-                  icon: 'lucide:file-text',
+                  icon: "lucide:file-text",
                 },
               ]
             : [
                 {
                   href: `/blog/${currentPostId}`,
                   label: post.data.title,
-                  icon: 'lucide:book-open-text',
+                  icon: "lucide:book-open-text",
                 },
               ]),
         ]}
@@ -177,7 +177,7 @@ const tocSections = await getTOCSections(currentPostId);
                 combinedReadingTime &&
                   combinedReadingTime !== postReadingTime && (
                     <span class="text-muted-foreground">
-                      {' '}
+                      {" "}
                       ({combinedReadingTime} total)
                     </span>
                   )
@@ -189,7 +189,7 @@ const tocSections = await getTOCSections(currentPostId);
             subpostCount > 0 && (
               <div class="flex w-full items-center justify-center gap-1 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0">
                 <Icon name="lucide:file-text" class="size-3" />
-                {subpostCount} subpost{subpostCount === 1 ? '' : 's'}
+                {subpostCountToString(subpostCount)}
               </div>
             )
           }
@@ -201,7 +201,7 @@ const tocSections = await getTOCSections(currentPostId);
               post.data.tags.map((tag) => (
                 <a
                   href={`/tags/${tag}`}
-                  class={badgeVariants({ variant: 'secondary' })}
+                  class={badgeVariants({ variant: "secondary" })}
                 >
                   <Icon name="lucide:hash" class="size-3" />
                   {tag}
@@ -211,11 +211,15 @@ const tocSections = await getTOCSections(currentPostId);
         </div>
       </div>
 
-      <PostNavigation
-        newerPost={navigation.newer}
-        olderPost={navigation.older}
-        parentPost={isCurrentSubpost ? navigation.parent : undefined}
-      />
+      {
+        isCurrentSubpost && (
+          <PostNavigation
+            newerPost={navigation.newer}
+            olderPost={navigation.older}
+            parentPost={isCurrentSubpost ? navigation.parent : undefined}
+          />
+        )
+      }
     </section>
 
     {
@@ -261,25 +265,25 @@ const tocSections = await getTOCSections(currentPostId);
   </Button>
 
   <script>
-    document.addEventListener('astro:page-load', () => {
-      const scrollToTopButton = document.getElementById('scroll-to-top')
-      const footer = document.querySelector('footer')
+    document.addEventListener("astro:page-load", () => {
+      const scrollToTopButton = document.getElementById("scroll-to-top");
+      const footer = document.querySelector("footer");
 
       if (scrollToTopButton && footer) {
-        scrollToTopButton.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        })
+        scrollToTopButton.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
 
-        window.addEventListener('scroll', () => {
-          const footerRect = footer.getBoundingClientRect()
-          const isFooterVisible = footerRect.top <= window.innerHeight
+        window.addEventListener("scroll", () => {
+          const footerRect = footer.getBoundingClientRect();
+          const isFooterVisible = footerRect.top <= window.innerHeight;
 
           scrollToTopButton.classList.toggle(
-            'hidden',
+            "hidden",
             window.scrollY <= 300 || isFooterVisible,
-          )
-        })
+          );
+        });
       }
-    })
+    });
   </script>
 </Layout>

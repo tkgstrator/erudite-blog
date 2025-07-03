@@ -1,16 +1,16 @@
 ---
-import { Icon } from "astro-icon/components";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SITE } from "@/consts";
 import {
-	getCombinedReadingTime,
-	getParentId,
-	getParentPost,
-	getPostById,
-	getPostReadingTime,
-	getSubpostsForParent,
-	isSubpost,
+  getCombinedReadingTime,
+  getParentId,
+  getParentPost,
+  getPostById,
+  getPostReadingTime,
+  getSubpostsForParent,
+  isSubpost,
 } from "@/lib/data-utils";
+import { Icon } from "astro-icon/components";
 
 const { parentId } = Astro.props;
 const currentPostId = Astro.params.id as string;
@@ -25,22 +25,22 @@ const activePost = parentPost || currentPost;
 const isActivePost = activePost?.id === currentPostId;
 
 const activePostReadingTime = activePost
-	? await getPostReadingTime(activePost.id, SITE.locale)
-	: null;
+  ? await getPostReadingTime(activePost.id, SITE.locale)
+  : null;
 const activePostCombinedReadingTime =
-	activePost && subposts.length > 0
-		? await getCombinedReadingTime(activePost.id, SITE.locale)
-		: null;
+  activePost && subposts.length > 0
+    ? await getCombinedReadingTime(activePost.id, SITE.locale)
+    : null;
 const subpostsWithReadingTime = await Promise.all(
-	subposts.map(async (subpost) => ({
-		...subpost,
-		readingTime: await getPostReadingTime(subpost.id, SITE.locale),
-	})),
+  subposts.map(async (subpost) => ({
+    ...subpost,
+    readingTime: await getPostReadingTime(subpost.id, SITE.locale),
+  })),
 );
 
 const currentSubpostDetails = isCurrentSubpost
-	? subpostsWithReadingTime.find((subpost) => subpost.id === currentPostId)
-	: null;
+  ? subpostsWithReadingTime.find((subpost) => subpost.id === currentPostId)
+  : null;
 ---
 
 {
@@ -53,10 +53,10 @@ const currentSubpostDetails = isCurrentSubpost
               <Icon
                 name={
                   currentSubpostDetails
-                    ? 'lucide:file-text'
+                    ? "lucide:file-text"
                     : isActivePost
-                      ? 'lucide:book-open-text'
-                      : 'lucide:book-open'
+                      ? "lucide:book-open-text"
+                      : "lucide:book-open"
                 }
                 class="size-4 flex-shrink-0"
                 aria-hidden="true"
@@ -105,7 +105,7 @@ const currentSubpostDetails = isCurrentSubpost
                               activePostCombinedReadingTime !==
                                 activePostReadingTime && (
                                 <span>
-                                  {' '}
+                                  {" "}
                                   ({activePostCombinedReadingTime} total)
                                 </span>
                               )}
@@ -134,7 +134,7 @@ const currentSubpostDetails = isCurrentSubpost
                               activePostCombinedReadingTime !==
                                 activePostReadingTime && (
                                 <span>
-                                  {' '}
+                                  {" "}
                                   ({activePostCombinedReadingTime} total)
                                 </span>
                               )}
@@ -194,122 +194,122 @@ const currentSubpostDetails = isCurrentSubpost
 
 <script>
   class SubpostsState {
-    scrollArea: HTMLElement | null = null
-    detailsElement: HTMLDetailsElement | null = null
-    headerScrollArea: HTMLElement | null = null
+    scrollArea: HTMLElement | null = null;
+    detailsElement: HTMLDetailsElement | null = null;
+    headerScrollArea: HTMLElement | null = null;
 
     reset() {
-      this.scrollArea = null
-      this.detailsElement = null
-      this.headerScrollArea = null
+      this.scrollArea = null;
+      this.detailsElement = null;
+      this.headerScrollArea = null;
     }
   }
 
-  const state = new SubpostsState()
+  const state = new SubpostsState();
 
   class SubpostsHeaderScrollMask {
     static update() {
-      if (!state.scrollArea || !state.headerScrollArea) return
+      if (!state.scrollArea || !state.headerScrollArea) return;
 
-      const { scrollTop, scrollHeight, clientHeight } = state.scrollArea
-      const threshold = 5
-      const isAtTop = scrollTop <= threshold
-      const isAtBottom = scrollTop >= scrollHeight - clientHeight - threshold
+      const { scrollTop, scrollHeight, clientHeight } = state.scrollArea;
+      const threshold = 5;
+      const isAtTop = scrollTop <= threshold;
+      const isAtBottom = scrollTop >= scrollHeight - clientHeight - threshold;
 
-      state.headerScrollArea.classList.toggle('mask-t-from-80%', !isAtTop)
-      state.headerScrollArea.classList.toggle('mask-b-from-80%', !isAtBottom)
+      state.headerScrollArea.classList.toggle("mask-t-from-80%", !isAtTop);
+      state.headerScrollArea.classList.toggle("mask-b-from-80%", !isAtBottom);
     }
   }
 
   class SubpostsScroll {
     static toActive() {
-      if (!state.scrollArea) return
+      if (!state.scrollArea) return;
 
       const activeItem = state.scrollArea.querySelector(
-        '.mobile-subposts-active-item',
-      )
-      if (!activeItem) return
+        ".mobile-subposts-active-item",
+      );
+      if (!activeItem) return;
 
       const { top: areaTop, height: areaHeight } =
-        state.scrollArea.getBoundingClientRect()
+        state.scrollArea.getBoundingClientRect();
       const { top: itemTop, height: itemHeight } =
-        activeItem.getBoundingClientRect()
+        activeItem.getBoundingClientRect();
 
-      const currentItemTop = itemTop - areaTop + state.scrollArea.scrollTop
+      const currentItemTop = itemTop - areaTop + state.scrollArea.scrollTop;
       const targetScroll = Math.max(
         0,
         Math.min(
           currentItemTop - (areaHeight - itemHeight) / 2,
           state.scrollArea.scrollHeight - state.scrollArea.clientHeight,
         ),
-      )
+      );
 
-      state.scrollArea.scrollTop = targetScroll
+      state.scrollArea.scrollTop = targetScroll;
     }
 
     static setupInteraction() {
-      const container = document.getElementById('mobile-subposts-container')
-      if (!container) return
+      const container = document.getElementById("mobile-subposts-container");
+      if (!container) return;
 
       state.scrollArea = container.querySelector(
-        '[data-radix-scroll-area-viewport]',
-      )
-      state.detailsElement = container.querySelector('details')
+        "[data-radix-scroll-area-viewport]",
+      );
+      state.detailsElement = container.querySelector("details");
       state.headerScrollArea = container.querySelector(
-        '[data-subposts-header-scroll]',
-      )
-      const links = container.querySelectorAll('.mobile-subposts-link')
+        "[data-subposts-header-scroll]",
+      );
+      const links = container.querySelectorAll(".mobile-subposts-link");
 
       if (state.scrollArea) {
         state.scrollArea.addEventListener(
-          'scroll',
+          "scroll",
           SubpostsHeaderScrollMask.update,
           { passive: true },
-        )
+        );
       }
 
       if (state.detailsElement) {
-        state.detailsElement.addEventListener('toggle', () => {
+        state.detailsElement.addEventListener("toggle", () => {
           if (state.detailsElement?.open) {
             requestAnimationFrame(() => {
-              SubpostsScroll.toActive()
-              setTimeout(SubpostsHeaderScrollMask.update, 100)
-            })
+              SubpostsScroll.toActive();
+              setTimeout(SubpostsHeaderScrollMask.update, 100);
+            });
           }
-        })
+        });
       }
 
       links.forEach((link) => {
-        link.addEventListener('click', () => {
-          if (state.detailsElement) state.detailsElement.open = false
-        })
-      })
+        link.addEventListener("click", () => {
+          if (state.detailsElement) state.detailsElement.open = false;
+        });
+      });
     }
   }
 
   class SubpostsController {
     static init() {
-      state.reset()
-      SubpostsScroll.setupInteraction()
+      state.reset();
+      SubpostsScroll.setupInteraction();
     }
 
     static cleanup() {
       if (state.scrollArea) {
         state.scrollArea.removeEventListener(
-          'scroll',
+          "scroll",
           SubpostsHeaderScrollMask.update,
-        )
+        );
       }
-      state.reset()
+      state.reset();
     }
   }
 
-  document.addEventListener('astro:page-load', () => SubpostsController.init())
-  document.addEventListener('astro:after-swap', () => {
-    SubpostsController.cleanup()
-    SubpostsController.init()
-  })
-  document.addEventListener('astro:before-swap', () =>
+  document.addEventListener("astro:page-load", () => SubpostsController.init());
+  document.addEventListener("astro:after-swap", () => {
+    SubpostsController.cleanup();
+    SubpostsController.init();
+  });
+  document.addEventListener("astro:before-swap", () =>
     SubpostsController.cleanup(),
-  )
+  );
 </script>

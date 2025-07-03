@@ -10,8 +10,8 @@
 		"preview": "astro preview",
 		"astro": "astro",
 		"postinstall": "patch-package",
-		"lint": "biome lint --fix",
-		"format": "biome format --write"
+		"lint": "oxlint --fix",
+		"format": "prettier --write **/*.{ts,tsx,css,astro} --ignore-path .gitignore"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
@@ -49,11 +49,17 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.6",
-		"@iconify-json/tabler": "^1.2.19"
+		"@iconify-json/tabler": "^1.2.19",
+		"eslint-plugin-oxlint": "^1.5.0",
+		"oxlint": "^1.5.0",
+		"prettier": "^3.6.2",
+		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-astro-organize-imports": "^0.4.11",
+		"prettier-plugin-tailwindcss": "^0.6.13"
 	},
 	"prettier": {
-		"semi": false,
-		"singleQuote": true,
+		"semi": true,
+		"singleQuote": false,
 		"plugins": [
 			"prettier-plugin-astro",
 			"prettier-plugin-tailwindcss",

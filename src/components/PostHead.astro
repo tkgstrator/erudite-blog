@@ -4,7 +4,7 @@ import { isSubpost } from "@/lib/data-utils";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
-	post: CollectionEntry<"blog">;
+  post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
@@ -13,9 +13,9 @@ const title = post.data.title || SITE.title;
 const description = post.data.description || SITE.description;
 const image = new URL("/static/1200x630.png", Astro.site);
 const author =
-	post.data.authors && post.data.authors.length > 0
-		? post.data.authors.join(", ")
-		: SITE.author;
+  post.data.authors && post.data.authors.length > 0
+    ? post.data.authors.join(", ")
+    : SITE.author;
 ---
 
 <title>{`${title} | ${SITE.title}`}</title>
@@ -55,6 +55,6 @@ const author =
 {
   post?.data.tags &&
     post.data.tags.map((tag: string) => {
-      return <meta property="article:tag" content={tag} />
+      return <meta property="article:tag" content={tag} />;
     })
 }
