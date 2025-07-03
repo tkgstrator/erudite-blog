@@ -39,6 +39,7 @@
       },
       "devDependencies": {
         "@biomejs/biome": "^2.0.6",
+        "@iconify-json/ri": "^1.2.5",
         "@iconify-json/tabler": "^1.2.19",
         "eslint-plugin-oxlint": "^1.5.0",
         "oxlint": "^1.5.0",
@@ -225,6 +226,8 @@
     "@floating-ui/utils": ["@floating-ui/utils@0.2.9", "", {}, "sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg=="],
 
     "@iconify-json/lucide": ["@iconify-json/lucide@1.2.44", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-lOwXoOtkFm4Zj1duPj5xqhPKKMUvxVRMfIHi0YDfwLjEEgrhzsJZ4JCpE119L8P8p6zi4on4b9cPZdVXCUuDoQ=="],
+
+    "@iconify-json/ri": ["@iconify-json/ri@1.2.5", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-kWGimOXMZrlYusjBKKXYOWcKhbOHusFsmrmRGmjS7rH0BpML5A9/fy8KHZqFOwZfC4M6amObQYbh8BqO5cMC3w=="],
 
     "@iconify-json/simple-icons": ["@iconify-json/simple-icons@1.2.41", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-4tt29cKzNsxvt6rjAOVhEgpZV0L8jleTDTMdtvIJjF14Afp9aH8peuwGYyX35l6idfFwuzbvjSVfVyVjJtfmYA=="],
 

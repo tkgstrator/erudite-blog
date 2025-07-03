@@ -1,5 +1,6 @@
 ---
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import LicenseCard from "@/components/LicenseCard.astro";
 import Link from "@/components/Link.astro";
 import PostHead from "@/components/PostHead.astro";
 import PostNavigation from "@/components/PostNavigation.astro";
@@ -231,6 +232,8 @@ const tocSections = await getTOCSections(currentPostId);
 
     <article class="prose col-start-2 max-w-none">
       <Content />
+
+      <LicenseCard license={post.data.license} />
     </article>
 
     {

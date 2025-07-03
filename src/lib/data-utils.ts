@@ -1,4 +1,4 @@
-import { type CollectionEntry, getCollection, render } from "astro:content";
+import { type CollectionEntry, getCollection, render, z } from "astro:content";
 import { calculateWordCountFromHtml, readingTime } from "@/lib/utils";
 
 export async function getAllAuthors(): Promise<CollectionEntry<"authors">[]> {
@@ -330,3 +330,16 @@ export async function getTOCSections(postId: string): Promise<TOCSection[]> {
 
 	return sections;
 }
+
+
+export const licenseSchema = z.object({
+  // "cc-by 4.0" -> { type: "by", version: "4.0" }
+  // "cc-by" -> { type: "by", version: "4.0" }
+  // "cc-zero" -> { type: "zero" }
+  // "cc-by sa" -> { type: "sa", version: "4.0" }
+  // "cc-by-nc" -> { type: "nc", version: "4.0" }
+  type: z.enum(["by", "sa", "nc", "nd", "zero"]),
+  version: z.enum(["4.0", "1.0"]).optional(),
+});
+
+export type License = z.infer<typeof licenseSchema>;

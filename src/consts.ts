@@ -9,6 +9,10 @@ export const SITE: Site = {
   locale: "ja-JP",
   featuredPostCount: 10,
   postsPerPage: 10,
+  defaultLicense: {
+    type: "by",
+    version: "4.0",
+  },
 };
 
 export const NAV_LINKS: SocialLink[] = [
