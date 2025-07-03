@@ -24,6 +24,7 @@
 		"@expressive-code/plugin-line-numbers": "^0.41.2",
 		"@iconify-json/lucide": "^1.2.26",
 		"@iconify-json/simple-icons": "^1.2.41",
+		"@swup/astro": "^1.6.0",
 		"@tailwindcss/vite": "^4.0.7",
 		"@types/react": "19.0.0",
 		"@types/react-dom": "19.0.0",
