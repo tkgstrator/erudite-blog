@@ -14,7 +14,6 @@ import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkEmoji from "remark-emoji";
 import remarkMath from "remark-math";
-
 import swup from "@swup/astro";
 
 export default defineConfig({
@@ -73,6 +72,8 @@ export default defineConfig({
       smoothScrolling: true,
       updateHead: true,
       cache: true,
+      progress: true,
+      containers: ["main", "#mobile-header"],
     }),
   ],
   vite: {
