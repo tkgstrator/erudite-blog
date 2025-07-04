@@ -1,7 +1,7 @@
 ---
 import { Card } from "@/components/ui/card";
 import { SITE } from "@/consts";
-import type { License } from "@/lib/data-utils";
+import { licenseToName, type License } from "@/lib/data-utils";
 import { Icon } from "astro-icon/components";
 
 interface Props {
@@ -31,13 +31,7 @@ const licenseToUrl = (type: License["type"], version?: string) => {
   return url + "deed." + SITE.locale.split("-")[0];
 };
 
-const typTextMap: Record<License["type"], string> = {
-  zero: "CC0 1.0",
-  by: `CC BY ${version}`,
-  sa: `CC BY-SA ${version}`,
-  nc: `CC BY-NC ${version}`,
-  nd: `CC BY-ND ${version}`,
-};
+const licenseName = licenseToName({ type, version });
 
 const url = licenseToUrl(type, version);
 ---
@@ -47,7 +41,7 @@ const url = licenseToUrl(type, version);
     <div class="flex grow flex-col gap-y-0.5 py-2 pl-8">
       <span class="text-primary/50 text-xs">License under</span>
       <span class="text-lg font-medium">
-        {typTextMap[type]}
+        {licenseName}
       </span>
       <a href={url} class="text-sm" target="_blank">{url}</a>
     </div>
