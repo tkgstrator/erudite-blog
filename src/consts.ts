@@ -43,6 +43,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
     href: "/rss.xml",
     label: "RSS",
   },
+  {
+    href: "/llms.txt",
+    label: "LLM",
+  },
 ];
 
 export const ICON_MAP: IconMap = {
@@ -53,4 +57,5 @@ export const ICON_MAP: IconMap = {
   Bluesky: "tabler:brand-bluesky",
   Email: "lucide:mail",
   RSS: "lucide:rss",
+  LLM: "lucide:bot",
 };
