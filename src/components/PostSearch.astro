@@ -205,7 +205,7 @@ const bundlePath = `${import.meta.env.BASE_URL}pagefind/`;
       el.classList.remove("pagefind-init");
       const query = el.getAttribute("data-query");
       if (query) {
-        const input = el.querySelector<HTMLInputElement>`input[type="text"]`;
+        const input = el.querySelector<HTMLInputElement>(`input[type="text"]`);
         if (input) {
           input.value = query;
           input.dispatchEvent(new Event("input", { bubbles: true }));
