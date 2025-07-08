@@ -24,7 +24,7 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
 ---
 
 <div
-  class="hover:bg-secondary/50 rounded-xl border transition-colors duration-300 ease-in-out"
+  class="hover:bg-secondary/50 overflow-clip rounded-xl border transition-colors duration-300 ease-in-out"
 >
   <Link
     href={`/${entry.collection}/${entry.id}`}
@@ -77,7 +77,10 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
               alt={entry.data.title}
               width={1200}
               height={630}
-              class="h-full mask-l-from-5% object-cover brightness-50 transition duration-300 ease-in-out group-hover:mask-l-from-40% group-hover:brightness-100 md:mask-l-from-10%"
+              class:list={[
+                "h-full mask-l-from-5% object-cover transition duration-300 ease-in-out group-hover:mask-l-from-40% group-hover:brightness-100 md:mask-l-from-10%",
+                "opacity-30 group-hover:opacity-100 dark:opacity-100 dark:brightness-50",
+              ]}
             />
           </div>
         )
