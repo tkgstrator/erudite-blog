@@ -1,10 +1,9 @@
 import type { IconMap, Site, SocialLink } from "@/types";
 
 export const SITE: Site = {
-  title: "[object Object]",
-  description:
-    "astro-erudite is a opinionated, unstyled blogging template—built with Astro, Tailwind, and shadcn/ui.",
-  href: "https://astro-erudite.vercel.app",
+  title: "programme",
+  description: "plat のブログ",
+  href: "https://blog.p1at.dev",
   author: "plat",
   locale: "ja-JP",
   featuredPostCount: 10,
@@ -21,12 +20,12 @@ export const NAV_LINKS: SocialLink[] = [
     label: "blog",
   },
   {
-    href: "/authors",
-    label: "authors",
-  },
-  {
     href: "/about",
     label: "about",
+  },
+  {
+    href: "/search",
+    label: "search",
   },
 ];
 

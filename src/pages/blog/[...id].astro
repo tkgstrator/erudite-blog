@@ -82,8 +82,9 @@ const tocSections = await getTOCSections(currentPostId);
 
   <section
     class="grid grid-cols-[minmax(0px,1fr)_min(calc(var(--breakpoint-md)-2rem),100%)_minmax(0px,1fr)] gap-y-6"
+    data-pagefind-body
   >
-    <div class="col-start-2">
+    <div class="col-start-2" data-pagefind-ignore>
       <Breadcrumbs
         items={[
           { href: "/blog", label: "Blog", icon: "lucide:library-big" },
@@ -119,12 +120,14 @@ const tocSections = await getTOCSections(currentPostId);
           width={1200}
           height={630}
           class="col-span-full mx-auto w-full max-w-3xl object-cover"
+          data-pagefind-meta="image[src], image_alt[alt]"
         />
       )
     }
 
     <section class="col-start-2 flex flex-col gap-y-6 text-center">
       <div class="flex flex-col">
+        <!-- Title -->
         <h1
           class="mb-2 scroll-mt-31 text-3xl leading-tight font-medium sm:text-4xl"
           id="post-title"
@@ -132,7 +135,8 @@ const tocSections = await getTOCSections(currentPostId);
           {post.data.title}
         </h1>
 
-        <div
+        <!-- Authors -->
+        <divs
           class="text-muted-foreground divide-border mb-4 flex flex-col items-center justify-center divide-y text-xs sm:flex-row sm:flex-wrap sm:divide-x sm:divide-y-0 sm:text-sm"
         >
           {
@@ -164,16 +168,21 @@ const tocSections = await getTOCSections(currentPostId);
             )
           }
 
+          <!-- Date -->
           <div
             class="flex w-full items-center justify-center gap-2 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0"
           >
-            <span>{formatDate(post.data.date, SITE.locale)}</span>
+            <time
+              datetime={post.data.date.toISOString()}
+              data-pagefind-meta={`date:${formatDate(post.data.date, SITE.locale)}`}
+              >{formatDate(post.data.date, SITE.locale)}</time
+            >
           </div>
 
           <div
             class="flex w-full items-center justify-center gap-2 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0"
           >
-            <span>
+            <span data-pagefind-meta={`reading:${postReadingTime}`}>
               {postReadingTime}
               {
                 combinedReadingTime &&
@@ -189,14 +198,23 @@ const tocSections = await getTOCSections(currentPostId);
 
           {
             subpostCount > 0 && (
-              <div class="flex w-full items-center justify-center gap-1 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0">
+              <div
+                class="flex w-full items-center justify-center gap-1 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0"
+                data-pagefind-ignore
+              >
                 <Icon name="lucide:file-text" class="size-3" />
                 {subpostCountToString(subpostCount)}
               </div>
             )
           }
-        </div>
-        <div class="flex flex-wrap justify-center gap-2">
+        </divs>
+        <div
+          class="flex flex-wrap justify-center gap-2"
+          data-pagefind-meta={post.data.tags
+            ? "tag:" + post.data.tags.join(", ")
+            : null}
+          data-pagefind-ignore
+        >
           {
             post.data.tags &&
               post.data.tags.length > 0 &&
@@ -219,6 +237,7 @@ const tocSections = await getTOCSections(currentPostId);
             newerPost={navigation.newer}
             olderPost={navigation.older}
             parentPost={isCurrentSubpost ? navigation.parent : undefined}
+            data-pagefind-ignore
           />
         )
       }
@@ -243,6 +262,7 @@ const tocSections = await getTOCSections(currentPostId);
             isCurrentSubpost ? getParentId(currentPostId) : currentPostId
           }
           className="w-64"
+          data-pagefind-ignore
         />
       )
     }
@@ -251,6 +271,7 @@ const tocSections = await getTOCSections(currentPostId);
       newerPost={navigation.newer}
       olderPost={navigation.older}
       parentPost={isCurrentSubpost ? navigation.parent : undefined}
+      data-pagefind-ignore
     />
   </section>
 

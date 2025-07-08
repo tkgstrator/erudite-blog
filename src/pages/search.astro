@@ -1,0 +1,13 @@
+---
+import PostSearch from "@/components/PostSearch.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout class="max-w-3xl">
+  <h1 class="text-lg">記事を検索</h1>
+  <PostSearch
+    options={{
+      showSubResults: true,
+    }}
+  />
+</Layout>

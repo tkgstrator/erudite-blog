@@ -15,6 +15,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import remarkEmoji from "remark-emoji";
 import remarkMath from "remark-math";
 import swup from "@swup/astro";
+import pagefind from "astro-pagefind";
 
 export default defineConfig({
   site: "https://astro-erudite.vercel.app",
@@ -75,6 +76,7 @@ export default defineConfig({
       progress: true,
       containers: ["main", "#mobile-header"],
     }),
+    pagefind(),
   ],
   vite: {
     plugins: [tailwindcss()],
@@ -115,5 +117,8 @@ export default defineConfig({
       ],
     ],
     remarkPlugins: [remarkMath, remarkEmoji],
+  },
+  build: {
+    format: "file",
   },
 });
