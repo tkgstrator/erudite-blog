@@ -211,8 +211,14 @@ const tocSections = await getTOCSections(currentPostId);
     </section>
 
     {
-      tocSections.length > 0 && (
-        <TOCSidebar sections={tocSections} currentPostId={currentPostId} />
+      (hasChildPosts || isCurrentSubpost) && (
+        <SubpostsSidebar
+          parentId={
+            isCurrentSubpost ? getParentId(currentPostId) : currentPostId
+          }
+          className="w-64"
+          data-pagefind-ignore
+        />
       )
     }
 
@@ -223,14 +229,8 @@ const tocSections = await getTOCSections(currentPostId);
     </article>
 
     {
-      (hasChildPosts || isCurrentSubpost) && (
-        <SubpostsSidebar
-          parentId={
-            isCurrentSubpost ? getParentId(currentPostId) : currentPostId
-          }
-          className="w-64"
-          data-pagefind-ignore
-        />
+      tocSections.length > 0 && (
+        <TOCSidebar sections={tocSections} currentPostId={currentPostId} />
       )
     }
 
