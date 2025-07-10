@@ -1,8 +1,8 @@
 import type { IconMap, Site, SocialLink } from "@/types";
 
 export const SITE: Site = {
-  title: "programme",
-  description: "plat のブログ",
+  title: "platform",
+  description: "plat のひとりごと",
   href: "https://blog.p1at.dev",
   author: "plat",
   locale: "ja-JP",
