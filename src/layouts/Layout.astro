@@ -6,6 +6,7 @@ import "@/styles/typography.css";
 import Footer from "@/components/Footer.astro";
 import Head from "@/components/Head.astro";
 import Header from "@/components/Header.astro";
+import LoadFont from "@/components/util/LoadFont.astro";
 import { SITE } from "@/consts";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +21,8 @@ const { class: className } = Astro.props;
 <html class="bg-background text-foreground" lang={SITE.locale}>
   <Head>
     <slot name="head" />
+
+    <LoadFont />
   </Head>
   <body>
     <div class="flex h-fit min-h-screen flex-col gap-y-6 font-sans">

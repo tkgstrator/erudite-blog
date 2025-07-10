@@ -12,6 +12,8 @@
         "@astrojs/sitemap": "3.4.1",
         "@expressive-code/plugin-collapsible-sections": "^0.41.2",
         "@expressive-code/plugin-line-numbers": "^0.41.2",
+        "@fontsource-variable/red-hat-text": "^5.2.6",
+        "@fontsource/ibm-plex-sans-jp": "^5.2.6",
         "@iconify-json/lucide": "^1.2.26",
         "@iconify-json/simple-icons": "^1.2.41",
         "@radix-ui/react-dialog": "^1.1.14",
@@ -398,6 +400,10 @@
     "@floating-ui/react-dom": ["@floating-ui/react-dom@2.1.2", "", { "dependencies": { "@floating-ui/dom": "^1.0.0" }, "peerDependencies": { "react": ">=16.8.0", "react-dom": ">=16.8.0" } }, "sha512-06okr5cgPzMNBy+Ycse2A6udMi4bqwW/zgBF/rwjcNqWkyr82Mcg8b0vjX8OJpZFy/FKjJmw6wV7t44kK6kW7A=="],
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.9", "", {}, "sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg=="],
+
+    "@fontsource-variable/red-hat-text": ["@fontsource-variable/red-hat-text@5.2.6", "", {}, "sha512-wzOCE0JGRv/iBC7mdkyelYIfv5GICegLiaD8AJEiTvNP/8itaGGKYqQcB8gi/hqqG27UzYGZbneWGU2/Pob7wA=="],
+
+    "@fontsource/ibm-plex-sans-jp": ["@fontsource/ibm-plex-sans-jp@5.2.6", "", {}, "sha512-iFuHd2SA9PZc3QAyvlUXACoo8yg7dw1QMDtYXTDCf1/BgP2xdj2664OB3GYbsqv/opmCguC0olyqhpiRUoOFfQ=="],
 
     "@iconify-json/lucide": ["@iconify-json/lucide@1.2.44", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-lOwXoOtkFm4Zj1duPj5xqhPKKMUvxVRMfIHi0YDfwLjEEgrhzsJZ4JCpE119L8P8p6zi4on4b9cPZdVXCUuDoQ=="],
 

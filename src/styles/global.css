@@ -4,11 +4,17 @@
 
 @theme inline {
   --font-sans:
-    Geist, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    "Red Hat Text Variable", "IBM Ples Sans JP", ui-sans-serif, system-ui,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
   --font-mono:
     Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+
+  --font-sans-title:
+    "Red Hat Text Variable", "IBM Plex Sans JP", ui-sans-serif, system-ui,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
