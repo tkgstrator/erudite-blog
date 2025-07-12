@@ -1,0 +1,17 @@
+@reference "./global.css";
+
+pre:is([data-language="bash"], [data-language="zsh"], [data-language="sh"])
+  div.ec-line
+  div.code:not(:has(> .indent:first-child)) {
+  &::before {
+    content: "❯ ";
+  }
+}
+
+pre:is([data-language="powershell"])
+  div.ec-line
+  div.code:not(:has(> .indent:first-child)) {
+  &::before {
+    content: "PS > ";
+  }
+}

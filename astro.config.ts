@@ -16,9 +16,10 @@ import remarkEmoji from "remark-emoji";
 import remarkMath from "remark-math";
 import swup from "@swup/astro";
 import pagefind from "astro-pagefind";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 export default defineConfig({
-  site: "https://astro-erudite.vercel.app",
+  site: "https://blog.p1at.dev",
   integrations: [
     expressiveCode({
       themes: ["github-light", "github-dark"],
@@ -105,6 +106,12 @@ export default defineConfig({
         },
       ],
       rehypeHeadingIds,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+        },
+      ],
       rehypeKatex,
       [
         rehypePrettyCode,

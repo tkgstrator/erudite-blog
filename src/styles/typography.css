@@ -1,4 +1,4 @@
-@reference './global.css';
+@reference "./global.css";
 
 @layer base {
   p,
@@ -38,31 +38,66 @@
       :where([class~="not-prose"], [class~="not-prose"] *)
     ) {
       @apply text-foreground scroll-mt-32 font-medium xl:scroll-mt-20;
+
+      a::before {
+        @apply text-muted-foreground mr-2 inline tracking-tight;
+      }
     }
 
     /* Don't use an <h1> in your posts, one is already generated in blog/[...id].astro */
     :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
       @apply mt-8 mb-6 text-4xl;
+
+      /* "#" before text */
+      a::before {
+        content: "#";
+      }
     }
 
     :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-      @apply mt-8 mb-4 text-2xl;
+      @apply border-b-muted mt-8 mb-4 border-b text-2xl;
+
+      a::before {
+        content: "##";
+      }
     }
 
     :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-      @apply mt-8 mb-4 text-xl;
+      @apply mt-8 mb-4 text-2xl;
+
+      a::before {
+        content: "###";
+      }
     }
 
     :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-      @apply mt-7 mb-3 text-lg;
+      @apply mt-7 mb-3 text-xl;
+
+      a::before {
+        content: "####";
+      }
     }
 
     :where(h5, h6):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-      @apply mt-5 mb-3;
+      @apply mt-5 mb-3 text-lg;
+
+      a::before {
+        content: "####";
+      }
     }
 
-    :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    /* anchor tags where are not in any heading tags */
+    :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(
+        :where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *)
+      ) {
       @apply text-foreground decoration-muted-foreground hover:decoration-foreground font-medium break-words underline underline-offset-[3px] transition-colors;
+    }
+
+    /* anchors in heading tags */
+    :where(h1 a, h2 a, h3 a, h4 a, h5 a, h6 a):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
+      @apply underline decoration-transparent decoration-1 transition-colors hover:decoration-inherit;
     }
 
     :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
