@@ -3,7 +3,7 @@ import { defineCollection, z } from "astro:content";
 import { licenseSchema } from "./lib/data-utils";
 
 const blog = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+  loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -41,6 +41,7 @@ const blog = defineCollection({
           return result.data;
         }, licenseSchema)
         .optional(),
+      isSubpost: z.boolean().default(false),
     }),
 });
 

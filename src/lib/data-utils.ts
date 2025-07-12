@@ -8,7 +8,7 @@ export async function getAllAuthors(): Promise<CollectionEntry<"authors">[]> {
 export async function getAllPosts(): Promise<CollectionEntry<"blog">[]> {
   const posts = await getCollection("blog");
   return posts
-    .filter((post) => !post.data.draft && !isSubpost(post.id))
+    .filter((post) => !post.data.draft && !isSubpost(post))
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
@@ -40,14 +40,17 @@ export async function getAllTags(): Promise<Map<string, number>> {
   }, new Map<string, number>());
 }
 
-export async function getAdjacentPosts(currentId: string): Promise<{
+export async function getAdjacentPosts(
+  post: CollectionEntry<"blog">,
+  currentId: string,
+): Promise<{
   newer: CollectionEntry<"blog"> | null;
   older: CollectionEntry<"blog"> | null;
   parent: CollectionEntry<"blog"> | null;
 }> {
   const allPosts = await getAllPosts();
 
-  if (isSubpost(currentId)) {
+  if (isSubpost(post)) {
     const parentId = getParentId(currentId);
     const allPosts = await getAllPosts();
     const parent = allPosts.find((post) => post.id === parentId) || null;
@@ -56,7 +59,7 @@ export async function getAdjacentPosts(currentId: string): Promise<{
     const subposts = posts
       .filter(
         (post) =>
-          isSubpost(post.id) &&
+          isSubpost(post) &&
           getParentId(post.id) === parentId &&
           !post.data.draft,
       )
@@ -82,7 +85,7 @@ export async function getAdjacentPosts(currentId: string): Promise<{
     };
   }
 
-  const parentPosts = allPosts.filter((post) => !isSubpost(post.id));
+  const parentPosts = allPosts.filter((post) => !isSubpost(post));
   const currentIndex = parentPosts.findIndex((post) => post.id === currentId);
 
   if (currentIndex === -1) {
@@ -144,7 +147,7 @@ export async function getSubpostsForParent(
     .filter(
       (post) =>
         !post.data.draft &&
-        isSubpost(post.id) &&
+        isSubpost(post) &&
         getParentId(post.id) === parentId,
     )
     .sort((a, b) => {
@@ -178,17 +181,14 @@ export async function hasSubposts(postId: string): Promise<boolean> {
   return subposts.length > 0;
 }
 
-export function isSubpost(postId: string): boolean {
-  return postId.includes("/");
+export function isSubpost(post: CollectionEntry<"blog">): boolean {
+  console.log(post.data?.isSubpost);
+  return post.data?.isSubpost && post.id.split("/").length > 1;
 }
 
 export async function getParentPost(
   subpostId: string,
 ): Promise<CollectionEntry<"blog"> | null> {
-  if (!isSubpost(subpostId)) {
-    return null;
-  }
-
   const parentId = getParentId(subpostId);
   const allPosts = await getAllPosts();
   return allPosts.find((post) => post.id === parentId) || null;
@@ -224,16 +224,15 @@ export async function getSubpostCount(parentId: string): Promise<number> {
 }
 
 export async function getCombinedReadingTime(
-  postId: string,
+  post: CollectionEntry<"blog">,
   locale: string = "en-US",
 ): Promise<string> {
-  const post = await getPostById(postId);
   if (!post) return readingTime({ words: 0, characters: 0 });
 
   let { words, characters } = calculateWordCountFromHtml(post.body);
 
-  if (!isSubpost(postId)) {
-    const subposts = await getSubpostsForParent(postId);
+  if (!isSubpost(post)) {
+    const subposts = await getSubpostsForParent(post.id);
     for (const subpost of subposts) {
       const subpostCount = calculateWordCountFromHtml(subpost.body);
       words += subpostCount.words;
@@ -286,12 +285,14 @@ export type TOCSection = {
   subpostId?: string;
 };
 
-export async function getTOCSections(postId: string): Promise<TOCSection[]> {
-  const post = await getPostById(postId);
+export async function getTOCSections(
+  post: CollectionEntry<"blog">,
+): Promise<TOCSection[]> {
+  const postId = post.id;
   if (!post) return [];
 
-  const parentId = isSubpost(postId) ? getParentId(postId) : postId;
-  const parentPost = isSubpost(postId) ? await getPostById(parentId) : post;
+  const parentId = isSubpost(post) ? getParentId(postId) : postId;
+  const parentPost = isSubpost(post) ? await getPostById(parentId) : post;
 
   if (!parentPost) return [];
 

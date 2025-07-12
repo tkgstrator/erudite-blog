@@ -41,8 +41,8 @@ const post = Astro.props;
 const currentPostId = Astro.params.id;
 const { Content, headings } = await render(post);
 
-const isCurrentSubpost = isSubpost(currentPostId);
-const navigation = await getAdjacentPosts(currentPostId);
+const isCurrentSubpost = isSubpost(post);
+const navigation = await getAdjacentPosts(post, currentPostId);
 const parentPost = isCurrentSubpost ? await getParentPost(currentPostId) : null;
 
 const hasChildPosts = await hasSubposts(currentPostId);
@@ -52,10 +52,10 @@ const subpostCount = !isCurrentSubpost
 const postReadingTime = await getPostReadingTime(currentPostId, SITE.locale);
 const combinedReadingTime =
   hasChildPosts && !isCurrentSubpost
-    ? await getCombinedReadingTime(currentPostId, SITE.locale)
+    ? await getCombinedReadingTime(post, SITE.locale)
     : null;
 
-const tocSections = await getTOCSections(currentPostId);
+const tocSections = await getTOCSections(post);
 ---
 
 <Layout>
@@ -170,7 +170,7 @@ const tocSections = await getTOCSections(currentPostId);
                 data-pagefind-ignore
               >
                 <Icon name="lucide:file-text" class="size-3" />
-                {subpostCountToString(subpostCount)}
+                {subpostCountToString(subpostCount, SITE.locale)}
               </div>
             )
           }

@@ -19,8 +19,8 @@ interface Props {
 
 const { entry } = Astro.props;
 const formattedDate = formatDate(entry.data.date, SITE.locale);
-const readTime = await getCombinedReadingTime(entry.id, SITE.locale);
-const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
+const readTime = await getCombinedReadingTime(entry, SITE.locale);
+const subpostCount = !isSubpost(entry) ? await getSubpostCount(entry.id) : 0;
 ---
 
 <div
@@ -49,7 +49,7 @@ const subpostCount = !isSubpost(entry.id) ? await getSubpostCount(entry.id) : 0;
               <Separator orientation="vertical" className="h-4!" />
               <span class="flex items-center gap-1">
                 <Icon name="lucide:file-text" class="size-3" />
-                {subpostCountToString(subpostCount)}
+                {subpostCountToString(subpostCount, SITE.locale)}
               </span>
             </>
           )

@@ -29,7 +29,7 @@ const isSubpost = !!parentPost;
     />
     <div class="flex flex-col items-start overflow-hidden text-wrap">
       <span class="text-muted-foreground text-left text-xs">
-        {isSubpost ? "Previous Subpost" : "Previous Post"}
+        {isSubpost ? "前の章" : "前の記事"}
       </span>
       <span class="w-full text-left text-sm text-balance text-ellipsis">
         {
@@ -55,11 +55,9 @@ const isSubpost = !!parentPost;
           class="mr-2 size-4 transition-transform group-hover:-translate-y-1"
         />
         <div class="flex flex-col items-center overflow-hidden text-wrap">
-          <span class="text-muted-foreground text-center text-xs">
-            Parent Post
-          </span>
+          <span class="text-muted-foreground text-center text-xs">表紙</span>
           <span class="w-full text-center text-sm text-balance text-ellipsis">
-            {parentPost?.data.title || "No parent post"}
+            {parentPost?.data.title || "表紙ページがありません"}
           </span>
         </div>
       </Link>
@@ -77,7 +75,7 @@ const isSubpost = !!parentPost;
   >
     <div class="flex flex-col items-end overflow-hidden text-wrap">
       <span class="text-muted-foreground text-right text-xs">
-        {isSubpost ? "Next Subpost" : "Next Post"}
+        {isSubpost ? "次の章" : "次の記事"}
       </span>
       <span class="w-full text-right text-sm text-balance text-ellipsis">
         {
