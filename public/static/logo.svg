@@ -1,16 +1,5 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_271_118)">
-<rect width="512" height="74" fill="#CCCCCC"/>
-<rect y="146" width="512" height="74" fill="#CCCCCC"/>
-<rect y="292" width="512" height="74" fill="#CCCCCC"/>
-<rect y="438" width="512" height="74" fill="#CCCCCC"/>
-<rect y="74" width="72" height="72" fill="#CCCCCC"/>
-<rect y="366" width="72" height="72" fill="#CCCCCC"/>
-<rect x="440" y="220" width="72" height="72" fill="#CCCCCC"/>
-</g>
-<defs>
-<clipPath id="clip0_271_118">
-<rect width="512" height="512" fill="white"/>
-</clipPath>
-</defs>
+<path d="M256 466C371.98 466 466 371.98 466 256C466 140.02 371.98 46 256 46C140.02 46 46 140.02 46 256C46 371.98 140.02 466 256 466Z" fill="#4FACFE"/>
+<path d="M256 406C338.843 406 406 338.843 406 256C406 173.157 338.843 106 256 106C173.157 106 106 173.157 106 256C106 338.843 173.157 406 256 406Z" fill="white"/>
+<path d="M334.5 409C373.436 409 405 377.436 405 338.5C405 299.564 373.436 268 334.5 268C295.564 268 264 299.564 264 338.5C264 377.436 295.564 409 334.5 409Z" fill="#4FACFE" stroke="white" stroke-width="12" stroke-linecap="round"/>
 </svg>
