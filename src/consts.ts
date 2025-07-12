@@ -2,7 +2,8 @@ import type { IconMap, Site, SocialLink } from '@/types'
 
 export const SITE: Site = {
   author: 'tkgstrator',
-  description: 'astro-erudite is a opinionated, unstyled blogging template—built with Astro, Tailwind, and shadcn/ui.',
+  description:
+    'Exploring the depths of technology with an underground perspective—built with Astro, TailwindCSS, and Shadcn.',
   featuredPostCount: 5,
   href: 'https://blog.tkgstrator.work',
   locale: 'en-US',

@@ -99,7 +99,7 @@ export default defineConfig({
     host: true,
     port: 8080
   },
-  site: 'https://tkgstrator.work',
+  site: 'https://blog.tkgstrator.work',
   vite: {
     plugins: [tailwindcss()]
   }
