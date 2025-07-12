@@ -1,0 +1,49 @@
+name: Deploy to Vercel
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  pull_request:
+    branches:
+      - develop
+      - master
+    types: [closed]
+  workflow_dispatch:
+jobs:
+  deploy:
+    name: Deploy to Vercel
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Install Vercel CLI
+        run: bun add -g vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Cache bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/node_modules/.cache
+          key: ${{ runner.os }}-nextjs-bun-${{ hashFiles('**/bun.lockb') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-bun-${{ hashFiles('**/bun.lockb') }}-
+      - name: Install dependencies
+        run: bun install --ignore-scripts
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          MM_URL: ${{ secrets.MM_URL }}
+          MM_BEARER_TOKEN: ${{ secrets.MM_BEARER_TOKEN }}
+          MM_FORM_CHANNEL_ID: ${{ secrets.MM_FORM_CHANNEL_ID }}
+          MM_CONTACT_CHANNEL_ID: ${{ secrets.MM_CONTACT_CHANNEL_ID }}
+      - name: Deploy Project Artifacts to Vercel
+        run: |
+          vercel deploy --archive=tgz --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
