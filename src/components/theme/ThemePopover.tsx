@@ -65,6 +65,7 @@ function ThemePopover() {
             onThemeToggle();
             applyThemeHue(hue);
           }}
+          aria-label="Toggle Theme"
         >
           <SunIcon
             className={
