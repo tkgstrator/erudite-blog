@@ -230,7 +230,11 @@ const tocSections = await getTOCSections(post);
 
     {
       tocSections.length > 0 && (
-        <TOCSidebar sections={tocSections} currentPostId={currentPostId} />
+        <TOCSidebar
+          post={post}
+          sections={tocSections}
+          currentPostId={currentPostId}
+        />
       )
     }
 
