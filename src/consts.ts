@@ -4,7 +4,7 @@ export const SITE: Site = {
   author: 'tkgstrator',
   description: 'astro-erudite is a opinionated, unstyled blogging template—built with Astro, Tailwind, and shadcn/ui.',
   featuredPostCount: 5,
-  href: 'https://tkgstrator.work',
+  href: 'https://blog.tkgstrator.work',
   locale: 'en-US',
   postsPerPage: 10,
   title: 'Under+Ground'
