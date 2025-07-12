@@ -36,8 +36,10 @@ function ThemePopover() {
 
   return (
     <Popover>
-      <PopoverTrigger>
-        <PaletteIcon className="size-4" />
+      <PopoverTrigger asChild>
+        <Button variant={"ghost"} size="icon" className="size-8">
+          <PaletteIcon className="size-4" />
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="mx-2 flex items-center gap-x-2">
         <input
