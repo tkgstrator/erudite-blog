@@ -11,6 +11,7 @@ export const applyThemeHue = (angle: number) => {
       secondary: `oklch(97% 0.01 ${angle}deg)`,
       border: `oklch(92.2% 0.015 ${angle}deg)`,
       input: `oklch(92.2% 0.015 ${angle}deg)`,
+      popover: `oklch(100% 0.01 ${angle}deg)`,
     },
     dark: {
       background: `oklch(20% 0.01 ${angle}deg)`,
@@ -18,6 +19,7 @@ export const applyThemeHue = (angle: number) => {
       secondary: `oklch(25% 0.01 ${angle}deg)`,
       border: `oklch(25% 0.015 ${angle}deg)`,
       input: `oklch(25% 0.015 ${angle}deg)`,
+      popover: `oklch(24% 0.01 ${angle}deg)`,
     },
   };
   if (!Object.keys(properties).includes(dataTheme)) {

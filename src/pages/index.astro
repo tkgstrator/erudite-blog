@@ -2,7 +2,6 @@
 import BlogCard from "@/components/BlogCard.astro";
 import PageHead from "@/components/PageHead.astro";
 import SeeAllPosts from "@/components/SeeAllPosts.astro";
-import ThemeSlider from "@/components/theme/ThemeSlider.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { getRecentPosts } from "@/lib/data-utils";
@@ -31,6 +30,4 @@ const blog = await getRecentPosts(SITE.featuredPostCount);
       <SeeAllPosts />
     </div>
   </section>
-
-  <ThemeSlider />
 </Layout>

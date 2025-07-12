@@ -34,7 +34,7 @@ const isSubpost = !!parentPost;
       <span class="w-full text-left text-sm text-balance text-ellipsis">
         {
           olderPost?.data.title ||
-            (isSubpost ? "No older subpost" : "You're at the oldest post!")
+            (isSubpost ? "前の章はありません" : "これが一番古い投稿です !")
         }
       </span>
     </div>
@@ -80,7 +80,7 @@ const isSubpost = !!parentPost;
       <span class="w-full text-right text-sm text-balance text-ellipsis">
         {
           newerPost?.data.title ||
-            (isSubpost ? "No newer subpost" : "You're at the newest post!")
+            (isSubpost ? "次の章はありません" : "これが最新の投稿です!")
         }
       </span>
     </div>

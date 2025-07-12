@@ -1,25 +1,61 @@
 ---
-import { Button } from "@/components/ui/button";
-import { Icon } from "astro-icon/components";
+import { ThemePopover } from "./ThemePopover";
 ---
 
-<Button
-  id="theme-toggle"
-  variant="ghost"
-  size="icon"
-  title="Toggle theme"
-  className="-me-2 size-8"
->
-  <Icon
-    name="lucide:sun"
-    class="size-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
-  />
-  <Icon
-    name="lucide:moon"
-    class="absolute size-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
-  />
-  <span class="sr-only">Toggle theme</span>
-</Button>
+<ThemePopover client:load />
+
+<!-- Hue スライダーのスタイル -->
+<style is:global>
+  @reference "@/styles/global.css";
+
+  #hue-slider {
+    --grad-base: 97% 0.25;
+
+    width: 100%;
+    outline: none;
+    background: linear-gradient(
+      to right,
+      oklch(var(--grad-base) 0),
+      oklch(var(--grad-base) 30),
+      oklch(var(--grad-base) 60),
+      oklch(var(--grad-base) 90),
+      oklch(var(--grad-base) 120),
+      oklch(var(--grad-base) 150),
+      oklch(var(--grad-base) 180),
+      oklch(var(--grad-base) 210),
+      oklch(var(--grad-base) 240),
+      oklch(var(--grad-base) 270),
+      oklch(var(--grad-base) 300),
+      oklch(var(--grad-base) 330),
+      oklch(var(--grad-base) 360)
+    );
+    appearance: none;
+    cursor: pointer;
+
+    @apply hover:ring-foreground/30 h-4 rounded-full ring ring-transparent transition-normal duration-200;
+  }
+
+  :global([data-theme="dark"]) #hue-slider {
+    --grad-base: 75% 0.25;
+  }
+
+  #hue-slider::-webkit-slider-thumb {
+    appearance: none;
+    background: white;
+    cursor: pointer;
+
+    @apply border-foreground size-5 rounded-full border;
+  }
+
+  #hue-slider::-moz-range-thumb {
+    background: white;
+    cursor: pointer;
+
+    @apply border-foreground/30 size-5 rounded-full border-[1.5];
+  }
+</style>
+
+<!-- color theme -->
 
 <script is:inline data-astro-rerun>
   {
@@ -43,53 +79,59 @@ import { Icon } from "astro-icon/components";
   }
 </script>
 
-<script>
-  function handleToggleClick() {
-    const element = document.documentElement;
-    const currentTheme = element.getAttribute("data-theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
+<!-- hue angle -->
 
-    element.classList.add("[&_*]:transition-none");
-    element.setAttribute("data-theme", newTheme);
-    element.classList.remove("scheme-dark", "scheme-light");
-    element.classList.add(newTheme === "dark" ? "scheme-dark" : "scheme-light");
+<script is:inline data-astro-rerun>
+  {
+    // To avoid redeclaration errors
+    const DEFAULT_HUE = 256;
 
-    window.getComputedStyle(element).getPropertyValue("opacity");
+    const applyThemeHue = (angle) => {
+      const dataTheme =
+        document.documentElement.getAttribute("data-theme") ?? "light";
 
-    requestAnimationFrame(() => {
-      element.classList.remove("[&_*]:transition-none");
-    });
+      const properties = {
+        light: {
+          background: `oklch(100% 0.01 ${angle}deg)`,
+          foreground: `oklch(14.5% 0.05 ${angle}deg)`,
+          secondary: `oklch(97% 0.01 ${angle}deg)`,
+          border: `oklch(92.2% 0.015 ${angle}deg)`,
+          input: `oklch(92.2% 0.015 ${angle}deg)`,
+          popover: `oklch(100% 0.01 ${angle}deg)`,
+        },
+        dark: {
+          background: `oklch(20% 0.01 ${angle}deg)`,
+          foreground: `oklch(98.5% 0.03 ${angle}deg)`,
+          secondary: `oklch(25% 0.01 ${angle}deg)`,
+          border: `oklch(25% 0.015 ${angle}deg)`,
+          input: `oklch(25% 0.015 ${angle}deg)`,
+          popover: `oklch(24% 0.01 ${angle}deg)`,
+        },
+      };
+      if (!Object.keys(properties).includes(dataTheme)) {
+        console.warn(
+          `Theme "${dataTheme}" not found. Using default properties.`,
+        );
+        return;
+      }
 
-    localStorage.setItem("theme", newTheme);
+      Object.entries(properties[dataTheme]).forEach(([key, value]) => {
+        document.documentElement.style.setProperty(`--${key}`, value);
+      });
+    };
+
+    const storeHue = (angle) => {
+      localStorage.setItem("theme-hue", angle.toString());
+    };
+
+    const getHue = () => {
+      const storedHue = localStorage?.getItem("theme-hue");
+      return storedHue ? parseFloat(storedHue) : DEFAULT_HUE; // Default to 256 if not set
+    };
+
+    // Initialize the theme hue
+    const hue = getHue();
+    applyThemeHue(hue);
+    storeHue(hue); // Store the initial hue if not already set
   }
-
-  function initThemeToggle() {
-    const themeToggle = document.getElementById("theme-toggle");
-    if (themeToggle) {
-      themeToggle.addEventListener("click", handleToggleClick);
-    }
-  }
-
-  initThemeToggle();
-
-  document.addEventListener("astro:after-swap", () => {
-    const storedTheme = localStorage.getItem("theme") || "light";
-    const element = document.documentElement;
-
-    element.classList.add("[&_*]:transition-none");
-
-    window.getComputedStyle(element).getPropertyValue("opacity");
-
-    element.setAttribute("data-theme", storedTheme);
-    element.classList.remove("scheme-dark", "scheme-light");
-    element.classList.add(
-      storedTheme === "dark" ? "scheme-dark" : "scheme-light",
-    );
-
-    requestAnimationFrame(() => {
-      element.classList.remove("[&_*]:transition-none");
-    });
-
-    initThemeToggle();
-  });
 </script>

@@ -182,7 +182,6 @@ export async function hasSubposts(postId: string): Promise<boolean> {
 }
 
 export function isSubpost(post: CollectionEntry<"blog">): boolean {
-  console.log(post.data?.isSubpost);
   return post.data?.isSubpost && post.id.split("/").length > 1;
 }
 
