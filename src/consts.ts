@@ -2,14 +2,15 @@ import type { IconMap, Site, SocialLink } from '@/types'
 
 export const SITE: Site = {
   author: 'tkgstrator',
-  description: 'えむいーと愉快な仲間たち',
+  description: 'えむいーと愉快な仲間たちの平凡な技術ブログ、ニンテンドースイッチハッキングから生成AIまで幅広く扱います',
   featuredPostCount: 5,
   href: 'https://blog.tkgstrator.work',
   locale: 'en-US',
   metadata: {
     keywords: ['tkgling', 'tkgstrator'],
     og: {
-      description: 'えむいーと愉快な仲間たち',
+      description:
+        'えむいーと愉快な仲間たちの平凡な技術ブログ、ニンテンドースイッチハッキングから生成AIまで幅広く扱います',
       image: {
         alt: 'Under+Ground',
         height: 630,
@@ -21,7 +22,8 @@ export const SITE: Site = {
     },
     twitter: {
       card: 'summary_large_image',
-      description: 'えむいーと愉快な仲間たち',
+      description:
+        'えむいーと愉快な仲間たちの平凡な技術ブログ、ニンテンドースイッチハッキングから生成AIまで幅広く扱います',
       image: {
         alt: 'Under+Ground',
         height: 630,
