@@ -39,6 +39,19 @@ function ThemePopover() {
 
   useEffect(() => {
     initHue();
+
+    document.addEventListener("astro:after-swap", () => {
+      const storedTheme = localStorage.getItem("theme") || "light";
+      const element = document.documentElement;
+
+      element.setAttribute("data-theme", storedTheme);
+      element.classList.remove("scheme-dark", "scheme-light");
+      element.classList.add(
+        storedTheme === "dark" ? "scheme-dark" : "scheme-light",
+      );
+
+      initHue();
+    });
   }, []);
 
   return (
