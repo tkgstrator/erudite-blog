@@ -23,6 +23,7 @@
     "astro": "^5.11.0",
     "astro-expressive-code": "^0.41.3",
     "astro-icon": "^1.1.5",
+    "astro-pagefind": "^1.8.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.525.0",

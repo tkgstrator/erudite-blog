@@ -1,5 +1,3 @@
-import { rehypeHeadingIds } from '@astrojs/markdown-remark'
-
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
@@ -9,14 +7,12 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 import expressiveCode from 'astro-expressive-code'
 import icon from 'astro-icon'
-import rehypeDocument from 'rehype-document'
-import rehypeExternalLinks from 'rehype-external-links'
-import rehypeKatex from 'rehype-katex'
-import rehypePrettyCode from 'rehype-pretty-code'
-import remarkEmoji from 'remark-emoji'
-import remarkMath from 'remark-math'
+import pagefind from 'astro-pagefind'
 
 export default defineConfig({
+  build: {
+    format: 'file'
+  },
   devToolbar: {
     enabled: false
   },
@@ -25,10 +21,13 @@ export default defineConfig({
       defaultProps: {
         collapseStyle: 'collapsible-auto',
         overridesByLang: {
-          'ansi,bat,bash,batch,cmd,console,powershell,ps,ps1,psd1,psm1,sh,shell,shellscript,shellsession,text,zsh': {
-            showLineNumbers: false
-          }
+          'ansi,bat,bash,batch,cmd,console,powershell,ps,ps1,psd1,psm1,sh,shell,shellscript,shellsession,text,zsh,yaml':
+            {
+              showLineNumbers: true
+            }
         },
+        preserveIndent: true,
+        showLineNumbers: true,
         wrap: true
       },
       plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
@@ -60,39 +59,14 @@ export default defineConfig({
       themes: ['github-light', 'github-dark'],
       useDarkModeMediaQuery: false
     }),
+    pagefind(),
     mdx(),
     react(),
     sitemap(),
     icon()
   ],
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeDocument,
-        {
-          css: 'https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css'
-        }
-      ],
-      [
-        rehypeExternalLinks,
-        {
-          rel: ['nofollow', 'noreferrer', 'noopener'],
-          target: '_blank'
-        }
-      ],
-      rehypeHeadingIds,
-      rehypeKatex,
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            dark: 'github-dark',
-            light: 'github-light'
-          }
-        }
-      ]
-    ],
-    remarkPlugins: [remarkMath, remarkEmoji],
+    // remarkPlugins: [remarkMath, remarkEmoji],
     syntaxHighlight: false
   },
   server: {
