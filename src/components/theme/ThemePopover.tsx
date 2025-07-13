@@ -44,13 +44,20 @@ function ThemePopover() {
       const storedTheme = localStorage.getItem("theme") || "light";
       const element = document.documentElement;
 
+      element.classList.add("[&_*]:transition-none");
+
+      window.getComputedStyle(element).getPropertyValue("opacity");
+
       element.setAttribute("data-theme", storedTheme);
       element.classList.remove("scheme-dark", "scheme-light");
       element.classList.add(
         storedTheme === "dark" ? "scheme-dark" : "scheme-light",
       );
-
       initHue();
+
+      requestAnimationFrame(() => {
+        element.classList.remove("[&_*]:transition-none");
+      });
     });
   }, []);
 
