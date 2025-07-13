@@ -77,7 +77,7 @@
   "mounts": [
     "source=${env:HOME}/home/vscode/.ssh,target=/.ssh,type=bind,consistency=cached,readonly"
   ],
-  "name": "Next.js",
+  "name": "Under+Ground",
   "postAttachCommand": "/bin/sh .devcontainer/postAttachCommand.sh",
   "postCreateCommand": "/bin/sh .devcontainer/postCreateCommand.sh",
   "remoteUser": "vscode",
