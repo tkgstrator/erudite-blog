@@ -6,12 +6,14 @@ import { buttonVariants } from '@/components/ui/button'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
 import { getRecentPosts } from '@/lib/data-utils'
+import { Analytics } from "@vercel/analytics/next"
 
 const blog = await getRecentPosts(SITE.featuredPostCount)
 ---
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Home" />
+  <Analytics />
   <section>
     <div class="rounded-lg border">
       <div class="flex flex-col space-y-1.5 p-6">
