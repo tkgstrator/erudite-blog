@@ -47,9 +47,17 @@ export const NAV_LINKS: SocialLink[] = [
     label: 'authors'
   },
   {
+    href: '/tags',
+    label: 'tags'
+  },
+  {
     href: '/about',
     label: 'about'
   }
+  // {
+  //   href: '/search',
+  //   label: 'search'
+  // }
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [

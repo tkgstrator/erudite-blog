@@ -87,7 +87,7 @@ Your worker has access to the following bindings:
 
 で、その対策として利用されるのが`.*.vars`という独自の仕組みで、大体`.env`と同じように使えます。
 
-```vars
+```txt
 PRIVATE_TOKEN = "SECRET_VALUE"
 ```
 

@@ -44,7 +44,7 @@ bun add -D sass
 
 あとはこの設定を反映させるように`next.config.mjs`を修正します。
 
-```mjs
+```ts
 const path = require('path')
 
 module.exports = {
@@ -56,7 +56,7 @@ module.exports = {
 
 公式ドキュメントにはこのように書いているのですが、ES Moduleではこの記法は利用できないので、
 
-```mjs
+```ts
 import path from 'path';
 import { fileURLToPath } from 'url';
 
