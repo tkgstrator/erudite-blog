@@ -64,10 +64,10 @@ const generateOgpImage = async (children: React.ReactNode) => {
       <div
         lang={SITE.locale}
         style={{
-          backgroundImage: "linear-gradient(180deg, #faf8ff, #ece6ff)",
+          backgroundImage: "linear-gradient(180deg, #faf8ff, #D4CAF7FF)",
           fontFamily: '"Red Hat Display", "IBM Plex Sans JP", sans-serif',
         }}
-        tw="relative text-primary w-full h-full flex m-auto p-12"
+        tw="relative text-primary w-full h-full flex p-0 m-0"
       >
         {children}
       </div>
@@ -105,7 +105,7 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
 
   return generateOgpImage(
     <div
-      tw="relative rounded-2xl shadow-sm border px-5 pt-5 w-full flex flex-col text-[#19191a]"
+      tw="relative rounded-2xl shadow-sm border px-16 py-12 w-full h-full flex flex-col text-[#19191a]"
       style={{
         gap: "1rem",
       }}
@@ -129,6 +129,7 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
       <div tw="flex grow w-full text-4xl font-semibold text-[#19191a]/80">
         {description}
       </div>
+
       <div tw="flex justify-between items-baseline">
         <div tw="text-4xl text-[#19191a]/75">
           {date.toLocaleDateString(SITE.locale, {
@@ -142,10 +143,25 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
           style={{ gap: "0.5rem" }}
         >
           <div tw="flex items-baseline w-11 h-11  fill-[#19191a]">
-            <img src={logoSvgData} alt="Erudite Logo" tw="object-cover" />
+            <img src={logoSvgData} tw="object-cover" />
           </div>
           {SITE.title}
         </div>
+      </div>
+    </div>,
+  );
+};
+
+export const CommonOgImage = (title: string, description: string) => {
+  return generateOgpImage(
+    <div tw="relative rounded-2xl border w-full flex flex-col text-[#19191a]">
+      <img
+        src={logoSvgData}
+        tw="object-cover w-[80vh] -top-[7rem] p-0 m-0 absolute -left-[7rem]"
+      />
+
+      <div tw=" bottom-[-5rem] p-0 m-0 w-full right-[0rem] w-full absolute text-[18rem] tracking-tighter ">
+        {title}
       </div>
     </div>,
   );
