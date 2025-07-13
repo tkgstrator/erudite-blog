@@ -1,4 +1,29 @@
-![Showcase Card](/public/static/twitter-card.png)
+# Astro Erudite Blog
+
+astro-erudite テンプレートをベースにしたブログサイト。
+
+## 主な変更点
+
+- Bun を使うように変更
+- `oxlint` 導入
+- Rolldown を有効化
+- git submodule で記事を管理するように
+- `wrangler.toml` の追加
+- Swup のトランジションを導入
+- Pagefind を導入
+- テーマカラーを変更可能に (fuwari風)
+- `@vercel/og` を使った OG 画像生成
+- `rehype-autolink-headings` を導入
+- ネストされたフォルダ内のマークダウンとサブポストを共存可能に
+- 記事にライセンスを設定可能に
+- `llms.txt` の追加
+- `bun run new:article` で新しい記事の雛形を作成可能に
+- スクロール時にヘッダーが隠れるように
+- その他軽微なデザインの調整
+
+以下、オリジナルの README.md
+
+---
 
 <div align="center">
 
@@ -11,9 +36,6 @@
 
 astro-erudite is an opinionated, unstyled static blogging template built with [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/). Extraordinarily loosely based off the [Astro Micro](https://astro-micro.vercel.app/) theme by [trevortylerlee](https://github.com/trevortylerlee).
 
-| ![Preview 1](/public/static/preview-1.png) | ![Preview 2](/public/static/preview-2.png) |
-| ------------------------------------------ | ------------------------------------------ |
-| ![Preview 3](/public/static/preview-3.png) | ![Preview 4](/public/static/preview-4.png) |
 
 > [!NOTE]
 > To learn more about why this template exists, read [The State of Static Blogs in 2024](https://astro-erudite.vercel.app/blog/the-state-of-static-blogs), where I share my take on what constitutes a great blogging template and my goals while developing this one.

@@ -152,7 +152,7 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
   );
 };
 
-export const CommonOgImage = (title: string, description: string) => {
+export const CommonOgImage = (title: string, _description: string) => {
   return generateOgpImage(
     <div tw="relative rounded-2xl border w-full flex flex-col text-[#19191a]">
       <img
