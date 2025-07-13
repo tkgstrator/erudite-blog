@@ -81,6 +81,9 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ["@resvg/resvg-js"],
+    },
   },
   server: {
     port: 1234,

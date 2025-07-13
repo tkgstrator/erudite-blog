@@ -3,8 +3,7 @@ import Link from "@/components/Link.astro";
 import ThemeToggle from "@/components/theme/ThemeToggle.astro";
 import MobileMenu from "@/components/ui/mobile-menu";
 import { NAV_LINKS, SITE } from "@/consts";
-import { Image } from "astro:assets";
-import logo from "../../public/static/logo.svg";
+import { Icon } from "astro-icon/components";
 ---
 
 <header transition:persist>
@@ -15,7 +14,7 @@ import logo from "../../public/static/logo.svg";
       href="/"
       class="focus-visible:border-ring focus-visible:ring-ring/50 -mx-3 -my-2 flex shrink-0 items-center justify-center gap-3 rounded-sm px-3 py-2 outline-none focus-visible:ring-[3px]"
     >
-      <Image src={logo} alt="Logo" class="size-5 sm:size-6" />
+      <Icon name={"lucide:command"} class="size-5 sm:size-6" />
       <span class="hidden h-full text-lg font-medium min-[300px]:block"
         >{SITE.title}</span
       >

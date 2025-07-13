@@ -41,6 +41,14 @@ import Favicons from "./Favicons.astro";
     title={SITE.title}
     href={new URL("rss.xml", Astro.site)}
   />
+  <link
+    rel="alternate"
+    type="application/llms+txt"
+    title={SITE.title}
+    href={new URL("llms.txt", Astro.site)}
+  />
+
+  <slot name="ogp" />
 
   <Favicons />
   <ClientRouter />
