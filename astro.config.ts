@@ -84,6 +84,9 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },
+    experimental: {
+      enableNativePlugin: true,
+    },
   },
   server: {
     port: 1234,
