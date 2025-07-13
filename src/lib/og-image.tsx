@@ -1,8 +1,9 @@
 import type { CollectionEntry } from "astro:content";
 import React from "react";
-import satori from "satori";
 import { ImageResponse } from "@vercel/og";
 import { SITE } from "@/consts";
+import fs from "node:fs";
+import path from "node:path";
 
 async function fetchFont(font: string): Promise<ArrayBuffer> {
   const url = `https://fonts.googleapis.com/css2?family=${font}`;
@@ -43,6 +44,14 @@ export const ComfortaaFont = async (
   weight: keyof typeof fontWeights = "Medium",
 ) => fetchFont(`Comfortaa:wght@${fontWeights[weight]}`);
 
+// convert to base64
+// Read the SVG file from the public directory, convert it to a base64 data URI
+const logoSvg = fs.readFileSync(
+  path.join(process.cwd(), "public", "static", "logo.svg"),
+  "utf-8",
+);
+const logoSvgData = `data:image/svg+xml;base64,${Buffer.from(logoSvg).toString("base64")}`;
+
 const generateOgpImage = async (children: React.ReactNode) => {
   const [redHatDisplay, ibmPlexSansJP, comfortaa] = await Promise.all([
     RedHatDisplayFont("SemiBold"),
@@ -55,12 +64,10 @@ const generateOgpImage = async (children: React.ReactNode) => {
       <div
         lang={SITE.locale}
         style={{
-          backgroundColor: "#13161b",
-          //   backgroundColor: "#fff",
-          //   backgroundColor: "#dfe6ef",
+          backgroundImage: "linear-gradient(180deg, #faf8ff, #ece6ff)",
           fontFamily: '"Red Hat Display", "IBM Plex Sans JP", sans-serif',
         }}
-        tw="relative text-primary w-full h-full flex m-auto p-16"
+        tw="relative text-primary w-full h-full flex m-auto p-12"
       >
         {children}
       </div>
@@ -98,16 +105,12 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
 
   return generateOgpImage(
     <div
-      tw="relative rounded-2xl shadow-sm border border-[#dfe6ef] px-10 pt-10 w-full flex flex-col text-[#080a0e]"
+      tw="relative rounded-2xl shadow-sm border px-5 pt-5 w-full flex flex-col text-[#19191a]"
       style={{
-        backgroundColor: "#fbffff",
         gap: "1rem",
       }}
     >
-      <div tw="flex w-full text-6xl font-bold">{title}</div>
-      <div tw="flex w-full grow text-4xl font-semibold text-[#080a0e]/80">
-        {description}
-      </div>
+      <div tw="flex w-full text-6xl font-bold ">{title}</div>
       <div
         tw="flex"
         style={{
@@ -117,15 +120,17 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
         {tags?.map((tag) => (
           <div
             key={tag}
-            tw="text-3xl flex justify-center rounded-lg bg-[#f1f6fc] text-[#14171c] px-2 py-1 w-fit whitespace-nowrap shrink-0 "
+            tw="text-3xl flex justify-center rounded-full bg-[#dcd3f4] text-[#342a51] px-4 py-1 w-fit whitespace-nowrap shrink-0 "
           >
             {tag}
           </div>
         ))}
       </div>
-      <div tw="h-0.5 rounded-full bg-[#dfe6ef]" />
+      <div tw="flex grow w-full text-4xl font-semibold text-[#19191a]/80">
+        {description}
+      </div>
       <div tw="flex justify-between items-baseline">
-        <div tw="text-4xl text-[#080a0e]/75">
+        <div tw="text-4xl text-[#19191a]/75">
           {date.toLocaleDateString(SITE.locale, {
             year: "numeric",
             month: "long",
@@ -133,11 +138,12 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
           })}
         </div>
         <div
-          tw="flex items-baseline pt-2 pb-8 text-5xl font-bold tracking-tighter"
-          style={{
-            fontFamily: '"Comfortaa", sans-serif',
-          }}
+          tw="flex items-baseline pt-2 pb-8 text-5xl font-bold tracking-tight"
+          style={{ gap: "0.5rem" }}
         >
+          <div tw="flex items-baseline w-11 h-11  fill-[#19191a]">
+            <img src={logoSvgData} alt="Erudite Logo" tw="object-cover" />
+          </div>
           {SITE.title}
         </div>
       </div>
