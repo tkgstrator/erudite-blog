@@ -10,7 +10,9 @@ import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
 
 export default defineConfig({
-  build: {},
+  build: {
+    format: 'file'
+  },
   devToolbar: {
     enabled: false
   },
