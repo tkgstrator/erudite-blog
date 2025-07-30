@@ -13,30 +13,30 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: false  # 最初はサブモジュールを取得しない
-          
+
       - name: Update submodule to latest commit
         run: |
           # サブモジュールを最新のコミットで初期化・更新
           git submodule update --init --remote src/content
-          
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          
+
       - name: Install dependencies
         run: npm install  # または yarn install / bun install
-        
+
       - name: Build
         run: npm run build  # またはビルドコマンド
-        
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
