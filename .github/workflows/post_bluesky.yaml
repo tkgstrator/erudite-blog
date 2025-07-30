@@ -1,82 +1,43 @@
 name: Post to Bluesky on Blog Update
 
 on:
-  push:
-    branches: [master, main]
-    paths:
-      - 'src/content/blog/**/*.md'
-      - 'src/content/blog/**/*.mdx'
+  repository_dispatch:
+    types: [blog_post_updated]
 
 jobs:
   post-to-bluesky:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Get changed blog files
-        id: changed-files
-        run: |
-          # 変更されたブログファイルを取得
-          changed_files=$(git diff --name-only HEAD~1 HEAD | grep -E 'src/content/blog/.*\.(md|mdx)$' || true)
-          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
-          echo "$changed_files" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-          
-          # 変更があるかチェック
-          if [ -n "$changed_files" ]; then
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          fi
       
       - name: Extract blog post metadata
-        if: steps.changed-files.outputs.has_changes == 'true'
         id: extract-metadata
         run: |
-          # 変更されたファイルから最初のファイルを処理
-          changed_file=$(echo "${{ steps.changed-files.outputs.changed_files }}" | head -n 1)
+          # リポジトリディスパッチのペイロードから情報を取得
+          title="${{ github.event.client_payload.title }}"
+          description="${{ github.event.client_payload.description }}"
+          url="${{ github.event.client_payload.url }}"
+          author="${{ github.event.client_payload.author }}"
+          tags="${{ github.event.client_payload.tags }}"
           
-          if [ -n "$changed_file" ]; then
-            echo "Processing file: $changed_file"
-            
-            # タイトルを抽出（frontmatterのtitleフィールド）
-            title=$(grep -E '^title:' "$changed_file" | sed 's/title: *["]*\([^"]*\)["]*$/\1/' | head -n 1)
-            
-            # 説明を抽出（frontmatterのdescriptionフィールド）
-            description=$(grep -E '^description:' "$changed_file" | sed 's/description: *["]*\([^"]*\)["]*$/\1/' | head -n 1)
-            
-            # ファイルパスからURL pathを生成
-            # src/content/blog/2025/01/example.md -> /blog/2025/01/example
-            url_path=$(echo "$changed_file" | sed 's|src/content/||' | sed 's|\.mdx*$||')
-            full_url="https://blog.tkgstrator.work/${url_path}"
-            
-            echo "title=$title" >> $GITHUB_OUTPUT
-            echo "description=$description" >> $GITHUB_OUTPUT
-            echo "url=$full_url" >> $GITHUB_OUTPUT
-            echo "file_path=$changed_file" >> $GITHUB_OUTPUT
-            
-            echo "Extracted metadata:"
-            echo "Title: $title"
-            echo "Description: $description"
-            echo "URL: $full_url"
-          fi
+          echo "title=$title" >> $GITHUB_OUTPUT
+          echo "description=$description" >> $GITHUB_OUTPUT  
+          echo "url=$url" >> $GITHUB_OUTPUT
+          echo "author=$author" >> $GITHUB_OUTPUT
+          echo "tags=$tags" >> $GITHUB_OUTPUT
+          
+          echo "Received blog post update:"
+          echo "Title: $title"
+          echo "Description: $description"
+          echo "URL: $url"
+          echo "Author: $author"
+          echo "Tags: $tags"
       
       - name: Post to Bluesky
-        if: steps.changed-files.outputs.has_changes == 'true'
         env:
           BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
           BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
@@ -84,17 +45,62 @@ jobs:
           title="${{ steps.extract-metadata.outputs.title }}"
           description="${{ steps.extract-metadata.outputs.description }}"
           url="${{ steps.extract-metadata.outputs.url }}"
+          author="${{ steps.extract-metadata.outputs.author }}"
+          tags="${{ steps.extract-metadata.outputs.tags }}"
           
-          # Blueskyの投稿文を作成
+          # タイトルまたはURLが空の場合はスキップ
+          if [ -z "$title" ] || [ -z "$url" ]; then
+            echo "⚠️ タイトルまたはURLが空のため、投稿をスキップします"
+            exit 0
+          fi
+          
+          # タグがある場合はハッシュタグとして追加
+          hashtags="#技術ブログ #プログラミング"
+          if [ -n "$tags" ]; then
+            # カンマ区切りのタグをハッシュタグに変換
+            additional_tags=$(echo "$tags" | sed 's/,/ #/g' | sed 's/^/#/')
+            hashtags="$hashtags $additional_tags"
+          fi
+          
+          # 著者情報がある場合は追加
+          author_text=""
+          if [ -n "$author" ] && [ "$author" != "tkgstrator" ]; then
+            author_text="by $author"
+          fi
+          
+          # Blueskyの投稿文を作成（文字数制限を考慮）
           post_text="📝 新しい記事を公開しました！
 
-${title}
+${title}"
+          
+          # 説明があり、文字数に余裕がある場合は追加
+          if [ -n "$description" ]; then
+            current_length=$(echo "$post_text" | wc -c)
+            description_length=$(echo "$description" | wc -c)
+            if [ $((current_length + description_length + 50)) -lt 300 ]; then
+              post_text="$post_text
 
-${description}
+${description}"
+            fi
+          fi
+          
+          # 著者情報を追加
+          if [ -n "$author_text" ]; then
+            post_text="$post_text
+
+$author_text"
+          fi
+          
+          # URLとハッシュタグを追加
+          post_text="$post_text
 
 ${url}
 
-#技術ブログ #プログラミング"
+$hashtags"
+          
+          echo "投稿内容:"
+          echo "$post_text"
+          echo "文字数: $(echo "$post_text" | wc -c)"
           
           # Blueskyにログインしてアクセストークンを取得
           echo "Logging in to Bluesky..."
@@ -113,6 +119,13 @@ ${url}
           
           echo "Successfully authenticated. DID: $did"
           
+          # JSONエスケープのための関数
+          escape_json() {
+            echo "$1" | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g'
+          }
+          
+          escaped_text=$(escape_json "$post_text")
+          
           # 投稿を作成
           echo "Creating post..."
           post_response=$(curl -s -X POST https://bsky.social/xrpc/com.atproto.repo.createRecord \
@@ -122,7 +135,7 @@ ${url}
               \"repo\": \"$did\",
               \"collection\": \"app.bsky.feed.post\",
               \"record\": {
-                \"text\": \"$post_text\",
+                \"text\": \"$escaped_text\",
                 \"createdAt\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\"
               }
             }")
