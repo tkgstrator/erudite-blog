@@ -52,11 +52,6 @@ jobs:
         run: bun install --ignore-scripts
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          MM_URL: ${{ secrets.MM_URL }}
-          MM_BEARER_TOKEN: ${{ secrets.MM_BEARER_TOKEN }}
-          MM_FORM_CHANNEL_ID: ${{ secrets.MM_FORM_CHANNEL_ID }}
-          MM_CONTACT_CHANNEL_ID: ${{ secrets.MM_CONTACT_CHANNEL_ID }}
       - name: Deploy Project Artifacts to Vercel
         run: |
           vercel deploy --archive=tgz --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
