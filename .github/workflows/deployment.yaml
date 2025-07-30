@@ -15,6 +15,9 @@ on:
       - master
     types: [closed]
   workflow_dispatch:
+  # コンテンツリポジトリからのwebhookを受け取る
+  repository_dispatch:
+    types: [content-updated]
 jobs:
   deploy:
     name: Deploy to Vercel
@@ -23,8 +26,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: false  # 最初はサブモジュールを取得しない
           fetch-depth: 0
+      - name: Update submodule to latest
+        run: |
+          # サブモジュールを最新のコミットで初期化・更新
+          git submodule update --init --remote src/content
       - name: Bun
         uses: oven-sh/setup-bun@v1
         with:
