@@ -1,0 +1,137 @@
+name: Post to Bluesky on Blog Update
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'src/content/blog/**/*.md'
+      - 'src/content/blog/**/*.mdx'
+
+jobs:
+  post-to-bluesky:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Get changed blog files
+        id: changed-files
+        run: |
+          # 変更されたブログファイルを取得
+          changed_files=$(git diff --name-only HEAD~1 HEAD | grep -E 'src/content/blog/.*\.(md|mdx)$' || true)
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$changed_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # 変更があるかチェック
+          if [ -n "$changed_files" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Extract blog post metadata
+        if: steps.changed-files.outputs.has_changes == 'true'
+        id: extract-metadata
+        run: |
+          # 変更されたファイルから最初のファイルを処理
+          changed_file=$(echo "${{ steps.changed-files.outputs.changed_files }}" | head -n 1)
+          
+          if [ -n "$changed_file" ]; then
+            echo "Processing file: $changed_file"
+            
+            # タイトルを抽出（frontmatterのtitleフィールド）
+            title=$(grep -E '^title:' "$changed_file" | sed 's/title: *["]*\([^"]*\)["]*$/\1/' | head -n 1)
+            
+            # 説明を抽出（frontmatterのdescriptionフィールド）
+            description=$(grep -E '^description:' "$changed_file" | sed 's/description: *["]*\([^"]*\)["]*$/\1/' | head -n 1)
+            
+            # ファイルパスからURL pathを生成
+            # src/content/blog/2025/01/example.md -> /blog/2025/01/example
+            url_path=$(echo "$changed_file" | sed 's|src/content/||' | sed 's|\.mdx*$||')
+            full_url="https://blog.tkgstrator.work/${url_path}"
+            
+            echo "title=$title" >> $GITHUB_OUTPUT
+            echo "description=$description" >> $GITHUB_OUTPUT
+            echo "url=$full_url" >> $GITHUB_OUTPUT
+            echo "file_path=$changed_file" >> $GITHUB_OUTPUT
+            
+            echo "Extracted metadata:"
+            echo "Title: $title"
+            echo "Description: $description"
+            echo "URL: $full_url"
+          fi
+      
+      - name: Post to Bluesky
+        if: steps.changed-files.outputs.has_changes == 'true'
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+        run: |
+          title="${{ steps.extract-metadata.outputs.title }}"
+          description="${{ steps.extract-metadata.outputs.description }}"
+          url="${{ steps.extract-metadata.outputs.url }}"
+          
+          # Blueskyの投稿文を作成
+          post_text="📝 新しい記事を公開しました！
+
+${title}
+
+${description}
+
+${url}
+
+#技術ブログ #プログラミング"
+          
+          # Blueskyにログインしてアクセストークンを取得
+          echo "Logging in to Bluesky..."
+          auth_response=$(curl -s -X POST https://bsky.social/xrpc/com.atproto.server.createSession \
+            -H "Content-Type: application/json" \
+            -d "{\"identifier\": \"$BLUESKY_HANDLE\", \"password\": \"$BLUESKY_PASSWORD\"}")
+          
+          access_token=$(echo "$auth_response" | jq -r '.accessJwt')
+          did=$(echo "$auth_response" | jq -r '.did')
+          
+          if [ "$access_token" = "null" ] || [ "$access_token" = "" ]; then
+            echo "Failed to authenticate with Bluesky"
+            echo "Response: $auth_response"
+            exit 1
+          fi
+          
+          echo "Successfully authenticated. DID: $did"
+          
+          # 投稿を作成
+          echo "Creating post..."
+          post_response=$(curl -s -X POST https://bsky.social/xrpc/com.atproto.repo.createRecord \
+            -H "Authorization: Bearer $access_token" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"repo\": \"$did\",
+              \"collection\": \"app.bsky.feed.post\",
+              \"record\": {
+                \"text\": \"$post_text\",
+                \"createdAt\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\"
+              }
+            }")
+          
+          if echo "$post_response" | jq -e '.uri' > /dev/null; then
+            echo "✅ Successfully posted to Bluesky!"
+            echo "Post URI: $(echo "$post_response" | jq -r '.uri')"
+          else
+            echo "❌ Failed to post to Bluesky"
+            echo "Response: $post_response"
+            exit 1
+          fi
