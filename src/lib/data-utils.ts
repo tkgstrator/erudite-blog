@@ -136,7 +136,7 @@ export async function getSortedTags(): Promise<
 }
 
 export function getParentId(subpostId: string): string {
-  return subpostId.split("/")[0];
+  return subpostId.split("/").slice(0, -1).join("/");
 }
 
 export async function getSubpostsForParent(
