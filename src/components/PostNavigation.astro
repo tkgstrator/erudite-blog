@@ -3,9 +3,20 @@ import Link from "@/components/Link.astro";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
+import { loadDefaultJapaneseParser } from "budoux";
 
 const { newerPost, olderPost, parentPost } = Astro.props;
 const isSubpost = !!parentPost;
+
+const parser = loadDefaultJapaneseParser();
+
+const formatText = (text: string | undefined, fallback: string) => {
+  if (!text) {
+    return fallback;
+  }
+
+  return parser.parse(text).join("\u200b");
+};
 ---
 
 <nav
@@ -31,10 +42,12 @@ const isSubpost = !!parentPost;
       <span class="text-muted-foreground text-left text-xs">
         {isSubpost ? "前の章" : "前の記事"}
       </span>
-      <span class="w-full text-left text-sm text-balance text-ellipsis">
+      <span class="w-full text-left text-sm break-keep text-ellipsis">
         {
-          olderPost?.data.title ||
-            (isSubpost ? "前の章はありません" : "これが一番古い投稿です !")
+          formatText(
+            olderPost?.data.title,
+            isSubpost ? "前の章はありません" : "これより古い投稿はありません",
+          )
         }
       </span>
     </div>
@@ -52,12 +65,12 @@ const isSubpost = !!parentPost;
       >
         <Icon
           name="lucide:corner-left-up"
-          class="mr-2 size-4 transition-transform group-hover:-translate-y-1"
+          class="size-4 transition-transform group-hover:-translate-y-1"
         />
         <div class="flex flex-col items-center overflow-hidden text-wrap">
           <span class="text-muted-foreground text-center text-xs">表紙</span>
-          <span class="w-full text-center text-sm text-balance text-ellipsis">
-            {parentPost?.data.title || "表紙ページがありません"}
+          <span class="w-full text-center text-sm break-keep text-ellipsis">
+            {formatText(parentPost?.data.title, "表紙ページがありません")}
           </span>
         </div>
       </Link>
@@ -77,10 +90,12 @@ const isSubpost = !!parentPost;
       <span class="text-muted-foreground text-right text-xs">
         {isSubpost ? "次の章" : "次の記事"}
       </span>
-      <span class="w-full text-right text-sm text-balance text-ellipsis">
+      <span class="w-full text-right text-sm break-keep text-ellipsis">
         {
-          newerPost?.data.title ||
-            (isSubpost ? "次の章はありません" : "これが最新の投稿です!")
+          formatText(
+            newerPost?.data.title,
+            isSubpost ? "次の章はありません" : "これより新しい投稿はありません",
+          )
         }
       </span>
     </div>

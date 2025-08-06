@@ -40,6 +40,7 @@
 		"astro-expressive-code": "^0.41.2",
 		"astro-icon": "^1.1.5",
 		"astro-pagefind": "^1.8.3",
+		"budoux": "^0.7.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"hastscript": "^9.0.1",
