@@ -29,7 +29,6 @@
   "gitdoc.autoPush": "onCommit",
   "gitdoc.commitValidationLevel": "none",
   "gitdoc.enabled": true,
-  "i18n-ally.localesPaths": ["messages", "src/i18n"],
   "remote.autoForwardPortsFallback": 0,
   "vim.autoSwitchInputMethod.enable": false
 }
