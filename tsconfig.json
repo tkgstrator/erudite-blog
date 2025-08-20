@@ -8,5 +8,6 @@
     },
     "strictNullChecks": true
   },
+  "exclude": ["src/content", "src/content/**"],
   "extends": "astro/tsconfigs/strict"
 }
