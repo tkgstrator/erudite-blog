@@ -9,6 +9,7 @@ export type Site = {
   featuredPostCount: number;
   postsPerPage: number;
   defaultLicense: License;
+  linkcard: string; // linkcard iframe URL
 };
 
 export type SocialLink = {

@@ -9,26 +9,34 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { MoonIcon, PaletteIcon, RotateCcwIcon, SunIcon } from "lucide-react";
-import { applyThemeHue, DEFAULT_HUE, getHue, storeHue } from "./dynamicHue";
+import {
+  applyThemeHue,
+  DEFAULT_HUE,
+  getHue,
+  getTheme,
+  storeHue,
+} from "./dynamicHue";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
-const onThemeToggle = () => {
-  const element = document.documentElement;
-  const currentTheme = element.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
+const applyLinkCardTheme = (theme: string, hue: number) => {
+  const linkCards = document.querySelectorAll("iframe");
 
-  element.setAttribute("data-theme", newTheme);
-  element.classList.remove("scheme-dark", "scheme-light");
-  element.classList.add(newTheme === "dark" ? "scheme-dark" : "scheme-light");
-
-  window.getComputedStyle(element).getPropertyValue("opacity");
-
-  localStorage.setItem("theme", newTheme);
+  linkCards.forEach((card) => {
+    card.contentWindow?.postMessage(
+      {
+        type: "set-theme",
+        theme,
+        hue,
+      },
+      "*",
+    );
+  });
 };
 
 function ThemePopover() {
   const [hue, setHue] = useState<number>(DEFAULT_HUE);
+  const [theme, setTheme] = useState<string>("light");
   const isHueChanged = hue != DEFAULT_HUE;
 
   const initHue = () => {
@@ -37,8 +45,39 @@ function ThemePopover() {
     applyThemeHue(initialHue);
   };
 
+  const initTheme = () => {
+    const initialTheme = getTheme();
+    setTheme(initialTheme);
+    applyLinkCardTheme(initialTheme, hue);
+  };
+
+  const onHueChange = (newHue: number) => {
+    setHue(newHue);
+    applyThemeHue(newHue);
+    storeHue(newHue);
+    applyLinkCardTheme(theme, newHue);
+  };
+
+  const onThemeToggle = () => {
+    const element = document.documentElement;
+    const currentTheme = element.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+    element.setAttribute("data-theme", newTheme);
+    element.classList.remove("scheme-dark", "scheme-light");
+    element.classList.add(newTheme === "dark" ? "scheme-dark" : "scheme-light");
+
+    window.getComputedStyle(element).getPropertyValue("opacity");
+
+    localStorage.setItem("theme", newTheme);
+
+    setTheme(newTheme);
+    applyLinkCardTheme(newTheme, hue);
+  };
+
   useEffect(() => {
     initHue();
+    initTheme();
 
     document.addEventListener("astro:after-swap", () => {
       const storedTheme = localStorage.getItem("theme") || "light";
@@ -54,6 +93,9 @@ function ThemePopover() {
         storedTheme === "dark" ? "scheme-dark" : "scheme-light",
       );
       initHue();
+      setTheme(storedTheme);
+
+      applyLinkCardTheme(storedTheme, hue);
 
       requestAnimationFrame(() => {
         element.classList.remove("[&_*]:transition-none");
@@ -92,9 +134,7 @@ function ThemePopover() {
               className="size-8 cursor-pointer transition-all disabled:cursor-not-allowed"
               onClick={() => {
                 // reset hue to default
-                setHue(DEFAULT_HUE);
-                applyThemeHue(DEFAULT_HUE);
-                storeHue(DEFAULT_HUE);
+                onHueChange(DEFAULT_HUE);
               }}
               disabled={!isHueChanged}
               aria-label="Toggle Theme"
@@ -120,9 +160,7 @@ function ThemePopover() {
                 if (!(e.target instanceof HTMLInputElement)) return;
 
                 const angle = parseFloat(e.target.value);
-                setHue(angle);
-                applyThemeHue(angle);
-                storeHue(angle);
+                onHueChange(angle);
               }}
               className="w-full"
               tabIndex={-1} // Prevent focus

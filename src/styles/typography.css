@@ -93,6 +93,22 @@
       @apply text-foreground decoration-muted-foreground hover:decoration-foreground font-medium break-words underline underline-offset-[3px] transition-colors;
     }
 
+    /* linkcard */
+    :where(span):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+      /* which has .lincard */
+      &[class~="linkcard"] {
+        @apply my-5 block;
+
+        a {
+          @apply w-full;
+
+          iframe {
+            @apply pointer-events-none h-36 w-full cursor-pointer rounded-xl border;
+          }
+        }
+      }
+    }
+
     /* anchors in heading tags */
     :where(h1 a, h2 a, h3 a, h4 a, h5 a, h6 a):not(
       :where([class~="not-prose"], [class~="not-prose"] *)

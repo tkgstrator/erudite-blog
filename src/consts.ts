@@ -12,6 +12,8 @@ export const SITE: Site = {
     type: "by",
     version: "4.0",
   },
+  linkcard: "https://linkcard.blog.p1at.dev",
+  // linkcard: "http://localhost:5173",
 };
 
 export const NAV_LINKS: SocialLink[] = [

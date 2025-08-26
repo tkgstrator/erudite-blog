@@ -11,6 +11,7 @@ import { badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
+import { useBudoux } from "@/lib/budoux";
 import {
   formatTotal,
   getAdjacentPosts,
@@ -24,7 +25,7 @@ import {
   hasSubposts,
   isSubpost,
 } from "@/lib/data-utils";
-import { formatDate, subpostCountToString } from "@/lib/utils";
+import { cn, formatDate, subpostCountToString } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import { render } from "astro:content";
@@ -56,6 +57,8 @@ const combinedReadingTime =
     : null;
 
 const tocSections = await getTOCSections(post);
+
+const budoux = useBudoux();
 ---
 
 <Layout>
@@ -126,10 +129,13 @@ const tocSections = await getTOCSections(post);
       <div class="flex flex-col">
         <!-- Title -->
         <h1
-          class="mb-2 scroll-mt-31 text-3xl leading-tight font-medium sm:text-4xl"
+          class={cn(
+            "mb-2 scroll-mt-31 text-3xl leading-tight font-medium sm:text-4xl",
+            budoux.style,
+          )}
           id="post-title"
         >
-          {post.data.title}
+          {budoux.parse(post.data.title)}
         </h1>
 
         <divs

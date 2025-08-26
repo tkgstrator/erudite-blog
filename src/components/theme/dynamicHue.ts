@@ -44,3 +44,7 @@ export const getHue = () => {
   const storedHue = localStorage.getItem("theme-hue");
   return storedHue ? parseFloat(storedHue) : DEFAULT_HUE; // Default to 256 if not set
 };
+
+export const getTheme = () => {
+  return localStorage.getItem("theme") || "light";
+};

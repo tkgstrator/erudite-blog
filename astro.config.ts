@@ -17,6 +17,8 @@ import remarkMath from "remark-math";
 import swup from "@swup/astro";
 import pagefind from "astro-pagefind";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeLinkCard from "./src/lib/rehype/link-card";
+import { SITE } from "./src/consts";
 
 export default defineConfig({
   site: "https://blog.p1at.dev",
@@ -98,6 +100,14 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [
+      [
+        rehypeLinkCard,
+        {
+          linkcardUrl: SITE.linkcard,
+          target: "_blank",
+          rel: ["nofollow", "noreferrer", "noopener"],
+        },
+      ],
       [
         rehypeDocument,
         {
