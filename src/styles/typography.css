@@ -126,6 +126,13 @@
     :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
       @apply bg-muted/50 text-foreground relative rounded-sm px-[0.3rem] py-[0.2rem] text-sm font-medium break-words;
       @apply [&>span[data-line='']>*]:text-(--shiki-light) dark:[&>span[data-line='']>*]:text-(--shiki-dark);
+
+      /* Don't apply backticks to code blocks */
+      :where(:not(pre) > &)::before,
+      :where(:not(pre) > &)::after {
+        content: "`";
+        @apply text-foreground/50 inline-block;
+      }
     }
 
     :where(blockquote):not(
