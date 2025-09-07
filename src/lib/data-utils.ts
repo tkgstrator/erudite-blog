@@ -5,10 +5,17 @@ export async function getAllAuthors(): Promise<CollectionEntry<"authors">[]> {
   return await getCollection("authors");
 }
 
+export function isPublishedOrDevMode(post: CollectionEntry<"blog">): boolean {
+  if (import.meta.env.DEV) {
+    return true;
+  }
+  return !post.data.draft;
+}
+
 export async function getAllPosts(): Promise<CollectionEntry<"blog">[]> {
   const posts = await getCollection("blog");
   return posts
-    .filter((post) => !post.data.draft && !isSubpost(post))
+    .filter((post) => isPublishedOrDevMode(post) && !isSubpost(post))
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
@@ -17,7 +24,7 @@ export async function getAllPostsAndSubposts(): Promise<
 > {
   const posts = await getCollection("blog");
   return posts
-    .filter((post) => !post.data.draft)
+    .filter((post) => isPublishedOrDevMode(post))
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
@@ -61,7 +68,7 @@ export async function getAdjacentPosts(
         (post) =>
           isSubpost(post) &&
           getParentId(post.id) === parentId &&
-          !post.data.draft,
+          isPublishedOrDevMode(post),
       )
       .sort((a, b) => {
         const dateDiff = a.data.date.valueOf() - b.data.date.valueOf();
@@ -146,7 +153,7 @@ export async function getSubpostsForParent(
   return posts
     .filter(
       (post) =>
-        !post.data.draft &&
+        isPublishedOrDevMode(post) &&
         isSubpost(post) &&
         getParentId(post.id) === parentId,
     )

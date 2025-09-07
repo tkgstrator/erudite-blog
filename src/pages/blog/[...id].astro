@@ -7,7 +7,7 @@ import SubpostsHeader from "@/components/SubpostsHeader.astro";
 import SubpostsSidebar from "@/components/SubpostsSidebar.astro";
 import TOCHeader from "@/components/TOCHeader.astro";
 import TOCSidebar from "@/components/TOCSidebar.astro";
-import { badgeVariants } from "@/components/ui/badge";
+import { Badge, badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
@@ -130,11 +130,19 @@ const budoux = useBudoux();
         <!-- Title -->
         <h1
           class={cn(
-            "mb-2 scroll-mt-31 text-3xl leading-tight font-medium sm:text-4xl",
+            "mb-2 scroll-mt-31 text-3xl leading-tight font-medium sm:text-4xl align-middle",
             budoux.style,
           )}
           id="post-title"
         >
+          {
+            post.data.draft && (
+              <Badge variant="destructive" className="inline-block ">
+                下書き
+              </Badge>
+            )
+          }
+
           {budoux.parse(post.data.title)}
         </h1>
 

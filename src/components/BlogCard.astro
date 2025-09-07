@@ -85,6 +85,14 @@ const subpostCount = !isSubpost(entry) ? await getSubpostCount(entry.id) : 0;
           </div>
         )
       }
+
+      {
+        entry.data.draft && (
+          <Badge variant="destructive" className="absolute top-4 right-4">
+            下書き
+          </Badge>
+        )
+      }
     </div>
   </Link>
 </div>
