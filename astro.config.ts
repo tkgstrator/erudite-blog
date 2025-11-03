@@ -87,7 +87,7 @@ export default defineConfig({
       exclude: ["@resvg/resvg-js"],
     },
     experimental: {
-      enableNativePlugin: true,
+      // enableNativePlugin: true,
     },
   },
   server: {
