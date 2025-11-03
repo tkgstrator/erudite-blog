@@ -64,7 +64,6 @@ const generateOgpImage = async (children: React.ReactNode) => {
       <div
         lang={SITE.locale}
         style={{
-          backgroundImage: "linear-gradient(180deg, #faf8ff, #D4CAF7FF)",
           fontFamily: '"Red Hat Display", "IBM Plex Sans JP", sans-serif',
         }}
         tw="relative text-primary w-full h-full flex p-0 m-0"
@@ -105,11 +104,20 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
 
   return generateOgpImage(
     <div
-      tw="relative rounded-2xl shadow-sm border px-16 py-12 w-full h-full flex flex-col text-[#19191a]"
+      tw="relative rounded-2xl shadow-sm border px-16 py-12 w-full h-full flex flex-col text-[#19191a] bg-[#fbffff]"
       style={{
         gap: "1rem",
       }}
     >
+      {/* gradient circle */}
+      <div
+        tw="absolute left-0 top-0 rounded-full bg-[#D3F4E5FF] h-[100vh] w-[100vh] opacity-75"
+        style={{
+          transform: "translateX(-65%)",
+          filter: "blur(128px)",
+        }}
+      />
+
       <div tw="flex w-full text-6xl font-bold ">{title}</div>
       <div
         tw="flex"
@@ -117,10 +125,11 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
           gap: "0.5rem",
         }}
       >
+        {/* tags */}
         {tags?.map((tag) => (
           <div
             key={tag}
-            tw="text-3xl flex justify-center rounded-full bg-[#dcd3f4] text-[#342a51] px-4 py-1 w-fit whitespace-nowrap shrink-0 "
+            tw="text-3xl flex justify-center rounded-full bg-[#D3F4E5FF] text-[#2A5134FF] px-4 py-1 w-fit whitespace-nowrap shrink-0 "
           >
             {tag}
           </div>
