@@ -201,6 +201,17 @@
       @apply text-foreground bg-muted rounded-md border px-2 py-1 text-xs font-medium;
     }
 
+    /* bluesky */
+    :where(div.bluesky-embed):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
+      @apply mx-auto;
+
+      iframe {
+        @apply rounded-2xl;
+      }
+    }
+
     :where(.katex-display):not(
       :where([class~="not-prose"], [class~="not-prose"] *)
     ) {
