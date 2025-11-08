@@ -163,7 +163,24 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
 
 export const CommonOgImage = (title: string, _description: string) => {
   return generateOgpImage(
-    <div tw="relative rounded-2xl border w-full flex flex-col text-[#19191a]">
+    <div tw="relative rounded-2xl border w-full flex flex-col text-[#19191a] bg-[#fbffff]">
+      {/* gradient circle */}
+      <div
+        tw="absolute left-0 top-0 rounded-full bg-[#D3F4E5FF] h-[100vh] w-[100vh] opacity-80"
+        style={{
+          transform: "translate(-65%, -30%)",
+          filter: "blur(128px)",
+        }}
+      />
+
+      <div
+        tw="absolute right-0 top-0 rounded-full bg-[#D3F4E5FF] h-[100vh] w-[100vh] opacity-50"
+        style={{
+          transform: "translate(65%, 30%)",
+          filter: "blur(128px)",
+        }}
+      />
+
       <img
         src={logoSvgData}
         tw="object-cover w-[80vh] -top-[7rem] p-0 m-0 absolute -left-[7rem]"
