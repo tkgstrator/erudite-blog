@@ -66,7 +66,7 @@ const generateOgpImage = async (children: React.ReactNode) => {
         style={{
           fontFamily: '"Red Hat Display", "IBM Plex Sans JP", sans-serif',
         }}
-        tw="relative text-primary w-full h-full flex p-0 m-0"
+        tw="relative text-black w-full h-full flex p-0 m-0"
       >
         {children}
       </div>
@@ -104,7 +104,7 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
 
   return generateOgpImage(
     <div
-      tw="relative rounded-2xl shadow-sm border px-16 py-12 w-full h-full flex flex-col text-[#19191a] bg-[#fbffff]"
+      tw="relative rounded-2xl shadow-sm border px-16 py-12 w-full h-full flex flex-col leading-1.2 text-[#19191a] bg-[#fbffff]"
       style={{
         gap: "1rem",
       }}
@@ -118,7 +118,8 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
         }}
       />
 
-      <div tw="flex w-full text-6xl font-bold ">{title}</div>
+      {/* title */}
+      <div tw="flex w-full text-6xl font-bold leading-1.2">{title}</div>
       <div
         tw="flex"
         style={{
@@ -129,7 +130,7 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
         {tags?.map((tag) => (
           <div
             key={tag}
-            tw="text-3xl flex justify-center rounded-full bg-[#D3F4E5FF] text-[#2A5134FF] px-4 py-1 w-fit whitespace-nowrap shrink-0 "
+            tw="text-3xl flex rounded-full bg-[#D3F4E5FF] text-[#2A5134FF] px-4.5 py-1.5 shrink-0"
           >
             {tag}
           </div>
@@ -151,8 +152,8 @@ export const BlogOgImage = (post: CollectionEntry<"blog">) => {
           tw="flex items-baseline pt-2 pb-8 text-5xl font-bold tracking-tight"
           style={{ gap: "0.5rem" }}
         >
-          <div tw="flex items-baseline w-11 h-11  fill-[#19191a]">
-            <img src={logoSvgData} tw="object-cover" />
+          <div tw="flex items-baseline w-11 h-11  text-[#19191]">
+            <img src={logoSvgData} tw="" />
           </div>
           {SITE.title}
         </div>
