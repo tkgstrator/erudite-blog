@@ -17,6 +17,7 @@ const image = new URL("/og.png", Astro.site);
 
 <title>{`${title} | ${SITE.title}`}</title>
 <meta name="description" content={description} />
+<!-- TODO: fix canonical link -->
 <link rel="canonical" href={SITE.href} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
