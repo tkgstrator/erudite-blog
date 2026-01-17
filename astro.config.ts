@@ -18,6 +18,7 @@ import swup from "@swup/astro";
 import pagefind from "astro-pagefind";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeLinkCard from "./src/lib/rehype/link-card";
+import embeds from 'astro-embed/integration';
 import { SITE } from "./src/consts";
 
 export default defineConfig({
@@ -65,6 +66,11 @@ export default defineConfig({
         },
         uiFontFamily: "var(--font-sans)",
       },
+    }),
+    embeds({
+      services: {
+        LinkPreview: false
+      }
     }),
     mdx(),
     react(),
