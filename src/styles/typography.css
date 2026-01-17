@@ -187,6 +187,11 @@
       :where([class~="not-prose"], [class~="not-prose"] *)
     ) {
       @apply mx-auto my-6;
+
+      /* except code */
+      &:not(.expressive-code) {
+        @apply max-w-lg;
+      }
     }
 
     :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
