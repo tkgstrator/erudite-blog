@@ -239,7 +239,16 @@ const budoux = useBudoux();
     <article class="prose col-start-2 max-w-none">
       <Content />
 
-      <LicenseCard license={post.data.license} />
+      <!-- end of article -->
+      <Icon
+        name="lucide:command"
+        class="text-muted-foreground mx-auto my-4 size-6"
+        aria-label="End of Article"
+      />
+
+      <div class="mt-8">
+        <LicenseCard license={post.data.license} />
+      </div>
     </article>
 
     {
