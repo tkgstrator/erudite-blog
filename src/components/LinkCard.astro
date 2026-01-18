@@ -1,0 +1,26 @@
+---
+import { SITE } from "@/consts";
+import { cn } from "@/lib/utils";
+import Link from "./Link.astro";
+
+interface Props {
+  url: string;
+  class?: string;
+  external?: boolean;
+  [key: string]: any;
+}
+
+const { url, class: _class, external, ...props } = Astro.props;
+
+const host = SITE.linkcard;
+
+const src = new URL(`/embed?url=${encodeURIComponent(url)}`, host).toString();
+---
+
+<Link href={url} class={cn("w-full", _class)} external={external} {...props}>
+  <iframe
+    class="pointer-events-none h-36 w-full cursor-pointer rounded-xl border"
+    src={src}
+    aria-label={url}
+    title={url}></iframe>
+</Link>

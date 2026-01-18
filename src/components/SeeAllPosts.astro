@@ -1,0 +1,11 @@
+---
+import Link from "@/components/Link.astro";
+import { buttonVariants } from "@/components/ui/button";
+---
+
+<Link href="/blog" class={buttonVariants({ variant: "ghost" }) + " group"}>
+  全ての記事
+  <span class="ml-1.5 transition-transform group-hover:translate-x-1">
+    &rarr;
+  </span>
+</Link>

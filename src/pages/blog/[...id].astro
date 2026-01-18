@@ -1,16 +1,19 @@
 ---
-import Breadcrumbs from '@/components/Breadcrumbs.astro'
-import Link from '@/components/Link.astro'
-import PostHead from '@/components/PostHead.astro'
-import PostNavigation from '@/components/PostNavigation.astro'
-import SubpostsHeader from '@/components/SubpostsHeader.astro'
-import SubpostsSidebar from '@/components/SubpostsSidebar.astro'
-import TOCHeader from '@/components/TOCHeader.astro'
-import TOCSidebar from '@/components/TOCSidebar.astro'
-import { badgeVariants } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import Layout from '@/layouts/Layout.astro'
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import LicenseCard from "@/components/LicenseCard.astro";
+import PostHead from "@/components/PostHead.astro";
+import PostNavigation from "@/components/PostNavigation.astro";
+import SubpostsHeader from "@/components/SubpostsHeader.astro";
+import SubpostsSidebar from "@/components/SubpostsSidebar.astro";
+import TOCHeader from "@/components/TOCHeader.astro";
+import TOCSidebar from "@/components/TOCSidebar.astro";
+import { Badge, badgeVariants } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { SITE } from "@/consts";
+import Layout from "@/layouts/Layout.astro";
+import { useBudoux } from "@/lib/budoux";
 import {
+  formatTotal,
   getAdjacentPosts,
   getAllPostsAndSubposts,
   getCombinedReadingTime,
@@ -21,41 +24,41 @@ import {
   getTOCSections,
   hasSubposts,
   isSubpost,
-  parseAuthors,
-} from '@/lib/data-utils'
-import { formatDate } from '@/lib/utils'
-import { Icon } from 'astro-icon/components'
-import { Image } from 'astro:assets'
-import { render } from 'astro:content'
+} from "@/lib/data-utils";
+import { cn, formatDate, subpostCountToString } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getAllPostsAndSubposts()
+  const posts = await getAllPostsAndSubposts();
   return posts.map((post) => ({
     params: { id: post.id },
     props: post,
-  }))
+  }));
 }
 
-const post = Astro.props
-const currentPostId = Astro.params.id
-const { Content, headings } = await render(post)
-const authors = await parseAuthors(post.data.authors ?? [])
+const post = Astro.props;
+const currentPostId = Astro.params.id;
+const { Content, headings } = await render(post);
 
-const isCurrentSubpost = isSubpost(currentPostId)
-const navigation = await getAdjacentPosts(currentPostId)
-const parentPost = isCurrentSubpost ? await getParentPost(currentPostId) : null
+const isCurrentSubpost = isSubpost(post);
+const navigation = await getAdjacentPosts(post, currentPostId);
+const parentPost = isCurrentSubpost ? await getParentPost(currentPostId) : null;
 
-const hasChildPosts = await hasSubposts(currentPostId)
+const hasChildPosts = await hasSubposts(currentPostId);
 const subpostCount = !isCurrentSubpost
   ? await getSubpostCount(currentPostId)
-  : 0
-const postReadingTime = await getPostReadingTime(currentPostId)
+  : 0;
+const postReadingTime = await getPostReadingTime(currentPostId, SITE.locale);
 const combinedReadingTime =
   hasChildPosts && !isCurrentSubpost
-    ? await getCombinedReadingTime(currentPostId)
-    : null
+    ? await getCombinedReadingTime(post, SITE.locale)
+    : null;
 
-const tocSections = await getTOCSections(currentPostId)
+const tocSections = await getTOCSections(post);
+
+const budoux = useBudoux();
 ---
 
 <Layout>
@@ -79,29 +82,30 @@ const tocSections = await getTOCSections(currentPostId)
 
   <section
     class="grid grid-cols-[minmax(0px,1fr)_min(calc(var(--breakpoint-md)-2rem),100%)_minmax(0px,1fr)] gap-y-6"
+    data-pagefind-body
   >
-    <div class="col-start-2">
+    <div class="col-start-2" data-pagefind-ignore>
       <Breadcrumbs
         items={[
-          { href: '/blog', label: 'Blog', icon: 'lucide:library-big' },
+          { href: "/blog", label: "Blog", icon: "lucide:library-big" },
           ...(isCurrentSubpost && parentPost
             ? [
                 {
                   href: `/blog/${parentPost.id}`,
                   label: parentPost.data.title,
-                  icon: 'lucide:book-open',
+                  icon: "lucide:book-open",
                 },
                 {
                   href: `/blog/${currentPostId}`,
                   label: post.data.title,
-                  icon: 'lucide:file-text',
+                  icon: "lucide:file-text",
                 },
               ]
             : [
                 {
                   href: `/blog/${currentPostId}`,
                   label: post.data.title,
-                  icon: 'lucide:book-open-text',
+                  icon: "lucide:book-open-text",
                 },
               ]),
         ]}
@@ -115,69 +119,58 @@ const tocSections = await getTOCSections(currentPostId)
           alt={post.data.title}
           width={1200}
           height={630}
-          class="col-span-full mx-auto w-full max-w-5xl object-cover"
+          class="col-span-full mx-auto w-full max-w-3xl object-cover"
+          data-pagefind-meta="image[src], image_alt[alt]"
         />
       )
     }
 
     <section class="col-start-2 flex flex-col gap-y-6 text-center">
       <div class="flex flex-col">
+        <!-- Title -->
         <h1
-          class="mb-2 scroll-mt-31 text-3xl leading-tight font-medium sm:text-4xl"
+          class={cn(
+            "mb-2 scroll-mt-31 text-3xl leading-tight font-medium sm:text-4xl align-middle",
+            budoux.style,
+          )}
           id="post-title"
         >
-          {post.data.title}
-        </h1>
-
-        <div
-          class="text-muted-foreground divide-border mb-4 flex flex-col items-center justify-center divide-y text-xs sm:flex-row sm:flex-wrap sm:divide-x sm:divide-y-0 sm:text-sm"
-        >
           {
-            authors.length > 0 && (
-              <div class="flex w-full items-center justify-center gap-x-2 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0">
-                {authors.map((author) => (
-                  <div class="flex items-center gap-x-1.5">
-                    <Image
-                      src={author.avatar}
-                      alt={author.name}
-                      width={20}
-                      height={20}
-                      class="rounded-full"
-                    />
-                    {author.isRegistered ? (
-                      <Link
-                        href={`/authors/${author.id}`}
-                        underline
-                        class="text-foreground"
-                      >
-                        <span>{author.name}</span>
-                      </Link>
-                    ) : (
-                      <span>{author.name}</span>
-                    )}
-                  </div>
-                ))}
-              </div>
+            post.data.draft && (
+              <Badge variant="destructive" className="inline-block ">
+                下書き
+              </Badge>
             )
           }
 
+          {budoux.parse(post.data.title)}
+        </h1>
+
+        <divs
+          class="text-muted-foreground divide-border mb-4 flex flex-col items-center justify-center divide-y text-xs sm:flex-row sm:flex-wrap sm:divide-x sm:divide-y-0 sm:text-sm"
+        >
+          <!-- Date -->
           <div
             class="flex w-full items-center justify-center gap-2 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0"
           >
-            <span>{formatDate(post.data.date)}</span>
+            <time
+              datetime={post.data.date.toISOString()}
+              data-pagefind-meta={`date:${formatDate(post.data.date, SITE.locale)}`}
+              >{formatDate(post.data.date, SITE.locale)}</time
+            >
           </div>
 
           <div
             class="flex w-full items-center justify-center gap-2 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0"
           >
-            <span>
+            <span data-pagefind-meta={`reading:${postReadingTime}`}>
               {postReadingTime}
               {
                 combinedReadingTime &&
                   combinedReadingTime !== postReadingTime && (
                     <span class="text-muted-foreground">
-                      {' '}
-                      ({combinedReadingTime} total)
+                      {" "}
+                      ({formatTotal(combinedReadingTime, SITE.locale)})
                     </span>
                   )
               }
@@ -186,21 +179,30 @@ const tocSections = await getTOCSections(currentPostId)
 
           {
             subpostCount > 0 && (
-              <div class="flex w-full items-center justify-center gap-1 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0">
+              <div
+                class="flex w-full items-center justify-center gap-1 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0"
+                data-pagefind-ignore
+              >
                 <Icon name="lucide:file-text" class="size-3" />
-                {subpostCount} subpost{subpostCount === 1 ? '' : 's'}
+                {subpostCountToString(subpostCount, SITE.locale)}
               </div>
             )
           }
-        </div>
-        <div class="flex flex-wrap justify-center gap-2">
+        </divs>
+        <div
+          class="flex flex-wrap justify-center gap-2"
+          data-pagefind-meta={post.data.tags
+            ? "tag:" + post.data.tags.join(", ")
+            : null}
+          data-pagefind-ignore
+        >
           {
             post.data.tags &&
               post.data.tags.length > 0 &&
               post.data.tags.map((tag) => (
                 <a
                   href={`/tags/${tag}`}
-                  class={badgeVariants({ variant: 'muted' })}
+                  class={badgeVariants({ variant: "secondary" })}
                 >
                   <Icon name="lucide:hash" class="size-3" />
                   {tag}
@@ -210,22 +212,17 @@ const tocSections = await getTOCSections(currentPostId)
         </div>
       </div>
 
-      <PostNavigation
-        newerPost={navigation.newer}
-        olderPost={navigation.older}
-        parentPost={isCurrentSubpost ? navigation.parent : undefined}
-      />
+      {
+        isCurrentSubpost && (
+          <PostNavigation
+            newerPost={navigation.newer}
+            olderPost={navigation.older}
+            parentPost={isCurrentSubpost ? navigation.parent : undefined}
+            data-pagefind-ignore
+          />
+        )
+      }
     </section>
-
-    {
-      tocSections.length > 0 && (
-        <TOCSidebar sections={tocSections} currentPostId={currentPostId} />
-      )
-    }
-
-    <article class="prose col-start-2 max-w-none">
-      <Content />
-    </article>
 
     {
       (hasChildPosts || isCurrentSubpost) && (
@@ -234,6 +231,32 @@ const tocSections = await getTOCSections(currentPostId)
             isCurrentSubpost ? getParentId(currentPostId) : currentPostId
           }
           className="w-64"
+          data-pagefind-ignore
+        />
+      )
+    }
+
+    <article class="prose col-start-2 max-w-none">
+      <Content />
+
+      <!-- end of article -->
+      <Icon
+        name="lucide:command"
+        class="text-muted-foreground mx-auto my-4 size-6"
+        aria-label="End of Article"
+      />
+
+      <div class="mt-8">
+        <LicenseCard license={post.data.license} />
+      </div>
+    </article>
+
+    {
+      tocSections.length > 0 && (
+        <TOCSidebar
+          post={post}
+          sections={tocSections}
+          currentPostId={currentPostId}
         />
       )
     }
@@ -242,6 +265,7 @@ const tocSections = await getTOCSections(currentPostId)
       newerPost={navigation.newer}
       olderPost={navigation.older}
       parentPost={isCurrentSubpost ? navigation.parent : undefined}
+      data-pagefind-ignore
     />
   </section>
 
@@ -260,37 +284,50 @@ const tocSections = await getTOCSections(currentPostId)
   </Button>
 
   <script>
-    document.addEventListener('astro:page-load', () => {
-      const scrollToTopButton = document.getElementById('scroll-to-top')
-      const footer = document.querySelector('footer')
+    document.addEventListener("astro:page-load", () => {
+      const scrollToTopButton = document.getElementById("scroll-to-top");
+      const footer = document.querySelector("footer");
 
       if (scrollToTopButton && footer) {
-        scrollToTopButton.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        })
+        scrollToTopButton.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
 
-        window.addEventListener('scroll', () => {
-          const footerRect = footer.getBoundingClientRect()
-          const isFooterVisible = footerRect.top <= window.innerHeight
+        window.addEventListener("scroll", () => {
+          const footerRect = footer.getBoundingClientRect();
+          const isFooterVisible = footerRect.top <= window.innerHeight;
 
           scrollToTopButton.classList.toggle(
-            'hidden',
+            "hidden",
             window.scrollY <= 300 || isFooterVisible,
-          )
-        })
+          );
+        });
       }
-    })
+    });
+  </script>
+
+  <script>
+    // ヘッダーをスクロールしたら上に飛ばす
+    // 上にスクロールするか、画面の一番上になったら戻す
+    document.addEventListener("astro:page-load", () => {
+      const header = document.getElementById("header");
+      if (!header) return;
+      let lastScrollY = 0;
+
+      window.addEventListener("scroll", () => {
+        const headerHeight = header ? header.offsetHeight : 0;
+        // important: ヘッダーを操作して高さが変化するとスクロールが起こった判定になり、
+        // クリックしただけでヘッダーが隠れてしまう。そのため、ヘッダーの高さを除いたスクロール位置を計算する。
+        const currentScrollY = window.scrollY - headerHeight;
+        const scrollDiff = currentScrollY - lastScrollY;
+        lastScrollY = currentScrollY;
+
+        if (scrollDiff < 0 || currentScrollY <= headerHeight) {
+          header.style.transform = "translateY(0)";
+        } else if (scrollDiff > 0) {
+          header.style.transform = "translateY(-100%)";
+        }
+      });
+    });
   </script>
 </Layout>
-
-<script>
-  if (document.querySelector('.katex')) {
-    if (!document.querySelector('link[href*="katex.min.css"]')) {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href =
-        'https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css'
-      document.head.appendChild(link)
-    }
-  }
-</script>

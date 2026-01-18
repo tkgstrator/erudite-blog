@@ -1,15 +1,15 @@
 ---
-import Breadcrumbs from '@/components/Breadcrumbs.astro'
-import Link from '@/components/Link.astro'
-import PageHead from '@/components/PageHead.astro'
-import { buttonVariants } from '@/components/ui/button'
-import Layout from '@/layouts/Layout.astro'
-import { cn } from '@/lib/utils'
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Link from "@/components/Link.astro";
+import PageHead from "@/components/PageHead.astro";
+import { buttonVariants } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+import { cn } from "@/lib/utils";
 ---
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="404" />
-  <Breadcrumbs items={[{ label: '???', icon: 'lucide:circle-help' }]} />
+  <Breadcrumbs items={[{ label: "???", icon: "lucide:circle-help" }]} />
 
   <section
     class="flex flex-col items-center justify-center gap-y-4 text-center"
@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils'
     </div>
     <Link
       href="/"
-      class={cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}
+      class={cn(buttonVariants({ variant: "outline" }), "flex gap-x-1.5 group")}
     >
       <span class="transition-transform group-hover:-translate-x-1">&larr;</span
       > Go to home page

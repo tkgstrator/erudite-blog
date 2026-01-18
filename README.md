@@ -1,5 +1,32 @@
 ![Showcase Card](/public/static/twitter-card.png)
 
+# Astro Erudite Blog
+
+astro-erudite テンプレートをベースにしたブログサイト。
+
+## Changes
+
+- Bun を使うように変更
+- `oxlint` 導入
+- Rolldown を有効化
+- git submodule で記事を管理するように
+- `wrangler.toml` の追加
+- Swup のトランジションを導入
+- Pagefind を導入
+- テーマカラーを変更可能に (fuwari風)
+- `@vercel/og` を使った OG 画像生成
+- `rehype-autolink-headings` を導入
+- ネストされたフォルダ内のマークダウンとサブポストを共存可能に
+- 記事にライセンスを設定可能に
+- `llms.txt` の追加
+- `bun run new:article` で新しい記事の雛形を作成可能に
+- スクロール時にヘッダーが隠れるように
+- その他軽微なデザインの調整
+
+以下、オリジナルの README.md
+
+---
+
 <div align="center">
 
 ## astro-erudite
@@ -20,31 +47,23 @@ astro-erudite is an opinionated, unstyled static blogging template built with [A
 
 ---
 
-## Community examples
+## Community Examples
 
-Below are some fantastic examples of websites based on this template. If you wish to add your site to this list, open a [pull request](https://github.com/jktrn/astro-erudite/pulls)!
+Below are some fantastic examples of websites based on this template. If you wish to add your site to this list, open a pull request!
 
-| Site | Author | Tags | Source |
-|-|-|-|-|
-| [enscribe.dev](https://enscribe.dev) | [@jktrn](https://github.com/jktrn) | portfolio, interactive | [→](https://github.com/jktrn/enscribe.dev) |
-| [emile.sh](https://emile.sh) | [@echoghi](https://github.com/echoghi) | minimal, flexoki | [→](https://github.com/echoghi/v5) |
-| [decentparadox.me](https://decentparadox.me) | [@decentparadox](https://github.com/decentparadox) | portfolio, sci-fi | [→](https://github.com/decentparadox/decentparadox.me) |
-| [flocto.github.io](https://flocto.github.io/) | [@flocto](https://github.com/flocto) | blog | [→](https://github.com/flocto/flocto.github.io) |
-| [dumbprism.me](https://www.dumbprism.me/) | [@dumbprism](https://github.com/dumbprism) | portfolio, bento | [→](https://github.com/dumbprism/dumbprism-portfolio) |
-| [hyuki.dev](https://hyuki.dev/) | [@snow0406](https://github.com/snow0406) | minimal, blog | [→](https://github.com/Snow0406/hyuki.dev) |
-| [ldd.cc](https://ldd.cc/) | [@xJoyLu](https://github.com/xjoylu) | blog | [→](https://ldd.cc/) |
-| [rezarezvan.com](https://rezarezvan.com/) | [@rezaarezvan](https://github.com/rezaarezvan) | academic, blog | [→](https://rezarezvan.com/) |
-| [blog.z0x.ca](https://blog.z0x.ca/) | [@z0x](https://z0x.ca) | minimal | [→](https://git.z0x.ca/z0x/blog.z0x.ca/) |
-| [angelaytchan.net](https://angelaytchan.net/) | [@wispyplant](https://github.com/wispyplant) | portfolio, art | [→](https://github.com/wispyplant/wispyplant.github.io) |
-| [kaezr.xyz](https://kaezr.xyz/) | [@kaezrr](https://github.com/kaezrr) | minimal, portfolio | [→](https://github.com/kaezrr/webfolio) |
-| [worldwidewong](https://worldwidewong.vercel.app) | [@brendanwong-web](https://github.com/brendanwong-web) | portfolio, gallery | [→](https://github.com/brendanwong-web/worldwidewong) |
-| [bgajjala.dev](https://bgajjala.dev) | [@bgajjala8](https://github.com/bgajjala8) | minimal, blog | [→](https://github.com/bgajjala8/bgajjala.dev) |
-| [ankitz007.vercel.app](https://ankitz007.vercel.app) | [@ankitz007](https://github.com/ankitz007) | blog | [→](https://github.com/ankitz007/webfolio) |
-| [sadman.ca](https://sadman.ca) | [@sadmanca](https://github.com/sadmanca) | blog, media | [→](https://github.com/sadmanca/blogv3) |
-| [marcel-to.vercel.app](https://marcel-to.vercel.app) | [@Marcel-TO](https://github.com/Marcel-TO) | portfolio, docs | [→](https://github.com/Marcel-TO/marcel-to-website) |
-| [merox.dev](https://merox.dev) | [@meroxdotdev](https://github.com/meroxdotdev) | blog, devops, homelab | [→](https://github.com/meroxdotdev/merox) |
-| [Off by One](https://justoffbyone.com) | [@cduruk](https://github.com/cduruk) | engineering, blog | [→](https://github.com/cduruk/offbyone) |
-| [holywater.dev](https://holywater.dev) | [@holywater2372](https://github.com/holywater2372) | cybersecurity, blog | [→](https://github.com/holywater2372/holywater.dev) |
+| Site                                          | Author                                             | Description/Features                                                                         | Source                                                 |
+| --------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [enscribe.dev](https://enscribe.dev)          | [@jktrn](https://github.com/jktrn)                 | Heavily modified bento-style homepage with client interactivity, with custom MDX components! | [→](https://github.com/jktrn/enscribe.dev)             |
+| [emile.sh](https://emile.sh)                  | [@echoghi](https://github.com/echoghi)             | A minimalist personal blog using the [flexoki](https://stephango.com/flexoki) theme          | [→](https://github.com/echoghi/v5)                     |
+| [decentparadox.me](https://decentparadox.me)  | [@decentparadox](https://github.com/decentparadox) | A heavily customized personal portfolio with a sci-fi theme!                                 | [→](https://github.com/decentparadox/decentparadox.me) |
+| [flocto.github.io](https://flocto.github.io/) | [@flocto](https://github.com/flocto)               | A slightly modified personal blog                                                            | [→](https://github.com/flocto/flocto.github.io)        |
+| [dumbprism.me](https://www.dumbprism.me/)     | [@dumbprism](https://github.com/dumbprism)         | A customized portfolio inspired by enscribe's bento grid style adding my gist of UI          | [→](https://github.com/dumbprism/dumbprism-portfolio)  |
+| [hyuki.dev](https://hyuki.dev/)               | [@snow0406](https://github.com/snow0406)           | A minimalist blog with a blue color scheme, focusing on simplicity!                          | [→](https://github.com/Snow0406/hyuki.dev)             |
+| [ldd.cc](https://ldd.cc/)                     | [@xJoyLu](https://github.com/xjoylu)               | The cream of the idlers.                                                                     | [→](https://ldd.cc/)                                   |
+| [rezarezvan.com](https://rezarezvan.com/)     | [@rezaarezvan](https://github.com/rezaarezvan)     | A academic blog with personal touches :).                                                    | [→](https://rezarezvan.com/)                           |
+| [blog.z0x.ca](https://blog.z0x.ca/)           | [@z0x](https://z0x.ca)                             | _Very_ minimal version of erudite, stripping it down to the bare essentials                  | [→](https://git.z0x.ca/z0x/blog.z0x.ca/)               |
+| [angelaytchan.net](https://angelaytchan.net/)           | [@wispyplant](https://github.com/wispyplant)          | An artist portfolio and activities archive      | [→](https://github.com/wispyplant/wispyplant.github.io)               |
+
 ## Features
 
 - [Astro](https://astro.build/)'s [Islands](https://docs.astro.build/en/concepts/islands/) architecture for selective hydration and client-side interactivity while maintaining fast static site rendering.
@@ -59,7 +78,7 @@ Below are some fantastic examples of websites based on this template. If you wis
 - Project tags with a dedicated tags page for post categorization and discovery.
 - Custom Callout component variants for enhanced technical writing.
 
-### Technology stack
+## Technology Stack
 
 This is a list of the various technologies used to build this template:
 
@@ -73,7 +92,7 @@ This is a list of the various technologies used to build this template:
 | Graphics   | [Figma](https://www.figma.com/)                                                            |
 | Deployment | [Vercel](https://vercel.com)                                                               |
 
-## Getting started
+## Getting Started
 
 1. Hit &ldquo;Use this template&rdquo;, the big green button on the top right, to create a new repository in your own GitHub account with this template.
 
@@ -106,7 +125,7 @@ This is a list of the various technologies used to build this template:
    | `npm run astro`    | Run Astro CLI commands                                          |
    | `npm run prettier` | Blanket format all files using [Prettier](https://prettier.io/) |
 
-### Site configuration
+### Site Configuration
 
 Edit the `src/consts.ts` file to update your site's metadata, navigation links, and social links:
 
@@ -136,7 +155,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ]
 ```
 
-### Color palette
+### Color Palette
 
 Colors are defined in `src/styles/global.css` in [OKLCH format](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch), using the [shadcn/ui](https://ui.shadcn.com/) convention:
 
@@ -176,9 +195,9 @@ Favicons are generated using [RealFaviconGenerator](https://realfavicongenerator
 <link rel="manifest" href="/site.webmanifest" />
 ```
 
-## Adding content
+## Adding Content
 
-### Blog posts
+### Blog Posts
 
 Add new blog posts as MDX files in the `src/content/blog/` directory. Use the following frontmatter structure:
 
@@ -276,7 +295,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-### Star history
+### Star History
 
 <a href="https://star-history.com/#jktrn/astro-erudite&Date">
  <picture>
