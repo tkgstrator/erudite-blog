@@ -2,7 +2,11 @@
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Link from "@/components/Link.astro";
 import PageHead from "@/components/PageHead.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
 import Layout from "@/layouts/Layout.astro";
+import { getAllProjects } from "@/lib/data-utils";
+
+const projects = await getAllProjects();
 ---
 
 <Layout class="max-w-3xl">
@@ -12,29 +16,31 @@ import Layout from "@/layouts/Layout.astro";
   <section>
     <div class="min-w-full">
       <div class="prose mb-8">
-        <h2>私について</h2>
-        <p>そう、私です。</p>
-        <p>
-          インターネット上にはさまざまな情報が落ちているので、いろいろ探してみよう！
-        </p>
-
-        <h2>このサイトについて</h2>
-        <p>
-          定期的にブログサイトを作っては捨て、作っては放置しを繰り返し、N
-          代目のブログサイト。今回は Astro 製である。
-        </p>
         <p class="mt-0">
-          <Link
-            href="https://github.com/jktrn/astro-erudite"
+          astro-erudite is an opinionated, unstyled static blogging template
+          that prioritizes simplicity and performance, built with <Link
+            href="https://astro.build"
             external
-            underline
-          >
-            Astro Erudite
-          </Link> テンプレートを使用。shadcn/ui を使っていてモダン〜。
+            underline>Astro</Link
+          >, <Link href="https://tailwindcss.com" external underline
+            >Tailwind</Link
+          >, and <Link href="https://ui.shadcn.com" external underline
+            >shadcn/ui</Link
+          >. It provides a clean foundation for your content while being
+          extremely easy to customize.
         </p>
         <p>
-          詳細は <Link href="/blog/2025/07/13-new-blog">この記事</Link> で。
+          To learn more about the philosophy behind this template, check out the
+          following blog post: <Link
+            href="/blog/the-state-of-static-blogs"
+            underline>The State of Static Blogs in 2024</Link
+          >.
         </p>
+      </div>
+
+      <h2 class="mb-4 text-2xl font-medium">Example Projects Listing</h2>
+      <div class="flex flex-col gap-4">
+        {projects.map((project) => <ProjectCard project={project} />)}
       </div>
     </div>
   </section>

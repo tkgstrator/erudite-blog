@@ -1,78 +1,74 @@
-import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
-import { licenseSchema } from "./lib/data-utils";
+import { defineCollection, z } from 'astro:content'
+import { glob } from 'astro/loaders'
+import { licenseSchema } from './lib/data-utils'
 
 const blog = defineCollection({
-  loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
+  loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
   schema: ({ image }) =>
     z.object({
-      title: z.string(),
-      description: z.string(),
-      date: z.coerce.date(),
-      order: z.number().optional(),
-      image: image().optional(),
-      tags: z.array(z.string()).optional(),
       authors: z.array(z.string()).optional(),
+      date: z.coerce.date(),
+      description: z.string(),
       draft: z.boolean().optional(),
+      image: image().optional(),
+      isSubpost: z.boolean().default(false),
       license: z
         .preprocess((val) => {
-          if (!val) return null;
-          if (typeof val !== "string") {
-            throw new Error(`Invalid license format: ${val}`);
+          if (!val) return null
+          if (typeof val !== 'string') {
+            throw new Error(`Invalid license format: ${val}`)
           }
 
-          const match = val.match(
-            /cc(?:\s|-)(by|sa|nc|nd|zero)(?:\s(\d+\.\d+))?/,
-          );
-          if (!match) throw new Error(`Invalid license format: ${val}`);
-          const type = match[1];
-          const version = match[2] ? match[2] : undefined;
+          const match = val.match(/cc(?:\s|-)(by|sa|nc|nd|zero)(?:\s(\d+\.\d+))?/)
+          if (!match) throw new Error(`Invalid license format: ${val}`)
+          const type = match[1]
+          const version = match[2] ? match[2] : undefined
 
           const result = licenseSchema.safeParse({
             type,
-            version,
-          });
+            version
+          })
           if (!result.success) {
-            console.warn(
-              `Invalid license format: ${val}. Error: ${result.error.message}`,
-            );
-            return null;
+            console.warn(`Invalid license format: ${val}. Error: ${result.error.message}`)
+            return null
           }
-          return result.data;
+          return result.data
         }, licenseSchema)
         .optional(),
-      isSubpost: z.boolean().default(false),
-    }),
-});
+      order: z.number().optional(),
+      tags: z.array(z.string()).optional(),
+      title: z.string()
+    })
+})
 
 const authors = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/authors" }),
+  loader: glob({ base: './src/content/authors', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
-    name: z.string(),
-    pronouns: z.string().optional(),
-    avatar: z.string().url().or(z.string().startsWith("/")),
+    avatar: z.string().url().or(z.string().startsWith('/')),
     bio: z.string().optional(),
-    mail: z.string().email().optional(),
-    website: z.string().url().optional(),
-    twitter: z.string().url().optional(),
+    discord: z.string().url().optional(),
     github: z.string().url().optional(),
     linkedin: z.string().url().optional(),
-    discord: z.string().url().optional(),
-  }),
-});
+    mail: z.string().email().optional(),
+    name: z.string(),
+    pronouns: z.string().optional(),
+    twitter: z.string().url().optional(),
+    website: z.string().url().optional()
+  })
+})
 
 const projects = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
+  loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
   schema: ({ image }) =>
     z.object({
-      name: z.string(),
       description: z.string(),
-      tags: z.array(z.string()),
+      endDate: z.coerce.date().optional(),
       image: image(),
       link: z.string().url(),
+      name: z.string(),
       startDate: z.coerce.date().optional(),
-      endDate: z.coerce.date().optional(),
-    }),
-});
+      tags: z.array(z.string())
+    })
+})
 
-export const collections = { blog, authors, projects };
+export const collections = { authors, blog, projects }
