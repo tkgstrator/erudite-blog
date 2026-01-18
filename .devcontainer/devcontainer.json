@@ -75,7 +75,8 @@
     "ghcr.io/shyim/devcontainers-features/bun:0": {}
   },
   "mounts": [
-    "source=${env:HOME}/home/vscode/.ssh,target=/.ssh,type=bind,consistency=cached,readonly"
+    "source=${env:HOME}/home/vscode/.ssh,target=/.ssh,type=bind,consistency=cached,readonly",
+    "source=${env:HOME}/.gnupg,target=/home/vscode/.gnupg,type=bind,consistency=cached"
   ],
   "name": "Under+Ground",
   "postAttachCommand": "/bin/sh .devcontainer/postAttachCommand.sh",
