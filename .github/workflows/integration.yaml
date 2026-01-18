@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: true
           fetch-depth: 0
@@ -32,27 +32,27 @@ jobs:
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
       - name: Check
         run: |
-          bunx @biomejs/biome@2.0.0 check src
+          bunx @biomejs/biome check src
   test:
     name: Test
     runs-on: ubuntu-24.04
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
       - name: Cache bun dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             node_modules
@@ -71,13 +71,13 @@ jobs:
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
       - name: Cache bun dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             node_modules
@@ -96,7 +96,7 @@ jobs:
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Bun
         uses: oven-sh/setup-bun@v1
         with:
