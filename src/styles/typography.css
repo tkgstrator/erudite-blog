@@ -190,7 +190,7 @@
 
       /* except code */
       &:not(.expressive-code) {
-        @apply max-w-lg;
+        @apply max-w-[80%];
       }
     }
 
