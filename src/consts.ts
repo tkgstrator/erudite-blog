@@ -39,7 +39,7 @@ export const SITE: Site = {
     }
   },
   postsPerPage: 10,
-  title: 'platform'
+  title: 'Under+Ground'
   // linkcard: "http://localhost:5173",
 }
 
