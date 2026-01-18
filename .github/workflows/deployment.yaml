@@ -46,12 +46,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
+            node_modules
             ~/.bun/install/cache
-            ${{ github.workspace }}/.next/cache
-            ${{ github.workspace }}/node_modules/.cache
-          key: ${{ runner.os }}-nextjs-bun-${{ hashFiles('**/bun.lockb') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-bun-${{ hashFiles('**/bun.lockb') }}-
+            bun-${{ runner.os }}-
       - name: Install dependencies
         run: bun install --ignore-scripts
       - name: Build Project Artifacts
