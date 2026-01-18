@@ -28,6 +28,7 @@
     "budoux": "^0.7.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "hastscript": "^9.0.1",
     "lucide-react": "^0.562.0",
     "patch-package": "^8.0.1",
