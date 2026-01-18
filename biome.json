@@ -1,0 +1,61 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "recommended": true,
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on",
+        "useSortedProperties": "on"
+      }
+    },
+    "enabled": true,
+    "includes": ["**", "!**/src/components/ui/**/*.tsx"]
+  },
+  "files": {
+    "includes": [
+      "**/*.{ts,mjs,json}",
+      "**/src/**/*.{ts,tsx}",
+      "**/__tests__/**/*.test.ts",
+      "!**/lib/*.{ts,mjs,json}",
+      "!**/node_modules/**/*",
+      "!**/.astro/**/*",
+      "!**/src/components/ui/**/*.tsx"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "includes": ["**"],
+    "indentStyle": "space",
+    "useEditorconfig": true
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "single",
+      "lineWidth": 120,
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "single",
+      "semicolons": "asNeeded",
+      "trailingCommas": "none"
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "includes": ["**"],
+    "rules": {
+      "a11y": {},
+      "correctness": {},
+      "nursery": {},
+      "recommended": true,
+      "style": {},
+      "suspicious": {}
+    }
+  }
+}
