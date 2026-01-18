@@ -1,8 +1,10 @@
+![Showcase Card](/public/static/twitter-card.png)
+
 # Astro Erudite Blog
 
 astro-erudite テンプレートをベースにしたブログサイト。
 
-## 主な変更点
+## Changes
 
 - Bun を使うように変更
 - `oxlint` 導入
@@ -36,6 +38,9 @@ astro-erudite テンプレートをベースにしたブログサイト。
 
 astro-erudite is an opinionated, unstyled static blogging template built with [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/). Extraordinarily loosely based off the [Astro Micro](https://astro-micro.vercel.app/) theme by [trevortylerlee](https://github.com/trevortylerlee).
 
+| ![Preview 1](/public/static/preview-1.png) | ![Preview 2](/public/static/preview-2.png) |
+| ------------------------------------------ | ------------------------------------------ |
+| ![Preview 3](/public/static/preview-3.png) | ![Preview 4](/public/static/preview-4.png) |
 
 > [!NOTE]
 > To learn more about why this template exists, read [The State of Static Blogs in 2024](https://astro-erudite.vercel.app/blog/the-state-of-static-blogs), where I share my take on what constitutes a great blogging template and my goals while developing this one.
@@ -119,8 +124,6 @@ This is a list of the various technologies used to build this template:
    | `npm run preview`  | Previews the built project                                      |
    | `npm run astro`    | Run Astro CLI commands                                          |
    | `npm run prettier` | Blanket format all files using [Prettier](https://prettier.io/) |
-
-## Customization
 
 ### Site Configuration
 

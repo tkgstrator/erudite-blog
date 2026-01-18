@@ -1,66 +1,101 @@
-import type { IconMap, Site, SocialLink } from "@/types";
+import type { IconMap, Site, SocialLink } from '@/types'
 
 export const SITE: Site = {
-  title: "platform",
-  description: "plat のひとりごと",
-  href: "https://blog.p1at.dev",
-  author: "plat",
-  locale: "ja-JP",
-  featuredPostCount: 10,
-  postsPerPage: 10,
+  author: 'tkgstrator',
   defaultLicense: {
-    type: "by",
-    version: "4.0",
+    type: 'by',
+    version: '4.0'
   },
-  linkcard: "https://linkcard.blog.p1at.dev",
+  description: 'えむいーと愉快な仲間たちの平凡な技術ブログ、ニンテンドースイッチハッキングから生成AIまで幅広く扱います',
+  featuredPostCount: 10,
+  href: 'https://blog.tkgstrator.work',
+  linkcard: 'https://linkcard.blog.p1at.dev',
+  locale: 'en-US',
+  metadata: {
+    keywords: ['tkgling', 'tkgstrator'],
+    og: {
+      description:
+        'えむいーと愉快な仲間たちの平凡な技術ブログ、ニンテンドースイッチハッキングから生成AIまで幅広く扱います',
+      image: {
+        alt: 'Under+Ground',
+        height: 630,
+        url: '/og_underground.png',
+        width: 1200
+      },
+      site_name: 'Under+Ground',
+      title: 'Under+Ground'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      description:
+        'えむいーと愉快な仲間たちの平凡な技術ブログ、ニンテンドースイッチハッキングから生成AIまで幅広く扱います',
+      image: {
+        alt: 'Under+Ground',
+        height: 630,
+        url: '/og_underground.png',
+        width: 1200
+      },
+      title: 'Under+Ground'
+    }
+  },
+  postsPerPage: 10,
+  title: 'platform'
   // linkcard: "http://localhost:5173",
-};
+}
 
 export const NAV_LINKS: SocialLink[] = [
   {
-    href: "/blog",
-    label: "blog",
+    href: '/blog',
+    label: 'blog'
   },
   {
-    href: "/tags",
-    label: "tags",
+    href: '/authors',
+    label: 'authors'
   },
   {
-    href: "/about",
-    label: "about",
+    href: '/tags',
+    label: 'tags'
   },
   {
-    href: "/search",
-    label: "search",
+    href: '/about',
+    label: 'about'
   },
-];
+  {
+    href: '/search',
+    label: 'search'
+  }
+]
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    href: "https://github.com/p1atdev",
-    label: "GitHub",
+    href: 'https://github.com/tkgstrator',
+    label: 'GitHub'
   },
   {
-    href: "https://bsky.app/profile/p1at.dev",
-    label: "Bluesky",
+    href: 'https://twitter.com/tkgling',
+    label: 'Twitter'
   },
   {
-    href: "/rss.xml",
-    label: "RSS",
+    href: 'mailto:tkgstrator@qleap.jp',
+    label: 'Email'
   },
   {
-    href: "/llms.txt",
-    label: "LLM",
+    href: '/rss.xml',
+    label: 'RSS'
   },
-];
+  {
+    href: '/llms.txt',
+    label: 'LLM'
+  }
+]
 
 export const ICON_MAP: IconMap = {
-  Website: "lucide:globe",
-  GitHub: "lucide:github",
-  LinkedIn: "lucide:linkedin",
-  Twitter: "lucide:twitter",
-  Bluesky: "tabler:brand-bluesky",
-  Email: "lucide:mail",
-  RSS: "lucide:rss",
-  LLM: "lucide:bot",
-};
+  Bluesky: 'tabler:brand-bluesky',
+  Email: 'lucide:mail',
+  GitHub: 'lucide:github',
+  LinkedIn: 'lucide:linkedin',
+  LLM: 'lucide:bot',
+  RSS: 'lucide:rss',
+  Twitter: 'lucide:twitter',
+  Website: 'lucide:globe'
+}
