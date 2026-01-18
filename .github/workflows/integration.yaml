@@ -55,9 +55,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
+            node_modules
             ~/.bun/install/cache
-            bun.lockb
-          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
           restore-keys: |
             bun-${{ runner.os }}-
       - name: Install
@@ -80,22 +80,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
+            node_modules
             ~/.bun/install/cache
-            ${{ github.workspace }}/.next/cache
-            ${{ github.workspace }}/node_modules/.cache
-          key: ${{ runner.os }}-nextjs-bun-${{ hashFiles('**/bun.lockb') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-bun-${{ hashFiles('**/bun.lockb') }}-
+            bun-${{ runner.os }}-
       - name: Install
         run: bun install --ignore-scripts
       - name: Build
         run: |
           bun run build
-        env:
-          MM_URL: ${{ secrets.MM_URL }}
-          MM_BEARER_TOKEN: ${{ secrets.MM_BEARER_TOKEN }}
-          MM_FORM_CHANNEL_ID: ${{ secrets.MM_FORM_CHANNEL_ID }}
-          MM_CONTACT_CHANNEL_ID: ${{ secrets.MM_CONTACT_CHANNEL_ID }}
   prune:
     name: Prune
     runs-on: ubuntu-24.04
