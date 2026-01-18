@@ -3,7 +3,6 @@
     "vscode": {
       "extensions": [
         "EditorConfig.EditorConfig",
-        "GitHub.copilot",
         "GitHub.copilot-chat",
         "PKief.material-icon-theme",
         "antfu.file-nesting",
