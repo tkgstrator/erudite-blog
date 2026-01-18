@@ -21,6 +21,7 @@
       "!**/lib/*.{ts,mjs,json}",
       "!**/node_modules/**/*",
       "!**/.astro/**/*",
+      "!**/dist/**/*",
       "!**/src/components/ui/**/*.tsx"
     ]
   },
