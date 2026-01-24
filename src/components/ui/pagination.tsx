@@ -72,12 +72,13 @@ function PaginationLink({
 function PaginationPrevious({
   className,
   isDisabled,
+  size = 'default',
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="default"
+      size={size}
       className={cn('gap-1 px-2.5 sm:pl-2.5', className)}
       isDisabled={isDisabled}
       {...props}
@@ -91,12 +92,13 @@ function PaginationPrevious({
 function PaginationNext({
   className,
   isDisabled,
+  size = 'default',
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="default"
+      size={size}
       className={cn('gap-1 px-2.5 sm:pr-2.5', className)}
       isDisabled={isDisabled}
       {...props}
@@ -129,12 +131,43 @@ const PaginationComponent: React.FC<PaginationProps> = ({
   totalPages,
   baseUrl,
 }) => {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
-
   const getPageUrl = (page: number) => {
     if (page === 1) return baseUrl
     return `${baseUrl}${page}`
   }
+
+  const getPageNumbers = () => {
+    const delta = 2
+    const range: number[] = []
+    const rangeWithDots: (number | string)[] = []
+    let l: number | undefined
+
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 ||
+        i === totalPages ||
+        (i >= currentPage - delta && i <= currentPage + delta)
+      ) {
+        range.push(i)
+      }
+    }
+
+    for (const i of range) {
+      if (l) {
+        if (i - l === 2) {
+          rangeWithDots.push(l + 1)
+        } else if (i - l !== 1) {
+          rangeWithDots.push('...')
+        }
+      }
+      rangeWithDots.push(i)
+      l = i
+    }
+
+    return rangeWithDots
+  }
+
+  const pageNumbers = getPageNumbers()
 
   return (
     <Pagination>
@@ -143,24 +176,26 @@ const PaginationComponent: React.FC<PaginationProps> = ({
           <PaginationPrevious
             href={currentPage > 1 ? getPageUrl(currentPage - 1) : undefined}
             isDisabled={currentPage === 1}
+            size="default"
           />
         </PaginationItem>
 
-        {pages.map((page) => (
-          <PaginationItem key={page}>
-            <PaginationLink
-              href={getPageUrl(page)}
-              isActive={page === currentPage}
-            >
-              {page}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
-
-        {totalPages > 5 && (
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
+        {pageNumbers.map((page, index) =>
+          page === '...' ? (
+            <PaginationItem key={`ellipsis-${index}`}>
+              <PaginationEllipsis />
+            </PaginationItem>
+          ) : (
+            <PaginationItem key={page}>
+              <PaginationLink
+                href={getPageUrl(page as number)}
+                isActive={page === currentPage}
+                size="icon"
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ),
         )}
 
         <PaginationItem>
@@ -169,6 +204,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
               currentPage < totalPages ? getPageUrl(currentPage + 1) : undefined
             }
             isDisabled={currentPage === totalPages}
+            size="default"
           />
         </PaginationItem>
       </PaginationContent>

@@ -1,8 +1,8 @@
 
 name = "erudite-blog"
 assets = { "directory" = "dist" }
-compatibility_date = "2025-07-04"
-compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2026-01-24"
+compatibility_flags = ["nodejs_compat_v2"]
 
 
 [observability]

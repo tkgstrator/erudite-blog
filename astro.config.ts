@@ -22,6 +22,11 @@ import { SITE } from './src/consts'
 import rehypeLinkCard from './src/lib/rehype/link-card'
 
 export default defineConfig({
+  // adapter: vercel({
+  //   webAnalytics: {
+  //     enabled: true
+  //   }
+  // }),
   build: {
     format: 'file'
   },
@@ -115,7 +120,8 @@ export default defineConfig({
       [
         rehypeAutolinkHeadings,
         {
-          behavior: 'wrap'
+          behavior: 'wrap',
+          content: []
         }
       ],
       rehypeKatex,
@@ -132,11 +138,12 @@ export default defineConfig({
     remarkPlugins: [remarkMath, remarkEmoji],
     syntaxHighlight: false
   },
+  output: 'static',
   server: {
     host: true,
     port: 1234
   },
-  site: 'https://blog.p1at.dev',
+  site: 'https://blog.tkgstrator.work',
   vite: {
     experimental: {
       // enableNativePlugin: true,

@@ -2,7 +2,6 @@
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Link from "@/components/Link.astro";
 import PageHead from "@/components/PageHead.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getAllProjects } from "@/lib/data-utils";
 
@@ -17,30 +16,43 @@ const projects = await getAllProjects();
     <div class="min-w-full">
       <div class="prose mb-8">
         <p class="mt-0">
-          astro-erudite is an opinionated, unstyled static blogging template
-          that prioritizes simplicity and performance, built with <Link
-            href="https://astro.build"
-            external
-            underline>Astro</Link
-          >, <Link href="https://tailwindcss.com" external underline
-            >Tailwind</Link
-          >, and <Link href="https://ui.shadcn.com" external underline
-            >shadcn/ui</Link
-          >. It provides a clean foundation for your content while being
-          extremely easy to customize.
-        </p>
-        <p>
-          To learn more about the philosophy behind this template, check out the
-          following blog post: <Link
-            href="/blog/the-state-of-static-blogs"
-            underline>The State of Static Blogs in 2024</Link
-          >.
+          このサイトではプログラミングやゲーム開発に関する記事を公開しています。
         </p>
       </div>
 
-      <h2 class="mb-4 text-2xl font-medium">Example Projects Listing</h2>
+      <h2 class="mb-4 text-2xl font-medium">プロジェクト</h2>
       <div class="flex flex-col gap-4">
-        {projects.map((project) => <ProjectCard project={project} />)}
+        <div class="border-border bg-card dark:bg-card rounded-lg border p-6">
+          <h3 class="mb-2 text-xl font-semibold">
+            ビッカメ娘をもっと身近に、もっと楽しく
+          </h3>
+          <p class="text-muted-foreground mb-4">
+            ビックカメラのキャラクター「ビッカメ娘」の推し活を全力サポート。イベント追跡、店舗巡り、誕生日情報、総選挙など、ビッカメ娘ファンのための情報サイトです。
+          </p>
+          <Link href="https://biccame-musume.com/" external underline>
+            https://biccame-musume.com/
+          </Link>
+        </div>
+
+        <div class="border-border bg-card dark:bg-card rounded-lg border p-6">
+          <h3 class="mb-2 text-xl font-semibold">KIKAI - 棋解</h3>
+          <p class="text-muted-foreground mb-4">
+            将棋の棋譜再生・解析サービス。棋譜の再生や分析を通じて、将棋の理解を深めることができます。
+          </p>
+          <Link href="https://jsam-dev.qleap.jp/" external underline>
+            https://jsam-dev.qleap.jp/
+          </Link>
+        </div>
+
+        <div class="border-border bg-card dark:bg-card rounded-lg border p-6">
+          <h3 class="mb-2 text-xl font-semibold">QuantumLeap</h3>
+          <p class="text-muted-foreground mb-4">
+            美しく・強く・速く。Webもアプリも自在に、あなたのアイデアを動かす技術を提供します。
+          </p>
+          <Link href="https://qleap.jp/" external underline>
+            https://qleap.jp/
+          </Link>
+        </div>
       </div>
     </div>
   </section>

@@ -13,6 +13,7 @@
         "bradlc.vscode-tailwindcss",
         "eamodio.gitlens",
         "ms-vscode.vscode-typescript-next",
+        "pHofer94.vscode-taskviewexplorer",
         "tamasfe.even-better-toml",
         "vsls-contrib.gitdoc"
       ],
@@ -54,7 +55,7 @@
       }
     }
   },
-  "dockerComposeFile": ["docker-compose.yaml"],
+  "dockerComposeFile": ["compose.yaml"],
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
@@ -79,6 +80,9 @@
   "name": "Under+Ground",
   "postAttachCommand": "/bin/sh .devcontainer/postAttachCommand.sh",
   "postCreateCommand": "/bin/sh .devcontainer/postCreateCommand.sh",
+  "remoteEnv": {
+    "WAKATIME_API_KEY": "${localEnv:WAKATIME_API_KEY}"
+  },
   "remoteUser": "vscode",
   "service": "app",
   "shutdownAction": "stopCompose",
