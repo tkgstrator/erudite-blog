@@ -22,11 +22,6 @@ import { SITE } from './src/consts'
 import rehypeLinkCard from './src/lib/rehype/link-card'
 
 export default defineConfig({
-  // adapter: vercel({
-  //   webAnalytics: {
-  //     enabled: true
-  //   }
-  // }),
   build: {
     format: 'file'
   },
@@ -118,10 +113,12 @@ export default defineConfig({
       ],
       rehypeHeadingIds,
       [
-        rehypeAutolinkHeadings,
-        {
+        rehypeAutolinkHeadings({
           behavior: 'wrap',
           content: []
+        }),
+        {
+          behavior: 'wrap'
         }
       ],
       rehypeKatex,
@@ -138,7 +135,6 @@ export default defineConfig({
     remarkPlugins: [remarkMath, remarkEmoji],
     syntaxHighlight: false
   },
-  output: 'static',
   server: {
     host: true,
     port: 1234
