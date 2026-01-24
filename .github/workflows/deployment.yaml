@@ -27,9 +27,9 @@ jobs:
           fetch-depth: 0
       - name: Update submodule to latest
         run: |
-          git submodule update --init --remote src/content
+          git submodule update --init src/content
       - name: Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       - name: Setup Node.js
@@ -51,8 +51,17 @@ jobs:
             bun-${{ runner.os }}-
       - name: Install dependencies
         run: bun install --ignore-scripts
+      - name: Cache Astro build
+        uses: actions/cache@v5
+        with:
+          path: |
+            .astro
+            .vercel/output
+          key: astro-build-${{ runner.os }}-${{ hashFiles('src/content/**/*.{md,mdx}', 'src/**/*.{astro,ts,tsx}') }}
+          restore-keys: |
+            astro-build-${{ runner.os }}-
       - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: bun run build
       - name: Deploy Project Artifacts to Vercel
         run: |
-          vercel deploy --archive=tgz --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --prebuilt --archive=tgz --logs --prod --token=${{ secrets.VERCEL_TOKEN }}

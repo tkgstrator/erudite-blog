@@ -40,7 +40,7 @@
       @apply text-foreground scroll-mt-32 font-medium xl:scroll-mt-20;
 
       a {
-        @apply text-blue-400 hover:text-primary/80 transition-colors no-underline;
+        @apply text-primary hover:text-primary/80 transition-colors no-underline;
       }
     }
 
@@ -123,11 +123,11 @@
       @apply [&>span[data-line='']>*]:text-(--shiki-light) dark:[&>span[data-line='']>*]:text-(--shiki-dark);
 
       /* Don't apply backticks to code blocks */
-      /* :where(:not(pre) > &)::before,
+      :where(:not(pre) > &)::before,
       :where(:not(pre) > &)::after {
         content: "`";
         @apply text-foreground/50 inline;
-      } */
+      }
     }
 
     :where(blockquote):not(
