@@ -5,7 +5,7 @@ jobs:
   commitlint:
     name: CommitLint
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -28,7 +28,7 @@ jobs:
         run: bunx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
   check:
     name: Code Check
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       - name: Checkout
@@ -42,7 +42,7 @@ jobs:
           bunx @biomejs/biome check src
   test:
     name: Test
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       - name: Checkout
@@ -67,7 +67,7 @@ jobs:
           bun test
   build:
     name: Build
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       - name: Checkout
@@ -92,7 +92,7 @@ jobs:
           bun run build
   prune:
     name: Prune
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       - name: Checkout
