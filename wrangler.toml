@@ -1,10 +1,9 @@
 
 name = "erudite-blog"
-assets = { "directory" = "dist" }
+pages_build_output_dir = "dist"
 compatibility_date = "2026-01-24"
 compatibility_flags = ["nodejs_compat_v2"]
 
-[env.dev]
-
-[env.dev.observability]
-enabled = true
+[dev]
+port = 8787
+ip = "0.0.0.0"
