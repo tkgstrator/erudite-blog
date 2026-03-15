@@ -73,6 +73,10 @@ jobs:
         with:
           name: build-output
           path: dist/
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
