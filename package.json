@@ -88,7 +88,7 @@
   "scripts": {
     "astro": "astro",
     "build": "astro build",
-    "deploy": "wrangler deploy --keep-vars --env=${CLOUDFLARE_ENV}",
+    "deploy": "astro build && wrangler pages deploy --commit-dirty=true",
     "dev": "astro dev",
     "format": "prettier --write **/*.{ts,tsx,css,astro} --ignore-path .gitignore",
     "lint": "oxlint --fix",
