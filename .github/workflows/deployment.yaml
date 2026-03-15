@@ -27,6 +27,11 @@ jobs:
       - name: Update submodule to latest
         run: |
           git submodule update --init --remote src/content
+      - name: Cache OG images
+        uses: actions/cache@v5
+        with:
+          path: .cache/og-images
+          key: og-cache
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
