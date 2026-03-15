@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { CollectionEntry } from 'astro:content'
 
-const CACHE_DIR = path.join(process.cwd(), 'node_modules', '.cache', 'og-images')
+const CACHE_DIR = path.join(process.cwd(), '.cache', 'og-images')
 const MANIFEST_PATH = path.join(CACHE_DIR, 'manifest.json')
 
 type Manifest = Record<string, string>
