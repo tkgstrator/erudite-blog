@@ -69,6 +69,10 @@ jobs:
         with:
           name: build-output
           path: dist/
+      - name: Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Deploy Workers
         run: bunx wrangler pages deploy --commit-dirty=true
         env:
