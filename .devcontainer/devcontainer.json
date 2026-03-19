@@ -1,4 +1,7 @@
 {
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -76,12 +79,16 @@
     "ghcr.io/shyim/devcontainers-features/bun:0": {}
   },
   "mounts": [
-    "source=${env:HOME}/home/vscode/.ssh,target=/.ssh,type=bind,consistency=cached,readonly"
+    "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached,readonly",
+    "source=${env:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached,readonly",
+    "source=${env:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
   ],
   "name": "Under+Ground",
   "postAttachCommand": "/bin/sh .devcontainer/postAttachCommand.sh",
   "postCreateCommand": "/bin/sh .devcontainer/postCreateCommand.sh",
   "remoteEnv": {
+    "CLOUDFLARE_ACCOUNT_ID": "${localEnv:CLOUDFLARE_ACCOUNT_ID}",
+    "CLOUDFLARE_API_TOKEN": "${localEnv:CLOUDFLARE_API_TOKEN}",
     "WAKATIME_API_KEY": "${localEnv:WAKATIME_API_KEY}"
   },
   "remoteUser": "vscode",
