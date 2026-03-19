@@ -19,6 +19,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -61,18 +63,20 @@ jobs:
     name: Deploy to Cloudflare Pages
     needs: build
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: build-output
           path: dist/
-      - name: Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
       - name: Deploy Workers
         run: bunx wrangler pages deploy --commit-dirty=true
         env:

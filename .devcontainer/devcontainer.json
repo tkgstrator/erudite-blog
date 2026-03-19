@@ -2,6 +2,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "Anthropic.claude-code",
         "EditorConfig.EditorConfig",
         "GitHub.copilot-chat",
         "PKief.material-icon-theme",
