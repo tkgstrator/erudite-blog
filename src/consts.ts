@@ -2,15 +2,9 @@ import type { IconMap, Site, SocialLink } from '@/types'
 
 export const SITE: Site = {
   author: 'tkgstrator',
-  defaultLicense: {
-    type: 'by',
-    version: '4.0'
-  },
   description: 'えむいーと愉快な仲間たちの平凡な技術ブログ、ニンテンドースイッチハッキングから生成AIまで幅広く扱います',
-  featuredPostCount: 10,
+  featuredPostCount: 5,
   href: 'https://blog.tkgstrator.work',
-  // linkcard: "http://localhost:5173",
-  linkcard: 'https://linkcard.blog.p1at.dev',
   locale: 'en-US',
   metadata: {
     keywords: ['tkgling', 'tkgstrator'],
@@ -59,11 +53,11 @@ export const NAV_LINKS: SocialLink[] = [
   {
     href: '/about',
     label: 'about'
-  },
-  {
-    href: '/search',
-    label: 'search'
   }
+  // {
+  //   href: '/search',
+  //   label: 'search'
+  // }
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -76,25 +70,19 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'Twitter'
   },
   {
-    href: 'mailto:tkgling@qleap.jp',
+    href: 'mailto:tkgstrator@qleap.jp',
     label: 'Email'
-  },
-  {
-    href: '/rss.xml',
-    label: 'RSS'
-  },
-  {
-    href: '/llms.txt',
-    label: 'LLM'
   }
+  // {
+  //   href: '/rss.xml',
+  //   label: 'RSS'
+  // }
 ]
 
 export const ICON_MAP: IconMap = {
-  Bluesky: 'tabler:brand-bluesky',
   Email: 'lucide:mail',
   GitHub: 'lucide:github',
   LinkedIn: 'lucide:linkedin',
-  LLM: 'lucide:bot',
   RSS: 'lucide:rss',
   Twitter: 'lucide:twitter',
   Website: 'lucide:globe'
