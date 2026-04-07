@@ -1,31 +1,4 @@
-![Showcase Card](/public/static/twitter-card.png)
-
-# Astro Erudite Blog
-
-astro-erudite テンプレートをベースにしたブログサイト。
-
-## Changes
-
-- Bun を使うように変更
-- `oxlint` 導入
-- Rolldown を有効化
-- git submodule で記事を管理するように
-- `wrangler.toml` の追加
-- Swup のトランジションを導入
-- Pagefind を導入
-- テーマカラーを変更可能に (fuwari風)
-- `@vercel/og` を使った OG 画像生成
-- `rehype-autolink-headings` を導入
-- ネストされたフォルダ内のマークダウンとサブポストを共存可能に
-- 記事にライセンスを設定可能に
-- `llms.txt` の追加
-- `bun run new:article` で新しい記事の雛形を作成可能に
-- スクロール時にヘッダーが隠れるように
-- その他軽微なデザインの調整
-
-以下、オリジナルの README.md
-
----
+<!-- ![Showcase Card](/public/static/twitter-card.png) -->
 
 <div align="center">
 
@@ -38,9 +11,9 @@ astro-erudite テンプレートをベースにしたブログサイト。
 
 astro-erudite is an opinionated, unstyled static blogging template built with [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/). Extraordinarily loosely based off the [Astro Micro](https://astro-micro.vercel.app/) theme by [trevortylerlee](https://github.com/trevortylerlee).
 
-| ![Preview 1](/public/static/preview-1.png) | ![Preview 2](/public/static/preview-2.png) |
+<!-- | ![Preview 1](/public/static/preview-1.png) | ![Preview 2](/public/static/preview-2.png) |
 | ------------------------------------------ | ------------------------------------------ |
-| ![Preview 3](/public/static/preview-3.png) | ![Preview 4](/public/static/preview-4.png) |
+| ![Preview 3](/public/static/preview-3.png) | ![Preview 4](/public/static/preview-4.png) | -->
 
 > [!NOTE]
 > To learn more about why this template exists, read [The State of Static Blogs in 2024](https://astro-erudite.vercel.app/blog/the-state-of-static-blogs), where I share my take on what constitutes a great blogging template and my goals while developing this one.
@@ -63,6 +36,8 @@ Below are some fantastic examples of websites based on this template. If you wis
 | [rezarezvan.com](https://rezarezvan.com/)     | [@rezaarezvan](https://github.com/rezaarezvan)     | A academic blog with personal touches :).                                                    | [→](https://rezarezvan.com/)                           |
 | [blog.z0x.ca](https://blog.z0x.ca/)           | [@z0x](https://z0x.ca)                             | _Very_ minimal version of erudite, stripping it down to the bare essentials                  | [→](https://git.z0x.ca/z0x/blog.z0x.ca/)               |
 | [angelaytchan.net](https://angelaytchan.net/)           | [@wispyplant](https://github.com/wispyplant)          | An artist portfolio and activities archive      | [→](https://github.com/wispyplant/wispyplant.github.io)               |
+| [kaezr.xyz](https://kaezr.xyz/)           | [@kaezrr](https://github.com/kaezrr)          | A minimal porfolio and blog website with slight tweaks to the original.      | [→](https://github.com/kaezrr/webfolio)               |
+| [worldwidewong](https://worldwidewong.vercel.app)           | [@brendanwong-web](https://github.com/brendanwong-web)          | A slightly funky portfolio, blog, and resume site with an added photo gallery.      | [→](https://github.com/brendanwong-web/worldwidewong)               |
 
 ## Features
 
@@ -124,6 +99,8 @@ This is a list of the various technologies used to build this template:
    | `npm run preview`  | Previews the built project                                      |
    | `npm run astro`    | Run Astro CLI commands                                          |
    | `npm run prettier` | Blanket format all files using [Prettier](https://prettier.io/) |
+
+## Customization
 
 ### Site Configuration
 
