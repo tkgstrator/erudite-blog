@@ -1,5 +1,3 @@
-import type { License } from './lib/data-utils'
-
 export type Site = {
   title: string
   description: string
@@ -8,8 +6,6 @@ export type Site = {
   locale: string
   featuredPostCount: number
   postsPerPage: number
-  defaultLicense: License
-  linkcard: string // linkcard iframe URL
   metadata: {
     keywords: string[]
     og: {

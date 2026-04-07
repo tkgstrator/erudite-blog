@@ -1,6 +1,5 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
-import { licenseSchema } from './lib/data-utils'
 
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
@@ -11,30 +10,6 @@ const blog = defineCollection({
       description: z.string(),
       draft: z.boolean().optional(),
       image: image().optional(),
-      isSubpost: z.boolean().default(false),
-      license: z
-        .preprocess((val) => {
-          if (!val) return null
-          if (typeof val !== 'string') {
-            throw new Error(`Invalid license format: ${val}`)
-          }
-
-          const match = val.match(/cc(?:\s|-)(by|sa|nc|nd|zero)(?:\s(\d+\.\d+))?/)
-          if (!match) throw new Error(`Invalid license format: ${val}`)
-          const type = match[1]
-          const version = match[2] ? match[2] : undefined
-
-          const result = licenseSchema.safeParse({
-            type,
-            version
-          })
-          if (!result.success) {
-            console.warn(`Invalid license format: ${val}. Error: ${result.error.message}`)
-            return null
-          }
-          return result.data
-        }, licenseSchema)
-        .optional(),
       order: z.number().optional(),
       tags: z.array(z.string()).optional(),
       title: z.string()
