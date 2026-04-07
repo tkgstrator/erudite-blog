@@ -1,17 +1,16 @@
 ---
-import Link from "@/components/Link.astro";
-import { Badge } from "@/components/ui/badge";
-import { SITE } from "@/consts";
-import { formatDate } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
+import Link from '@/components/Link.astro'
+import { Badge } from '@/components/ui/badge'
+import { formatDate } from '@/lib/utils'
+import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
 
 interface Props {
-  project: CollectionEntry<"projects">;
+  project: CollectionEntry<'projects'>
 }
 
-const { project } = Astro.props;
+const { project } = Astro.props
 ---
 
 <div
@@ -48,10 +47,10 @@ const { project } = Astro.props;
             <span class="flex items-center gap-x-1.5">
               <Icon name="lucide:calendar" class="size-3" />
               <span>
-                {formatDate(project.data.startDate, SITE.locale)}
+                {formatDate(project.data.startDate)}
                 {project.data.endDate
-                  ? ` → ${formatDate(project.data.endDate, SITE.locale)}`
-                  : " → Present"}
+                  ? ` → ${formatDate(project.data.endDate)}`
+                  : ' → Present'}
               </span>
             </span>
           </p>

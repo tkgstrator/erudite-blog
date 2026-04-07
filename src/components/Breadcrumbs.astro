@@ -6,20 +6,20 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Icon } from "astro-icon/components";
+} from '@/components/ui/breadcrumb'
+import { Icon } from 'astro-icon/components'
 
-export interface BreadcrumbItemData {
-  href?: string;
-  label: string;
-  icon?: string;
+export interface BreadcrumbItem {
+  href?: string
+  label: string
+  icon?: string
 }
 
 interface Props {
-  items: BreadcrumbItemData[];
+  items: BreadcrumbItem[]
 }
 
-const { items } = Astro.props;
+const { items } = Astro.props
 ---
 
 <Breadcrumb>

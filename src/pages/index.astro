@@ -1,22 +1,36 @@
 ---
-import BlogCard from "@/components/BlogCard.astro";
-import PageHead from "@/components/PageHead.astro";
-import SeeAllPosts from "@/components/SeeAllPosts.astro";
-import { SITE } from "@/consts";
-import Layout from "@/layouts/Layout.astro";
-import { getRecentPosts } from "@/lib/data-utils";
+import BlogCard from '@/components/BlogCard.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { SITE } from '@/consts'
+import Layout from '@/layouts/Layout.astro'
+import { getRecentPosts } from '@/lib/data-utils'
+import Analytics from '@vercel/analytics/astro'
 
-const blog = await getRecentPosts(SITE.featuredPostCount);
+const blog = await getRecentPosts(SITE.featuredPostCount)
 ---
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Home" />
-
-  <section class="flex flex-col gap-y-4">
-    <div class="flex items-center justify-between">
-      <h2 class="text-2xl font-medium">Posts</h2>
-      <SeeAllPosts />
+  <Analytics />
+  <section>
+    <div class="rounded-lg border">
+      <div class="flex flex-col space-y-1.5 p-6">
+        <h3 class="text-3xl leading-none font-medium">Welcome to UnderGround</h3>
+      </div>
+      <div class="p-6 pt-0">
+        <p class="text-muted-foreground mb-2 text-sm">
+          This is a technical blog focused on reverse engineering, data visualization, and game analytics. Here, you'll find insights, tools, and open-source projects aimed at empowering developers and enthusiasts alike.
+        </p>
+        <p class="text-muted-foreground text-sm">
+          Explore articles, tutorials, and resources that delve into the fascinating world of technology and creative problem-solving.
+        </p>
+      </div>
     </div>
+  </section>
+  <section class="flex flex-col gap-y-4">
+    <h2 class="text-2xl font-medium">Latest posts</h2>
     <ul class="flex flex-col gap-y-4">
       {
         blog.map((post) => (
@@ -27,7 +41,15 @@ const blog = await getRecentPosts(SITE.featuredPostCount);
       }
     </ul>
     <div class="flex justify-center">
-      <SeeAllPosts />
+      <Link
+        href="/blog"
+        class={buttonVariants({ variant: 'ghost' }) + ' group'}
+      >
+        See all posts <span
+          class="ml-1.5 transition-transform group-hover:translate-x-1"
+          >&rarr;</span
+        >
+      </Link>
     </div>
   </section>
 </Layout>
