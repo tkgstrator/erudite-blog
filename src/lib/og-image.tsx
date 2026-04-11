@@ -163,7 +163,7 @@ export const CommonOgImage = (title: string, _description: string) => {
         tw='absolute right-0 top-0 rounded-full bg-[#D3F4E5FF] h-[100vh] w-[100vh] opacity-50'
       />
 
-      <img alt='' src={logoSvgData} tw='object-cover w-[80vh] -top-[7rem] p-0 m-0 absolute -left-[7rem]' />
+      <img alt='' src={logoSvgData} style={{ objectFit: 'cover' }} tw='w-[80vh] -top-[7rem] p-0 m-0 absolute -left-[7rem]' />
 
       <div tw=' bottom-[-5rem] p-0 m-0 w-full right-[0rem] w-full absolute text-[18rem] tracking-tighter '>{title}</div>
     </div>
