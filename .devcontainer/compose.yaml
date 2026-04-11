@@ -5,11 +5,11 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../:/home/vscode/app:cached
-      - astro:/home/vscode/app/.astro
-      - dist:/home/vscode/app/dist
+      - astro:/home/vscode/.astro
+      - dist:/home/vscode/dist
       - node_modules:/home/vscode/app/node_modules
     environment:
-      CLOUDFLARE_ENV: dev
+      NODE_OPTIONS: --no-deprecation
       NODE_ENV: development
     tty: true
     stdin_open: true
