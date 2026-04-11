@@ -5,6 +5,7 @@ export const SITE: Site = {
   description: 'えむいーと愉快な仲間たちの平凡な技術ブログ、ニンテンドースイッチハッキングから生成AIまで幅広く扱います',
   featuredPostCount: 5,
   href: 'https://blog.tkgstrator.work',
+  linkcard: 'https://linkcard.blog.p1at.dev',
   locale: 'en-US',
   metadata: {
     keywords: ['tkgling', 'tkgstrator'],
