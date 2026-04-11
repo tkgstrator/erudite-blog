@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.11/schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -15,12 +15,13 @@
   },
   "files": {
     "includes": [
-      "**/*.{ts,mjs,json}",
+      "**/*.{ts,mjs,json,astro}",
       "**/src/**/*.{ts,tsx}",
       "**/__tests__/**/*.test.ts",
       "!**/lib/*.{ts,mjs,json}",
       "!**/node_modules/**/*",
       "!**/.astro/**/*",
+      "!**/.claude/**/*",
       "!**/src/components/ui/**/*.tsx"
     ]
   },
@@ -57,5 +58,21 @@
       "style": {},
       "suspicious": {}
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedImports": "off",
+            "noUnusedVariables": "off"
+          },
+          "suspicious": {
+            "noRedeclare": "off"
+          }
+        }
+      }
+    }
+  ]
 }
