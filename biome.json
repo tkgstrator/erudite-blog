@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -21,7 +21,6 @@
       "!**/lib/*.{ts,mjs,json}",
       "!**/node_modules/**/*",
       "!**/.astro/**/*",
-      "!**/dist/**/*",
       "!**/src/components/ui/**/*.tsx"
     ]
   },

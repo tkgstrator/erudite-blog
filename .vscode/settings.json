@@ -17,18 +17,29 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "betterTypeScriptErrors.prettify": true,
+  "debug.internalConsoleOptions": "neverOpen",
+  "diffEditor.diffAlgorithm": "advanced",
+  "diffEditor.experimental.showMoves": true,
+  "diffEditor.renderSideBySide": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.biome": "explicit",
-    "source.organizeImports.biome": "explicit"
+    "source.fixAll.biome": "explicit"
   },
-  "gitdoc.ai.customInstructions": "Generate a commit message in English following the Conventional Commits specification and `commitlint` rules. Use the format `<type>(<scope>): <short description>` and choose `<type>` from `build`, `ci`, `docs`, `feat`, `fix`, `perf`, `chore`, `refactor`, `revert`, `format`, `test`. Limit `<short description>` to 72 characters. If `<short description>` starts with an English word, it must be in lowercase.",
-  "gitdoc.ai.enabled": true,
-  "gitdoc.ai.model": "gpt-4o",
-  "gitdoc.autoCommitDelay": 30000,
-  "gitdoc.autoPull": "onPush",
-  "gitdoc.autoPush": "onCommit",
-  "gitdoc.commitValidationLevel": "none",
-  "gitdoc.enabled": true,
-  "remote.autoForwardPortsFallback": 0,
-  "vim.autoSwitchInputMethod.enable": false
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": "active",
+  "files.exclude": {
+    "**/.astro": true,
+    "**/.intlayer": true,
+    "**/.tanstack": true,
+    "**/.wrangler": true,
+    "**/dev-dist": true,
+    "**/dist": true,
+    "**/node_modules": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true
+  },
+  "gitlens.ai.generateCommitMessage.customInstructions": "Generate a commit message in English following the Conventional Commits specification and `commitlint` rules. Use the format `<type>(<scope>): <short description>` and choose `<type>` from `build`, `ci`, `docs`, `feat`, `fix`, `perf`, `chore`, `refactor`, `revert`, `format`, `test`. Limit `<short description>` to 72 characters. If `<short description>` starts with an English word, it must be in lowercase.",
+  "scm.defaultViewMode": "tree"
 }
