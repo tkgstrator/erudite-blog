@@ -125,10 +125,16 @@
       @apply text-left [&[align=center]]:text-center [&[align=right]]:text-right;
     }
 
-    :where(img, video, figure, .expressive-code):not(
+    :where(img, video, figure):not(
         :where([class~='not-prose'], [class~='not-prose'] *)
       ) {
       @apply mx-auto my-6;
+    }
+
+    :where(.expressive-code):not(
+        :where([class~='not-prose'], [class~='not-prose'] *)
+      ) {
+      @apply my-6 lg:-mx-8 xl:-mx-14;
     }
 
     :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
