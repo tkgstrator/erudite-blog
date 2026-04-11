@@ -11,14 +11,14 @@ declare module '@pagefind/default-ui' {
       showImages?: boolean
       showSubResults?: boolean
       excerptLength?: number
-      processResult?: any
-      processTerm?: any
+      processResult?: unknown
+      processTerm?: unknown
       showEmptyFilters?: boolean
       debounceTimeoutMs?: number
-      mergeIndex?: any
-      translations?: any
+      mergeIndex?: unknown
+      translations?: unknown
       autofocus?: boolean
-      sort?: any
+      sort?: unknown
     })
   }
 }
