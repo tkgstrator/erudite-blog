@@ -6,6 +6,7 @@ export type Site = {
   locale: string
   featuredPostCount: number
   postsPerPage: number
+  linkcard: string
   metadata: {
     keywords: string[]
     og: {
