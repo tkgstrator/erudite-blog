@@ -10,6 +10,7 @@ const authors = await getAllAuthors()
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Authors" />
+  <div data-pagefind-ignore="all">
   <Breadcrumbs items={[{ label: 'Authors', icon: 'lucide:users' }]} />
   {
     authors.length > 0 ? (
@@ -24,4 +25,5 @@ const authors = await getAllAuthors()
       <p class="text-muted-foreground text-center">No authors found.</p>
     )
   }
+  </div>
 </Layout>

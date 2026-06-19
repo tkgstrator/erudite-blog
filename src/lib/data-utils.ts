@@ -101,10 +101,26 @@ export async function getRecentPosts(count: number): Promise<CollectionEntry<'bl
   return posts.slice(0, count)
 }
 
-export async function getSortedTags(): Promise<{ tag: string; count: number }[]> {
-  const tagCounts = await getAllTags()
-  return [...tagCounts.entries()]
-    .map(([tag, count]) => ({ count, tag }))
+export async function getSortedTags(): Promise<{ tag: string; count: number; latestDate: Date }[]> {
+  const posts = await getAllPosts()
+  const tagData = new Map<string, { count: number; latestDate: Date }>()
+
+  for (const post of posts) {
+    for (const tag of post.data.tags ?? []) {
+      const existing = tagData.get(tag)
+      if (!existing) {
+        tagData.set(tag, { count: 1, latestDate: post.data.date })
+      } else {
+        existing.count++
+        if (post.data.date > existing.latestDate) {
+          existing.latestDate = post.data.date
+        }
+      }
+    }
+  }
+
+  return [...tagData.entries()]
+    .map(([tag, { count, latestDate }]) => ({ count, latestDate, tag }))
     .sort((a, b) => {
       const countDiff = b.count - a.count
       return countDiff !== 0 ? countDiff : a.tag.localeCompare(b.tag)

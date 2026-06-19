@@ -1,0 +1,16 @@
+---
+import PostSearch from '@/components/PostSearch.astro'
+import Layout from '@/layouts/Layout.astro'
+---
+
+<Layout class="max-w-3xl">
+  <main class="flex flex-col gap-4" data-pagefind-ignore="all">
+    <h1 class="text-lg">Search</h1>
+    <PostSearch
+      options={{
+        showSubResults: false,
+        excerptLength: 30,
+      }}
+    />
+  </main>
+</Layout>

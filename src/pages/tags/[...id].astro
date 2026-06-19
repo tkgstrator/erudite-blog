@@ -15,11 +15,11 @@ export async function getStaticPaths() {
       return {
         params: { id: tag },
         props: {
-          tag,
           posts,
-        },
+          tag
+        }
       }
-    }),
+    })
   )
 }
 

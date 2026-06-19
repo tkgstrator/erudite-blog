@@ -1,33 +1,122 @@
 ---
+import { Icon } from 'astro-icon/components'
 import Breadcrumbs from '@/components/Breadcrumbs.astro'
 import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
-import { badgeVariants } from '@/components/ui/badge'
 import Layout from '@/layouts/Layout.astro'
 import { getSortedTags } from '@/lib/data-utils'
-import { Icon } from 'astro-icon/components'
 
 const sortedTags = await getSortedTags()
+const maxCount = sortedTags.length > 0 ? sortedTags[0].count : 1
 ---
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Tags" />
   <Breadcrumbs items={[{ label: 'Tags', icon: 'lucide:tags' }]} />
 
-  <div class="flex flex-col gap-4" data-pagefind-ignore>
-    <div class="flex flex-wrap gap-2">
+  <div class="flex flex-col gap-6" data-pagefind-ignore>
+    <div class="flex items-center justify-between">
+      <p class="text-muted-foreground text-sm">
+        {sortedTags.length} tags across all posts
+      </p>
+      <div class="flex gap-1 rounded-lg border p-1" id="sort-controls">
+        <button
+          type="button"
+          data-sort="count"
+          class="bg-secondary text-foreground rounded-md px-3 py-1 text-xs font-medium transition-colors"
+        >
+          <Icon name="lucide:bar-chart-3" class="mr-1 inline size-3" />
+          Posts
+        </button>
+        <button
+          type="button"
+          data-sort="recent"
+          class="text-muted-foreground hover:text-foreground rounded-md px-3 py-1 text-xs font-medium transition-colors"
+        >
+          <Icon name="lucide:clock" class="mr-1 inline size-3" />
+          Recent
+        </button>
+        <button
+          type="button"
+          data-sort="name"
+          class="text-muted-foreground hover:text-foreground rounded-md px-3 py-1 text-xs font-medium transition-colors"
+        >
+          <Icon name="lucide:arrow-down-a-z" class="mr-1 inline size-3" />
+          Name
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-2 sm:grid-cols-2" id="tags-grid">
       {
-        sortedTags.map(({ tag, count }) => (
-          <Link
-            href={`/tags/${tag}`}
-            class={badgeVariants({ variant: 'secondary' })}
-          >
-            <Icon name="lucide:hash" class="size-3" />
-            {tag}
-            <span class="text-muted-foreground ml-1.5">({count})</span>
-          </Link>
-        ))
+        sortedTags.map(({ tag, count, latestDate }) => {
+          const ratio = count / maxCount
+          return (
+            <Link
+              href={`/tags/${tag}`}
+              class="hover:bg-secondary/50 group flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors duration-200"
+              data-tag={tag}
+              data-count={count}
+              data-latest={latestDate.getTime()}
+            >
+              <Icon
+                name="lucide:hash"
+                class="text-muted-foreground group-hover:text-foreground size-4 shrink-0 transition-colors"
+              />
+              <div class="flex min-w-0 grow flex-col gap-1.5">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="truncate font-medium">{tag}</span>
+                  <span class="text-muted-foreground shrink-0 text-xs">
+                    {count} {count === 1 ? 'post' : 'posts'}
+                  </span>
+                </div>
+                <div class="bg-secondary h-1 w-full overflow-hidden rounded-full">
+                  <div
+                    class="bg-primary/60 group-hover:bg-primary h-full rounded-full transition-colors duration-200"
+                    style={`width: ${Math.max(ratio * 100, 4)}%`}
+                  />
+                </div>
+              </div>
+            </Link>
+          )
+        })
       }
     </div>
   </div>
 </Layout>
+
+<script lang="ts">
+  const grid = document.getElementById('tags-grid')
+  const controls = document.getElementById('sort-controls')
+  if (grid && controls) {
+    const activeClass = ['bg-secondary', 'text-foreground']
+    const inactiveClass = ['text-muted-foreground', 'hover:text-foreground']
+
+    controls.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-sort]')
+      if (!btn) return
+
+      const sortBy = btn.dataset.sort
+      for (const b of controls.querySelectorAll<HTMLButtonElement>('[data-sort]')) {
+        b.classList.remove(...activeClass)
+        b.classList.add(...inactiveClass)
+      }
+      btn.classList.remove(...inactiveClass)
+      btn.classList.add(...activeClass)
+
+      const items = [...grid.children] as HTMLElement[]
+      items.sort((a, b) => {
+        if (sortBy === 'count') {
+          return Number(b.dataset.count) - Number(a.dataset.count)
+        }
+        if (sortBy === 'recent') {
+          return Number(b.dataset.latest) - Number(a.dataset.latest)
+        }
+        return (a.dataset.tag ?? '').localeCompare(b.dataset.tag ?? '')
+      })
+      for (const item of items) {
+        grid.appendChild(item)
+      }
+    })
+  }
+</script>

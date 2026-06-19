@@ -54,11 +54,11 @@ export const NAV_LINKS: SocialLink[] = [
   {
     href: '/about',
     label: 'about'
+  },
+  {
+    href: '/search',
+    label: 'search'
   }
-  // {
-  //   href: '/search',
-  //   label: 'search'
-  // }
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [

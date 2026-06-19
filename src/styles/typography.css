@@ -134,7 +134,21 @@
     :where(.expressive-code):not(
         :where([class~='not-prose'], [class~='not-prose'] *)
       ) {
-      @apply my-6 lg:-mx-8 xl:-mx-14;
+      @apply my-6;
+    }
+
+    :where(.linkcard):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply my-5 block;
+
+      a {
+        @apply block no-underline;
+      }
+
+      iframe {
+        @apply w-full rounded-lg border-0;
+        height: 130px;
+        pointer-events: none;
+      }
     }
 
     :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {

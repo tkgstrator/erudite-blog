@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components'
 import Link from '@/components/Link.astro'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
@@ -8,9 +9,8 @@ import {
   getPostById,
   getPostReadingTime,
   getSubpostsForParent,
-  isSubpost,
+  isSubpost
 } from '@/lib/data-utils'
-import { Icon } from 'astro-icon/components'
 
 const { parentId } = Astro.props
 const currentPostId = Astro.params.id as string
@@ -24,18 +24,14 @@ const parentPost = isCurrentSubpost ? await getParentPost(currentPostId) : null
 const activePost = parentPost || currentPost
 const isActivePost = activePost?.id === currentPostId
 
-const activePostReadingTime = activePost
-  ? await getPostReadingTime(activePost.id)
-  : null
+const activePostReadingTime = activePost ? await getPostReadingTime(activePost.id) : null
 const activePostCombinedReadingTime =
-  activePost && subposts.length > 0
-    ? await getCombinedReadingTime(activePost.id)
-    : null
+  activePost && subposts.length > 0 ? await getCombinedReadingTime(activePost.id) : null
 const subpostsWithReadingTime = await Promise.all(
   subposts.map(async (subpost) => ({
     ...subpost,
-    readingTime: await getPostReadingTime(subpost.id),
-  })),
+    readingTime: await getPostReadingTime(subpost.id)
+  }))
 )
 ---
 

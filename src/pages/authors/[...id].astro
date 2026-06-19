@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const authors = await getAllAuthors()
   return authors.map((author) => ({
     params: { id: author.id },
-    props: { author },
+    props: { author }
   }))
 }
 
@@ -18,7 +18,7 @@ const { author } = Astro.props
 const authorPosts = await getPostsByAuthor(author.id)
 ---
 
-<Layout class="max-w-3xl">
+<Layout class="max-w-3xl" data-pagefind-ignore>
   <PageHead
     slot="head"
     title={`${author.data.name} (Author)`}
