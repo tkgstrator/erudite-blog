@@ -37,9 +37,11 @@ jobs:
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
+      - name: Install
+        run: bun install --ignore-scripts
       - name: Check
         run: |
-          bunx @biomejs/biome@2.0.0 check src
+          bunx biome check src
   test:
     name: Test
     runs-on: ubuntu-latest
