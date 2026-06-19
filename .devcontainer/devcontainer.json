@@ -67,7 +67,6 @@
   "remoteEnv": {
     "ANTHROPIC_AUTH_TOKEN": "${localEnv:ANTHROPIC_AUTH_TOKEN}",
     "ANTHROPIC_BASE_URL": "${localEnv:ANTHROPIC_BASE_URL}",
-    "GH_TOKEN": "${localEnv:GH_TOKEN}",
     "UV_LINK_MODE": "copy",
     "WAKATIME_API_KEY": "${localEnv:WAKATIME_API_KEY}"
   },
