@@ -1,9 +1,9 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 import Link from '@/components/Link.astro'
 import AvatarComponent from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 import type { SocialLink } from '@/types'
-import type { CollectionEntry } from 'astro:content'
 import SocialIcons from './SocialIcons.astro'
 
 interface Props {
@@ -20,7 +20,7 @@ const socialLinks: SocialLink[] = [
   author.data.github && { href: author.data.github, label: 'GitHub' },
   author.data.twitter && { href: author.data.twitter, label: 'Twitter' },
   author.data.linkedin && { href: author.data.linkedin, label: 'LinkedIn' },
-  author.data.mail && { href: `mailto:${author.data.mail}`, label: 'Email' },
+  author.data.mail && { href: `mailto:${author.data.mail}`, label: 'Email' }
 ].filter(Boolean) as SocialLink[]
 ---
 

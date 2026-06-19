@@ -1,7 +1,4 @@
 name: Deployment
-# env:
-#   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-#   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   push:
     branches:
@@ -69,6 +66,10 @@ jobs:
         with:
           name: build-output
           path: dist/
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Deploy Workers
         run: bunx wrangler pages deploy --commit-dirty=true
         env:

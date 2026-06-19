@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro'
 import BlogCard from '@/components/BlogCard.astro'
 import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
@@ -6,13 +7,13 @@ import { buttonVariants } from '@/components/ui/button'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
 import { getRecentPosts } from '@/lib/data-utils'
-import Analytics from '@vercel/analytics/astro'
 
 const blog = await getRecentPosts(SITE.featuredPostCount)
 ---
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Home" />
+  <div data-pagefind-ignore="all">
   <Analytics />
   <section>
     <div class="rounded-lg border">
@@ -52,4 +53,5 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
       </Link>
     </div>
   </section>
+  </div>
 </Layout>

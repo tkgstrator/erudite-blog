@@ -21,6 +21,7 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b, 10) - parseInt
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Blog" />
+  <div data-pagefind-ignore="all">
   <Breadcrumbs
     items={[
       { label: 'Blog', href: '/blog', icon: 'lucide:library-big' },
@@ -51,4 +52,5 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b, 10) - parseInt
     baseUrl="/blog/"
     client:load
   />
+  </div>
 </Layout>
