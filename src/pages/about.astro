@@ -2,45 +2,113 @@
 import Breadcrumbs from '@/components/Breadcrumbs.astro'
 import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
-import ProjectCard from '@/components/ProjectCard.astro'
 import Layout from '@/layouts/Layout.astro'
-import { getAllProjects } from '@/lib/data-utils'
-
-const projects = await getAllProjects()
 ---
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="About" />
   <Breadcrumbs items={[{ label: 'About', icon: 'lucide:info' }]} />
 
-  <section>
+  <section data-pagefind-ignore="all">
     <div class="min-w-full">
       <div class="prose mb-8">
-        <p class="mt-0">
-          astro-erudite is an opinionated, unstyled static blogging template
-          that prioritizes simplicity and performance, built with <Link
-            href="https://astro.build"
-            external
-            underline>Astro</Link
-          >, <Link href="https://tailwindcss.com" external underline
-            >Tailwind</Link
-          >, and <Link href="https://ui.shadcn.com" external underline
-            >shadcn/ui</Link
-          >. It provides a clean foundation for your content while being
-          extremely easy to customize.
+        <h2 class="mt-0">このブログについて</h2>
+        <p>
+          はじめまして！ tkgstrator です。
+          <strong>Under+Ground</strong> にお越しいただきありがとうございます。
         </p>
         <p>
-          To learn more about the philosophy behind this template, check out the
-          following blog post: <Link
-            href="/blog/the-state-of-static-blogs"
-            underline>The State of Static Blogs in 2024</Link
-          >.
+          フィンランドでソフトウェアエンジニアをしております。
+          普段は Swift とか TypeScript とかを書いています。
+          ……あ、Python もたまに。というかなんでも書きます。気になったら全部触りたくなっちゃうので。
+          周りからは「また新しいやつ始めたの？」ってよく言われます。大学の同期にも呆れられてます。
         </p>
-      </div>
 
-      <h2 class="mb-4 text-2xl font-medium">Example Projects Listing</h2>
-      <div class="flex flex-col gap-4">
-        {projects.map((project) => <ProjectCard project={project} />)}
+        <h3>やっていること</h3>
+        <p>
+          もともとは iOS アプリの開発をやっていたんですけど、
+          Splatoon のサーモンランにめちゃくちゃハマってしまって（ほんとにめちゃくちゃ）、
+          気づいたらリザルトを自動で集める <Link href="https://github.com/tkgstrator/Salmonia3" external underline>Salmonia</Link> っていうツールを作っていました。
+          友達と一緒にサーモンランを回しながら「これ自動で記録できたらよくない？」って軽い気持ちで作り始めたのがきっかけです。
+          そこからゲームの内部データ解析とかリバースエンジニアリングにどんどん沼って……今に至ります。
+        </p>
+        <p>
+          最近はちょっと方向転換して、TypeScript での Web 開発が多めです。
+          特に <Link href="https://workers.cloudflare.com" external underline>Cloudflare Workers</Link> と
+          <Link href="https://hono.dev" external underline>Hono</Link> の組み合わせがほんとに好きで、
+          エッジで動くっていうコンセプトがもう最高なんですよね。
+          コールドスタートがほぼゼロなのがたまらないです。Node.js のときは Lambda のコールドスタートにイライラしてたので……。
+          D1 もいい感じに使えるようになってきて、もう全部 Cloudflare でいいんじゃないかなって思い始めています。
+        </p>
+        <p>
+          あとおうちに Jellyfin と EPGStation が動いてるメディアサーバーがあります。
+          録画した番組を外出先から観られるようにしてるんですけど、
+          友達に「それ普通にサブスク入ればよくない？」って言われました。正論すぎて何も言えなかった。
+          でも自分で構築する楽しさってあるじゃないですか。mirakc のチューニングとか、地味だけどすごい達成感があって。
+        </p>
+        <p>
+          音声合成もやり始めました。AivisSpeech とか VITS2 とか。
+          自分の声でモデルを学習させてみたんですけど、出来上がった合成音声を聞いた友人に
+          「なんか喋り方がおばさんっぽい」って言われて結構ショックでした。そんなことないと思うんですけど。
+        </p>
+
+        <h3>好きな技術</h3>
+        <p>
+          一番好きなのは TypeScript です。型があるのにゆるいところが好き。
+          Zod でバリデーションかけてるときの安心感がすごくて、もう手放せないです。
+          Swift も好きなんですけど、最近は書く機会が減ってきてちょっと寂しい。
+          SwiftUI が出てきたときは「これで全部作れる！」って思ったんですけどね……現実は厳しかった。
+        </p>
+        <p>
+          フレームワークだと Astro がかなり推しです。
+          このブログもそうですけど、コンテンツ中心のサイトでは本当に最強だと思っています。
+          アイランドアーキテクチャの「必要なところだけハイドレーション」っていう思想が綺麗すぎて感動しました。
+          Next.js も使ってたんですけど、ブログにはちょっとオーバーキルだったかなって。
+        </p>
+        <p>
+          データベース周りは Prisma をずっと使っています。2022年くらいから触っていて、
+          もう素の SQL を書く気力がないです。最近は D1 との組み合わせで使うことが多いですね。
+          あと地味に Biome が好きです。ESLint + Prettier の設定で毎回消耗してたので、
+          一つにまとまってるのがありがたすぎる。授業中に ESLint の config をいじってた時期があったんですけど、
+          あの時間は何だったんだろう……。
+        </p>
+
+        <h3>ブログについて</h3>
+        <p>
+          2020年からやっていて、記事数が気づいたら366本を超えていました。え、そんなに書いたっけ……？
+          テスト期間中に現実逃避で書いた記事がかなり含まれている気がします。
+        </p>
+        <p>
+          内容はリバースエンジニアリングからフロントエンド、サーバー構築、生成AIまで、
+          我ながらびっくりするくらいバラバラです。
+          でも全部「これおもしろい！」って思って書いたものなので、
+          まとまりがないのはご容赦ください。備忘録として許してほしい……。
+        </p>
+        <p>
+          たまに「記事読みました！」って連絡をいただけることがあって、
+          そのたびにやっててよかったなあって思います。嬉しいです、ほんとに。
+        </p>
+
+        <h3>技術スタック</h3>
+        <p>
+          このブログ自体は <Link href="https://astro.build" external underline>Astro</Link> 製で、
+          <Link href="https://tailwindcss.com" external underline>Tailwind CSS</Link> と
+          <Link href="https://ui.shadcn.com" external underline>shadcn/ui</Link> で見た目を整えています。
+          デプロイ先は <Link href="https://workers.cloudflare.com" external underline>Cloudflare Workers</Link> です。
+          ……ここに落ち着くまでに何回作り直したかは秘密です。たぶん両手じゃ足りないです。
+          友達には「またブログ作り直してるの？記事書けば？」って言われてます。うるさい。
+        </p>
+
+        <h3>連絡先</h3>
+        <p>
+          何かあればお気軽にどうぞ！ 技術的な話でもそうじゃなくても大歓迎です。
+        </p>
+        <ul>
+          <li>GitHub: <Link href="https://github.com/tkgstrator" external underline>@tkgstrator</Link></li>
+          <li>Twitter: <Link href="https://twitter.com/tkgling" external underline>@tkgling</Link></li>
+          <li>Bluesky: <Link href="https://bsky.app/profile/tkgstrator.work" external underline>@tkgstrator.work</Link></li>
+          <li>Email: <Link href="mailto:tkgstrator@qleap.jp" underline>tkgstrator@qleap.jp</Link></li>
+        </ul>
       </div>
     </div>
   </section>

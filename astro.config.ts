@@ -1,10 +1,9 @@
-import { rehypeHeadingIds } from '@astrojs/markdown-remark'
+import { rehypeHeadingIds, unified } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
-import swup from '@swup/astro'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 import embeds from 'astro-embed/integration'
@@ -77,62 +76,55 @@ export default defineConfig({
     react(),
     sitemap(),
     icon(),
-    swup({
-      accessibility: true,
-      cache: true,
-      containers: ['main', '#mobile-header'],
-      preload: true,
-      progress: true,
-      smoothScrolling: true,
-      updateHead: true
-    }),
     pagefind()
   ],
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeLinkCard,
-        {
-          linkcardUrl: SITE.linkcard,
-          rel: ['nofollow', 'noreferrer', 'noopener'],
-          target: '_blank'
-        }
-      ],
-      [
-        rehypeDocument,
-        {
-          css: 'https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css'
-        }
-      ],
-      [
-        rehypeExternalLinks,
-        {
-          rel: ['nofollow', 'noreferrer', 'noopener'],
-          target: '_blank'
-        }
-      ],
-      rehypeHeadingIds,
-      [
-        rehypeAutolinkHeadings({
-          behavior: 'wrap',
-          content: []
-        }),
-        {
-          behavior: 'wrap'
-        }
-      ],
-      rehypeKatex,
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            dark: 'github-dark',
-            light: 'github-light'
+    processor: unified({
+      rehypePlugins: [
+        [
+          rehypeLinkCard,
+          {
+            linkcardUrl: SITE.linkcard,
+            rel: ['nofollow', 'noreferrer', 'noopener'],
+            target: '_blank'
           }
-        }
-      ]
-    ],
-    remarkPlugins: [remarkMath, remarkEmoji],
+        ],
+        [
+          rehypeDocument,
+          {
+            css: 'https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css'
+          }
+        ],
+        [
+          rehypeExternalLinks,
+          {
+            rel: ['nofollow', 'noreferrer', 'noopener'],
+            target: '_blank'
+          }
+        ],
+        rehypeHeadingIds,
+        [
+          rehypeAutolinkHeadings({
+            behavior: 'wrap',
+            content: []
+          }),
+          {
+            behavior: 'wrap'
+          }
+        ],
+        [rehypeKatex, { strict: 'ignore' }],
+        [
+          rehypePrettyCode,
+          {
+            theme: {
+              dark: 'github-dark',
+              light: 'github-light'
+            }
+          }
+        ]
+      ],
+      remarkPlugins: [remarkMath, remarkEmoji]
+    }),
     syntaxHighlight: false
   },
   server: {

@@ -1,10 +1,10 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.0/schema.json",
   "assist": {
     "actions": {
       "source": {
         "organizeImports": "on",
-        "recommended": true,
+        "preset": "recommended",
         "useSortedAttributes": "on",
         "useSortedKeys": "on",
         "useSortedProperties": "on"
@@ -15,12 +15,13 @@
   },
   "files": {
     "includes": [
-      "**/*.{ts,mjs,json}",
+      "**/*.{ts,mjs,json,astro}",
       "**/src/**/*.{ts,tsx}",
       "**/__tests__/**/*.test.ts",
       "!**/lib/*.{ts,mjs,json}",
       "!**/node_modules/**/*",
       "!**/.astro/**/*",
+      "!**/.claude/**/*",
       "!**/src/components/ui/**/*.tsx"
     ]
   },
@@ -53,9 +54,25 @@
       "a11y": {},
       "correctness": {},
       "nursery": {},
-      "recommended": true,
+      "preset": "recommended",
       "style": {},
       "suspicious": {}
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedImports": "off",
+            "noUnusedVariables": "off"
+          },
+          "suspicious": {
+            "noRedeclare": "off"
+          }
+        }
+      }
+    }
+  ]
 }
