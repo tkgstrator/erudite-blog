@@ -29,7 +29,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: .cache/og-images
-          key: og-cache
+          key: og-cache-${{ hashFiles('src/**', 'public/**', 'astro.config.ts') }}
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -74,5 +74,5 @@ jobs:
         run: bunx wrangler pages deploy --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ENV: ${{ github.event.pull_request.base.ref == 'master' && 'prod' || 'dev' }}
+          CLOUDFLARE_ENV: ${{ (github.ref == 'refs/heads/master' || github.event.pull_request.base.ref == 'master') && 'prod' || 'dev' }}
           NODE_ENV: production
