@@ -267,3 +267,7 @@ $RECYCLE.BIN/
 .turbo
 public/pagefind
 test-results/
+
+# Local dev mocks / tooling
+mocks/
+.playwright-mcp/

@@ -25,34 +25,36 @@ const authorPosts = await getPostsByAuthor(author.id)
     description={author.data.bio || `Profile of ${author.data.name}.`}
     noindex
   />
-  <Breadcrumbs
-    items={[
-      { href: '/authors', label: 'Authors', icon: 'lucide:users' },
-      { label: author.data.name, icon: 'lucide:user' },
-    ]}
-  />
+  <div class="flex flex-col gap-y-8">
+    <Breadcrumbs
+      items={[
+        { href: '/authors', label: 'Authors', icon: 'lucide:users' },
+        { label: author.data.name, icon: 'lucide:user' },
+      ]}
+    />
 
-  <section>
-    <AuthorCard author={author} />
-  </section>
-  <section class="flex flex-col gap-y-4">
-    <h2 class="text-2xl font-medium">Posts by {author.data.name}</h2>
-    {
-      authorPosts.length > 0 ? (
-        <ul class="flex flex-col gap-4">
-          {authorPosts
-            .filter((post) => !post.data.draft)
-            .map((post) => (
-              <li>
-                <BlogCard entry={post} />
-              </li>
-            ))}
-        </ul>
-      ) : (
-        <p class="text-muted-foreground">
-          No posts available from this author.
-        </p>
-      )
-    }
-  </section>
+    <section>
+      <AuthorCard author={author} />
+    </section>
+    <section class="flex flex-col gap-y-4">
+      <h2 class="text-2xl font-medium">Posts by {author.data.name}</h2>
+      {
+        authorPosts.length > 0 ? (
+          <ul class="flex flex-col gap-4">
+            {authorPosts
+              .filter((post) => !post.data.draft)
+              .map((post) => (
+                <li>
+                  <BlogCard entry={post} />
+                </li>
+              ))}
+          </ul>
+        ) : (
+          <p class="text-muted-foreground">
+            No posts available from this author.
+          </p>
+        )
+      }
+    </section>
+  </div>
 </Layout>
