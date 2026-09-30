@@ -271,3 +271,6 @@ test-results/
 # Local dev mocks / tooling
 mocks/
 .playwright-mcp/
+
+# Local Codex configuration, credentials, and session state.
+/.codex/
