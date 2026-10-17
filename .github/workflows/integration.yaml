@@ -2,6 +2,15 @@ name: Continuous Integration
 on:
   push:
 jobs:
+  ci-change-scope:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/ci-change-scope.yaml
+    with:
+      doc-paths: '["AGENTS.md","CLAUDE.md","LICENSE","README.md","docs/development/ci-change-scope.md"]'
+      doc-prefixes: '[]'
+      runner: '"ubuntu-latest"'
+
   commitlint:
     name: CommitLint
     if: github.event.action != 'closed' || github.event.pull_request.merged != true
@@ -43,17 +52,21 @@ jobs:
         run: |
           bunx biome check src
   test:
+    needs: ["ci-change-scope"]
     name: Test
-    runs-on: ubuntu-latest
-    if: github.event.action != 'closed' || github.event.pull_request.merged != true
+    runs-on: ${{ fromJSON((needs['ci-change-scope'].result == 'success' && needs['ci-change-scope'].outputs.docs_only == 'true') && '"ubuntu-latest"' || '"ubuntu-latest"') }}
+    if: ${{ !cancelled() && (true) && (github.event.action != 'closed' || github.event.pull_request.merged != true) }}
     steps:
       - name: Checkout
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         uses: actions/checkout@v4
       - name: Bun
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
       - name: Cache bun dependencies
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         uses: actions/cache@v4
         with:
           path: |
@@ -63,22 +76,36 @@ jobs:
           restore-keys: |
             bun-${{ runner.os }}-
       - name: Install
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         run: bun install --ignore-scripts
       - name: Test
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         run: |
           bun test
+      - name: Docs-only exemption
+        if: ${{ needs['ci-change-scope'].result == 'success' && needs['ci-change-scope'].outputs.docs_only == 'true' }}
+        shell: bash
+        working-directory: .
+        env:
+          CI_CHANGE_REASON: ${{ needs['ci-change-scope'].outputs.reason }}
+        run: |
+          printf '%s\n' "$CI_CHANGE_REASON" >> "$GITHUB_STEP_SUMMARY"
   build:
+    needs: ["ci-change-scope"]
     name: Build
-    runs-on: ubuntu-latest
-    if: github.event.action != 'closed' || github.event.pull_request.merged != true
+    runs-on: ${{ fromJSON((needs['ci-change-scope'].result == 'success' && needs['ci-change-scope'].outputs.docs_only == 'true') && '"ubuntu-latest"' || '"ubuntu-latest"') }}
+    if: ${{ !cancelled() && (true) && (github.event.action != 'closed' || github.event.pull_request.merged != true) }}
     steps:
       - name: Checkout
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         uses: actions/checkout@v4
       - name: Bun
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
       - name: Cache bun dependencies
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         uses: actions/cache@v4
         with:
           path: |
@@ -89,8 +116,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-bun-${{ hashFiles('**/bun.lockb') }}-
       - name: Install
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         run: bun install --ignore-scripts
       - name: Build
+        if: ${{ (needs['ci-change-scope'].result != 'success' || needs['ci-change-scope'].outputs.docs_only != 'true') }}
         run: |
           bun run build
         env:
@@ -98,6 +127,14 @@ jobs:
           MM_BEARER_TOKEN: ${{ secrets.MM_BEARER_TOKEN }}
           MM_FORM_CHANNEL_ID: ${{ secrets.MM_FORM_CHANNEL_ID }}
           MM_CONTACT_CHANNEL_ID: ${{ secrets.MM_CONTACT_CHANNEL_ID }}
+      - name: Docs-only exemption
+        if: ${{ needs['ci-change-scope'].result == 'success' && needs['ci-change-scope'].outputs.docs_only == 'true' }}
+        shell: bash
+        working-directory: .
+        env:
+          CI_CHANGE_REASON: ${{ needs['ci-change-scope'].outputs.reason }}
+        run: |
+          printf '%s\n' "$CI_CHANGE_REASON" >> "$GITHUB_STEP_SUMMARY"
   prune:
     name: Prune
     runs-on: ubuntu-latest
