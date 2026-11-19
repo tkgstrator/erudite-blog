@@ -1,0 +1,1361 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "Under+Ground — Top page mocks" [level=1] [ref=e3]
+    - paragraph [ref=e4]: 10 種類のテイストを並列で試作。それぞれサムネクリックで実物を確認できます。
+    - paragraph [ref=e5]: ※サムネは 50% 縮小プレビュー。実際の見え方は「open ↗」から。
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - iframe [ref=e9]:
+        - generic [active] [ref=f5e1]:
+          - navigation [ref=f5e2]:
+            - link "Under+Ground" [ref=f5e3] [cursor=pointer]:
+              - /url: "#"
+            - link "Blog" [ref=f5e4] [cursor=pointer]:
+              - /url: "#"
+            - link "Authors" [ref=f5e5] [cursor=pointer]:
+              - /url: "#"
+            - link "Tags" [ref=f5e6] [cursor=pointer]:
+              - /url: "#"
+            - link "About" [ref=f5e7] [cursor=pointer]:
+              - /url: "#"
+            - link "Search" [ref=f5e8] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=f5e9]:
+            - generic [ref=f5e10]:
+              - generic [ref=f5e11]: Central Station
+              - heading "Under+Ground" [level=1] [ref=f5e12]
+              - paragraph [ref=f5e13]:
+                - text: えむいーと愉快な仲間たちの平凡な技術ブログ。
+                - text: ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+            - generic [ref=f5e14]:
+              - generic [ref=f5e15]:
+                - heading "Route Map — Latest Dispatches" [level=2] [ref=f5e16]
+                - img [ref=f5e17]:
+                  - generic [ref=f5e26]: Under+Ground
+                  - generic [ref=f5e27]: Central Station
+                  - generic [ref=f5e31]: 棋桜を便利に使うツールを開発しました
+                  - generic [ref=f5e32]: 2026-06-12
+                  - generic [ref=f5e34]: Shogi
+                  - generic [ref=f5e38]: Claude Code......嘘だよな
+                  - generic [ref=f5e39]: 2026-04-23
+                  - generic [ref=f5e41]: Claude Code
+                  - generic [ref=f5e45]: リバエン専用レポジトリを作成しました
+                  - generic [ref=f5e46]: 2026-04-09
+                  - generic [ref=f5e48]: Docker
+                  - generic [ref=f5e50]: Frida
+                  - generic [ref=f5e54]: 超かぐや姫を映画館で見てきた
+                  - generic [ref=f5e55]: 2026-03-15
+                  - generic [ref=f5e57]: Netflix
+                  - generic [ref=f5e61]: 超かぐや姫を見てきた感想
+                  - generic [ref=f5e62]: 2026-03-06
+                  - generic [ref=f5e64]: Netflix
+              - generic [ref=f5e67]:
+                - generic [ref=f5e68]:
+                  - heading "Lines" [level=3] [ref=f5e69]
+                  - link "Technology 12 stations" [ref=f5e70] [cursor=pointer]:
+                    - /url: "#"
+                    - text: Technology
+                    - generic [ref=f5e72]: 12 stations
+                  - link "AI / Claude 8 stations" [ref=f5e73] [cursor=pointer]:
+                    - /url: "#"
+                    - text: AI / Claude
+                    - generic [ref=f5e75]: 8 stations
+                  - link "Gaming / Switch 15 stations" [ref=f5e76] [cursor=pointer]:
+                    - /url: "#"
+                    - text: Gaming / Switch
+                    - generic [ref=f5e78]: 15 stations
+                  - link "Entertainment 9 stations" [ref=f5e79] [cursor=pointer]:
+                    - /url: "#"
+                    - text: Entertainment
+                    - generic [ref=f5e81]: 9 stations
+                  - link "Dev Tools 6 stations" [ref=f5e82] [cursor=pointer]:
+                    - /url: "#"
+                    - text: Dev Tools
+                    - generic [ref=f5e84]: 6 stations
+                - generic [ref=f5e85]:
+                  - heading "Recent Posts" [level=3] [ref=f5e86]
+                  - link "棋桜を便利に使うツールを開発しました 2026-06-12 Shogi" [ref=f5e87] [cursor=pointer]:
+                    - /url: "#"
+                    - generic [ref=f5e88]: 棋桜を便利に使うツールを開発しました
+                    - generic [ref=f5e89]:
+                      - generic [ref=f5e90]: 2026-06-12
+                      - generic [ref=f5e91]: Shogi
+                  - link "Claude Code......嘘だよな 2026-04-23 Claude Code" [ref=f5e92] [cursor=pointer]:
+                    - /url: "#"
+                    - generic [ref=f5e93]: Claude Code......嘘だよな
+                    - generic [ref=f5e94]:
+                      - generic [ref=f5e95]: 2026-04-23
+                      - generic [ref=f5e96]: Claude Code
+                  - link "リバエン専用レポジトリを作成しました 2026-04-09 Docker Frida" [ref=f5e97] [cursor=pointer]:
+                    - /url: "#"
+                    - generic [ref=f5e98]: リバエン専用レポジトリを作成しました
+                    - generic [ref=f5e99]:
+                      - generic [ref=f5e100]: 2026-04-09
+                      - generic [ref=f5e101]: Docker
+                      - generic [ref=f5e102]: Frida
+                  - link "超かぐや姫を映画館で見てきた 2026-03-15 Netflix" [ref=f5e103] [cursor=pointer]:
+                    - /url: "#"
+                    - generic [ref=f5e104]: 超かぐや姫を映画館で見てきた
+                    - generic [ref=f5e105]:
+                      - generic [ref=f5e106]: 2026-03-15
+                      - generic [ref=f5e107]: Netflix
+                  - link "超かぐや姫を見てきた感想 2026-03-06 Netflix" [ref=f5e108] [cursor=pointer]:
+                    - /url: "#"
+                    - generic [ref=f5e109]: 超かぐや姫を見てきた感想
+                    - generic [ref=f5e110]:
+                      - generic [ref=f5e111]: 2026-03-06
+                      - generic [ref=f5e112]: Netflix
+            - contentinfo [ref=f5e113]:
+              - generic [ref=f5e120]: Under+Ground
+              - paragraph [ref=f5e121]: © 2026 えむいー & 愉快な仲間たち
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - heading "01. Metro" [level=2] [ref=e12]
+          - generic [ref=e13]: 地下鉄路線図モチーフ。駅 = 記事。
+        - link "open ↗" [ref=e15] [cursor=pointer]:
+          - /url: 01-metro/index.html
+    - generic [ref=e16]:
+      - iframe [ref=e18]:
+        - generic [ref=f6e2]:
+          - generic [ref=f6e7]: zsh — under+ground — 220x52
+          - generic [ref=f6e8]:
+            - generic [ref=f6e9]:
+              - generic [ref=f6e10]: "# Session started — Thu Jun 19 2026 JST"
+              - generic [ref=f6e11]: "# Welcome to Under+Ground Blog Terminal v2.6.0"
+            - generic [ref=f6e12]:
+              - generic [ref=f6e13]:
+                - generic [ref=f6e14]: emue
+                - generic [ref=f6e15]: "@"
+                - generic [ref=f6e16]: underground
+                - generic [ref=f6e17]: ":"
+                - generic [ref=f6e18]: ~
+                - generic [ref=f6e19]: (main)
+                - generic [ref=f6e20]: $
+                - generic [ref=f6e21]: whoami && cat welcome.txt
+              - generic [ref=f6e22]:
+                - generic [ref=f6e23]: emue — えむいーと愉快な仲間たち
+                - generic [ref=f6e24]:
+                  - strong [ref=f6e25]: Under+Ground
+                  - text: へようこそ。
+                  - text: えむいーと愉快な仲間たちの平凡な技術ブログ。
+                  - text: ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+                  - text: "motto : \"hack everything, document the wreckage\""
+                  - text: "uptime : 2026-06-19 — running since forever"
+            - generic [ref=f6e26]:
+              - generic [ref=f6e27]:
+                - generic [ref=f6e28]: emue
+                - generic [ref=f6e29]: "@"
+                - generic [ref=f6e30]: underground
+                - generic [ref=f6e31]: ":"
+                - generic [ref=f6e32]: ~
+                - generic [ref=f6e33]: (main)
+                - generic [ref=f6e34]: $
+                - generic [ref=f6e35]: "ps aux | grep -E \"blog|nav\" | awk '{print $1, $11}'"
+              - generic [ref=f6e36]:
+                - generic [ref=f6e37]: "# navigation processes"
+                - generic [ref=f6e38]:
+                  - link "PID 101./blog" [ref=f6e39] [cursor=pointer]:
+                    - /url: "#"
+                  - link "PID 102./authors" [ref=f6e40] [cursor=pointer]:
+                    - /url: "#"
+                  - link "PID 103./tags" [ref=f6e41] [cursor=pointer]:
+                    - /url: "#"
+                  - link "PID 104./about" [ref=f6e42] [cursor=pointer]:
+                    - /url: "#"
+                  - link "PID 105./search" [ref=f6e43] [cursor=pointer]:
+                    - /url: "#"
+            - generic [ref=f6e44]:
+              - generic [ref=f6e45]:
+                - generic [ref=f6e46]: emue
+                - generic [ref=f6e47]: "@"
+                - generic [ref=f6e48]: underground
+                - generic [ref=f6e49]: ":"
+                - generic [ref=f6e50]: ~
+                - generic [ref=f6e51]: (main)
+                - generic [ref=f6e52]: $
+                - generic [ref=f6e53]: ls -la /posts --sort=date | head -6
+              - generic [ref=f6e54]:
+                - generic [ref=f6e55]: "# total 5 entries (showing latest)"
+                - table [ref=f6e56]:
+                  - rowgroup [ref=f6e57]:
+                    - row "-rw-r--r-- 1 emue 4.2K Jun 12 09:31 棋桜を便利に使うツールを開発しました.md Shogi" [ref=f6e58]:
+                      - cell "-rw-r--r--" [ref=f6e59]
+                      - cell "1" [ref=f6e60]
+                      - cell "emue" [ref=f6e61]
+                      - cell "4.2K" [ref=f6e62]
+                      - cell "Jun 12 09:31" [ref=f6e63]
+                      - cell "棋桜を便利に使うツールを開発しました.md Shogi" [ref=f6e64]:
+                        - text: 棋桜を便利に使うツールを開発しました.md
+                        - generic [ref=f6e65]: Shogi
+                    - row "-rw-r--r-- 1 emue 8.7K Apr 23 23:14 Claude_Code……嘘だよな.md Claude Code" [ref=f6e66]:
+                      - cell "-rw-r--r--" [ref=f6e67]
+                      - cell "1" [ref=f6e68]
+                      - cell "emue" [ref=f6e69]
+                      - cell "8.7K" [ref=f6e70]
+                      - cell "Apr 23 23:14" [ref=f6e71]
+                      - cell "Claude_Code……嘘だよな.md Claude Code" [ref=f6e72]:
+                        - text: Claude_Code……嘘だよな.md
+                        - generic [ref=f6e73]: Claude Code
+                    - row "-rw-r--r-- 1 emue 3.1K Apr 9 18:05 リバエン専用レポジトリを作成しました.md Docker Frida" [ref=f6e74]:
+                      - cell "-rw-r--r--" [ref=f6e75]
+                      - cell "1" [ref=f6e76]
+                      - cell "emue" [ref=f6e77]
+                      - cell "3.1K" [ref=f6e78]
+                      - cell "Apr 9 18:05" [ref=f6e79]
+                      - cell "リバエン専用レポジトリを作成しました.md Docker Frida" [ref=f6e80]:
+                        - text: リバエン専用レポジトリを作成しました.md
+                        - generic [ref=f6e81]: Docker
+                        - generic [ref=f6e82]: Frida
+                    - row "-rw-r--r-- 1 emue 2.9K Mar 15 14:22 超かぐや姫を映画館で見てきた.md Netflix" [ref=f6e83]:
+                      - cell "-rw-r--r--" [ref=f6e84]
+                      - cell "1" [ref=f6e85]
+                      - cell "emue" [ref=f6e86]
+                      - cell "2.9K" [ref=f6e87]
+                      - cell "Mar 15 14:22" [ref=f6e88]
+                      - cell "超かぐや姫を映画館で見てきた.md Netflix" [ref=f6e89]:
+                        - text: 超かぐや姫を映画館で見てきた.md
+                        - generic [ref=f6e90]: Netflix
+                    - row "-rw-r--r-- 1 emue 5.6K Mar 6 11:48 超かぐや姫を見てきた感想.md Netflix" [ref=f6e91]:
+                      - cell "-rw-r--r--" [ref=f6e92]
+                      - cell "1" [ref=f6e93]
+                      - cell "emue" [ref=f6e94]
+                      - cell "5.6K" [ref=f6e95]
+                      - cell "Mar 6 11:48" [ref=f6e96]
+                      - cell "超かぐや姫を見てきた感想.md Netflix" [ref=f6e97]:
+                        - text: 超かぐや姫を見てきた感想.md
+                        - generic [ref=f6e98]: Netflix
+            - generic [ref=f6e99]:
+              - generic [ref=f6e100]:
+                - generic [ref=f6e101]: emue
+                - generic [ref=f6e102]: "@"
+                - generic [ref=f6e103]: underground
+                - generic [ref=f6e104]: ":"
+                - generic [ref=f6e105]: ~
+                - generic [ref=f6e106]: (main)
+                - generic [ref=f6e107]: $
+                - generic [ref=f6e108]: head -4 /posts/棋桜を便利に使うツールを開発しました.md
+              - generic [ref=f6e110]:
+                - text: "---"
+                - strong [ref=f6e111]: "title:"
+                - text: 棋桜を便利に使うツールを開発しました
+                - strong [ref=f6e112]: "date:"
+                - text: 2026-06-12
+                - strong [ref=f6e113]: "tags:"
+                - text: "[Shogi]"
+                - text: "---"
+                - text: 将棋の棋桜をより便利に使うための CLI ツールを Rust で書いた話...
+            - generic [ref=f6e114]:
+              - generic [ref=f6e115]:
+                - generic [ref=f6e116]: emue
+                - generic [ref=f6e117]: "@"
+                - generic [ref=f6e118]: underground
+                - generic [ref=f6e119]: ":"
+                - generic [ref=f6e120]: ~
+                - generic [ref=f6e121]: (main)
+                - generic [ref=f6e122]: $
+                - generic [ref=f6e123]: "grep -r \"tags:\" /posts/ | awk -F': ' '{print $2}' | sort | uniq -c | sort -rn"
+              - generic [ref=f6e124]:
+                - generic [ref=f6e125]: 15 Nintendo Switch
+                - generic [ref=f6e126]: 12 Claude Code
+                - generic [ref=f6e127]: 9 Shogi
+                - generic [ref=f6e128]: 8 Netflix
+                - generic [ref=f6e129]: 7 Docker
+                - generic [ref=f6e130]: 6 Frida
+                - generic [ref=f6e131]: ... (and 23 more)
+            - generic [ref=f6e132]:
+              - generic [ref=f6e133]:
+                - generic [ref=f6e134]: emue
+                - generic [ref=f6e135]: "@"
+                - generic [ref=f6e136]: underground
+                - generic [ref=f6e137]: ":"
+                - generic [ref=f6e138]: ~/blog
+                - generic [ref=f6e139]: (main)
+                - generic [ref=f6e140]: $
+                - generic [ref=f6e141]: git log --oneline --decorate -5
+              - generic [ref=f6e142]:
+                - generic [ref=f6e143]: "a3f2c1d (HEAD → main, origin/main) post: 棋桜を便利に使うツールを開発しました"
+                - generic [ref=f6e144]: "8b91e04 post: Claude Code......嘘だよな"
+                - generic [ref=f6e145]: "4d70a2f post: リバエン専用レポジトリを作成しました"
+                - generic [ref=f6e146]: "c19e583 post: 超かぐや姫を映画館で見てきた"
+                - generic [ref=f6e147]: "f80b341 post: 超かぐや姫を見てきた感想"
+            - generic [ref=f6e148]:
+              - generic [ref=f6e149]:
+                - generic [ref=f6e150]: emue
+                - generic [ref=f6e151]: "@"
+                - generic [ref=f6e152]: underground
+                - generic [ref=f6e153]: ":"
+                - generic [ref=f6e154]: ~/blog
+                - generic [ref=f6e155]: (main)
+                - generic [ref=f6e156]: $
+                - generic [ref=f6e157]: uptime && df -h /posts
+              - generic [ref=f6e158]:
+                - generic [ref=f6e159]: "19:03:42 up 4 years, 207 days, 3 authors, load average: 0.12, 0.08, 0.05"
+                - generic [ref=f6e160]: "# Filesystem Size Used Avail Use% Mounted on"
+                - generic [ref=f6e161]: /dev/blog 128G 42G 86G 33% /posts
+            - generic [ref=f6e163]:
+              - generic [ref=f6e164]: emue
+              - generic [ref=f6e165]: "@"
+              - generic [ref=f6e166]: underground
+              - generic [ref=f6e167]: ":"
+              - generic [ref=f6e168]: ~/blog
+              - generic [ref=f6e169]: (main)
+              - generic [ref=f6e170]: $
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - heading "02. Terminal" [level=2] [ref=e21]
+          - generic [ref=e22]: "ハッカー風 CLI。`$ ls -la /posts`。"
+        - link "open ↗" [ref=e24] [cursor=pointer]:
+          - /url: 02-terminal/index.html
+    - generic [ref=e25]:
+      - iframe [ref=e27]:
+        - generic [active] [ref=f7e1]:
+          - banner [ref=f7e2]:
+            - generic [ref=f7e4]:
+              - text: ╔══════════════════════════════════════════════════════════════════════════════════════╗
+              - text: "║ >> DUNGEON ENTRANCE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ DEPTH: B3F ║"
+              - text: ╚══════════════════════════════════════════════════════════════════════════════════════╝
+            - generic [ref=f7e5]:
+              - generic [ref=f7e6]:
+                - generic [ref=f7e7]: ▼ ENTER THE DUNGEON ▼
+                - generic [ref=f7e8]: Under+Ground
+                - generic [ref=f7e9]:
+                  - text: ░ えむいーと愉快な仲間たちの平凡な技術ブログ。
+                  - text: ░ ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+              - generic [ref=f7e10]:
+                - generic [ref=f7e11]: "PARTY: 3 members"
+                - generic [ref=f7e12]: "FLOORS: B1F – B3F"
+                - generic [ref=f7e13]: "TREASURES: 5 found"
+                - generic [ref=f7e14]: "STATUS: EXPLORING"
+          - navigation [ref=f7e15]:
+            - generic [ref=f7e16]:
+              - generic [ref=f7e17]: ▶
+              - link "[ Blog ]" [ref=f7e18] [cursor=pointer]:
+                - /url: "#"
+              - link "[ Authors ]" [ref=f7e19] [cursor=pointer]:
+                - /url: "#"
+              - link "[ Tags ]" [ref=f7e20] [cursor=pointer]:
+                - /url: "#"
+              - link "[ About ]" [ref=f7e21] [cursor=pointer]:
+                - /url: "#"
+              - link "[ Search ]" [ref=f7e22] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=f7e23]:
+            - main [ref=f7e24]:
+              - generic [ref=f7e25]:
+                - generic [ref=f7e26]:
+                  - generic [ref=f7e27]: B1F
+                  - generic [ref=f7e29]: RECENTLY DISCOVERED
+                - generic [ref=f7e30]:
+                  - text: ┌───────────────────────────────────────────────────────────────────────────┐
+                  - text: │ ░░░░░░░░░░ [ENTRANCE HALL] ░░░░░░░░░░ 最近発見された宝物が眠る浅層フロア ░░░░░░ │
+                  - text: └───────────────────────────────────────────────────────────────────────────┘
+                - generic [ref=f7e31]:
+                  - generic [ref=f7e32]: B1F-01
+                  - generic [ref=f7e33]:
+                    - generic [ref=f7e34]: ♟
+                    - generic [ref=f7e35]: "#001"
+                  - generic [ref=f7e36]:
+                    - link "棋桜を便利に使うツールを開発しました" [ref=f7e37] [cursor=pointer]:
+                      - /url: "#"
+                    - generic [ref=f7e38]:
+                      - generic [ref=f7e39]: 📅 2026-06-12
+                      - link "⚔ Shogi" [ref=f7e41] [cursor=pointer]:
+                        - /url: "#"
+                  - text: ▶
+                - generic [ref=f7e42]:
+                  - generic [ref=f7e43]: B1F-02
+                  - generic [ref=f7e44]:
+                    - generic [ref=f7e45]: 📜
+                    - generic [ref=f7e46]: "#002"
+                  - generic [ref=f7e47]:
+                    - link "Claude Code......嘘だよな" [ref=f7e48] [cursor=pointer]:
+                      - /url: "#"
+                    - generic [ref=f7e49]:
+                      - generic [ref=f7e50]: 📅 2026-04-23
+                      - link "✦ Claude Code" [ref=f7e52] [cursor=pointer]:
+                        - /url: "#"
+                  - text: ▶
+              - generic [ref=f7e53]:
+                - generic [ref=f7e54]:
+                  - generic [ref=f7e55]: B2F
+                  - generic [ref=f7e57]: DEEPER CHAMBER
+                - generic [ref=f7e58]:
+                  - text: ┌───────────────────────────────────────────────────────────────────────────┐
+                  - text: │ ▓▓▓▓▓▓▓▓▓▓ [TOOL FORGE] ▓▓▓▓▓▓▓▓▓▓▓ 開発の記録が刻まれた鍛冶の間 ▓▓▓▓▓▓▓ │
+                  - text: └───────────────────────────────────────────────────────────────────────────┘
+                - generic [ref=f7e59]:
+                  - generic [ref=f7e60]: B2F-01
+                  - generic [ref=f7e61]:
+                    - generic [ref=f7e62]: 🐉
+                    - generic [ref=f7e63]: "#003"
+                  - generic [ref=f7e64]:
+                    - link "リバエン専用レポジトリを作成しました" [ref=f7e65] [cursor=pointer]:
+                      - /url: "#"
+                    - generic [ref=f7e66]:
+                      - generic [ref=f7e67]: 📅 2026-04-09
+                      - generic [ref=f7e68]:
+                        - link "☠ Docker" [ref=f7e69] [cursor=pointer]:
+                          - /url: "#"
+                        - link "☠ Frida" [ref=f7e70] [cursor=pointer]:
+                          - /url: "#"
+                  - text: ▶
+              - generic [ref=f7e71]:
+                - generic [ref=f7e72]:
+                  - generic [ref=f7e73]: B3F
+                  - generic [ref=f7e75]: DEEP VAULT — ANCIENT RELICS
+                - generic [ref=f7e76]:
+                  - text: ╔═══════════════════════════════════════════════════════════════════════════╗
+                  - text: ║ ██████████ [RELIQUARY] ██████████████ 古き記録が眠る最深部の聖域 ██████████║
+                  - text: ╚═══════════════════════════════════════════════════════════════════════════╝
+                - generic [ref=f7e77]:
+                  - generic [ref=f7e78]: B3F-01
+                  - generic [ref=f7e79]:
+                    - generic [ref=f7e80]: 🎬
+                    - generic [ref=f7e81]: "#004"
+                  - generic [ref=f7e82]:
+                    - link "超かぐや姫を映画館で見てきた" [ref=f7e83] [cursor=pointer]:
+                      - /url: "#"
+                    - generic [ref=f7e84]:
+                      - generic [ref=f7e85]: 📅 2026-03-15
+                      - link "★ Netflix" [ref=f7e87] [cursor=pointer]:
+                        - /url: "#"
+                  - text: ▶
+                - generic [ref=f7e88]:
+                  - generic [ref=f7e89]: B3F-02
+                  - generic [ref=f7e90]:
+                    - generic [ref=f7e91]: 📖
+                    - generic [ref=f7e92]: "#005"
+                  - generic [ref=f7e93]:
+                    - link "超かぐや姫を見てきた感想" [ref=f7e94] [cursor=pointer]:
+                      - /url: "#"
+                    - generic [ref=f7e95]:
+                      - generic [ref=f7e96]: 📅 2026-03-06
+                      - link "★ Netflix" [ref=f7e98] [cursor=pointer]:
+                        - /url: "#"
+                  - text: ▶
+            - complementary [ref=f7e99]:
+              - generic [ref=f7e100]:
+                - generic [ref=f7e101]: DUNGEON MAP
+                - generic [ref=f7e103]: ┌──────────────┐ │ ★ B1F ENTRY │ │ ┌──┐ ┌──┐ │ │ │①│ │②│ │ │ └──┘ └──┘ │ ├──────────────┤ │ ▼ B2F FORGE │ │ ┌────┐ │ │ │ ③ │ │ │ └────┘ │ ├──────────────┤ │ ▼ B3F VAULT │ │ ┌──┐ ┌──┐ │ │ │④│ │⑤│ │ │ └──┘ └──┘ │ │ [BOSS ROOM] │ └──────────────┘
+              - generic [ref=f7e104]:
+                - generic [ref=f7e105]: PARTY STATUS
+                - generic [ref=f7e106]:
+                  - generic [ref=f7e107]:
+                    - generic [ref=f7e108]: 🧙
+                    - generic [ref=f7e109]:
+                      - generic [ref=f7e110]: えむいー
+                      - generic [ref=f7e111]: MAGE / HACKER
+                  - generic [ref=f7e114]:
+                    - generic [ref=f7e115]: ⚔
+                    - generic [ref=f7e116]:
+                      - generic [ref=f7e117]: party member
+                      - generic [ref=f7e118]: WARRIOR / DEV
+                  - generic [ref=f7e121]:
+                    - generic [ref=f7e122]: 🏹
+                    - generic [ref=f7e123]:
+                      - generic [ref=f7e124]: party member
+                      - generic [ref=f7e125]: RANGER / OPS
+              - generic [ref=f7e128]:
+                - generic [ref=f7e129]: MOB / ITEM INDEX
+                - generic [ref=f7e130]:
+                  - generic [ref=f7e131]:
+                    - generic [ref=f7e132]: ☠
+                    - generic [ref=f7e133]:
+                      - generic [ref=f7e134]: MOB TAG
+                      - generic [ref=f7e135]: 危険・ハック・解析系
+                  - generic [ref=f7e136]:
+                    - generic [ref=f7e137]: ⚔
+                    - generic [ref=f7e138]:
+                      - generic [ref=f7e139]: ITEM TAG
+                      - generic [ref=f7e140]: ツール・成果物・レビュー
+                  - generic [ref=f7e141]:
+                    - generic [ref=f7e142]: ✦
+                    - generic [ref=f7e143]:
+                      - generic [ref=f7e144]: SPELL TAG
+                      - generic [ref=f7e145]: AI・魔法・新技術系
+              - generic [ref=f7e146]:
+                - generic [ref=f7e147]: EVENT LOG
+                - generic [ref=f7e149]:
+                  - generic [ref=f7e150]:
+                    - generic [ref=f7e151]: 06-12
+                    - generic [ref=f7e152]: 新アイテム発見！
+                  - generic [ref=f7e153]:
+                    - generic [ref=f7e154]: 04-23
+                    - generic [ref=f7e155]: 魔法書入手。
+                  - generic [ref=f7e156]:
+                    - generic [ref=f7e157]: 04-09
+                    - generic [ref=f7e158]: モブ撃破！
+                  - generic [ref=f7e159]:
+                    - generic [ref=f7e160]: 03-15
+                    - generic [ref=f7e161]: 秘宝発見。
+                  - generic [ref=f7e162]:
+                    - generic [ref=f7e163]: 03-06
+                    - generic [ref=f7e164]: 記録を刻む。
+                  - generic [ref=f7e165]:
+                    - generic [ref=f7e166]: ">>"
+                    - generic [ref=f7e167]: ■
+          - contentinfo [ref=f7e168]:
+            - generic [ref=f7e169]:
+              - text: ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+              - text: ░░ YOU HAVE REACHED THE BOTTOM OF THE DUNGEON. STAIRS AHEAD. ░░░░░░░░░░░░░░░░░
+              - text: ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+            - text: © 2026 Under+Ground — えむいーと愉快な仲間たちの平凡な技術ブログ | All treasures reserved.
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - heading "03. Dungeon" [level=2] [ref=e30]
+          - generic [ref=e31]: B1F / B2F のフロア構造。記事 = 発見物。
+        - link "open ↗" [ref=e33] [cursor=pointer]:
+          - /url: 03-dungeon/index.html
+    - generic [ref=e34]:
+      - iframe [ref=e36]:
+        - generic [active] [ref=f8e1]:
+          - generic [ref=f8e2]:
+            - generic [ref=f8e4]:
+              - generic [ref=f8e5]: ▸ Field Notes Vol. MMXXVI — Expedition Log
+              - generic [ref=f8e6]: Under+Ground
+              - generic [ref=f8e7]:
+                - text: えむいーと愉快な仲間たちの平凡な技術ブログ。
+                - text: ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+            - generic [ref=f8e8]:
+              - generic [ref=f8e9]: field
+              - generic [ref=f8e10]: LOG
+              - generic [ref=f8e11]: active
+          - navigation [ref=f8e12]:
+            - link "Blog" [ref=f8e13] [cursor=pointer]:
+              - /url: "#"
+            - link "Authors" [ref=f8e14] [cursor=pointer]:
+              - /url: "#"
+            - link "Tags" [ref=f8e15] [cursor=pointer]:
+              - /url: "#"
+            - link "About" [ref=f8e16] [cursor=pointer]:
+              - /url: "#"
+            - link "Search" [ref=f8e17] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=f8e19]:
+            - generic [ref=f8e20]:
+              - generic [ref=f8e21]:
+                - generic [ref=f8e22]: ▸ Section I — Recent Observations
+                - generic [ref=f8e23]: 最近の観測記録
+              - generic [ref=f8e24]:
+                - generic [ref=f8e25]: "Observer: えむいー et al."
+                - generic [ref=f8e26]: "Date: 2026-06-19"
+                - generic [ref=f8e27]: "Status: ONGOING"
+            - generic [ref=f8e28]:
+              - generic [ref=f8e29]:
+                - generic [ref=f8e30]:
+                  - generic [ref=f8e33]: OBS-001
+                  - generic [ref=f8e34]: 2026-06-12
+                  - link "棋桜を便利に使うツールを開発しました" [ref=f8e35] [cursor=pointer]:
+                    - /url: "#"
+                  - generic [ref=f8e36]:
+                    - generic [ref=f8e37]: "Tag:"
+                    - link "Shogi" [ref=f8e38] [cursor=pointer]:
+                      - /url: "#"
+                - generic [ref=f8e39]:
+                  - generic [ref=f8e41]: OBS-002
+                  - generic [ref=f8e42]: 2026-04-23
+                  - link "Claude Code......嘘だよな" [ref=f8e43] [cursor=pointer]:
+                    - /url: "#"
+                  - generic [ref=f8e44]:
+                    - generic [ref=f8e45]: "Tag:"
+                    - link "Claude Code" [ref=f8e46] [cursor=pointer]:
+                      - /url: "#"
+                - generic [ref=f8e49]: — earlier entries —
+                - generic [ref=f8e51]:
+                  - generic [ref=f8e53]: OBS-003
+                  - generic [ref=f8e54]: 2026-04-09
+                  - link "リバエン専用レポジトリを作成しました" [ref=f8e55] [cursor=pointer]:
+                    - /url: "#"
+                  - generic [ref=f8e56]:
+                    - generic [ref=f8e57]: "Tag:"
+                    - link "Docker" [ref=f8e58] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Frida" [ref=f8e59] [cursor=pointer]:
+                      - /url: "#"
+                - generic [ref=f8e60]:
+                  - generic [ref=f8e62]: OBS-004
+                  - generic [ref=f8e63]: 2026-03-15
+                  - link "超かぐや姫を映画館で見てきた" [ref=f8e64] [cursor=pointer]:
+                    - /url: "#"
+                  - generic [ref=f8e65]:
+                    - generic [ref=f8e66]: "Tag:"
+                    - link "Netflix" [ref=f8e67] [cursor=pointer]:
+                      - /url: "#"
+                - generic [ref=f8e68]:
+                  - generic [ref=f8e70]: OBS-005
+                  - generic [ref=f8e71]: 2026-03-06
+                  - link "超かぐや姫を見てきた感想" [ref=f8e72] [cursor=pointer]:
+                    - /url: "#"
+                  - generic [ref=f8e73]:
+                    - generic [ref=f8e74]: "Tag:"
+                    - link "Netflix" [ref=f8e75] [cursor=pointer]:
+                      - /url: "#"
+                - generic [ref=f8e76]:
+                  - generic [ref=f8e77]: Under+Ground Field Notes — © 2026 えむいーと愉快な仲間たち
+                  - generic [ref=f8e78]: — p. 1 —
+              - generic [ref=f8e79]:
+                - generic [ref=f8e80]:
+                  - generic [ref=f8e81]: ▸ Note to self
+                  - generic [ref=f8e82]:
+                    - generic [ref=f8e83]: •
+                    - text: 棋桜ツール、テストまだ！
+                  - generic [ref=f8e84]:
+                    - generic [ref=f8e85]: •
+                    - text: Claude Code もう一回試す
+                  - generic [ref=f8e86]:
+                    - generic [ref=f8e87]: •
+                    - text: Frida 環境セットアップ
+                  - generic [ref=f8e88]:
+                    - generic [ref=f8e89]: •
+                    - text: かぐや姫 Part 2 あるの？
+                - generic [ref=f8e90]:
+                  - generic [ref=f8e91]: Expedition Stats
+                  - generic [ref=f8e92]:
+                    - generic [ref=f8e93]: Observations
+                    - generic [ref=f8e94]: "5"
+                  - generic [ref=f8e95]:
+                    - generic [ref=f8e96]: Tags
+                    - generic [ref=f8e97]: "5"
+                  - generic [ref=f8e98]:
+                    - generic [ref=f8e99]: Authors
+                    - generic [ref=f8e100]: 3+
+                  - generic [ref=f8e101]:
+                    - generic [ref=f8e102]: Active
+                    - generic [ref=f8e103]: "2026"
+                - generic [ref=f8e104]:
+                  - generic [ref=f8e105]: Tag Index
+                  - generic [ref=f8e106]:
+                    - link "Shogi" [ref=f8e108] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Claude Code" [ref=f8e110] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Docker" [ref=f8e112] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Frida" [ref=f8e114] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Netflix" [ref=f8e116] [cursor=pointer]:
+                      - /url: "#"
+          - contentinfo [ref=f8e117]: UNDER+GROUND FIELD NOTES — EXPEDITION LOG — ALL OBSERVATIONS RESERVED — MMXXVI
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - heading "04. Field Notes" [level=2] [ref=e39]
+          - generic [ref=e40]: 探検家の野帳。ピン留め＆マステ。
+        - link "open ↗" [ref=e42] [cursor=pointer]:
+          - /url: 04-field-notes/index.html
+    - generic [ref=e43]:
+      - iframe [ref=e45]:
+        - generic [ref=f9e2]:
+          - banner [ref=f9e3]:
+            - generic [ref=f9e4]: "___ ___ _ ___ ___ ____ | || . \\| || || __|| _ \\ | | || /| || | || _| | |_) | |___||_|\\_\\|_||___||___||_| \\_\\ ____ ____ ___ _ _ _ _ ____ + | _|| _ \\/ _ \\| | | || \\| || _ \\ | |_ | |_) | | | | | | || ` || | | | | _|| _ <| |_| | |_| || |\\ || |_| | |_| |_| \\_\\\\___/ \\___/ |_| \\_||____/"
+          - navigation [ref=f9e5]:
+            - text: ▐
+            - link "[ BLOG ]" [ref=f9e6] [cursor=pointer]:
+              - /url: "#"
+            - link "[ AUTHORS ]" [ref=f9e7] [cursor=pointer]:
+              - /url: "#"
+            - link "[ TAGS ]" [ref=f9e8] [cursor=pointer]:
+              - /url: "#"
+            - link "[ ABOUT ]" [ref=f9e9] [cursor=pointer]:
+              - /url: "#"
+            - link "[ SEARCH ]" [ref=f9e10] [cursor=pointer]:
+              - /url: "#"
+            - text: ▌
+          - generic [ref=f9e11]: ────────────────────────────────────────────────────────────────────────────────
+          - generic [ref=f9e12]:
+            - generic [ref=f9e13]: ░▒▓█ WELCOME TO THE UNDERGROUND BBS █▓▒░
+            - generic [ref=f9e14]: えむいーと愉快な仲間たちの平凡な技術ブログ。
+            - generic [ref=f9e15]: ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+            - generic [ref=f9e16]: "● SYSTEM ONLINE :: NODE: UG-JP-01 :: ▌ READY"
+          - generic [ref=f9e17]: ════════════════════════════════════════════════════════════════════════════════
+          - generic [ref=f9e18]:
+            - generic [ref=f9e19]: "╔══════════════════════════════════════════════════════════════════════════════╗ ║ ▓▓ LATEST POSTS :: えむいーBBS掲示板 :: POST COUNT: 5 ║ ╠══════════════════════════════════════════════════════════════════════════════╣"
+            - list [ref=f9e20]:
+              - listitem [ref=f9e21]:
+                - generic [ref=f9e22]:
+                  - generic [ref=f9e23]: "[#001]"
+                  - generic [ref=f9e24]: 棋桜を便利に使うツールを開発しました
+                  - generic [ref=f9e25]: ················
+                  - generic [ref=f9e26]: "[Shogi]"
+                  - generic [ref=f9e27]: 2026-06-12
+              - listitem [ref=f9e28]: │──────────────────────────────────────────────────────────────────────────│
+              - listitem [ref=f9e29]:
+                - generic [ref=f9e30]:
+                  - generic [ref=f9e31]: "[#002]"
+                  - generic [ref=f9e32]: Claude Code......嘘だよな
+                  - generic [ref=f9e33]: ···························
+                  - generic [ref=f9e34]: "[Claude Code]"
+                  - generic [ref=f9e35]: 2026-04-23
+              - listitem [ref=f9e36]: │──────────────────────────────────────────────────────────────────────────│
+              - listitem [ref=f9e37]:
+                - generic [ref=f9e38]:
+                  - generic [ref=f9e39]: "[#003]"
+                  - generic [ref=f9e40]: リバエン専用レポジトリを作成しました
+                  - generic [ref=f9e41]: ················
+                  - generic [ref=f9e42]: "[Docker/Frida]"
+                  - generic [ref=f9e43]: 2026-04-09
+              - listitem [ref=f9e44]: │──────────────────────────────────────────────────────────────────────────│
+              - listitem [ref=f9e45]:
+                - generic [ref=f9e46]:
+                  - generic [ref=f9e47]: "[#004]"
+                  - generic [ref=f9e48]: 超かぐや姫を映画館で見てきた
+                  - generic [ref=f9e49]: ·······················
+                  - generic [ref=f9e50]: "[Netflix]"
+                  - generic [ref=f9e51]: 2026-03-15
+              - listitem [ref=f9e52]: │──────────────────────────────────────────────────────────────────────────│
+              - listitem [ref=f9e53]:
+                - generic [ref=f9e54]:
+                  - generic [ref=f9e55]: "[#005]"
+                  - generic [ref=f9e56]: 超かぐや姫を見てきた感想
+                  - generic [ref=f9e57]: ···························
+                  - generic [ref=f9e58]: "[Netflix]"
+                  - generic [ref=f9e59]: 2026-03-06
+            - generic [ref=f9e60]: ╚══════════════════════════════════════════════════════════════════════════════╝
+          - generic [ref=f9e61]:
+            - generic [ref=f9e62]:
+              - generic [ref=f9e63]: ┌── SYSTEM INFO ─────────────────────┐
+              - generic [ref=f9e64]:
+                - generic [ref=f9e65]:
+                  - generic [ref=f9e66]: NODE
+                  - generic [ref=f9e67]: UG-JP-01
+                - generic [ref=f9e68]:
+                  - generic [ref=f9e69]: SOFTWARE
+                  - generic [ref=f9e70]: UNDER+GROUND v3.1
+                - generic [ref=f9e71]:
+                  - generic [ref=f9e72]: PLATFORM
+                  - generic [ref=f9e73]: Cloudflare Workers
+                - generic [ref=f9e74]:
+                  - generic [ref=f9e75]: CHARSET
+                  - generic [ref=f9e76]: UTF-8 / ANSI-JP
+                - generic [ref=f9e77]:
+                  - generic [ref=f9e78]: POSTS
+                  - generic [ref=f9e79]: 5 total
+                - generic [ref=f9e80]:
+                  - generic [ref=f9e81]: AUTHORS
+                  - generic [ref=f9e82]: えむいー + 仲間
+                - generic [ref=f9e83]:
+                  - generic [ref=f9e84]: STATUS
+                  - generic [ref=f9e85]: ● ONLINE
+              - generic [ref=f9e86]: └────────────────────────────────────┘
+            - generic [ref=f9e87]:
+              - generic [ref=f9e88]: ┌── TAG CLOUD ───────────────────────┐
+              - generic [ref=f9e89]:
+                - generic [ref=f9e90]: "[Shogi]"
+                - generic [ref=f9e91]: "[Claude Code]"
+                - generic [ref=f9e92]: "[Docker]"
+                - generic [ref=f9e93]: "[Frida]"
+                - generic [ref=f9e94]: "[Netflix]"
+                - generic [ref=f9e95]: "[Nintendo Switch]"
+                - generic [ref=f9e96]: "[Hacking]"
+                - generic [ref=f9e97]: "[AI]"
+                - generic [ref=f9e98]: "[Reverse Eng]"
+              - generic [ref=f9e99]: └────────────────────────────────────┘
+          - generic [ref=f9e100]:
+            - generic [ref=f9e101]: ╔══ ABOUT THIS BBS ════════════════════════════════════════════════════════════╗
+            - generic [ref=f9e102]:
+              - text: Under+Ground は、えむいーと愉快な仲間たちが運営する技術ブログです。
+              - text: ニンテンドースイッチのハッキング・リバースエンジニアリングから、
+              - text: Claude / 生成 AI 活用まで、気になったことを雑多に書き残しています。
+              - text: ▶ このサイトは Cloudflare Workers + Astro で動いています。
+              - text: ▶ 記事の無断転載は禁止ですが、技術的な内容の参考利用はご自由に。
+              - text: "▶ お問い合わせ: @mvc_eme まで。"
+              - generic [ref=f9e103]: █
+            - generic [ref=f9e104]: ╚══════════════════════════════════════════════════════════════════════════════╝
+          - generic [ref=f9e105]: ════════════════════════════════════════════════════════════════════════════════
+          - contentinfo [ref=f9e106]:
+            - generic [ref=f9e107]: "▓▓▓▒▒▒░░░ UNDER+GROUND BULLETIN BOARD SYSTEM ░░░▒▒▒▓▓▓ ┌──────────────────────────────────────────────────────────┐ │ NODE : UG-JP-01 SPEED : 115200 baud │ │ UPTIME : 99.9% CODEC : UTF-8 / CP932 │ │ SYSOP : えむいー ZONE : Asia/Tokyo │ └──────────────────────────────────────────────────────────┘ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"
+            - generic [ref=f9e108]: © 2026 Under+Ground. All rights reserved. _
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - heading "05. ASCII Demoscene" [level=2] [ref=e48]
+          - generic [ref=e49]: 80年代 BBS / CGA パレット。
+        - link "open ↗" [ref=e51] [cursor=pointer]:
+          - /url: 05-ascii/index.html
+    - generic [ref=e52]:
+      - iframe [ref=e54]:
+        - generic [ref=f10e2]:
+          - banner [ref=f10e3]:
+            - generic [ref=f10e4]:
+              - generic [ref=f10e5]: ⛏
+              - heading "UNDER+GROUND" [level=1] [ref=f10e6]
+            - paragraph [ref=f10e7]: 地下探索記録 — 知識の鉱脈を掘り進む
+          - navigation [ref=f10e8]:
+            - list [ref=f10e9]:
+              - listitem [ref=f10e10]:
+                - link "🗂 Blog" [ref=f10e11] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f10e12]:
+                - link "👷 Authors" [ref=f10e13] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f10e14]:
+                - link "💎 Tags" [ref=f10e15] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f10e16]:
+                - link "📜 About" [ref=f10e17] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f10e18]:
+                - link "🔍 Search" [ref=f10e19] [cursor=pointer]:
+                  - /url: "#"
+          - generic [ref=f10e20]:
+            - paragraph [ref=f10e21]: ⬇ 深度探索中 ⬇
+            - paragraph [ref=f10e22]: えむいーと愉快な仲間たちの平凡な技術ブログ。ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+            - paragraph [ref=f10e23]: 現在の探索深度： -420 m
+          - generic [ref=f10e24]:
+            - main [ref=f10e25]:
+              - heading "⛏ 最新発掘記録" [level=2] [ref=f10e26]
+              - generic [ref=f10e27]:
+                - 'link "🗿 発掘日: 2026-06-12 棋桜を便利に使うツールを開発しました 💎 Shogi" [ref=f10e28] [cursor=pointer]':
+                  - /url: "#"
+                  - generic [ref=f10e29]:
+                    - generic [ref=f10e30]: "🗿 発掘日:"
+                    - generic [ref=f10e31]: 2026-06-12
+                  - heading "棋桜を便利に使うツールを開発しました" [level=3] [ref=f10e32]
+                  - generic [ref=f10e34]: 💎 Shogi
+                - 'link "🗿 発掘日: 2026-04-23 Claude Code......嘘だよな 💠 Claude Code" [ref=f10e35] [cursor=pointer]':
+                  - /url: "#"
+                  - generic [ref=f10e36]:
+                    - generic [ref=f10e37]: "🗿 発掘日:"
+                    - generic [ref=f10e38]: 2026-04-23
+                  - heading "Claude Code......嘘だよな" [level=3] [ref=f10e39]
+                  - generic [ref=f10e41]: 💠 Claude Code
+                - 'link "🗿 発掘日: 2026-04-09 リバエン専用レポジトリを作成しました 🪨 Docker 🔴 Frida" [ref=f10e42] [cursor=pointer]':
+                  - /url: "#"
+                  - generic [ref=f10e43]:
+                    - generic [ref=f10e44]: "🗿 発掘日:"
+                    - generic [ref=f10e45]: 2026-04-09
+                  - heading "リバエン専用レポジトリを作成しました" [level=3] [ref=f10e46]
+                  - generic [ref=f10e47]:
+                    - generic [ref=f10e48]: 🪨 Docker
+                    - generic [ref=f10e49]: 🔴 Frida
+                - 'link "🗿 発掘日: 2026-03-15 超かぐや姫を映画館で見てきた 🔶 Netflix" [ref=f10e50] [cursor=pointer]':
+                  - /url: "#"
+                  - generic [ref=f10e51]:
+                    - generic [ref=f10e52]: "🗿 発掘日:"
+                    - generic [ref=f10e53]: 2026-03-15
+                  - heading "超かぐや姫を映画館で見てきた" [level=3] [ref=f10e54]
+                  - generic [ref=f10e56]: 🔶 Netflix
+                - 'link "🗿 発掘日: 2026-03-06 超かぐや姫を見てきた感想 🔶 Netflix" [ref=f10e57] [cursor=pointer]':
+                  - /url: "#"
+                  - generic [ref=f10e58]:
+                    - generic [ref=f10e59]: "🗿 発掘日:"
+                    - generic [ref=f10e60]: 2026-03-06
+                  - heading "超かぐや姫を見てきた感想" [level=3] [ref=f10e61]
+                  - generic [ref=f10e63]: 🔶 Netflix
+            - complementary [ref=f10e64]:
+              - generic [ref=f10e65]:
+                - generic [ref=f10e66]: 🔦 ヘッドランプ状態
+                - generic [ref=f10e67]:
+                  - paragraph [ref=f10e68]: 電池残量
+                  - generic [ref=f10e69]: 68%
+                  - paragraph [ref=f10e70]: "推定残り稼働時間: 4h 22m"
+              - generic [ref=f10e71]:
+                - generic [ref=f10e72]: 📡 探索深度センサー
+                - generic [ref=f10e73]:
+                  - generic [ref=f10e74]:
+                    - generic [ref=f10e75]: "-420"
+                    - generic [ref=f10e76]: METERS BELOW SURFACE
+                  - paragraph [ref=f10e77]: ⚠ 安全深度を超過しています。慎重に進んでください。
+              - generic [ref=f10e78]:
+                - generic [ref=f10e79]: 💎 発見した鉱脈
+                - generic [ref=f10e81]:
+                  - generic [ref=f10e82]:
+                    - generic [ref=f10e84]: Shogi
+                    - generic [ref=f10e85]: × 1
+                  - generic [ref=f10e86]:
+                    - generic [ref=f10e88]: Claude Code
+                    - generic [ref=f10e89]: × 1
+                  - generic [ref=f10e90]:
+                    - generic [ref=f10e92]: Docker
+                    - generic [ref=f10e93]: × 1
+                  - generic [ref=f10e94]:
+                    - generic [ref=f10e96]: Frida
+                    - generic [ref=f10e97]: × 1
+                  - generic [ref=f10e98]:
+                    - generic [ref=f10e100]: Netflix
+                    - generic [ref=f10e101]: × 2
+              - generic [ref=f10e102]:
+                - generic [ref=f10e103]: 📋 探索メモ
+                - paragraph [ref=f10e105]:
+                  - text: この坑道は古い記録でいっぱいだ。
+                  - text: 炎が揺れるたびに、壁の文字が浮かび上がる。
+                  - text: 知識の鉱脈は深いほど純度が高い。
+                  - text: 掘り進め。諦めるな。
+          - contentinfo [ref=f10e106]:
+            - paragraph [ref=f10e107]: ⛏ Under+Ground Mining Co. — 地下知識採掘組合
+            - generic [ref=f10e108]: ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+            - paragraph [ref=f10e109]: ⚠ 坑道を抜けるな — 光の届かぬ深みに、まだ眠る記録がある
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - heading "06. Mining" [level=2] [ref=e57]
+          - generic [ref=e58]: 洞窟探索。記事 = 発掘文書、タグ = 鉱石。
+        - link "open ↗" [ref=e60] [cursor=pointer]:
+          - /url: 06-mining/index.html
+    - generic [ref=e61]:
+      - iframe [ref=e63]:
+        - generic [active] [ref=f11e1]:
+          - banner [ref=f11e2]:
+            - generic [ref=f11e3]:
+              - link "Under+Ground ✦ えむいーと愉快な仲間たちの平凡な技術ブログ ✦" [ref=f11e4] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=f11e5]: Under+Ground
+                - generic [ref=f11e6]: ✦ えむいーと愉快な仲間たちの平凡な技術ブログ ✦
+              - navigation [ref=f11e7]:
+                - link "Blog" [ref=f11e8] [cursor=pointer]:
+                  - /url: "#"
+                - link "Authors" [ref=f11e9] [cursor=pointer]:
+                  - /url: "#"
+                - link "Tags" [ref=f11e10] [cursor=pointer]:
+                  - /url: "#"
+                - link "About" [ref=f11e11] [cursor=pointer]:
+                  - /url: "#"
+                - link "Search" [ref=f11e12] [cursor=pointer]:
+                  - /url: "#"
+          - generic [ref=f11e14]:
+            - generic:
+              - generic: ★
+              - generic: ✦
+              - generic: ♥
+              - generic: ✦
+              - generic: ★
+            - generic [ref=f11e15]: ✦ Welcome to Under+Ground ✦
+            - heading "ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。" [level=1] [ref=f11e16]
+            - paragraph [ref=f11e17]: えむいーと愉快な仲間たちによる平凡な技術ブログ。日常的なハックから最先端の AI まで、気の向くままに書き記していきます。
+          - generic [ref=f11e18]:
+            - main [ref=f11e19]:
+              - generic [ref=f11e20]:
+                - generic [ref=f11e21]: ★
+                - heading "Recent Posts" [level=2] [ref=f11e22]
+              - generic [ref=f11e23]:
+                - link "2026-06-12 Shogi 棋桜を便利に使うツールを開発しました ›" [ref=f11e24] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f11e25]:
+                    - generic [ref=f11e26]: 2026-06-12
+                    - generic [ref=f11e27]: Shogi
+                  - generic [ref=f11e28]: 棋桜を便利に使うツールを開発しました
+                  - generic [ref=f11e29]: ›
+                - link "2026-04-23 Claude Code Claude Code......嘘だよな ›" [ref=f11e30] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f11e31]:
+                    - generic [ref=f11e32]: 2026-04-23
+                    - generic [ref=f11e33]: Claude Code
+                  - generic [ref=f11e34]: Claude Code......嘘だよな
+                  - generic [ref=f11e35]: ›
+                - link "2026-04-09 Docker Frida リバエン専用レポジトリを作成しました ›" [ref=f11e36] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f11e37]:
+                    - generic [ref=f11e38]: 2026-04-09
+                    - generic [ref=f11e39]: Docker
+                    - generic [ref=f11e40]: Frida
+                  - generic [ref=f11e41]: リバエン専用レポジトリを作成しました
+                  - generic [ref=f11e42]: ›
+                - link "2026-03-15 Netflix 超かぐや姫を映画館で見てきた ›" [ref=f11e43] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f11e44]:
+                    - generic [ref=f11e45]: 2026-03-15
+                    - generic [ref=f11e46]: Netflix
+                  - generic [ref=f11e47]: 超かぐや姫を映画館で見てきた
+                  - generic [ref=f11e48]: ›
+                - link "2026-03-06 Netflix 超かぐや姫を見てきた感想 ›" [ref=f11e49] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f11e50]:
+                    - generic [ref=f11e51]: 2026-03-06
+                    - generic [ref=f11e52]: Netflix
+                  - generic [ref=f11e53]: 超かぐや姫を見てきた感想
+                  - generic [ref=f11e54]: ›
+            - complementary [ref=f11e55]:
+              - generic [ref=f11e56]:
+                - generic [ref=f11e57]:
+                  - generic [ref=f11e58]: ♥
+                  - text: About
+                - generic [ref=f11e59]: 🛸
+                - generic [ref=f11e60]: えむいー
+                - generic [ref=f11e61]: 技術好きの何でも屋。スイッチハックに始まり AI まで首を突っ込んでいます。
+              - generic [ref=f11e62]:
+                - generic [ref=f11e63]:
+                  - generic [ref=f11e64]: ★
+                  - text: Tags
+                - generic [ref=f11e65]:
+                  - generic [ref=f11e66]: Netflix
+                  - generic [ref=f11e67]: Claude Code
+                  - generic [ref=f11e68]: Shogi
+                  - generic [ref=f11e69]: Docker
+                  - generic [ref=f11e70]: Frida
+                  - generic [ref=f11e71]: AI
+                  - generic [ref=f11e72]: Switch
+                  - generic [ref=f11e73]: Hack
+              - generic [ref=f11e74]:
+                - generic [ref=f11e75]:
+                  - generic [ref=f11e76]: ✦
+                  - text: Stats
+                - list [ref=f11e77]:
+                  - listitem [ref=f11e78]:
+                    - generic [ref=f11e79]: 総記事数
+                    - generic [ref=f11e80]: "5"
+                  - listitem [ref=f11e81]:
+                    - generic [ref=f11e82]: タグ数
+                    - generic [ref=f11e83]: "6"
+                  - listitem [ref=f11e84]:
+                    - generic [ref=f11e85]: 著者数
+                    - generic [ref=f11e86]: "1"
+                  - listitem [ref=f11e87]:
+                    - generic [ref=f11e88]: 最終更新
+                    - generic [ref=f11e89]: 2026-06
+              - generic [ref=f11e90]:
+                - generic [ref=f11e91]: ★ ✦ ♥
+                - generic [ref=f11e92]:
+                  - text: 読んでくれてありがとう♥
+                  - text: また来てね ✦
+          - contentinfo [ref=f11e93]:
+            - generic [ref=f11e94]:
+              - generic [ref=f11e95]: ★ Under+Ground ★
+              - navigation [ref=f11e96]:
+                - link "Blog" [ref=f11e97] [cursor=pointer]:
+                  - /url: "#"
+                - link "Authors" [ref=f11e98] [cursor=pointer]:
+                  - /url: "#"
+                - link "Tags" [ref=f11e99] [cursor=pointer]:
+                  - /url: "#"
+                - link "About" [ref=f11e100] [cursor=pointer]:
+                  - /url: "#"
+                - link "Search" [ref=f11e101] [cursor=pointer]:
+                  - /url: "#"
+              - generic [ref=f11e102]: ♥ ♥ ♥
+              - generic [ref=f11e103]: © 2026 Under+Ground — All rights reserved ✦
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - heading "07. Y2K Cyber" [level=2] [ref=e66]
+          - generic [ref=e67]: Frutiger Aero / メタリック UI。
+        - link "open ↗" [ref=e69] [cursor=pointer]:
+          - /url: 07-y2k/index.html
+    - generic [ref=e70]:
+      - iframe [ref=e72]:
+        - generic [ref=f12e2]:
+          - banner [ref=f12e3]:
+            - generic [ref=f12e4]:
+              - generic [ref=f12e5]: Under
+              - generic [ref=f12e6]: +
+              - generic [ref=f12e7]: Ground
+            - generic [ref=f12e9]: えむいーと愉快な仲間たちの平凡な技術ブログ。ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+          - navigation [ref=f12e10]:
+            - generic [ref=f12e11]:
+              - link "Blog" [ref=f12e12] [cursor=pointer]:
+                - /url: "#"
+              - link "Authors" [ref=f12e13] [cursor=pointer]:
+                - /url: "#"
+              - link "Tags" [ref=f12e14] [cursor=pointer]:
+                - /url: "#"
+              - link "About" [ref=f12e15] [cursor=pointer]:
+                - /url: "#"
+              - link "Search" [ref=f12e16] [cursor=pointer]:
+                - /url: "#"
+            - generic [ref=f12e17]: zine vol.∞
+          - separator [ref=f12e18]: ✦ latest posts ✦
+          - generic [ref=f12e19]: Recent Posts ✂ - - - - - - -
+          - generic [ref=f12e20]:
+            - article [ref=f12e21]:
+              - generic: NEW!
+              - generic [ref=f12e22]: 2026-06-12
+              - heading "棋桜を便利に使うツールを開発しました" [level=2] [ref=f12e23]:
+                - link "棋桜を便利に使うツールを開発しました" [ref=f12e24] [cursor=pointer]:
+                  - /url: "#"
+              - generic [ref=f12e26]: Shogi
+            - article [ref=f12e27]:
+              - generic [ref=f12e28]: 2026-04-23
+              - heading "Claude Code……嘘だよな" [level=2] [ref=f12e29]:
+                - link "Claude Code……嘘だよな" [ref=f12e30] [cursor=pointer]:
+                  - /url: "#"
+              - generic [ref=f12e32]: Claude Code
+            - article [ref=f12e33]:
+              - generic [ref=f12e34]: 2026-04-09
+              - heading "リバエン専用レポジトリを作成しました" [level=2] [ref=f12e35]:
+                - link "リバエン専用レポジトリを作成しました" [ref=f12e36] [cursor=pointer]:
+                  - /url: "#"
+              - generic [ref=f12e37]:
+                - generic [ref=f12e38]: Docker
+                - generic [ref=f12e39]: Frida
+            - article [ref=f12e40]:
+              - generic: 映画館で！
+              - generic [ref=f12e41]: 2026-03-15
+              - heading "超かぐや姫を映画館で見てきた" [level=2] [ref=f12e42]:
+                - link "超かぐや姫を映画館で見てきた" [ref=f12e43] [cursor=pointer]:
+                  - /url: "#"
+              - generic [ref=f12e45]: Netflix
+            - article [ref=f12e46]:
+              - generic [ref=f12e47]: 2026-03-06
+              - heading "超かぐや姫を見てきた感想" [level=2] [ref=f12e48]:
+                - link "超かぐや姫を見てきた感想" [ref=f12e49] [cursor=pointer]:
+                  - /url: "#"
+              - generic [ref=f12e51]: Netflix
+          - contentinfo [ref=f12e52]:
+            - paragraph [ref=f12e53]: © Under+Ground — made with ✂ & paste
+            - paragraph [ref=f12e54]: no gods · no cms · just html
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - heading "08. ZINE" [level=2] [ref=e75]
+          - generic [ref=e76]: 切り貼り同人誌。バラバラ回転＆テープ。
+        - link "open ↗" [ref=e78] [cursor=pointer]:
+          - /url: 08-zine/index.html
+    - generic [ref=e79]:
+      - iframe [ref=e81]:
+        - generic [active] [ref=f13e1]:
+          - heading "UNDER+GROUND" [level=1] [ref=f13e2]
+          - paragraph [ref=f13e3]: えむいーと愉快な仲間たちの平凡な技術ブログ。ニンテンドースイッチハッキングから生成AIまで幅広く扱います。
+          - separator [ref=f13e4]
+          - navigation [ref=f13e5]:
+            - link "Blog" [ref=f13e6] [cursor=pointer]:
+              - /url: /blog
+            - link "Authors" [ref=f13e7] [cursor=pointer]:
+              - /url: /authors
+            - link "Tags" [ref=f13e8] [cursor=pointer]:
+              - /url: /tags
+            - link "About" [ref=f13e9] [cursor=pointer]:
+              - /url: /about
+            - link "Search" [ref=f13e10] [cursor=pointer]:
+              - /url: /search
+          - separator [ref=f13e11]
+          - generic [ref=f13e13]: "★ 最新記事: 棋桜を便利に使うツールを開発しました (2026-06-12) ★ Claude Code......嘘だよな (2026-04-23) ★ 超かぐや姫を映画館で見てきた (2026-03-15) ★ Nintendo Switch ハッキングから生成AIまで ★"
+          - separator [ref=f13e14]
+          - table [ref=f13e15]:
+            - rowgroup [ref=f13e16]:
+              - 'row "最新記事 NEW # タイトル 日付 タグ 1 棋桜を便利に使うツールを開発しました 2026-06-12 Shogi 2 Claude Code......嘘だよな 2026-04-23 Claude Code 3 リバエン専用レポジトリを作成しました 2026-04-09 Docker Frida 4 超かぐや姫を映画館で見てきた 2026-03-15 Netflix 5 超かぐや姫を見てきた感想 2026-03-06 Netflix このブログについて Under+Ground はえむいーと仲間たちが運営する技術ブログです。 Nintendo Switch のハッキング・リバースエンジニアリングから、Docker、Frida、 生成 AI (Claude Code 等) まで、思ったことを思ったまま書きます。 ▌ 記事の内容は各著者の個人的な見解です。 検索: Go ページビュー数: 0 0 4 2 1 3 Last updated: 2026-06-12 09:00:00 JST 著者 えむいー 愉快な仲間たち タグ一覧 Nintendo Switch Frida Docker Claude Code Shogi Netflix 生成 AI リンク GitHub RSS About 注意書き 当ブログの情報は無保証です。 ハッキング関連記事は自己責任でどうぞ。 法律の範囲内で楽しみましょう。 [RSS] [Sitemap] Netscape Navigator 4.0 推奨 800×600 以上" [ref=f13e17]':
+                - 'cell "最新記事 NEW # タイトル 日付 タグ 1 棋桜を便利に使うツールを開発しました 2026-06-12 Shogi 2 Claude Code......嘘だよな 2026-04-23 Claude Code 3 リバエン専用レポジトリを作成しました 2026-04-09 Docker Frida 4 超かぐや姫を映画館で見てきた 2026-03-15 Netflix 5 超かぐや姫を見てきた感想 2026-03-06 Netflix このブログについて Under+Ground はえむいーと仲間たちが運営する技術ブログです。 Nintendo Switch のハッキング・リバースエンジニアリングから、Docker、Frida、 生成 AI (Claude Code 等) まで、思ったことを思ったまま書きます。 ▌ 記事の内容は各著者の個人的な見解です。 検索: Go ページビュー数: 0 0 4 2 1 3 Last updated: 2026-06-12 09:00:00 JST" [ref=f13e18]':
+                  - heading "最新記事 NEW" [level=2] [ref=f13e19]
+                  - table [ref=f13e20]:
+                    - rowgroup [ref=f13e21]:
+                      - row "# タイトル 日付 タグ" [ref=f13e22]:
+                        - columnheader "#" [ref=f13e23]
+                        - columnheader "タイトル" [ref=f13e24]
+                        - columnheader "日付" [ref=f13e25]
+                        - columnheader "タグ" [ref=f13e26]
+                      - row "1 棋桜を便利に使うツールを開発しました 2026-06-12 Shogi" [ref=f13e27]:
+                        - cell "1" [ref=f13e28]
+                        - cell "棋桜を便利に使うツールを開発しました" [ref=f13e29]:
+                          - link "棋桜を便利に使うツールを開発しました" [ref=f13e30] [cursor=pointer]:
+                            - /url: /blog/kiosk-tool
+                        - cell "2026-06-12" [ref=f13e31]
+                        - cell "Shogi" [ref=f13e32]:
+                          - generic [ref=f13e33]: Shogi
+                      - row "2 Claude Code......嘘だよな 2026-04-23 Claude Code" [ref=f13e34]:
+                        - cell "2" [ref=f13e35]
+                        - cell "Claude Code......嘘だよな" [ref=f13e36]:
+                          - link "Claude Code......嘘だよな" [ref=f13e37] [cursor=pointer]:
+                            - /url: /blog/claude-code
+                        - cell "2026-04-23" [ref=f13e38]
+                        - cell "Claude Code" [ref=f13e39]:
+                          - generic [ref=f13e40]: Claude Code
+                      - row "3 リバエン専用レポジトリを作成しました 2026-04-09 Docker Frida" [ref=f13e41]:
+                        - cell "3" [ref=f13e42]
+                        - cell "リバエン専用レポジトリを作成しました" [ref=f13e43]:
+                          - link "リバエン専用レポジトリを作成しました" [ref=f13e44] [cursor=pointer]:
+                            - /url: /blog/reverse-repo
+                        - cell "2026-04-09" [ref=f13e45]
+                        - cell "Docker Frida" [ref=f13e46]:
+                          - generic [ref=f13e47]: Docker
+                          - generic [ref=f13e48]: Frida
+                      - row "4 超かぐや姫を映画館で見てきた 2026-03-15 Netflix" [ref=f13e49]:
+                        - cell "4" [ref=f13e50]
+                        - cell "超かぐや姫を映画館で見てきた" [ref=f13e51]:
+                          - link "超かぐや姫を映画館で見てきた" [ref=f13e52] [cursor=pointer]:
+                            - /url: /blog/kaguya-cinema
+                        - cell "2026-03-15" [ref=f13e53]
+                        - cell "Netflix" [ref=f13e54]:
+                          - generic [ref=f13e55]: Netflix
+                      - row "5 超かぐや姫を見てきた感想 2026-03-06 Netflix" [ref=f13e56]:
+                        - cell "5" [ref=f13e57]
+                        - cell "超かぐや姫を見てきた感想" [ref=f13e58]:
+                          - link "超かぐや姫を見てきた感想" [ref=f13e59] [cursor=pointer]:
+                            - /url: /blog/kaguya-review
+                        - cell "2026-03-06" [ref=f13e60]
+                        - cell "Netflix" [ref=f13e61]:
+                          - generic [ref=f13e62]: Netflix
+                  - separator [ref=f13e63]
+                  - heading "このブログについて" [level=2] [ref=f13e64]
+                  - paragraph [ref=f13e65]: Under+Ground はえむいーと仲間たちが運営する技術ブログです。 Nintendo Switch のハッキング・リバースエンジニアリングから、Docker、Frida、 生成 AI (Claude Code 等) まで、思ったことを思ったまま書きます。
+                  - paragraph [ref=f13e66]: ▌ 記事の内容は各著者の個人的な見解です。
+                  - separator [ref=f13e67]
+                  - generic [ref=f13e68]:
+                    - strong [ref=f13e70]: "検索:"
+                    - textbox "検索:" [ref=f13e71]:
+                      - /placeholder: キーワードを入力
+                    - button "Go" [ref=f13e72] [cursor=pointer]
+                  - separator [ref=f13e73]
+                  - paragraph [ref=f13e74]:
+                    - text: "ページビュー数:"
+                    - generic [ref=f13e75]:
+                      - generic [ref=f13e76]: "0"
+                      - generic [ref=f13e77]: "0"
+                      - generic [ref=f13e78]: "4"
+                      - generic [ref=f13e79]: "2"
+                      - generic [ref=f13e80]: "1"
+                      - generic [ref=f13e81]: "3"
+                  - paragraph [ref=f13e82]: "Last updated: 2026-06-12 09:00:00 JST"
+                - cell "著者 えむいー 愉快な仲間たち タグ一覧 Nintendo Switch Frida Docker Claude Code Shogi Netflix 生成 AI リンク GitHub RSS About 注意書き 当ブログの情報は無保証です。 ハッキング関連記事は自己責任でどうぞ。 法律の範囲内で楽しみましょう。 [RSS] [Sitemap] Netscape Navigator 4.0 推奨 800×600 以上" [ref=f13e83]:
+                  - generic [ref=f13e84]:
+                    - heading "著者" [level=2] [ref=f13e85]
+                    - list [ref=f13e86]:
+                      - listitem [ref=f13e87]:
+                        - link "えむいー" [ref=f13e88] [cursor=pointer]:
+                          - /url: /authors/mue
+                      - listitem [ref=f13e89]:
+                        - link "愉快な仲間たち" [ref=f13e90] [cursor=pointer]:
+                          - /url: /authors/others
+                  - generic [ref=f13e91]:
+                    - heading "タグ一覧" [level=2] [ref=f13e92]
+                    - list [ref=f13e93]:
+                      - listitem [ref=f13e94]:
+                        - link "Nintendo Switch" [ref=f13e95] [cursor=pointer]:
+                          - /url: /tags/switch
+                      - listitem [ref=f13e96]:
+                        - link "Frida" [ref=f13e97] [cursor=pointer]:
+                          - /url: /tags/frida
+                      - listitem [ref=f13e98]:
+                        - link "Docker" [ref=f13e99] [cursor=pointer]:
+                          - /url: /tags/docker
+                      - listitem [ref=f13e100]:
+                        - link "Claude Code" [ref=f13e101] [cursor=pointer]:
+                          - /url: /tags/claude
+                      - listitem [ref=f13e102]:
+                        - link "Shogi" [ref=f13e103] [cursor=pointer]:
+                          - /url: /tags/shogi
+                      - listitem [ref=f13e104]:
+                        - link "Netflix" [ref=f13e105] [cursor=pointer]:
+                          - /url: /tags/netflix
+                      - listitem [ref=f13e106]:
+                        - link "生成 AI" [ref=f13e107] [cursor=pointer]:
+                          - /url: /tags/ai
+                  - generic [ref=f13e108]:
+                    - heading "リンク" [level=2] [ref=f13e109]
+                    - list [ref=f13e110]:
+                      - listitem [ref=f13e111]:
+                        - link "GitHub" [ref=f13e112] [cursor=pointer]:
+                          - /url: https://github.com
+                      - listitem [ref=f13e113]:
+                        - link "RSS" [ref=f13e114] [cursor=pointer]:
+                          - /url: /rss.xml
+                      - listitem [ref=f13e115]:
+                        - link "About" [ref=f13e116] [cursor=pointer]:
+                          - /url: /about
+                  - generic [ref=f13e117]:
+                    - heading "注意書き" [level=2] [ref=f13e118]
+                    - paragraph [ref=f13e119]:
+                      - text: 当ブログの情報は無保証です。
+                      - text: ハッキング関連記事は自己責任でどうぞ。
+                      - strong [ref=f13e120]: 法律の範囲内で楽しみましょう。
+                  - separator [ref=f13e121]
+                  - paragraph [ref=f13e122]:
+                    - link "[RSS]" [ref=f13e123] [cursor=pointer]:
+                      - /url: /rss.xml
+                    - link "[Sitemap]" [ref=f13e124] [cursor=pointer]:
+                      - /url: /sitemap.xml
+                  - paragraph [ref=f13e125]:
+                    - text: Netscape Navigator 4.0 推奨
+                    - text: 800×600 以上
+          - separator [ref=f13e126]
+          - generic [ref=f13e127]:
+            - text: © 2024-2026 Under+Ground — えむいーと愉快な仲間たち —
+            - link "About" [ref=f13e128] [cursor=pointer]:
+              - /url: /about
+            - text: "|"
+            - link "Privacy" [ref=f13e129] [cursor=pointer]:
+              - /url: /privacy
+            - text: "|"
+            - link "RSS" [ref=f13e130] [cursor=pointer]:
+              - /url: /rss.xml
+            - text: Powered by static HTML. No JavaScript was harmed in the making of this page.
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - heading "09. Brutalist" [level=2] [ref=e84]
+          - generic [ref=e85]: 90年代極北。table border=1、blink、marquee。
+        - link "open ↗" [ref=e87] [cursor=pointer]:
+          - /url: 09-brutalist/index.html
+    - generic [ref=e88]:
+      - iframe [ref=e90]:
+        - generic [active] [ref=f14e1]:
+          - img [ref=f14e3]
+          - generic [ref=f14e20]:
+            - banner [ref=f14e21]:
+              - generic [ref=f14e22]:
+                - text: UNDER+GROUND
+                - generic [ref=f14e23]: UNDER+GROUND
+                - text: UNDER+GROUND
+              - paragraph [ref=f14e24]:
+                - text: えむいーと愉快な仲間たちの平凡な技術ブログ
+                - text: Nintendo Switch Hacking / Reverse Engineering / Generative AI
+            - navigation [ref=f14e25]:
+              - link "Blog" [ref=f14e26] [cursor=pointer]:
+                - /url: /blog
+              - link "Authors" [ref=f14e27] [cursor=pointer]:
+                - /url: /authors
+              - link "Tags" [ref=f14e28] [cursor=pointer]:
+                - /url: /tags
+              - link "About" [ref=f14e29] [cursor=pointer]:
+                - /url: /about
+              - link "Search" [ref=f14e30] [cursor=pointer]:
+                - /url: /search
+            - generic [ref=f14e31]: — Transmitting from the digital underground —
+            - paragraph [ref=f14e33]: // Latest Transmissions
+            - generic [ref=f14e34]:
+              - generic [ref=f14e37]:
+                - generic [ref=f14e38]: Entry_001 / 2026-06-12
+                - link "棋桜を便利に使うツールを開発しました" [ref=f14e40] [cursor=pointer]:
+                  - /url: /blog/kiosk-tool
+                - generic [ref=f14e41]:
+                  - generic [ref=f14e42]: 2026.06.12
+                  - generic [ref=f14e44]: Shogi
+              - generic [ref=f14e47]:
+                - generic [ref=f14e48]: Entry_002 / 2026-04-23
+                - link "Claude Code......嘘だよな" [ref=f14e50] [cursor=pointer]:
+                  - /url: /blog/claude-code
+                - generic [ref=f14e51]:
+                  - generic [ref=f14e52]: 2026.04.23
+                  - generic [ref=f14e54]: Claude Code
+              - generic [ref=f14e57]:
+                - generic [ref=f14e58]: Entry_003 / 2026-04-09
+                - link "リバエン専用レポジトリを作成しました" [ref=f14e60] [cursor=pointer]:
+                  - /url: /blog/reverse-repo
+                - generic [ref=f14e61]:
+                  - generic [ref=f14e62]: 2026.04.09
+                  - generic [ref=f14e63]:
+                    - generic [ref=f14e64]: Docker
+                    - generic [ref=f14e65]: Frida
+              - generic [ref=f14e68]:
+                - generic [ref=f14e69]: Entry_004 / 2026-03-15
+                - link "超かぐや姫を映画館で見てきた" [ref=f14e71] [cursor=pointer]:
+                  - /url: /blog/kaguya-cinema
+                - generic [ref=f14e72]:
+                  - generic [ref=f14e73]: 2026.03.15
+                  - generic [ref=f14e75]: Netflix
+              - generic [ref=f14e78]:
+                - generic [ref=f14e79]: Entry_005 / 2026-03-06
+                - link "超かぐや姫を見てきた感想" [ref=f14e81] [cursor=pointer]:
+                  - /url: /blog/kaguya-review
+                - generic [ref=f14e82]:
+                  - generic [ref=f14e83]: 2026.03.06
+                  - generic [ref=f14e85]: Netflix
+            - generic [ref=f14e87]:
+              - generic [ref=f14e88]: ◆
+              - generic [ref=f14e89]:
+                - strong [ref=f14e90]: Under+Ground
+                - text: は えむいーと愉快な仲間たち が運営する技術ブログ。
+                - text: Nintendo Switch ハッキング / Frida / Docker / リバースエンジニアリング / 生成 AI——
+                - text: 地下から発信する、平凡だけど熱量だけはある、そういうやつ。
+            - contentinfo [ref=f14e91]:
+              - generic [ref=f14e92]: Under+Ground Broadcast Network
+              - generic [ref=f14e93]:
+                - link "Blog" [ref=f14e94] [cursor=pointer]:
+                  - /url: /blog
+                - link "Authors" [ref=f14e95] [cursor=pointer]:
+                  - /url: /authors
+                - link "Tags" [ref=f14e96] [cursor=pointer]:
+                  - /url: /tags
+                - link "About" [ref=f14e97] [cursor=pointer]:
+                  - /url: /about
+                - link "RSS" [ref=f14e98] [cursor=pointer]:
+                  - /url: /rss.xml
+              - generic [ref=f14e99]: © 2024–2026 Under+Ground / えむいーと愉快な仲間たち
+      - generic [ref=e91]:
+        - generic [ref=e92]:
+          - heading "10. Vaporwave CRT" [level=2] [ref=e93]
+          - generic [ref=e94]: ネオン＋スキャンライン＋色収差グリッチ。
+        - link "open ↗" [ref=e96] [cursor=pointer]:
+          - /url: 10-vaporwave/index.html
+  - contentinfo [ref=e97]: Under+Ground top page mocks · 2026

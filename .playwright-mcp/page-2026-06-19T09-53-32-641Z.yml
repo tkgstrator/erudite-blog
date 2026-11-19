@@ -1,0 +1,102 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "Under+Ground" [ref=e3] [cursor=pointer]:
+      - /url: "#"
+    - link "Blog" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - link "Authors" [ref=e5] [cursor=pointer]:
+      - /url: "#"
+    - link "Tags" [ref=e6] [cursor=pointer]:
+      - /url: "#"
+    - link "About" [ref=e7] [cursor=pointer]:
+      - /url: "#"
+    - link "Search" [ref=e8] [cursor=pointer]:
+      - /url: "#"
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - generic [ref=e11]: Central Station
+      - heading "Under+Ground" [level=1] [ref=e12]
+      - paragraph [ref=e13]:
+        - text: えむいーと愉快な仲間たちの平凡な技術ブログ。
+        - text: ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - heading "Route Map — Latest Dispatches" [level=2] [ref=e16]
+        - img [ref=e17]:
+          - generic [ref=e26]: Under+Ground
+          - generic [ref=e27]: Central Station
+          - generic [ref=e31]: 棋桜を便利に使うツールを開発しました
+          - generic [ref=e32]: 2026-06-12
+          - generic [ref=e34]: Shogi
+          - generic [ref=e38]: Claude Code......嘘だよな
+          - generic [ref=e39]: 2026-04-23
+          - generic [ref=e41]: Claude Code
+          - generic [ref=e45]: リバエン専用レポジトリを作成しました
+          - generic [ref=e46]: 2026-04-09
+          - generic [ref=e48]: Docker
+          - generic [ref=e50]: Frida
+          - generic [ref=e54]: 超かぐや姫を映画館で見てきた
+          - generic [ref=e55]: 2026-03-15
+          - generic [ref=e57]: Netflix
+          - generic [ref=e61]: 超かぐや姫を見てきた感想
+          - generic [ref=e62]: 2026-03-06
+          - generic [ref=e64]: Netflix
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - heading "Lines" [level=3] [ref=e69]
+          - link "Technology 12 stations" [ref=e70] [cursor=pointer]:
+            - /url: "#"
+            - text: Technology
+            - generic [ref=e72]: 12 stations
+          - link "AI / Claude 8 stations" [ref=e73] [cursor=pointer]:
+            - /url: "#"
+            - text: AI / Claude
+            - generic [ref=e75]: 8 stations
+          - link "Gaming / Switch 15 stations" [ref=e76] [cursor=pointer]:
+            - /url: "#"
+            - text: Gaming / Switch
+            - generic [ref=e78]: 15 stations
+          - link "Entertainment 9 stations" [ref=e79] [cursor=pointer]:
+            - /url: "#"
+            - text: Entertainment
+            - generic [ref=e81]: 9 stations
+          - link "Dev Tools 6 stations" [ref=e82] [cursor=pointer]:
+            - /url: "#"
+            - text: Dev Tools
+            - generic [ref=e84]: 6 stations
+        - generic [ref=e85]:
+          - heading "Recent Posts" [level=3] [ref=e86]
+          - link "棋桜を便利に使うツールを開発しました 2026-06-12 Shogi" [ref=e87] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e88]: 棋桜を便利に使うツールを開発しました
+            - generic [ref=e89]:
+              - generic [ref=e90]: 2026-06-12
+              - generic [ref=e91]: Shogi
+          - link "Claude Code......嘘だよな 2026-04-23 Claude Code" [ref=e92] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e93]: Claude Code......嘘だよな
+            - generic [ref=e94]:
+              - generic [ref=e95]: 2026-04-23
+              - generic [ref=e96]: Claude Code
+          - link "リバエン専用レポジトリを作成しました 2026-04-09 Docker Frida" [ref=e97] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e98]: リバエン専用レポジトリを作成しました
+            - generic [ref=e99]:
+              - generic [ref=e100]: 2026-04-09
+              - generic [ref=e101]: Docker
+              - generic [ref=e102]: Frida
+          - link "超かぐや姫を映画館で見てきた 2026-03-15 Netflix" [ref=e103] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e104]: 超かぐや姫を映画館で見てきた
+            - generic [ref=e105]:
+              - generic [ref=e106]: 2026-03-15
+              - generic [ref=e107]: Netflix
+          - link "超かぐや姫を見てきた感想 2026-03-06 Netflix" [ref=e108] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e109]: 超かぐや姫を見てきた感想
+            - generic [ref=e110]:
+              - generic [ref=e111]: 2026-03-06
+              - generic [ref=e112]: Netflix
+    - contentinfo [ref=e113]:
+      - generic [ref=e120]: Under+Ground
+      - paragraph [ref=e121]: © 2026 えむいー & 愉快な仲間たち

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Under+Ground — えむいーと愉快な仲間たちの平凡な技術ブログ</title>
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #f5f0e8;
+    background-image:
+      radial-gradient(ellipse at 20% 30%, rgba(180, 140, 100, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 70%, rgba(160, 120, 80, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(200, 180, 150, 0.04) 0%, transparent 80%);
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1a1a1a;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* コーヒーシミ */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 12%;
+    right: 5%;
+    width: 120px;
+    height: 110px;
+    border-radius: 50% 45% 55% 48% / 52% 58% 44% 50%;
+    background: radial-gradient(ellipse, rgba(101, 67, 33, 0.12) 30%, rgba(101, 67, 33, 0.06) 60%, transparent 75%);
+    border: 1px solid rgba(101, 67, 33, 0.08);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: 20%;
+    left: 3%;
+    width: 80px;
+    height: 75px;
+    border-radius: 48% 52% 47% 53% / 55% 45% 56% 44%;
+    background: radial-gradient(ellipse, rgba(101, 67, 33, 0.09) 25%, rgba(101, 67, 33, 0.04) 55%, transparent 72%);
+    border: 1px solid rgba(101, 67, 33, 0.06);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ヘッダー */
+  header {
+    position: relative;
+    padding: 40px 0 30px;
+    margin-bottom: 10px;
+  }
+
+  .title-cluster {
+    position: relative;
+    height: 160px;
+    margin-bottom: 20px;
+  }
+
+  .title-under {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 88px;
+    font-weight: 900;
+    color: #1a1a1a;
+    letter-spacing: -4px;
+    line-height: 1;
+    transform: rotate(-3deg);
+    text-decoration: none;
+    background: #f5f0e8;
+    padding: 0 6px;
+    /* 新聞切り抜き風：ギザギザ影 */
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.15), -1px -1px 0 rgba(0,0,0,0.05);
+  }
+
+  .title-plus {
+    position: absolute;
+    top: 20px;
+    left: 295px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 72px;
+    font-weight: 700;
+    color: #c0392b;
+    transform: rotate(8deg);
+    line-height: 1;
+    background: #fff;
+    padding: 0 4px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  }
+
+  .title-ground {
+    position: absolute;
+    top: 55px;
+    left: 340px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -2px;
+    transform: rotate(-1.5deg);
+    line-height: 1;
+    background: #f5f0e8;
+    padding: 0 6px;
+    box-shadow: -2px 4px 0 rgba(0,0,0,0.1);
+  }
+
+  /* 赤テープ風アンダーライン */
+  .title-tape {
+    position: absolute;
+    bottom: 18px;
+    left: -8px;
+    width: 680px;
+    height: 12px;
+    background: rgba(192, 57, 43, 0.55);
+    transform: rotate(-0.8deg);
+    border-radius: 1px;
+  }
+
+  /* サブタイトル：ステープラーで留めた紙片 */
+  .subtitle-card {
+    display: inline-block;
+    background: #fffef9;
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 10px 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    color: #444;
+    transform: rotate(1.2deg);
+    box-shadow: 3px 4px 8px rgba(0,0,0,0.18), 0 1px 0 rgba(0,0,0,0.08);
+    position: relative;
+    margin-left: 12px;
+  }
+
+  /* ステープラーの跡 */
+  .subtitle-card::before,
+  .subtitle-card::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    width: 18px;
+    height: 5px;
+    background: #888;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .subtitle-card::before { left: 20px; transform: rotate(-1deg); }
+  .subtitle-card::after  { left: 55px; transform: rotate(0.5deg); }
+
+  /* ナビ */
+  nav {
+    margin: 28px 0 40px;
+    position: relative;
+  }
+
+  .nav-inner {
+    display: inline-flex;
+    gap: 0;
+    background: #1a1a1a;
+    padding: 0;
+    clip-path: polygon(
+      0 0, 100% 0, 100% 70%, 98% 80%, 100% 90%, 98% 100%,
+      2% 100%, 0% 88%, 2% 76%, 0% 66%
+    );
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 12px 22px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #f5f0e8;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    transition: background 0.15s;
+  }
+
+  nav a:last-child { border-right: none; }
+
+  nav a:hover {
+    background: rgba(192, 57, 43, 0.7);
+  }
+
+  /* スタンプ風区切り線 */
+  .nav-stamp {
+    display: inline-block;
+    border: 2px dashed #1a1a1a;
+    color: #c0392b;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 3px 12px;
+    margin-left: 20px;
+    transform: rotate(-2deg);
+    vertical-align: middle;
+    opacity: 0.7;
+  }
+
+  /* セクションタイトル */
+  .section-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #666;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 4px;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '✂ - - - - - - -';
+    color: #999;
+    font-size: 10px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* 記事カードグリッド */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 32px;
+    padding: 20px 10px 40px;
+    position: relative;
+  }
+
+  /* コーヒーシミ（グリッド内） */
+  .cards-grid::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 38%;
+    width: 100px;
+    height: 92px;
+    border-radius: 52% 48% 50% 50% / 48% 52% 50% 52%;
+    background: radial-gradient(ellipse, rgba(101, 67, 33, 0.07) 30%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 20px 18px 18px;
+    position: relative;
+    box-shadow: 4px 6px 14px rgba(0,0,0,0.12), 1px 1px 0 rgba(0,0,0,0.06);
+    z-index: 1;
+  }
+
+  /* テープ風上部装飾 */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 60px;
+    height: 18px;
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  .card-1 { transform: rotate(-3deg); }
+  .card-2 { transform: rotate(2deg); }
+  .card-3 { transform: rotate(-1.5deg); }
+  .card-4 { transform: rotate(4deg); }
+  .card-5 { transform: rotate(-2deg); }
+
+  .card-1::before { background: rgba(192, 57, 43, 0.35); width: 55px; transform: translateX(-50%) rotate(2deg); }
+  .card-2::before { background: rgba(100, 130, 80, 0.4); width: 70px; transform: translateX(-50%) rotate(-1.5deg); }
+  .card-3::before { background: rgba(192, 57, 43, 0.3); width: 50px; transform: translateX(-50%) rotate(1deg); }
+  .card-4::before { background: rgba(180, 140, 160, 0.45); width: 65px; transform: translateX(-50%) rotate(-2deg); }
+  .card-5::before { background: rgba(100, 130, 80, 0.35); width: 58px; transform: translateX(-50%) rotate(1.5deg); }
+
+  /* 赤ペン書き込み風注釈（一部カードのみ） */
+  .card-annotation {
+    position: absolute;
+    font-family: cursive, 'Comic Sans MS', sans-serif;
+    font-size: 11px;
+    color: #c0392b;
+    transform: rotate(-12deg);
+    pointer-events: none;
+    line-height: 1.2;
+  }
+
+  .card-1 .card-annotation {
+    top: -22px;
+    right: 8px;
+    content: '';
+  }
+
+  .card-4 .card-annotation {
+    bottom: 12px;
+    right: -30px;
+    transform: rotate(8deg);
+  }
+
+  .card-date {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1a1a1a;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 12px;
+  }
+
+  .card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card-title a:hover {
+    text-decoration: underline;
+    text-decoration-color: #c0392b;
+  }
+
+  /* カードごとにタイトルフォント変化 */
+  .card-1 .card-title { font-family: 'Times New Roman', Times, serif; }
+  .card-2 .card-title { font-family: 'Courier New', Courier, monospace; font-size: 15px; }
+  .card-3 .card-title { font-family: Georgia, serif; }
+  .card-4 .card-title { font-family: system-ui, sans-serif; font-size: 16px; }
+  .card-5 .card-title { font-family: 'Times New Roman', Times, serif; font-style: italic; }
+
+  /* タグ：スタンプ風 */
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 2px solid currentColor;
+  }
+
+  .tag-shogi   { color: #556b2f; border-color: #556b2f; }
+  .tag-claude  { color: #1a1a1a; border-color: #1a1a1a; background: #f5f0e8; }
+  .tag-docker  { color: #c0392b; border-color: #c0392b; }
+  .tag-frida   { color: #556b2f; border-color: #556b2f; }
+  .tag-netflix { color: #8b6570; border-color: #8b6570; }
+
+  /* 赤線：手書きっぽいアンダーライン */
+  .underline-red {
+    background: linear-gradient(transparent 75%, rgba(192, 57, 43, 0.4) 75%);
+  }
+
+  /* 側面の破れ目装飾 */
+  .torn-edge-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 100vh;
+    background: repeating-linear-gradient(
+      170deg,
+      #f5f0e8 0px, #f5f0e8 12px,
+      #e8e0d0 12px, #e8e0d0 14px,
+      #f5f0e8 14px, #f5f0e8 26px
+    );
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* サイドバー風区切り */
+  .divider {
+    border: none;
+    border-top: 1px dashed rgba(0,0,0,0.25);
+    margin: 48px 0 36px;
+    position: relative;
+  }
+
+  .divider::after {
+    content: '✦ latest posts ✦';
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f5f0e8;
+    padding: 0 12px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #888;
+  }
+
+  /* フッター */
+  footer {
+    border-top: 2px solid #1a1a1a;
+    margin-top: 60px;
+    padding-top: 24px;
+    position: relative;
+    text-align: center;
+  }
+
+  /* ステープラーの跡 */
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 30px;
+    width: 20px;
+    height: 6px;
+    background: #777;
+    border-radius: 1px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+  }
+
+  footer::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 58px;
+    width: 20px;
+    height: 6px;
+    background: #777;
+    border-radius: 1px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+  }
+
+  .footer-copy {
+    font-family: cursive, 'Comic Sans MS', sans-serif;
+    font-size: 14px;
+    color: #555;
+    letter-spacing: 1px;
+    transform: rotate(-0.5deg);
+    display: inline-block;
+  }
+
+  .footer-note {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    color: #aaa;
+    margin-top: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* 大きめコーヒーシミ（右下） */
+  .stain-corner {
+    position: fixed;
+    bottom: 8%;
+    right: 2%;
+    width: 140px;
+    height: 128px;
+    border-radius: 45% 55% 52% 48% / 50% 47% 53% 50%;
+    background: radial-gradient(ellipse, rgba(101, 67, 33, 0.08) 20%, rgba(101, 67, 33, 0.03) 55%, transparent 72%);
+    border: 1px solid rgba(101, 67, 33, 0.05);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* カード span アノテーション用 */
+  .anno {
+    font-family: cursive, 'Comic Sans MS', sans-serif;
+    color: #c0392b;
+    font-size: 11px;
+    transform: rotate(-10deg);
+    display: inline-block;
+    position: absolute;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="torn-edge-left"></div>
+<div class="stain-corner"></div>
+
+<div class="wrapper">
+
+  <!-- ヘッダー -->
+  <header>
+    <div class="title-cluster">
+      <span class="title-under">Under</span>
+      <span class="title-plus">+</span>
+      <span class="title-ground">Ground</span>
+      <div class="title-tape"></div>
+    </div>
+
+    <div class="subtitle-card">
+      えむいーと愉快な仲間たちの平凡な技術ブログ。ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+    </div>
+  </header>
+
+  <!-- ナビ -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#">Blog</a>
+      <a href="#">Authors</a>
+      <a href="#">Tags</a>
+      <a href="#">About</a>
+      <a href="#">Search</a>
+    </div>
+    <span class="nav-stamp">zine vol.∞</span>
+  </nav>
+
+  <hr class="divider">
+
+  <!-- セクションラベル -->
+  <div class="section-label">Recent Posts</div>
+
+  <!-- 記事カード -->
+  <div class="cards-grid">
+
+    <!-- Card 1 -->
+    <article class="card card-1">
+      <span class="anno" style="top:-18px;right:6px;transform:rotate(-8deg);">NEW!</span>
+      <div class="card-date">2026-06-12</div>
+      <h2 class="card-title">
+        <a href="#">棋桜を便利に使うツールを<span class="underline-red">開発しました</span></a>
+      </h2>
+      <div class="card-tags">
+        <span class="tag tag-shogi">Shogi</span>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="card card-2">
+      <div class="card-date">2026-04-23</div>
+      <h2 class="card-title">
+        <a href="#">Claude Code……嘘だよな</a>
+      </h2>
+      <div class="card-tags">
+        <span class="tag tag-claude">Claude Code</span>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="card card-3">
+      <div class="card-date">2026-04-09</div>
+      <h2 class="card-title">
+        <a href="#">リバエン専用レポジトリを<span class="underline-red">作成しました</span></a>
+      </h2>
+      <div class="card-tags">
+        <span class="tag tag-docker">Docker</span>
+        <span class="tag tag-frida">Frida</span>
+      </div>
+    </article>
+
+    <!-- Card 4 -->
+    <article class="card card-4">
+      <span class="card-annotation" style="bottom:10px;right:-28px;transform:rotate(7deg);">映画館で！</span>
+      <div class="card-date">2026-03-15</div>
+      <h2 class="card-title">
+        <a href="#">超かぐや姫を映画館で見てきた</a>
+      </h2>
+      <div class="card-tags">
+        <span class="tag tag-netflix">Netflix</span>
+      </div>
+    </article>
+
+    <!-- Card 5 -->
+    <article class="card card-5">
+      <div class="card-date">2026-03-06</div>
+      <h2 class="card-title">
+        <a href="#">超かぐや姫を見てきた感想</a>
+      </h2>
+      <div class="card-tags">
+        <span class="tag tag-netflix">Netflix</span>
+      </div>
+    </article>
+
+  </div>
+  <!-- /cards-grid -->
+
+  <!-- フッター -->
+  <footer>
+    <p class="footer-copy">© Under+Ground — made with ✂ &amp; paste</p>
+    <p class="footer-note">no gods · no cms · just html</p>
+  </footer>
+
+</div>
+<!-- /wrapper -->
+
+</body>
+</html>

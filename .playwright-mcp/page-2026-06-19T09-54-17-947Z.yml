@@ -1,0 +1,128 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: ▸ Field Notes Vol. MMXXVI — Expedition Log
+      - generic [ref=e6]: Under+Ground
+      - generic [ref=e7]:
+        - text: えむいーと愉快な仲間たちの平凡な技術ブログ。
+        - text: ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+    - generic [ref=e8]:
+      - generic [ref=e9]: field
+      - generic [ref=e10]: LOG
+      - generic [ref=e11]: active
+  - navigation [ref=e12]:
+    - link "Blog" [ref=e13] [cursor=pointer]:
+      - /url: "#"
+    - link "Authors" [ref=e14] [cursor=pointer]:
+      - /url: "#"
+    - link "Tags" [ref=e15] [cursor=pointer]:
+      - /url: "#"
+    - link "About" [ref=e16] [cursor=pointer]:
+      - /url: "#"
+    - link "Search" [ref=e17] [cursor=pointer]:
+      - /url: "#"
+  - generic [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]: ▸ Section I — Recent Observations
+        - generic [ref=e23]: 最近の観測記録
+      - generic [ref=e24]:
+        - generic [ref=e25]: "Observer: えむいー et al."
+        - generic [ref=e26]: "Date: 2026-06-19"
+        - generic [ref=e27]: "Status: ONGOING"
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e33]: OBS-001
+          - generic [ref=e34]: 2026-06-12
+          - link "棋桜を便利に使うツールを開発しました" [ref=e35] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e36]:
+            - generic [ref=e37]: "Tag:"
+            - link "Shogi" [ref=e38] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e39]:
+          - generic [ref=e41]: OBS-002
+          - generic [ref=e42]: 2026-04-23
+          - link "Claude Code......嘘だよな" [ref=e43] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e44]:
+            - generic [ref=e45]: "Tag:"
+            - link "Claude Code" [ref=e46] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e49]: — earlier entries —
+        - generic [ref=e51]:
+          - generic [ref=e53]: OBS-003
+          - generic [ref=e54]: 2026-04-09
+          - link "リバエン専用レポジトリを作成しました" [ref=e55] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e56]:
+            - generic [ref=e57]: "Tag:"
+            - link "Docker" [ref=e58] [cursor=pointer]:
+              - /url: "#"
+            - link "Frida" [ref=e59] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e60]:
+          - generic [ref=e62]: OBS-004
+          - generic [ref=e63]: 2026-03-15
+          - link "超かぐや姫を映画館で見てきた" [ref=e64] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e65]:
+            - generic [ref=e66]: "Tag:"
+            - link "Netflix" [ref=e67] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e68]:
+          - generic [ref=e70]: OBS-005
+          - generic [ref=e71]: 2026-03-06
+          - link "超かぐや姫を見てきた感想" [ref=e72] [cursor=pointer]:
+            - /url: "#"
+          - generic [ref=e73]:
+            - generic [ref=e74]: "Tag:"
+            - link "Netflix" [ref=e75] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e76]:
+          - generic [ref=e77]: Under+Ground Field Notes — © 2026 えむいーと愉快な仲間たち
+          - generic [ref=e78]: — p. 1 —
+      - generic [ref=e79]:
+        - generic [ref=e80]:
+          - generic [ref=e81]: ▸ Note to self
+          - generic [ref=e82]:
+            - generic [ref=e83]: •
+            - text: 棋桜ツール、テストまだ！
+          - generic [ref=e84]:
+            - generic [ref=e85]: •
+            - text: Claude Code もう一回試す
+          - generic [ref=e86]:
+            - generic [ref=e87]: •
+            - text: Frida 環境セットアップ
+          - generic [ref=e88]:
+            - generic [ref=e89]: •
+            - text: かぐや姫 Part 2 あるの？
+        - generic [ref=e90]:
+          - generic [ref=e91]: Expedition Stats
+          - generic [ref=e92]:
+            - generic [ref=e93]: Observations
+            - generic [ref=e94]: "5"
+          - generic [ref=e95]:
+            - generic [ref=e96]: Tags
+            - generic [ref=e97]: "5"
+          - generic [ref=e98]:
+            - generic [ref=e99]: Authors
+            - generic [ref=e100]: 3+
+          - generic [ref=e101]:
+            - generic [ref=e102]: Active
+            - generic [ref=e103]: "2026"
+        - generic [ref=e104]:
+          - generic [ref=e105]: Tag Index
+          - generic [ref=e106]:
+            - link "Shogi" [ref=e108] [cursor=pointer]:
+              - /url: "#"
+            - link "Claude Code" [ref=e110] [cursor=pointer]:
+              - /url: "#"
+            - link "Docker" [ref=e112] [cursor=pointer]:
+              - /url: "#"
+            - link "Frida" [ref=e114] [cursor=pointer]:
+              - /url: "#"
+            - link "Netflix" [ref=e116] [cursor=pointer]:
+              - /url: "#"
+  - contentinfo [ref=e117]: UNDER+GROUND FIELD NOTES — EXPEDITION LOG — ALL OBSERVATIONS RESERVED — MMXXVI

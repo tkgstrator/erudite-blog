@@ -14,6 +14,7 @@ Comprehensive guides for configuring Prisma ORM with various database providers.
 ## When to Apply
 
 Reference this skill when:
+
 - Initializing a new Prisma project
 - Switching database providers
 - Configuring connection strings and environment variables
@@ -31,10 +32,10 @@ Reference this skill when:
 
 ## System Prerequisites
 
-- **Node.js 20.19.0+**
-- **TypeScript 5.4.0+**
+- Node.js 20.19.0+
+- TypeScript 5.4.0+
 
-## Bun Runtime
+### Bun Runtime
 
 If you're using Bun, run Prisma CLI commands with `bunx --bun prisma ...` so Prisma uses the Bun runtime instead of falling back to Node.js.
 
@@ -52,15 +53,25 @@ If you're using Bun, run Prisma CLI commands with `bunx --bun prisma ...` so Pri
 
 ## Configuration Files
 
-Your configuration shape depends on the provider and Prisma major version:
+Which files you use depends on the provider and Prisma major version:
 
-1. **All providers** use **`prisma/schema.prisma`**.
-2. **Prisma 7 SQL setups** typically use **`prisma.config.ts`** for datasource URLs.
-3. **MongoDB projects should stay on Prisma 6.x**, keep `url = env("DATABASE_URL")` in the schema, and continue using the classic MongoDB setup.
+- **All providers:** define the schema in `prisma/schema.prisma`.
+- **SQL providers on Prisma 7:** datasource URLs typically go in `prisma.config.ts`.
+- **MongoDB:** stay on Prisma 6.x, keep `url = env("DATABASE_URL")` in `schema.prisma`, and continue using the classic MongoDB setup.
 
-## Driver Adapters
+## MongoDB Exception (Read First)
 
-The standard SQL workflow uses a driver adapter. Choose the adapter and driver for your database and pass the adapter to `PrismaClient`.
+MongoDB does **not** follow the Prisma 7 SQL workflow. For MongoDB projects:
+
+- DO use the latest Prisma 6.x release.
+- DO keep the connection URL in `schema.prisma` via `url = env("DATABASE_URL")`.
+- DON'T move the project to the Prisma 7 SQL adapter setup or `prisma.config.ts` pattern.
+- DON'T install any SQL `@prisma/adapter-*` package.
+- DON'T copy the SQL adapter examples in this file.
+
+## Driver Adapters (SQL Providers)
+
+The standard SQL workflow uses a driver adapter. Choose the adapter and JS driver for your database, then pass the adapter to `PrismaClient`.
 
 | Database | Adapter | JS Driver |
 |----------|---------|-----------|
@@ -72,8 +83,6 @@ The standard SQL workflow uses a driver adapter. Choose the adapter and driver f
 | SQLite | `@prisma/adapter-better-sqlite3` | `better-sqlite3` |
 | SQLite (Turso/LibSQL) | `@prisma/adapter-libsql` | `@libsql/client` |
 | SQL Server | `@prisma/adapter-mssql` | `node-mssql` |
-
-MongoDB should not follow the Prisma 7 SQL adapter workflow. Use the latest Prisma 6.x release for MongoDB projects and do not install a SQL `@prisma/adapter-*` package for it.
 
 Example (PostgreSQL):
 
@@ -91,12 +100,14 @@ const prisma = new PrismaClient({ adapter })
 Prisma Client must be installed and generated for any database.
 
 1. Install Prisma CLI and Prisma Client:
+
    ```bash
    npm install prisma --save-dev
    npm install @prisma/client
    ```
 
-1. Add a generator block (`prisma-client` requires an explicit output path):
+2. Add a generator block. The `prisma-client` provider requires an explicit output path:
+
    ```prisma
    generator client {
      provider = "prisma-client"
@@ -104,12 +115,14 @@ Prisma Client must be installed and generated for any database.
    }
    ```
 
-1. Generate Prisma Client:
+3. Generate Prisma Client:
+
    ```bash
    npx prisma generate
    ```
 
-1. For SQL providers, instantiate Prisma Client with the database-specific driver adapter:
+4. For SQL providers, instantiate Prisma Client with the database-specific driver adapter:
+
    ```typescript
    import { PrismaClient } from '../generated/client'
    import { PrismaPg } from '@prisma/adapter-pg'
@@ -118,11 +131,12 @@ Prisma Client must be installed and generated for any database.
    const prisma = new PrismaClient({ adapter })
    ```
 
-1. Re-run `prisma generate` after every schema change.
+5. Re-run `prisma generate` after every schema change.
 
 ## Quick Reference
 
 ### PostgreSQL
+
 ```prisma
 datasource db {
   provider = "postgresql"
@@ -135,6 +149,7 @@ generator client {
 ```
 
 ### MySQL
+
 ```prisma
 datasource db {
   provider = "mysql"
@@ -147,6 +162,7 @@ generator client {
 ```
 
 ### SQLite
+
 ```prisma
 datasource db {
   provider = "sqlite"
@@ -159,6 +175,7 @@ generator client {
 ```
 
 ### MongoDB
+
 ```prisma
 datasource db {
   provider = "mongodb"
@@ -170,11 +187,11 @@ generator client {
 }
 ```
 
-For MongoDB, stay on the latest Prisma 6.x line and keep the connection URL in `schema.prisma`. Do not move a MongoDB project to the Prisma 7 SQL adapter setup.
+Note the differences from SQL providers: the URL stays in the schema, the generator provider is `prisma-client-js`, and the project stays on the latest Prisma 6.x line (see "MongoDB Exception" above).
 
 ## Rule Files
 
-See individual rule files for detailed setup instructions:
+Detailed setup instructions live in individual rule files:
 
 ```
 references/postgresql.md
@@ -189,4 +206,6 @@ references/prisma-client-setup.md
 
 ## How to Use
 
-Choose the provider reference file for your database, then apply `references/prisma-client-setup.md` to complete client generation and adapter setup. For MongoDB, use `references/mongodb.md` instead of copying the SQL adapter examples or Prisma 7 config pattern.
+1. Open the provider reference file for your database.
+2. Then apply `references/prisma-client-setup.md` to complete client generation and adapter setup.
+3. For MongoDB, use `references/mongodb.md` — do not copy the SQL adapter examples or the Prisma 7 config pattern.

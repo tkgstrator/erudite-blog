@@ -1,0 +1,192 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - text: ╔══════════════════════════════════════════════════════════════════════════════════════╗
+      - text: "║ >> DUNGEON ENTRANCE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ DEPTH: B3F ║"
+      - text: ╚══════════════════════════════════════════════════════════════════════════════════════╝
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: ▼ ENTER THE DUNGEON ▼
+        - generic [ref=e8]: Under+Ground
+        - generic [ref=e9]:
+          - text: ░ えむいーと愉快な仲間たちの平凡な技術ブログ。
+          - text: ░ ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+      - generic [ref=e10]:
+        - generic [ref=e11]: "PARTY: 3 members"
+        - generic [ref=e12]: "FLOORS: B1F – B3F"
+        - generic [ref=e13]: "TREASURES: 5 found"
+        - generic [ref=e14]: "STATUS: EXPLORING"
+  - navigation [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]: ▶
+      - link "[ Blog ]" [ref=e18] [cursor=pointer]:
+        - /url: "#"
+      - link "[ Authors ]" [ref=e19] [cursor=pointer]:
+        - /url: "#"
+      - link "[ Tags ]" [ref=e20] [cursor=pointer]:
+        - /url: "#"
+      - link "[ About ]" [ref=e21] [cursor=pointer]:
+        - /url: "#"
+      - link "[ Search ]" [ref=e22] [cursor=pointer]:
+        - /url: "#"
+  - generic [ref=e23]:
+    - main [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: B1F
+          - generic [ref=e29]: RECENTLY DISCOVERED
+        - generic [ref=e30]:
+          - text: ┌───────────────────────────────────────────────────────────────────────────┐
+          - text: │ ░░░░░░░░░░ [ENTRANCE HALL] ░░░░░░░░░░ 最近発見された宝物が眠る浅層フロア ░░░░░░ │
+          - text: └───────────────────────────────────────────────────────────────────────────┘
+        - generic [ref=e31]:
+          - generic [ref=e32]: B1F-01
+          - generic [ref=e33]:
+            - generic [ref=e34]: ♟
+            - generic [ref=e35]: "#001"
+          - generic [ref=e36]:
+            - link "棋桜を便利に使うツールを開発しました" [ref=e37] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e38]:
+              - generic [ref=e39]: 📅 2026-06-12
+              - link "⚔ Shogi" [ref=e41] [cursor=pointer]:
+                - /url: "#"
+          - text: ▶
+        - generic [ref=e42]:
+          - generic [ref=e43]: B1F-02
+          - generic [ref=e44]:
+            - generic [ref=e45]: 📜
+            - generic [ref=e46]: "#002"
+          - generic [ref=e47]:
+            - link "Claude Code......嘘だよな" [ref=e48] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e49]:
+              - generic [ref=e50]: 📅 2026-04-23
+              - link "✦ Claude Code" [ref=e52] [cursor=pointer]:
+                - /url: "#"
+          - text: ▶
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]: B2F
+          - generic [ref=e57]: DEEPER CHAMBER
+        - generic [ref=e58]:
+          - text: ┌───────────────────────────────────────────────────────────────────────────┐
+          - text: │ ▓▓▓▓▓▓▓▓▓▓ [TOOL FORGE] ▓▓▓▓▓▓▓▓▓▓▓ 開発の記録が刻まれた鍛冶の間 ▓▓▓▓▓▓▓ │
+          - text: └───────────────────────────────────────────────────────────────────────────┘
+        - generic [ref=e59]:
+          - generic [ref=e60]: B2F-01
+          - generic [ref=e61]:
+            - generic [ref=e62]: 🐉
+            - generic [ref=e63]: "#003"
+          - generic [ref=e64]:
+            - link "リバエン専用レポジトリを作成しました" [ref=e65] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e66]:
+              - generic [ref=e67]: 📅 2026-04-09
+              - generic [ref=e68]:
+                - link "☠ Docker" [ref=e69] [cursor=pointer]:
+                  - /url: "#"
+                - link "☠ Frida" [ref=e70] [cursor=pointer]:
+                  - /url: "#"
+          - text: ▶
+      - generic [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e73]: B3F
+          - generic [ref=e75]: DEEP VAULT — ANCIENT RELICS
+        - generic [ref=e76]:
+          - text: ╔═══════════════════════════════════════════════════════════════════════════╗
+          - text: ║ ██████████ [RELIQUARY] ██████████████ 古き記録が眠る最深部の聖域 ██████████║
+          - text: ╚═══════════════════════════════════════════════════════════════════════════╝
+        - generic [ref=e77]:
+          - generic [ref=e78]: B3F-01
+          - generic [ref=e79]:
+            - generic [ref=e80]: 🎬
+            - generic [ref=e81]: "#004"
+          - generic [ref=e82]:
+            - link "超かぐや姫を映画館で見てきた" [ref=e83] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e84]:
+              - generic [ref=e85]: 📅 2026-03-15
+              - link "★ Netflix" [ref=e87] [cursor=pointer]:
+                - /url: "#"
+          - text: ▶
+        - generic [ref=e88]:
+          - generic [ref=e89]: B3F-02
+          - generic [ref=e90]:
+            - generic [ref=e91]: 📖
+            - generic [ref=e92]: "#005"
+          - generic [ref=e93]:
+            - link "超かぐや姫を見てきた感想" [ref=e94] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e95]:
+              - generic [ref=e96]: 📅 2026-03-06
+              - link "★ Netflix" [ref=e98] [cursor=pointer]:
+                - /url: "#"
+          - text: ▶
+    - complementary [ref=e99]:
+      - generic [ref=e100]:
+        - generic [ref=e101]: DUNGEON MAP
+        - generic [ref=e103]: ┌──────────────┐ │ ★ B1F ENTRY │ │ ┌──┐ ┌──┐ │ │ │①│ │②│ │ │ └──┘ └──┘ │ ├──────────────┤ │ ▼ B2F FORGE │ │ ┌────┐ │ │ │ ③ │ │ │ └────┘ │ ├──────────────┤ │ ▼ B3F VAULT │ │ ┌──┐ ┌──┐ │ │ │④│ │⑤│ │ │ └──┘ └──┘ │ │ [BOSS ROOM] │ └──────────────┘
+      - generic [ref=e104]:
+        - generic [ref=e105]: PARTY STATUS
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - generic [ref=e108]: 🧙
+            - generic [ref=e109]:
+              - generic [ref=e110]: えむいー
+              - generic [ref=e111]: MAGE / HACKER
+          - generic [ref=e114]:
+            - generic [ref=e115]: ⚔
+            - generic [ref=e116]:
+              - generic [ref=e117]: party member
+              - generic [ref=e118]: WARRIOR / DEV
+          - generic [ref=e121]:
+            - generic [ref=e122]: 🏹
+            - generic [ref=e123]:
+              - generic [ref=e124]: party member
+              - generic [ref=e125]: RANGER / OPS
+      - generic [ref=e128]:
+        - generic [ref=e129]: MOB / ITEM INDEX
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - generic [ref=e132]: ☠
+            - generic [ref=e133]:
+              - generic [ref=e134]: MOB TAG
+              - generic [ref=e135]: 危険・ハック・解析系
+          - generic [ref=e136]:
+            - generic [ref=e137]: ⚔
+            - generic [ref=e138]:
+              - generic [ref=e139]: ITEM TAG
+              - generic [ref=e140]: ツール・成果物・レビュー
+          - generic [ref=e141]:
+            - generic [ref=e142]: ✦
+            - generic [ref=e143]:
+              - generic [ref=e144]: SPELL TAG
+              - generic [ref=e145]: AI・魔法・新技術系
+      - generic [ref=e146]:
+        - generic [ref=e147]: EVENT LOG
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - generic [ref=e151]: 06-12
+            - generic [ref=e152]: 新アイテム発見！
+          - generic [ref=e153]:
+            - generic [ref=e154]: 04-23
+            - generic [ref=e155]: 魔法書入手。
+          - generic [ref=e156]:
+            - generic [ref=e157]: 04-09
+            - generic [ref=e158]: モブ撃破！
+          - generic [ref=e159]:
+            - generic [ref=e160]: 03-15
+            - generic [ref=e161]: 秘宝発見。
+          - generic [ref=e162]:
+            - generic [ref=e163]: 03-06
+            - generic [ref=e164]: 記録を刻む。
+          - generic [ref=e165]:
+            - generic [ref=e166]: ">>"
+            - generic [ref=e167]: ■
+  - contentinfo [ref=e168]:
+    - generic [ref=e169]:
+      - text: ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+      - text: ░░ YOU HAVE REACHED THE BOTTOM OF THE DUNGEON. STAIRS AHEAD. ░░░░░░░░░░░░░░░░░
+      - text: ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    - text: © 2026 Under+Ground — えむいーと愉快な仲間たちの平凡な技術ブログ | All treasures reserved.

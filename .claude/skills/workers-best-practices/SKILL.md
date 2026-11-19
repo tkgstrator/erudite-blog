@@ -3,11 +3,13 @@ name: workers-best-practices
 description: Reviews and authors Cloudflare Workers code against production best practices. Load when writing new Workers, reviewing Worker code, configuring wrangler.jsonc, or checking for common Workers anti-patterns (streaming, floating promises, global state, secrets, bindings, observability). Biases towards retrieval from Cloudflare docs over pre-trained knowledge.
 ---
 
-Your knowledge of Cloudflare Workers APIs, types, and configuration may be outdated. **Prefer retrieval over pre-training** for any Workers code task — writing or reviewing.
+# Cloudflare Workers Best Practices
 
-## Retrieval Sources
+**Core principle: prefer retrieval over pre-training.** Your baked-in knowledge of Cloudflare Workers APIs, types, and configuration may be outdated. Do not rely on it for API signatures, config fields, or binding shapes — fetch the latest references first, for every Workers task (writing or reviewing).
 
-Fetch the **latest** versions before writing or reviewing Workers code. Do not rely on baked-in knowledge for API signatures, config fields, or binding shapes.
+## Step 1 (always first): Fetch Latest References
+
+Before writing or reviewing any Workers code, retrieve the current best practices page and the relevant type definitions.
 
 | Source | How to retrieve | Use for |
 |--------|----------------|---------|
@@ -16,9 +18,7 @@ Fetch the **latest** versions before writing or reviewing Workers code. Do not r
 | Wrangler config schema | `node_modules/wrangler/config-schema.json` | Config fields, binding shapes, allowed values |
 | Cloudflare docs | Search tool or `https://developers.cloudflare.com/workers/` | API reference, compatibility dates/flags |
 
-## FIRST: Fetch Latest References
-
-Before reviewing or writing Workers code, retrieve the current best practices page and relevant type definitions. If the project's `node_modules` has an older version, **prefer the latest published version**.
+If the project's `node_modules` has an older version of the types, **prefer the latest published version**, fetched like this:
 
 ```bash
 # Fetch latest workers types
@@ -28,12 +28,12 @@ mkdir -p /tmp/workers-types-latest && \
 # Types at /tmp/workers-types-latest/package/index.d.ts
 ```
 
-## Reference Documentation
+## Reference Documentation (in this skill)
 
 - `references/rules.md` — all best practice rules with code examples and anti-patterns
 - `references/review.md` — type validation, config validation, binding access patterns, review process
 
-## Rules Quick Reference
+## Rules Quick Reference (DO)
 
 ### Configuration
 
@@ -81,7 +81,9 @@ mkdir -p /tmp/workers-types-latest && \
 | Web Crypto | Use `crypto.randomUUID()` / `crypto.getRandomValues()` — never `Math.random()` for security |
 | No passThroughOnException | Use explicit try/catch with structured error responses |
 
-## Anti-Patterns to Flag
+## Anti-Patterns to Flag (DON'T)
+
+Flag any of these when reviewing; never produce them when writing.
 
 | Anti-pattern | Why it matters |
 |-------------|----------------|
@@ -102,7 +104,9 @@ mkdir -p /tmp/workers-types-latest && \
 
 ## Review Workflow
 
-1. **Retrieve** — fetch latest best practices page, workers types, and wrangler schema
+Follow these steps in order:
+
+1. **Retrieve** — fetch latest best practices page, workers types, and wrangler schema (Step 1 above)
 2. **Read full files** — not just diffs; context matters for binding access patterns
 3. **Check types** — binding access, handler signatures, no `any`, no unsafe casts (see `references/review.md`)
 4. **Check config** — compatibility_date, nodejs_compat, observability, secrets, binding-code consistency
@@ -113,11 +117,11 @@ mkdir -p /tmp/workers-types-latest && \
 
 ## Scope
 
-This skill covers Workers-specific best practices and code review. For related topics:
+This skill covers Workers-specific best practices and code review only. For related topics, use these instead:
 
-- **Durable Objects**: load the `durable-objects` skill
-- **Workflows**: see [Rules of Workflows](https://developers.cloudflare.com/workflows/build/rules-of-workflows/)
-- **Wrangler CLI commands**: load the `wrangler` skill
+- **Durable Objects** — load the `durable-objects` skill
+- **Workflows** — see [Rules of Workflows](https://developers.cloudflare.com/workflows/build/rules-of-workflows/)
+- **Wrangler CLI commands** — load the `wrangler` skill
 
 ## Principles
 

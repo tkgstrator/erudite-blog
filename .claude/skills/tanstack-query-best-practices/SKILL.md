@@ -5,9 +5,11 @@ description: TanStack Query (React Query) best practices for data fetching, cach
 
 # TanStack Query Best Practices
 
-Comprehensive guidelines for implementing TanStack Query (React Query) patterns in React applications. These rules optimize data fetching, caching, mutations, and server state synchronization.
+Guidelines for implementing TanStack Query (React Query) patterns in React applications, covering data fetching, caching, mutations, and server state synchronization.
 
 ## When to Apply
+
+Apply these rules when:
 
 - Creating new data fetching logic
 - Setting up query configurations
@@ -33,7 +35,9 @@ Comprehensive guidelines for implementing TanStack Query (React Query) patterns 
 
 ## Quick Reference
 
-### Query Keys (Prefix: `qk-`)
+Categories below are ordered by priority (CRITICAL → LOW). Each entry is a rule ID followed by its summary.
+
+### Query Keys (CRITICAL, prefix: `qk-`)
 
 - `qk-array-structure` — Always use arrays for query keys
 - `qk-include-dependencies` — Include all variables the query depends on
@@ -41,7 +45,7 @@ Comprehensive guidelines for implementing TanStack Query (React Query) patterns 
 - `qk-factory-pattern` — Use query key factories for complex applications
 - `qk-serializable` — Ensure all key parts are JSON-serializable
 
-### Caching (Prefix: `cache-`)
+### Caching (CRITICAL, prefix: `cache-`)
 
 - `cache-stale-time` — Set appropriate staleTime based on data volatility
 - `cache-gc-time` — Configure gcTime for inactive query retention
@@ -49,7 +53,7 @@ Comprehensive guidelines for implementing TanStack Query (React Query) patterns 
 - `cache-invalidation` — Use targeted invalidation over broad patterns
 - `cache-placeholder-vs-initial` — Understand placeholder vs initial data differences
 
-### Mutations (Prefix: `mut-`)
+### Mutations (HIGH, prefix: `mut-`)
 
 - `mut-invalidate-queries` — Always invalidate related queries after mutations
 - `mut-optimistic-updates` — Implement optimistic updates for responsive UI
@@ -58,57 +62,54 @@ Comprehensive guidelines for implementing TanStack Query (React Query) patterns 
 - `mut-loading-states` — Use isPending for mutation loading states
 - `mut-mutation-state` — Use useMutationState for cross-component tracking
 
-### Error Handling (Prefix: `err-`)
+### Error Handling (HIGH, prefix: `err-`)
 
 - `err-error-boundaries` — Use error boundaries with useQueryErrorResetBoundary
 - `err-retry-config` — Configure retry logic appropriately
 - `err-fallback-data` — Provide fallback data when appropriate
 
-### Prefetching (Prefix: `pf-`)
+### Prefetching (MEDIUM, prefix: `pf-`)
 
 - `pf-intent-prefetch` — Prefetch on user intent (hover, focus)
 - `pf-route-prefetch` — Prefetch data during route transitions
 - `pf-stale-time-config` — Set staleTime when prefetching
 - `pf-ensure-query-data` — Use ensureQueryData for conditional prefetching
 
-### Infinite Queries (Prefix: `inf-`)
+### Parallel Queries (MEDIUM, prefix: `parallel-`)
+
+- `parallel-use-queries` — Use useQueries for dynamic parallel queries
+- `query-cancellation` — Implement query cancellation properly
+
+### Infinite Queries (MEDIUM, prefix: `inf-`)
 
 - `inf-page-params` — Always provide getNextPageParam
 - `inf-loading-guards` — Check isFetchingNextPage before fetching more
 - `inf-max-pages` — Consider maxPages for large datasets
 
-### SSR Integration (Prefix: `ssr-`)
+### SSR Integration (MEDIUM, prefix: `ssr-`)
 
 - `ssr-dehydration` — Use dehydrate/hydrate pattern for SSR
 - `ssr-client-per-request` — Create QueryClient per request
 - `ssr-stale-time-server` — Set higher staleTime on server
 - `ssr-hydration-boundary` — Wrap with HydrationBoundary
 
-### Parallel Queries (Prefix: `parallel-`)
-
-- `parallel-use-queries` — Use useQueries for dynamic parallel queries
-- `query-cancellation` — Implement query cancellation properly
-
-### Performance (Prefix: `perf-`)
+### Performance (LOW, prefix: `perf-`)
 
 - `perf-select-transform` — Use select to transform/filter data
 - `perf-structural-sharing` — Leverage structural sharing
 - `perf-notify-change-props` — Limit re-renders with notifyOnChangeProps
 - `perf-placeholder-data` — Use placeholderData for instant UI
 
-### Offline Support (Prefix: `offline-`)
+### Offline Support (LOW, prefix: `offline-`)
 
 - `network-mode` — Configure network mode for offline support
 - `persist-queries` — Configure query persistence for offline support
 
 ## How to Use
 
-Each rule file in the `rules/` directory contains:
+For detailed guidance and code examples, read the individual rule files in the `rules/` directory. Each rule file contains:
+
 1. **Explanation** — Why this pattern matters
 2. **Bad Example** — Anti-pattern to avoid
 3. **Good Example** — Recommended implementation
 4. **Context** — When to apply or skip this rule
-
-## Full Reference
-
-See individual rule files in `rules/` directory for detailed guidance and code examples.

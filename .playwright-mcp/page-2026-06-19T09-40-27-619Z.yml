@@ -1,0 +1,153 @@
+- generic [ref=e2]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Logo Under+Ground" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "Logo" [ref=e7]
+        - generic [ref=e8]: Under+Ground
+      - generic [ref=e9]:
+        - navigation [ref=e10]:
+          - link "blog" [ref=e11] [cursor=pointer]:
+            - /url: /blog
+          - link "authors" [ref=e12] [cursor=pointer]:
+            - /url: /authors
+          - link "tags" [ref=e13] [cursor=pointer]:
+            - /url: /tags
+          - link "about" [ref=e14] [cursor=pointer]:
+            - /url: /about
+          - link "search" [ref=e15] [cursor=pointer]:
+            - /url: /search
+        - button "Toggle theme" [ref=e16]:
+          - img
+          - img
+          - generic [ref=e17]: Toggle theme
+  - main [ref=e18]:
+    - generic [ref=e20]:
+      - generic [ref=e22]:
+        - heading "Welcome to UnderGround" [level=3] [ref=e24]
+        - generic [ref=e25]:
+          - paragraph [ref=e26]: This is a technical blog focused on reverse engineering, data visualization, and game analytics. Here, you'll find insights, tools, and open-source projects aimed at empowering developers and enthusiasts alike.
+          - paragraph [ref=e27]: Explore articles, tutorials, and resources that delve into the fascinating world of technology and creative problem-solving.
+      - generic [ref=e28]:
+        - heading "Latest posts" [level=2] [ref=e29]
+        - list [ref=e30]:
+          - listitem [ref=e31]:
+            - link "棋桜を便利に使うツールを開発しました 将棋ウォーズの一強に一石を投じるサービスになるでしょうか t tkgstrator June 12, 2026 1 min read Shogi" [ref=e33] [cursor=pointer]:
+              - /url: /blog/2026/06/kiou
+              - generic [ref=e34]:
+                - heading "棋桜を便利に使うツールを開発しました" [level=3] [ref=e35]
+                - paragraph [ref=e36]: 将棋ウォーズの一強に一石を投じるサービスになるでしょうか
+                - generic [ref=e37]:
+                  - generic [ref=e38]:
+                    - generic [ref=e41]: t
+                    - generic [ref=e42]: tkgstrator
+                  - generic [ref=e43]: June 12, 2026
+                  - generic [ref=e44]: 1 min read
+                - generic [ref=e46]:
+                  - img
+                  - text: Shogi
+          - listitem [ref=e47]:
+            - link "Claude Code......嘘だよな Claude Codeを使いまくっていたらレートリミットに引っかかりました t tkgstrator April 23, 2026 1 min read Claude Code" [ref=e49] [cursor=pointer]:
+              - /url: /blog/2026/04/claude_code
+              - generic [ref=e50]:
+                - heading "Claude Code......嘘だよな" [level=3] [ref=e51]
+                - paragraph [ref=e52]: Claude Codeを使いまくっていたらレートリミットに引っかかりました
+                - generic [ref=e53]:
+                  - generic [ref=e54]:
+                    - generic [ref=e57]: t
+                    - generic [ref=e58]: tkgstrator
+                  - generic [ref=e59]: April 23, 2026
+                  - generic [ref=e60]: 1 min read
+                - generic [ref=e62]:
+                  - img
+                  - text: Claude Code
+          - listitem [ref=e63]:
+            - link "リバエン専用レポジトリを作成しました リバースエンジニアリングの環境開発がめんどくさかったので全部コンテナにしました t tkgstrator April 9, 2026 1 min read Docker Dev Container Claude Code VSCode Frida Ghidra Mitmproxy" [ref=e65] [cursor=pointer]:
+              - /url: /blog/2026/04/revkit
+              - generic [ref=e66]:
+                - heading "リバエン専用レポジトリを作成しました" [level=3] [ref=e67]
+                - paragraph [ref=e68]: リバースエンジニアリングの環境開発がめんどくさかったので全部コンテナにしました
+                - generic [ref=e69]:
+                  - generic [ref=e70]:
+                    - generic [ref=e73]: t
+                    - generic [ref=e74]: tkgstrator
+                  - generic [ref=e75]: April 9, 2026
+                  - generic [ref=e76]: 1 min read
+                - generic [ref=e77]:
+                  - generic [ref=e78]:
+                    - img
+                    - text: Docker
+                  - generic [ref=e79]:
+                    - img
+                    - text: Dev Container
+                  - generic [ref=e80]:
+                    - img
+                    - text: Claude Code
+                  - generic [ref=e81]:
+                    - img
+                    - text: VSCode
+                  - generic [ref=e82]:
+                    - img
+                    - text: Frida
+                  - generic [ref=e83]:
+                    - img
+                    - text: Ghidra
+                  - generic [ref=e84]:
+                    - img
+                    - text: Mitmproxy
+          - listitem [ref=e85]:
+            - link "超かぐや姫を映画館で見てきた SNSで話題になっている超かぐや姫を見てきた感想です t tkgstrator March 15, 2026 1 min read Netflix" [ref=e87] [cursor=pointer]:
+              - /url: /blog/2026/03/cosmic_princess_kaguya_v2
+              - generic [ref=e88]:
+                - heading "超かぐや姫を映画館で見てきた" [level=3] [ref=e89]
+                - paragraph [ref=e90]: SNSで話題になっている超かぐや姫を見てきた感想です
+                - generic [ref=e91]:
+                  - generic [ref=e92]:
+                    - generic [ref=e95]: t
+                    - generic [ref=e96]: tkgstrator
+                  - generic [ref=e97]: March 15, 2026
+                  - generic [ref=e98]: 1 min read
+                - generic [ref=e100]:
+                  - img
+                  - text: Netflix
+          - listitem [ref=e101]:
+            - link "超かぐや姫を見てきた感想 SNSで話題になっている超かぐや姫を見てきた感想です t tkgstrator March 6, 2026 1 min read Netflix" [ref=e103] [cursor=pointer]:
+              - /url: /blog/2026/03/cosmic_princess_kaguya
+              - generic [ref=e104]:
+                - heading "超かぐや姫を見てきた感想" [level=3] [ref=e105]
+                - paragraph [ref=e106]: SNSで話題になっている超かぐや姫を見てきた感想です
+                - generic [ref=e107]:
+                  - generic [ref=e108]:
+                    - generic [ref=e111]: t
+                    - generic [ref=e112]: tkgstrator
+                  - generic [ref=e113]: March 6, 2026
+                  - generic [ref=e114]: 1 min read
+                - generic [ref=e116]:
+                  - img
+                  - text: Netflix
+        - link "See all posts →" [ref=e118] [cursor=pointer]:
+          - /url: /blog
+          - text: See all posts
+          - generic [ref=e119]: →
+  - contentinfo [ref=e120]:
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - generic [ref=e123]: © 2026 All rights reserved.
+        - paragraph [ref=e124]:
+          - text: Made by
+          - link "enscribe" [ref=e125] [cursor=pointer]:
+            - /url: https://github.com/jktrn
+          - text: "!"
+      - list [ref=e126]:
+        - listitem [ref=e127]:
+          - link "GitHub" [ref=e128] [cursor=pointer]:
+            - /url: https://github.com/tkgstrator
+            - img
+        - listitem [ref=e129]:
+          - link "Twitter" [ref=e130] [cursor=pointer]:
+            - /url: https://twitter.com/tkgling
+            - img
+        - listitem [ref=e131]:
+          - link "Email" [ref=e132] [cursor=pointer]:
+            - /url: mailto:tkgstrator@qleap.jp
+            - img

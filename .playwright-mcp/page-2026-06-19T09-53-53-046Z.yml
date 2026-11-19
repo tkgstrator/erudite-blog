@@ -1,0 +1,184 @@
+- generic [ref=e2]:
+  - generic [ref=e7]: zsh — under+ground — 220x52
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]: "# Session started — Thu Jun 19 2026 JST"
+      - generic [ref=e11]: "# Welcome to Under+Ground Blog Terminal v2.6.0"
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: emue
+        - generic [ref=e15]: "@"
+        - generic [ref=e16]: underground
+        - generic [ref=e17]: ":"
+        - generic [ref=e18]: ~
+        - generic [ref=e19]: (main)
+        - generic [ref=e20]: $
+        - generic [ref=e21]: whoami && cat welcome.txt
+      - generic [ref=e22]:
+        - generic [ref=e23]: emue — えむいーと愉快な仲間たち
+        - generic [ref=e24]:
+          - strong [ref=e25]: Under+Ground
+          - text: へようこそ。
+          - text: えむいーと愉快な仲間たちの平凡な技術ブログ。
+          - text: ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+          - text: "motto : \"hack everything, document the wreckage\""
+          - text: "uptime : 2026-06-19 — running since forever"
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - generic [ref=e28]: emue
+        - generic [ref=e29]: "@"
+        - generic [ref=e30]: underground
+        - generic [ref=e31]: ":"
+        - generic [ref=e32]: ~
+        - generic [ref=e33]: (main)
+        - generic [ref=e34]: $
+        - generic [ref=e35]: "ps aux | grep -E \"blog|nav\" | awk '{print $1, $11}'"
+      - generic [ref=e36]:
+        - generic [ref=e37]: "# navigation processes"
+        - generic [ref=e38]:
+          - link "PID 101./blog" [ref=e39] [cursor=pointer]:
+            - /url: "#"
+          - link "PID 102./authors" [ref=e40] [cursor=pointer]:
+            - /url: "#"
+          - link "PID 103./tags" [ref=e41] [cursor=pointer]:
+            - /url: "#"
+          - link "PID 104./about" [ref=e42] [cursor=pointer]:
+            - /url: "#"
+          - link "PID 105./search" [ref=e43] [cursor=pointer]:
+            - /url: "#"
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e46]: emue
+        - generic [ref=e47]: "@"
+        - generic [ref=e48]: underground
+        - generic [ref=e49]: ":"
+        - generic [ref=e50]: ~
+        - generic [ref=e51]: (main)
+        - generic [ref=e52]: $
+        - generic [ref=e53]: ls -la /posts --sort=date | head -6
+      - generic [ref=e54]:
+        - generic [ref=e55]: "# total 5 entries (showing latest)"
+        - table [ref=e56]:
+          - rowgroup [ref=e57]:
+            - row "-rw-r--r-- 1 emue 4.2K Jun 12 09:31 棋桜を便利に使うツールを開発しました.md Shogi" [ref=e58]:
+              - cell "-rw-r--r--" [ref=e59]
+              - cell "1" [ref=e60]
+              - cell "emue" [ref=e61]
+              - cell "4.2K" [ref=e62]
+              - cell "Jun 12 09:31" [ref=e63]
+              - cell "棋桜を便利に使うツールを開発しました.md Shogi" [ref=e64]:
+                - text: 棋桜を便利に使うツールを開発しました.md
+                - generic [ref=e65]: Shogi
+            - row "-rw-r--r-- 1 emue 8.7K Apr 23 23:14 Claude_Code……嘘だよな.md Claude Code" [ref=e66]:
+              - cell "-rw-r--r--" [ref=e67]
+              - cell "1" [ref=e68]
+              - cell "emue" [ref=e69]
+              - cell "8.7K" [ref=e70]
+              - cell "Apr 23 23:14" [ref=e71]
+              - cell "Claude_Code……嘘だよな.md Claude Code" [ref=e72]:
+                - text: Claude_Code……嘘だよな.md
+                - generic [ref=e73]: Claude Code
+            - row "-rw-r--r-- 1 emue 3.1K Apr 9 18:05 リバエン専用レポジトリを作成しました.md Docker Frida" [ref=e74]:
+              - cell "-rw-r--r--" [ref=e75]
+              - cell "1" [ref=e76]
+              - cell "emue" [ref=e77]
+              - cell "3.1K" [ref=e78]
+              - cell "Apr 9 18:05" [ref=e79]
+              - cell "リバエン専用レポジトリを作成しました.md Docker Frida" [ref=e80]:
+                - text: リバエン専用レポジトリを作成しました.md
+                - generic [ref=e81]: Docker
+                - generic [ref=e82]: Frida
+            - row "-rw-r--r-- 1 emue 2.9K Mar 15 14:22 超かぐや姫を映画館で見てきた.md Netflix" [ref=e83]:
+              - cell "-rw-r--r--" [ref=e84]
+              - cell "1" [ref=e85]
+              - cell "emue" [ref=e86]
+              - cell "2.9K" [ref=e87]
+              - cell "Mar 15 14:22" [ref=e88]
+              - cell "超かぐや姫を映画館で見てきた.md Netflix" [ref=e89]:
+                - text: 超かぐや姫を映画館で見てきた.md
+                - generic [ref=e90]: Netflix
+            - row "-rw-r--r-- 1 emue 5.6K Mar 6 11:48 超かぐや姫を見てきた感想.md Netflix" [ref=e91]:
+              - cell "-rw-r--r--" [ref=e92]
+              - cell "1" [ref=e93]
+              - cell "emue" [ref=e94]
+              - cell "5.6K" [ref=e95]
+              - cell "Mar 6 11:48" [ref=e96]
+              - cell "超かぐや姫を見てきた感想.md Netflix" [ref=e97]:
+                - text: 超かぐや姫を見てきた感想.md
+                - generic [ref=e98]: Netflix
+    - generic [ref=e99]:
+      - generic [ref=e100]:
+        - generic [ref=e101]: emue
+        - generic [ref=e102]: "@"
+        - generic [ref=e103]: underground
+        - generic [ref=e104]: ":"
+        - generic [ref=e105]: ~
+        - generic [ref=e106]: (main)
+        - generic [ref=e107]: $
+        - generic [ref=e108]: head -4 /posts/棋桜を便利に使うツールを開発しました.md
+      - generic [ref=e110]:
+        - text: "---"
+        - strong [ref=e111]: "title:"
+        - text: 棋桜を便利に使うツールを開発しました
+        - strong [ref=e112]: "date:"
+        - text: 2026-06-12
+        - strong [ref=e113]: "tags:"
+        - text: "[Shogi]"
+        - text: "---"
+        - text: 将棋の棋桜をより便利に使うための CLI ツールを Rust で書いた話...
+    - generic [ref=e114]:
+      - generic [ref=e115]:
+        - generic [ref=e116]: emue
+        - generic [ref=e117]: "@"
+        - generic [ref=e118]: underground
+        - generic [ref=e119]: ":"
+        - generic [ref=e120]: ~
+        - generic [ref=e121]: (main)
+        - generic [ref=e122]: $
+        - generic [ref=e123]: "grep -r \"tags:\" /posts/ | awk -F': ' '{print $2}' | sort | uniq -c | sort -rn"
+      - generic [ref=e124]:
+        - generic [ref=e125]: 15 Nintendo Switch
+        - generic [ref=e126]: 12 Claude Code
+        - generic [ref=e127]: 9 Shogi
+        - generic [ref=e128]: 8 Netflix
+        - generic [ref=e129]: 7 Docker
+        - generic [ref=e130]: 6 Frida
+        - generic [ref=e131]: ... (and 23 more)
+    - generic [ref=e132]:
+      - generic [ref=e133]:
+        - generic [ref=e134]: emue
+        - generic [ref=e135]: "@"
+        - generic [ref=e136]: underground
+        - generic [ref=e137]: ":"
+        - generic [ref=e138]: ~/blog
+        - generic [ref=e139]: (main)
+        - generic [ref=e140]: $
+        - generic [ref=e141]: git log --oneline --decorate -5
+      - generic [ref=e142]:
+        - generic [ref=e143]: "a3f2c1d (HEAD → main, origin/main) post: 棋桜を便利に使うツールを開発しました"
+        - generic [ref=e144]: "8b91e04 post: Claude Code......嘘だよな"
+        - generic [ref=e145]: "4d70a2f post: リバエン専用レポジトリを作成しました"
+        - generic [ref=e146]: "c19e583 post: 超かぐや姫を映画館で見てきた"
+        - generic [ref=e147]: "f80b341 post: 超かぐや姫を見てきた感想"
+    - generic [ref=e148]:
+      - generic [ref=e149]:
+        - generic [ref=e150]: emue
+        - generic [ref=e151]: "@"
+        - generic [ref=e152]: underground
+        - generic [ref=e153]: ":"
+        - generic [ref=e154]: ~/blog
+        - generic [ref=e155]: (main)
+        - generic [ref=e156]: $
+        - generic [ref=e157]: uptime && df -h /posts
+      - generic [ref=e158]:
+        - generic [ref=e159]: "19:03:42 up 4 years, 207 days, 3 authors, load average: 0.12, 0.08, 0.05"
+        - generic [ref=e160]: "# Filesystem Size Used Avail Use% Mounted on"
+        - generic [ref=e161]: /dev/blog 128G 42G 86G 33% /posts
+    - generic [ref=e163]:
+      - generic [ref=e164]: emue
+      - generic [ref=e165]: "@"
+      - generic [ref=e166]: underground
+      - generic [ref=e167]: ":"
+      - generic [ref=e168]: ~/blog
+      - generic [ref=e169]: (main)
+      - generic [ref=e170]: $

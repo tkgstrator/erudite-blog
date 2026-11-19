@@ -5,7 +5,11 @@ description: Bun workspace monorepo pattern that boots a Vite + React frontend W
 
 # Cloudflare Monorepo + Vite Plugin + Auxiliary Workers
 
-A Bun workspace monorepo pattern where a single Vite dev server boots the **frontend Worker and multiple backend Workers** at once. The frontend is a React SPA, the backend is wired with Hono + Service Bindings, and the DB Worker isolates Prisma + D1.
+A Bun workspace monorepo pattern where a single Vite dev server boots the **frontend Worker and multiple backend Workers** at once.
+
+- Frontend: React SPA.
+- Backend: Hono, wired with Service Bindings.
+- DB Worker: isolates Prisma + D1.
 
 ## Retrieval Sources
 
@@ -19,12 +23,14 @@ A Bun workspace monorepo pattern where a single Vite dev server boots the **fron
 
 ## When to Use
 
+Use this pattern when any of these apply:
+
 - You want to host a React (or any SPA) on Cloudflare Workers using `[assets]` + `run_worker_first`.
 - You want the API Worker to ship as its own deployment, but develop locally in a single process (one `vite dev`).
 - You want to isolate DB / Durable Object / external API calls in a dedicated Worker and call it via a Service Binding.
-- When using Prisma (D1 adapter), you want only one Worker to touch D1, keeping responsibilities separate.
+- You use Prisma (D1 adapter) and want only one Worker to touch D1, keeping responsibilities separate.
 
-## Quick Reference
+## Architecture at a Glance
 
 | Layer | Package | Role | Dev port |
 |-------|---------|------|----------|
@@ -32,6 +38,23 @@ A Bun workspace monorepo pattern where a single Vite dev server boots the **fron
 | Backend API | `@org/api` (workers/api) | Hono routes, Durable Objects, KV | 8787 |
 | Database | `@org/db` (workers/db) | Prisma + D1 only | 8686 |
 | Shared types | `@org/shared` (packages/shared) | zod schemas, DTOs, utils | — |
+
+### Runtime flow
+
+1. `bun run dev` → `vite --host --port 3000` from `workers/app/package.json` starts.
+2. `@cloudflare/vite-plugin` reads `workers/app/wrangler.toml` as the primary Worker and runs every wrangler.toml listed in `auxiliaryWorkers` as a child Worker inside the same miniflare instance.
+3. Request path: Browser → Vite dev server → app Worker (Hono) → `c.env.API_WORKER.fetch()` (Service Binding) → API Worker → `c.env.DB_SERVICE.fetch()` → DB Worker → D1.
+4. In production, `bun run deploy` runs `wrangler deploy` for each entry in `workers/*` individually.
+
+### Port allocation
+
+Assign fixed ports per Worker to avoid collisions:
+
+| Worker | `[dev]` port | inspector_port |
+| --- | --- | --- |
+| workers/app (Vite runs separately on 3000) | 8788 | 9231 |
+| workers/api | 8787 | 9229 |
+| workers/db | 8686 | 9230 |
 
 ## Required Packages
 
@@ -51,7 +74,7 @@ bun add -d @cloudflare/workers-types
 bun add @prisma/client @prisma/adapter-d1 prisma @org/shared
 ```
 
-Do **not** install `vite` or `@cloudflare/vite-plugin` in the auxiliary Workers (`workers/api`, `workers/db`). The primary Worker's Vite handles them.
+**DON'T:** install `vite`, `@cloudflare/vite-plugin`, or a local `wrangler` in the auxiliary Workers (`workers/api`, `workers/db`). The primary Worker's Vite drives them.
 
 ## Directory Layout
 
@@ -82,14 +105,9 @@ repo/
         └── src/index.ts
 ```
 
-## Runtime Flow
+## Root Configuration
 
-1. `bun run dev` → `vite --host --port 3000` from `workers/app/package.json` starts.
-2. `@cloudflare/vite-plugin` reads `workers/app/wrangler.toml` as the primary Worker and runs every wrangler.toml listed in `auxiliaryWorkers` as a child Worker inside the same miniflare instance.
-3. Browser → Vite dev server → app Worker (Hono) → `c.env.API_WORKER.fetch()` (Service Binding) → API Worker → `c.env.DB_SERVICE.fetch()` → DB Worker → D1.
-4. In production, `bun run deploy` runs `wrangler deploy` for each entry in `workers/*` individually.
-
-## Root package.json
+### Root package.json
 
 Defines the workspace and bundles deploy / typecheck scripts.
 
@@ -114,12 +132,13 @@ Defines the workspace and bundles deploy / typecheck scripts.
 }
 ```
 
-**Notes**
-- `bun --filter './workers/*' run deploy` deploys every Worker in parallel; Bun resolves dependency order automatically.
+Notes:
+
 - `dev` just invokes Vite inside `workers/app`; `@cloudflare/vite-plugin` handles the rest.
+- `deploy` (`bun --filter './workers/*' run deploy`) deploys every Worker in parallel; Bun resolves dependency order automatically. See Gotchas for first-deploy ordering.
 - `typecheck` uses the workspace filter to type-check every package at once.
 
-## Root tsconfig.json (shared base)
+### Root tsconfig.json (shared base)
 
 ```json
 {
@@ -136,7 +155,7 @@ Defines the workspace and bundles deploy / typecheck scripts.
 }
 ```
 
-Each workspace does `"extends": "../../tsconfig.json"` and overrides `paths` / `types` locally (see below).
+Each workspace does `"extends": "../../tsconfig.json"` and overrides `paths` / `types` locally (see per-Worker sections below).
 
 ## packages/shared (Shared Types Package)
 
@@ -157,7 +176,7 @@ Each workspace does `"extends": "../../tsconfig.json"` and overrides `paths` / `
 }
 ```
 
-**Consumer side**: add `"@org/shared": "workspace:*"` to `dependencies` and `import { x } from '@org/shared/schemas'` just works.
+**Consumer side:** add `"@org/shared": "workspace:*"` to `dependencies`, then `import { x } from '@org/shared/schemas'` just works.
 
 ## workers/app (Primary Worker): Vite + React SPA + Hono Entry
 
@@ -191,8 +210,9 @@ Each workspace does `"extends": "../../tsconfig.json"` and overrides `paths` / `
 }
 ```
 
-**Important**
-- `unset CLOUDFLARE_ENV` in `dev` prevents the Vite plugin from treating the run as a production build.
+Important:
+
+- **DO** prefix the `dev` script with `unset CLOUDFLARE_ENV &&`. If `CLOUDFLARE_ENV` is set, the Vite plugin skews toward a production bundling mode.
 - `build` first runs `tsc -b` to type-check the project references, then `vite build`.
 
 ### vite.config.ts
@@ -236,14 +256,15 @@ export default defineConfig({
 })
 ```
 
-**Key points**
+Key points:
+
 - Every `auxiliaryWorkers` entry runs under a **separate Vite environment name** (`<worker-name>_<env>`), not the primary Worker's environment. The Environment API treats them as distinct environments.
-- `persistState` is the local store for D1 / KV / DO state. Pointing all auxiliary Workers at the same path keeps the D1 file that Prisma CLI writes and the one Vite reads in sync.
+- `persistState` is the local store for D1 / KV / DO state. **DO** point all auxiliary Workers at the same path — this keeps the D1 file that Prisma CLI writes and the one Vite reads in sync.
 - `remoteBindings: false` keeps everything local.
 
-### plugins/resolve-path.ts — Per-Environment Alias Resolution
+### plugins/resolve-path.ts — per-environment alias resolution
 
-When `auxiliaryWorkers` is enabled, the primary Worker's Vite also resolves child Worker sources (`workers/api/src/...`). An `@/foo` import inside the API Worker would normally resolve through Vite's global `resolve.alias` and break, because `@/` is wired to the primary Worker's `./src/`. This plugin splits the resolution per environment.
+**The problem:** when `auxiliaryWorkers` is enabled, the primary Worker's Vite also resolves child Worker sources (`workers/api/src/...`). An `@/foo` import inside the API Worker would normally resolve through Vite's global `resolve.alias` — which is wired to the primary Worker's `./src/` — and break. This plugin splits the resolution per environment.
 
 ```ts
 import { resolve } from 'node:path'
@@ -277,7 +298,7 @@ export function resolvePath(aliases: AliasEntry[]): Plugin {
 }
 ```
 
-The environment name is assigned by `@cloudflare/vite-plugin` as `<worker-name>` or `<worker-name>_dev`. A `wrangler.toml` with `name = "myapp-backend"` becomes the Vite environment `myapp_backend` — **hyphens are rewritten to underscores**, so list the underscored form in the `environments` array.
+**Environment naming rule:** `@cloudflare/vite-plugin` assigns each Worker the Vite environment name `<worker-name>` or `<worker-name>_dev`, rewriting **hyphens to underscores**. Example: a `wrangler.toml` with `name = "myapp-backend"` becomes the Vite environment `myapp_backend`. **DO** write the underscored form in `resolvePath`'s `environments` array.
 
 ### tsconfig.json (project references)
 
@@ -344,7 +365,9 @@ Use project references to separate `lib` / `types` for the Node side (vite.confi
 }
 ```
 
-### wrangler.toml (Primary Worker)
+**DO** give `tsconfig.app.json` and `tsconfig.node.json` distinct `tsBuildInfoFile` paths — otherwise they overwrite each other and `tsc -b` fails.
+
+### wrangler.toml (primary Worker)
 
 ```toml
 name = "myapp-frontend"
@@ -392,9 +415,9 @@ service = "myapp-backend-staging"
 
 **Critical: `run_worker_first = ["/api/*"]`**
 
-Without it, a request to `/api/users` is served by `[assets]` first and falls back to `index.html` as a 404 → SPA redirect, never reaching the Hono route. This is the classic trap when co-hosting a SPA with an API.
+Without it, a request to `/api/users` is served by `[assets]` first and falls back to `index.html` as a 404 → SPA redirect, never reaching the Hono route. This is the classic trap when co-hosting a SPA with an API. **DO** set it together with `not_found_handling = "single-page-application"`.
 
-### src/index.ts (Primary Worker entry)
+### src/index.ts (primary Worker entry)
 
 ```ts
 import { Hono } from 'hono'
@@ -416,6 +439,8 @@ export default app
 
 ## workers/api (Auxiliary Worker): Hono + DO + KV
 
+**DON'T** install `vite`, `@cloudflare/vite-plugin`, or a local `wrangler` here — the primary Worker's Vite drives this Worker.
+
 ### package.json
 
 ```json
@@ -435,8 +460,6 @@ export default app
   }
 }
 ```
-
-`@cloudflare/vite-plugin` is **not needed** here — the primary Worker's Vite drives it. Don't install `vite` or a local `wrangler` either.
 
 ### tsconfig.json
 
@@ -537,16 +560,6 @@ database_name = "myapp-db-staging"
 database_id = "..."
 ```
 
-## Port Allocation
-
-Assign fixed ports per Worker to avoid collisions:
-
-| Worker | `[dev]` port | inspector_port |
-| --- | --- | --- |
-| workers/app (Vite runs separately on 3000) | 8788 | 9231 |
-| workers/api | 8787 | 9229 |
-| workers/db | 8686 | 9230 |
-
 ## Bootstrap Steps (Reproducing in a New Repo)
 
 1. `bun init` the root and set `workspaces` to `["packages/*", "workers/*"]` in `package.json`.
@@ -563,11 +576,13 @@ Assign fixed ports per Worker to avoid collisions:
 
 ## Gotchas
 
-- **`@/*` breaks inside child Workers** → Without the per-environment alias resolver (`plugins/resolve-path.ts`), `@/` inside api / db resolves to the primary Worker's `./src/` and the child Worker can't find its own sources.
-- **`/api/*` falls back to the SPA 404** → `[assets].run_worker_first` is missing. It must be set together with `not_found_handling = "single-page-application"`.
-- **Local D1 is empty from Prisma** → `persistState` is not aligned. The Vite plugin, `wrangler d1 execute --local`, and `prisma migrate` can all look at different `.wrangler/state` directories. Pin the Vite plugin's `persistState.path` to the DB Worker's state directory.
-- **`CLOUDFLARE_ENV` contaminates dev** → Prefix the `dev` script with `unset CLOUDFLARE_ENV &&`. If it's set, the plugin skews toward a production bundling mode.
-- **Deploy ordering** → `bun --filter './workers/*' run deploy` is parallel, but a Service Binding can fail if the target Worker doesn't exist yet. For the first deploy, run them sequentially: db → api → app.
-- **Environment name rewriting** → A `wrangler.toml` with `name = "myapp-backend"` becomes the Vite environment `myapp_backend` (hyphens → underscores). Always write the underscored form in `resolvePath`'s `environments` array.
-- **`tsc -b` fails on project references** → `tsconfig.app.json` and `tsconfig.node.json` must use distinct `tsBuildInfoFile` paths, otherwise they overwrite each other.
-- **`compatibility_flags` mismatch** → Running the primary Worker on `nodejs_compat_v2` while the DB Worker stays on `nodejs_compat` depends on Prisma's compatibility. Keeping them aligned is safer, but drop the DB Worker to `nodejs_compat` when Prisma hasn't caught up.
+Each entry: symptom → cause → fix.
+
+- **`@/*` breaks inside child Workers.** Without the per-environment alias resolver (`plugins/resolve-path.ts`), `@/` inside api / db resolves to the primary Worker's `./src/` and the child Worker can't find its own sources. Use the resolver plugin (see workers/app section).
+- **`/api/*` falls back to the SPA 404.** `[assets].run_worker_first` is missing. It must be set together with `not_found_handling = "single-page-application"`.
+- **Local D1 is empty from Prisma.** `persistState` is not aligned: the Vite plugin, `wrangler d1 execute --local`, and `prisma migrate` can all look at different `.wrangler/state` directories. Pin the Vite plugin's `persistState.path` to the DB Worker's state directory.
+- **`CLOUDFLARE_ENV` contaminates dev.** If it's set, the plugin skews toward a production bundling mode. Prefix the `dev` script with `unset CLOUDFLARE_ENV &&`.
+- **Deploy ordering fails on first deploy.** `bun --filter './workers/*' run deploy` is parallel, and a Service Binding can fail if the target Worker doesn't exist yet. For the first deploy, run them sequentially: db → api → app.
+- **Environment name mismatch in `resolvePath`.** The Vite plugin rewrites hyphens to underscores: `name = "myapp-backend"` becomes environment `myapp_backend`. Always write the underscored form in `resolvePath`'s `environments` array.
+- **`tsc -b` fails on project references.** `tsconfig.app.json` and `tsconfig.node.json` must use distinct `tsBuildInfoFile` paths, otherwise they overwrite each other.
+- **`compatibility_flags` mismatch.** Running the primary Worker on `nodejs_compat_v2` while the DB Worker stays on `nodejs_compat` depends on Prisma's compatibility. Keeping them aligned is safer, but drop the DB Worker to `nodejs_compat` when Prisma hasn't caught up.

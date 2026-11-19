@@ -267,3 +267,6 @@ $RECYCLE.BIN/
 .turbo
 public/pagefind
 test-results/
+
+# Local Codex configuration, credentials, and session state.
+/.codex/

@@ -1,0 +1,111 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: ⛏
+      - heading "UNDER+GROUND" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 地下探索記録 — 知識の鉱脈を掘り進む
+  - navigation [ref=e8]:
+    - list [ref=e9]:
+      - listitem [ref=e10]:
+        - link "🗂 Blog" [ref=e11] [cursor=pointer]:
+          - /url: "#"
+      - listitem [ref=e12]:
+        - link "👷 Authors" [ref=e13] [cursor=pointer]:
+          - /url: "#"
+      - listitem [ref=e14]:
+        - link "💎 Tags" [ref=e15] [cursor=pointer]:
+          - /url: "#"
+      - listitem [ref=e16]:
+        - link "📜 About" [ref=e17] [cursor=pointer]:
+          - /url: "#"
+      - listitem [ref=e18]:
+        - link "🔍 Search" [ref=e19] [cursor=pointer]:
+          - /url: "#"
+  - generic [ref=e20]:
+    - paragraph [ref=e21]: ⬇ 深度探索中 ⬇
+    - paragraph [ref=e22]: えむいーと愉快な仲間たちの平凡な技術ブログ。ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+    - paragraph [ref=e23]: 現在の探索深度： -420 m
+  - generic [ref=e24]:
+    - main [ref=e25]:
+      - heading "⛏ 最新発掘記録" [level=2] [ref=e26]
+      - generic [ref=e27]:
+        - 'link "🗿 発掘日: 2026-06-12 棋桜を便利に使うツールを開発しました 💎 Shogi" [ref=e28] [cursor=pointer]':
+          - /url: "#"
+          - generic [ref=e29]:
+            - generic [ref=e30]: "🗿 発掘日:"
+            - generic [ref=e31]: 2026-06-12
+          - heading "棋桜を便利に使うツールを開発しました" [level=3] [ref=e32]
+          - generic [ref=e34]: 💎 Shogi
+        - 'link "🗿 発掘日: 2026-04-23 Claude Code......嘘だよな 💠 Claude Code" [ref=e35] [cursor=pointer]':
+          - /url: "#"
+          - generic [ref=e36]:
+            - generic [ref=e37]: "🗿 発掘日:"
+            - generic [ref=e38]: 2026-04-23
+          - heading "Claude Code......嘘だよな" [level=3] [ref=e39]
+          - generic [ref=e41]: 💠 Claude Code
+        - 'link "🗿 発掘日: 2026-04-09 リバエン専用レポジトリを作成しました 🪨 Docker 🔴 Frida" [ref=e42] [cursor=pointer]':
+          - /url: "#"
+          - generic [ref=e43]:
+            - generic [ref=e44]: "🗿 発掘日:"
+            - generic [ref=e45]: 2026-04-09
+          - heading "リバエン専用レポジトリを作成しました" [level=3] [ref=e46]
+          - generic [ref=e47]:
+            - generic [ref=e48]: 🪨 Docker
+            - generic [ref=e49]: 🔴 Frida
+        - 'link "🗿 発掘日: 2026-03-15 超かぐや姫を映画館で見てきた 🔶 Netflix" [ref=e50] [cursor=pointer]':
+          - /url: "#"
+          - generic [ref=e51]:
+            - generic [ref=e52]: "🗿 発掘日:"
+            - generic [ref=e53]: 2026-03-15
+          - heading "超かぐや姫を映画館で見てきた" [level=3] [ref=e54]
+          - generic [ref=e56]: 🔶 Netflix
+        - 'link "🗿 発掘日: 2026-03-06 超かぐや姫を見てきた感想 🔶 Netflix" [ref=e57] [cursor=pointer]':
+          - /url: "#"
+          - generic [ref=e58]:
+            - generic [ref=e59]: "🗿 発掘日:"
+            - generic [ref=e60]: 2026-03-06
+          - heading "超かぐや姫を見てきた感想" [level=3] [ref=e61]
+          - generic [ref=e63]: 🔶 Netflix
+    - complementary [ref=e64]:
+      - generic [ref=e65]:
+        - generic [ref=e66]: 🔦 ヘッドランプ状態
+        - generic [ref=e67]:
+          - paragraph [ref=e68]: 電池残量
+          - generic [ref=e69]: 68%
+          - paragraph [ref=e70]: "推定残り稼働時間: 4h 22m"
+      - generic [ref=e71]:
+        - generic [ref=e72]: 📡 探索深度センサー
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: "-420"
+            - generic [ref=e76]: METERS BELOW SURFACE
+          - paragraph [ref=e77]: ⚠ 安全深度を超過しています。慎重に進んでください。
+      - generic [ref=e78]:
+        - generic [ref=e79]: 💎 発見した鉱脈
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - generic [ref=e84]: Shogi
+            - generic [ref=e85]: × 1
+          - generic [ref=e86]:
+            - generic [ref=e88]: Claude Code
+            - generic [ref=e89]: × 1
+          - generic [ref=e90]:
+            - generic [ref=e92]: Docker
+            - generic [ref=e93]: × 1
+          - generic [ref=e94]:
+            - generic [ref=e96]: Frida
+            - generic [ref=e97]: × 1
+          - generic [ref=e98]:
+            - generic [ref=e100]: Netflix
+            - generic [ref=e101]: × 2
+      - generic [ref=e102]:
+        - generic [ref=e103]: 📋 探索メモ
+        - paragraph [ref=e105]:
+          - text: この坑道は古い記録でいっぱいだ。
+          - text: 炎が揺れるたびに、壁の文字が浮かび上がる。
+          - text: 知識の鉱脈は深いほど純度が高い。
+          - text: 掘り進め。諦めるな。
+  - contentinfo [ref=e106]:
+    - paragraph [ref=e107]: ⛏ Under+Ground Mining Co. — 地下知識採掘組合
+    - generic [ref=e108]: ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+    - paragraph [ref=e109]: ⚠ 坑道を抜けるな — 光の届かぬ深みに、まだ眠る記録がある

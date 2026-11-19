@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Under+Ground — 地下知識採掘組合</title>
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --bg-deep:      #0a0500;
+    --bg-mid:       #1a0f00;
+    --bg-surface:   #2d1a00;
+    --text-main:    #e8d5a0;
+    --text-dim:     #a08858;
+    --text-muted:   #6a5030;
+    --accent-flame: #ffb830;
+    --accent-glow:  #ff9500;
+    --border-stone: #5a4020;
+    --border-dark:  #3a2810;
+
+    --gem-shogi:    #9b59b6;
+    --gem-claude:   #74b9ff;
+    --gem-docker:   #636e72;
+    --gem-frida:    #e74c3c;
+    --gem-netflix:  #c0392b;
+  }
+
+  html {
+    background-color: var(--bg-deep);
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+
+    /* 洞窟の岩肌テクスチャ */
+    background:
+      repeating-linear-gradient(
+        127deg,
+        transparent 0px,
+        transparent 28px,
+        rgba(90, 64, 32, 0.04) 28px,
+        rgba(90, 64, 32, 0.04) 30px
+      ),
+      repeating-linear-gradient(
+        53deg,
+        transparent 0px,
+        transparent 42px,
+        rgba(60, 40, 10, 0.06) 42px,
+        rgba(60, 40, 10, 0.06) 44px
+      ),
+      linear-gradient(180deg, #000000 0%, #0a0500 15%, #1a0f00 50%, #0d0800 100%);
+  }
+
+  /* ヘッドランプのグロー — 画面中央上から照射 */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 70% 55% at 50% 10%,
+        rgba(255, 200, 80, 0.10) 0%,
+        rgba(255, 150, 30, 0.04) 40%,
+        transparent 75%
+      );
+    z-index: 0;
+  }
+
+  /* 遠くの暗闇 vignette */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 100% 100% at 50% 50%,
+      transparent 55%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ───────────── HEADER ───────────── */
+  .site-header {
+    padding: 32px 0 24px;
+    border-bottom: 2px solid var(--border-stone);
+    position: relative;
+    box-shadow: 0 2px 0 var(--border-dark), 0 4px 16px rgba(0,0,0,0.6);
+  }
+
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,184,48,0.05) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .site-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+
+  .site-title-icon {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 0 8px rgba(255,184,48,0.7));
+  }
+
+  .site-title h1 {
+    font-family: 'Arial Black', 'Impact', 'Arial', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: var(--accent-flame);
+    text-shadow:
+      0 0 12px rgba(255, 184, 48, 0.5),
+      0 0 32px rgba(255, 120, 0, 0.3),
+      2px 2px 0 rgba(0,0,0,0.8);
+  }
+
+  .site-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    padding-left: 4px;
+    font-style: italic;
+  }
+
+  /* ───────────── NAV ───────────── */
+  .site-nav {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-dark);
+    background: linear-gradient(180deg, rgba(255,184,48,0.03) 0%, transparent 100%);
+  }
+
+  .site-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .site-nav a {
+    display: inline-block;
+    padding: 6px 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--border-dark);
+    background: rgba(26, 15, 0, 0.8);
+    transition: all 0.2s ease;
+  }
+
+  .site-nav a:hover {
+    color: var(--accent-flame);
+    border-color: var(--border-stone);
+    background: rgba(45, 26, 0, 0.95);
+    box-shadow: 0 0 10px rgba(255,184,48,0.2), inset 0 0 6px rgba(255,184,48,0.05);
+    text-shadow: 0 0 8px rgba(255,184,48,0.5);
+  }
+
+  /* ───────────── HERO ───────────── */
+  .hero {
+    padding: 48px 0 40px;
+    text-align: center;
+    position: relative;
+    background:
+      radial-gradient(
+        ellipse 60% 80% at 50% 50%,
+        rgba(255, 184, 48, 0.07) 0%,
+        transparent 70%
+      );
+  }
+
+  .hero-label {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    border: 1px solid var(--border-dark);
+    padding: 4px 16px;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-dim);
+    max-width: 620px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  .hero-depth {
+    margin-top: 22px;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+
+  .hero-depth span {
+    color: var(--accent-flame);
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.1rem;
+  }
+
+  /* ───────────── LAYOUT ───────────── */
+  .content-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 32px;
+    padding: 40px 0 60px;
+    align-items: start;
+  }
+
+  /* ───────────── MAIN ───────────── */
+  .section-heading {
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--accent-flame);
+    text-shadow: 0 0 8px rgba(255,184,48,0.3);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-stone), transparent);
+  }
+
+  /* 記事カード */
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .article-card {
+    position: relative;
+    padding: 20px 22px;
+    border: 2px solid var(--border-stone);
+    background:
+      repeating-linear-gradient(
+        161deg,
+        transparent 0px,
+        transparent 18px,
+        rgba(90, 64, 32, 0.035) 18px,
+        rgba(90, 64, 32, 0.035) 19px
+      ),
+      linear-gradient(180deg, rgba(45, 26, 0, 0.9) 0%, rgba(26, 15, 0, 0.95) 100%);
+    box-shadow:
+      3px 3px 0 var(--border-dark),
+      5px 5px 0 rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,184,48,0.06);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .article-card:hover {
+    border-color: var(--accent-glow);
+    box-shadow:
+      0 0 20px rgba(255, 184, 48, 0.4),
+      0 0 40px rgba(255, 120, 0, 0.15),
+      3px 3px 0 rgba(90,64,32,0.4),
+      inset 0 0 20px rgba(255,184,48,0.04);
+    transform: translateY(-2px);
+  }
+
+  .article-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--accent-flame), transparent);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .article-card:hover::before {
+    opacity: 1;
+  }
+
+  .article-meta {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .article-meta .date {
+    color: var(--text-dim);
+  }
+
+  .article-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: var(--text-main);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    font-family: Georgia, serif;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+
+  .article-card:hover .article-title {
+    color: #f5e8c0;
+    text-shadow: 0 0 12px rgba(255,184,48,0.2);
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.1em;
+    padding: 3px 9px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .tag-shogi {
+    background: rgba(155, 89, 182, 0.2);
+    color: #c39bd3;
+    border: 1px solid rgba(155, 89, 182, 0.5);
+    box-shadow: 0 0 6px rgba(155,89,182,0.25);
+  }
+
+  .tag-claude {
+    background: rgba(116, 185, 255, 0.15);
+    color: #a8d4ff;
+    border: 1px solid rgba(116, 185, 255, 0.4);
+    box-shadow: 0 0 6px rgba(116,185,255,0.2);
+  }
+
+  .tag-docker {
+    background: rgba(99, 110, 114, 0.25);
+    color: #b2bec3;
+    border: 1px solid rgba(99, 110, 114, 0.5);
+    box-shadow: 0 0 5px rgba(99,110,114,0.2);
+  }
+
+  .tag-frida {
+    background: rgba(231, 76, 60, 0.2);
+    color: #f1948a;
+    border: 1px solid rgba(231, 76, 60, 0.45);
+    box-shadow: 0 0 6px rgba(231,76,60,0.25);
+  }
+
+  .tag-netflix {
+    background: rgba(192, 57, 43, 0.2);
+    color: #e57368;
+    border: 1px solid rgba(192, 57, 43, 0.45);
+    box-shadow: 0 0 6px rgba(192,57,43,0.2);
+  }
+
+  /* ───────────── SIDEBAR ───────────── */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebar-panel {
+    border: 1px solid var(--border-stone);
+    background: linear-gradient(160deg, rgba(45,26,0,0.85) 0%, rgba(15,8,0,0.95) 100%);
+    box-shadow: 2px 2px 0 var(--border-dark), inset 0 1px 0 rgba(255,184,48,0.05);
+    overflow: hidden;
+  }
+
+  .sidebar-panel-header {
+    padding: 10px 16px;
+    background: rgba(90, 64, 32, 0.2);
+    border-bottom: 1px solid var(--border-dark);
+    font-family: 'Arial Black', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--accent-flame);
+    text-shadow: 0 0 6px rgba(255,184,48,0.3);
+  }
+
+  .sidebar-panel-body {
+    padding: 14px 16px;
+  }
+
+  /* バッテリー */
+  .battery-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .battery-bar {
+    height: 14px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--border-stone);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .battery-bar::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 68%;
+    background: linear-gradient(90deg, #f39c12, #e67e22, #d35400);
+    box-shadow: 0 0 8px rgba(255,150,30,0.5);
+  }
+
+  .battery-bar::after {
+    content: '68%';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  }
+
+  .battery-note {
+    margin-top: 6px;
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    font-style: italic;
+  }
+
+  /* 探索深度 */
+  .depth-display {
+    text-align: center;
+    padding: 6px 0;
+  }
+
+  .depth-value {
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 2.2rem;
+    color: var(--accent-flame);
+    text-shadow: 0 0 16px rgba(255,184,48,0.5), 0 0 32px rgba(255,100,0,0.2);
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+  }
+
+  .depth-unit {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-top: 2px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .depth-warning {
+    margin-top: 10px;
+    font-size: 0.62rem;
+    color: #e74c3c;
+    letter-spacing: 0.1em;
+    font-family: 'Arial', sans-serif;
+    border-top: 1px solid rgba(231,76,60,0.2);
+    padding-top: 8px;
+  }
+
+  /* 鉱石コレクション */
+  .gem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gem-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border: 1px solid var(--border-dark);
+    background: rgba(0,0,0,0.3);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+
+  .gem-item:hover {
+    border-color: var(--border-stone);
+  }
+
+  .gem-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .gem-dot-shogi  { background: var(--gem-shogi);  box-shadow: 0 0 6px var(--gem-shogi); }
+  .gem-dot-claude { background: var(--gem-claude);  box-shadow: 0 0 6px var(--gem-claude); }
+  .gem-dot-docker { background: var(--gem-docker);  box-shadow: 0 0 4px var(--gem-docker); }
+  .gem-dot-frida  { background: var(--gem-frida);   box-shadow: 0 0 6px var(--gem-frida); }
+  .gem-dot-netflix{ background: var(--gem-netflix);  box-shadow: 0 0 5px var(--gem-netflix); }
+
+  .gem-name {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    font-family: 'Arial', sans-serif;
+    flex: 1;
+  }
+
+  .gem-count {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* 探索メモ */
+  .exploration-note {
+    font-size: 0.72rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    font-style: italic;
+    border-left: 2px solid var(--border-stone);
+    padding-left: 12px;
+  }
+
+  /* ───────────── FOOTER ───────────── */
+  .site-footer {
+    border-top: 2px solid var(--border-stone);
+    padding: 28px 0 24px;
+    position: relative;
+    background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 100%);
+  }
+
+  .footer-main {
+    text-align: center;
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .footer-main span {
+    color: var(--accent-flame);
+    text-shadow: 0 0 8px rgba(255,184,48,0.4);
+  }
+
+  .footer-warning {
+    text-align: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    font-family: 'Arial', sans-serif;
+  }
+
+  .footer-divider {
+    text-align: center;
+    color: var(--border-stone);
+    letter-spacing: 0.3em;
+    font-size: 0.6rem;
+    margin: 10px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- ─── HEADER ─── -->
+  <header class="site-header">
+    <div class="site-title">
+      <span class="site-title-icon">⛏</span>
+      <h1>UNDER+GROUND</h1>
+    </div>
+    <p class="site-subtitle">地下探索記録 — 知識の鉱脈を掘り進む</p>
+  </header>
+
+  <!-- ─── NAV ─── -->
+  <nav class="site-nav">
+    <ul>
+      <li><a href="#">🗂 Blog</a></li>
+      <li><a href="#">👷 Authors</a></li>
+      <li><a href="#">💎 Tags</a></li>
+      <li><a href="#">📜 About</a></li>
+      <li><a href="#">🔍 Search</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <p class="hero-label">⬇ 深度探索中 ⬇</p>
+    <p class="hero-desc">えむいーと愉快な仲間たちの平凡な技術ブログ。ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。</p>
+    <p class="hero-depth">現在の探索深度： <span>-420 m</span></p>
+  </section>
+
+  <!-- ─── CONTENT LAYOUT ─── -->
+  <div class="content-layout">
+
+    <!-- ─── MAIN ─── -->
+    <main>
+      <h2 class="section-heading">⛏ 最新発掘記録</h2>
+      <div class="article-list">
+
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span>🗿 発掘日:</span>
+            <span class="date">2026-06-12</span>
+          </div>
+          <h3 class="article-title">棋桜を便利に使うツールを開発しました</h3>
+          <div class="article-tags">
+            <span class="tag tag-shogi">💎 Shogi</span>
+          </div>
+        </a>
+
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span>🗿 発掘日:</span>
+            <span class="date">2026-04-23</span>
+          </div>
+          <h3 class="article-title">Claude Code......嘘だよな</h3>
+          <div class="article-tags">
+            <span class="tag tag-claude">💠 Claude Code</span>
+          </div>
+        </a>
+
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span>🗿 発掘日:</span>
+            <span class="date">2026-04-09</span>
+          </div>
+          <h3 class="article-title">リバエン専用レポジトリを作成しました</h3>
+          <div class="article-tags">
+            <span class="tag tag-docker">🪨 Docker</span>
+            <span class="tag tag-frida">🔴 Frida</span>
+          </div>
+        </a>
+
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span>🗿 発掘日:</span>
+            <span class="date">2026-03-15</span>
+          </div>
+          <h3 class="article-title">超かぐや姫を映画館で見てきた</h3>
+          <div class="article-tags">
+            <span class="tag tag-netflix">🔶 Netflix</span>
+          </div>
+        </a>
+
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span>🗿 発掘日:</span>
+            <span class="date">2026-03-06</span>
+          </div>
+          <h3 class="article-title">超かぐや姫を見てきた感想</h3>
+          <div class="article-tags">
+            <span class="tag tag-netflix">🔶 Netflix</span>
+          </div>
+        </a>
+
+      </div>
+    </main>
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar">
+
+      <!-- バッテリー -->
+      <div class="sidebar-panel">
+        <div class="sidebar-panel-header">🔦 ヘッドランプ状態</div>
+        <div class="sidebar-panel-body">
+          <p class="battery-label">電池残量</p>
+          <div class="battery-bar"></div>
+          <p class="battery-note">推定残り稼働時間: 4h 22m</p>
+        </div>
+      </div>
+
+      <!-- 探索深度 -->
+      <div class="sidebar-panel">
+        <div class="sidebar-panel-header">📡 探索深度センサー</div>
+        <div class="sidebar-panel-body">
+          <div class="depth-display">
+            <div class="depth-value">-420</div>
+            <div class="depth-unit">METERS BELOW SURFACE</div>
+          </div>
+          <p class="depth-warning">⚠ 安全深度を超過しています。慎重に進んでください。</p>
+        </div>
+      </div>
+
+      <!-- 鉱石コレクション -->
+      <div class="sidebar-panel">
+        <div class="sidebar-panel-header">💎 発見した鉱脈</div>
+        <div class="sidebar-panel-body">
+          <div class="gem-list">
+            <div class="gem-item">
+              <div class="gem-dot gem-dot-shogi"></div>
+              <span class="gem-name">Shogi</span>
+              <span class="gem-count">× 1</span>
+            </div>
+            <div class="gem-item">
+              <div class="gem-dot gem-dot-claude"></div>
+              <span class="gem-name">Claude Code</span>
+              <span class="gem-count">× 1</span>
+            </div>
+            <div class="gem-item">
+              <div class="gem-dot gem-dot-docker"></div>
+              <span class="gem-name">Docker</span>
+              <span class="gem-count">× 1</span>
+            </div>
+            <div class="gem-item">
+              <div class="gem-dot gem-dot-frida"></div>
+              <span class="gem-name">Frida</span>
+              <span class="gem-count">× 1</span>
+            </div>
+            <div class="gem-item">
+              <div class="gem-dot gem-dot-netflix"></div>
+              <span class="gem-name">Netflix</span>
+              <span class="gem-count">× 2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 探索メモ -->
+      <div class="sidebar-panel">
+        <div class="sidebar-panel-header">📋 探索メモ</div>
+        <div class="sidebar-panel-body">
+          <p class="exploration-note">
+            この坑道は古い記録でいっぱいだ。<br>
+            炎が揺れるたびに、壁の文字が浮かび上がる。<br><br>
+            知識の鉱脈は深いほど純度が高い。<br>
+            掘り進め。諦めるな。
+          </p>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="site-footer">
+    <p class="footer-main">⛏ <span>Under+Ground</span> Mining Co. — 地下知識採掘組合</p>
+    <div class="footer-divider">─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</div>
+    <p class="footer-warning">⚠ 坑道を抜けるな — 光の届かぬ深みに、まだ眠る記録がある</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

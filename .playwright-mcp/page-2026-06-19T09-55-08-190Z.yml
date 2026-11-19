@@ -1,0 +1,60 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Under
+      - generic [ref=e6]: +
+      - generic [ref=e7]: Ground
+    - generic [ref=e9]: えむいーと愉快な仲間たちの平凡な技術ブログ。ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+  - navigation [ref=e10]:
+    - generic [ref=e11]:
+      - link "Blog" [ref=e12] [cursor=pointer]:
+        - /url: "#"
+      - link "Authors" [ref=e13] [cursor=pointer]:
+        - /url: "#"
+      - link "Tags" [ref=e14] [cursor=pointer]:
+        - /url: "#"
+      - link "About" [ref=e15] [cursor=pointer]:
+        - /url: "#"
+      - link "Search" [ref=e16] [cursor=pointer]:
+        - /url: "#"
+    - generic [ref=e17]: zine vol.∞
+  - separator [ref=e18]: ✦ latest posts ✦
+  - generic [ref=e19]: Recent Posts ✂ - - - - - - -
+  - generic [ref=e20]:
+    - article [ref=e21]:
+      - generic: NEW!
+      - generic [ref=e22]: 2026-06-12
+      - heading "棋桜を便利に使うツールを開発しました" [level=2] [ref=e23]:
+        - link "棋桜を便利に使うツールを開発しました" [ref=e24] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e26]: Shogi
+    - article [ref=e27]:
+      - generic [ref=e28]: 2026-04-23
+      - heading "Claude Code……嘘だよな" [level=2] [ref=e29]:
+        - link "Claude Code……嘘だよな" [ref=e30] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e32]: Claude Code
+    - article [ref=e33]:
+      - generic [ref=e34]: 2026-04-09
+      - heading "リバエン専用レポジトリを作成しました" [level=2] [ref=e35]:
+        - link "リバエン専用レポジトリを作成しました" [ref=e36] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e37]:
+        - generic [ref=e38]: Docker
+        - generic [ref=e39]: Frida
+    - article [ref=e40]:
+      - generic: 映画館で！
+      - generic [ref=e41]: 2026-03-15
+      - heading "超かぐや姫を映画館で見てきた" [level=2] [ref=e42]:
+        - link "超かぐや姫を映画館で見てきた" [ref=e43] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e45]: Netflix
+    - article [ref=e46]:
+      - generic [ref=e47]: 2026-03-06
+      - heading "超かぐや姫を見てきた感想" [level=2] [ref=e48]:
+        - link "超かぐや姫を見てきた感想" [ref=e49] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e51]: Netflix
+  - contentinfo [ref=e52]:
+    - paragraph [ref=e53]: © Under+Ground — made with ✂ & paste
+    - paragraph [ref=e54]: no gods · no cms · just html

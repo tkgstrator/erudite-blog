@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Under+Ground — Top page mocks</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #0a0a0c;
+    color: #e8e8ec;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+  }
+  header {
+    padding: 3rem 2rem 1.5rem;
+    border-bottom: 1px solid #1f1f24;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  header p {
+    margin-top: 0.5rem;
+    color: #8a8a92;
+    font-size: 0.95rem;
+  }
+  header .hint {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #6a6a72;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  .card {
+    background: #14141a;
+    border: 1px solid #232329;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: #3a3a45;
+  }
+  .frame-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #000;
+  }
+  .frame-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1600px;
+    height: 1000px;
+    border: 0;
+    transform: scale(0.5);
+    transform-origin: top left;
+    pointer-events: none;
+  }
+  .meta {
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .meta h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .meta .num {
+    color: #6a6a72;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+  }
+  .meta .desc {
+    font-size: 0.8rem;
+    color: #8a8a92;
+    margin-top: 0.2rem;
+  }
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .actions a {
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    border: 1px solid #2a2a32;
+    color: #c8c8d0;
+    transition: background 0.15s;
+  }
+  .actions a:hover {
+    background: #1c1c22;
+    border-color: #3a3a45;
+  }
+  footer {
+    padding: 2rem;
+    text-align: center;
+    color: #6a6a72;
+    font-size: 0.85rem;
+    border-top: 1px solid #1f1f24;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Under+Ground — Top page mocks</h1>
+  <p>10 種類のテイストを並列で試作。それぞれサムネクリックで実物を確認できます。</p>
+  <p class="hint">※サムネは 50% 縮小プレビュー。実際の見え方は「open ↗」から。</p>
+</header>
+
+<div class="gallery">
+  <div class="card">
+    <div class="frame-wrap"><iframe src="01-metro/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">01.</span> Metro</h2>
+        <div class="desc">地下鉄路線図モチーフ。駅 = 記事。</div>
+      </div>
+      <div class="actions"><a href="01-metro/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="02-terminal/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">02.</span> Terminal</h2>
+        <div class="desc">ハッカー風 CLI。`$ ls -la /posts`。</div>
+      </div>
+      <div class="actions"><a href="02-terminal/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="03-dungeon/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">03.</span> Dungeon</h2>
+        <div class="desc">B1F / B2F のフロア構造。記事 = 発見物。</div>
+      </div>
+      <div class="actions"><a href="03-dungeon/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="04-field-notes/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">04.</span> Field Notes</h2>
+        <div class="desc">探検家の野帳。ピン留め＆マステ。</div>
+      </div>
+      <div class="actions"><a href="04-field-notes/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="05-ascii/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">05.</span> ASCII Demoscene</h2>
+        <div class="desc">80年代 BBS / CGA パレット。</div>
+      </div>
+      <div class="actions"><a href="05-ascii/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="06-mining/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">06.</span> Mining</h2>
+        <div class="desc">洞窟探索。記事 = 発掘文書、タグ = 鉱石。</div>
+      </div>
+      <div class="actions"><a href="06-mining/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="07-y2k/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">07.</span> Y2K Cyber</h2>
+        <div class="desc">Frutiger Aero / メタリック UI。</div>
+      </div>
+      <div class="actions"><a href="07-y2k/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="08-zine/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">08.</span> ZINE</h2>
+        <div class="desc">切り貼り同人誌。バラバラ回転＆テープ。</div>
+      </div>
+      <div class="actions"><a href="08-zine/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="09-brutalist/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">09.</span> Brutalist</h2>
+        <div class="desc">90年代極北。table border=1、blink、marquee。</div>
+      </div>
+      <div class="actions"><a href="09-brutalist/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="frame-wrap"><iframe src="10-vaporwave/index.html" loading="lazy"></iframe></div>
+    <div class="meta">
+      <div>
+        <h2><span class="num">10.</span> Vaporwave CRT</h2>
+        <div class="desc">ネオン＋スキャンライン＋色収差グリッチ。</div>
+      </div>
+      <div class="actions"><a href="10-vaporwave/index.html" target="_blank">open ↗</a></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Under+Ground top page mocks · 2026
+</footer>
+</body>
+</html>

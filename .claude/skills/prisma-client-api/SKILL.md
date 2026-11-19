@@ -9,11 +9,12 @@ metadata:
 
 # Prisma Client API Reference
 
-Complete API reference for Prisma Client. This skill provides guidance on model queries, filtering, relations, and client methods for current Prisma projects.
+Complete API reference for Prisma Client in current Prisma projects: model queries, filtering, relations, and client methods.
 
 ## When to Apply
 
 Reference this skill when:
+
 - Writing database queries with Prisma Client
 - Performing CRUD operations (create, read, update, delete)
 - Filtering and sorting data
@@ -21,29 +22,40 @@ Reference this skill when:
 - Using transactions
 - Configuring client options
 
-## Rule Categories by Priority
+## How to Use
 
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | Client Construction | HIGH | `constructor` |
-| 2 | Model Queries | CRITICAL | `model-queries` |
-| 3 | Query Shape | HIGH | `query-options` |
-| 4 | Filtering | HIGH | `filters` |
-| 5 | Relations | HIGH | `relations` |
-| 6 | Transactions | CRITICAL | `transactions` |
-| 7 | Raw SQL | CRITICAL | `raw-queries` |
-| 8 | Client Methods | MEDIUM | `client-methods` |
+1. Find the relevant category in the table below.
+2. Open the matching reference file for implementation details and examples.
 
-## Quick Reference
+## Rule Categories
 
-- `constructor` - `PrismaClient` setup, adapter wiring, logging, and SQL commenter plugins
-- `model-queries` - CRUD operations and bulk operations
-- `query-options` - `select`, `include`, `omit`, sort, pagination
-- `filters` - scalar and logical filter operators
-- `relations` - relation reads and nested writes
-- `transactions` - array and interactive transaction patterns
-- `raw-queries` - `$queryRaw` and `$executeRaw` safety
-- `client-methods` - lifecycle methods, extensions, and `satisfies` patterns for `prisma-client`
+Listed by priority. The prefix matches the reference file name.
+
+| Priority | Category | Impact | Prefix | Covers |
+|----------|----------|--------|--------|--------|
+| 1 | Client Construction | HIGH | `constructor` | `PrismaClient` setup, adapter wiring, logging, and SQL commenter plugins |
+| 2 | Model Queries | CRITICAL | `model-queries` | CRUD operations and bulk operations |
+| 3 | Query Shape | HIGH | `query-options` | `select`, `include`, `omit`, sort, pagination |
+| 4 | Filtering | HIGH | `filters` | Scalar and logical filter operators |
+| 5 | Relations | HIGH | `relations` | Relation reads and nested writes |
+| 6 | Transactions | CRITICAL | `transactions` | Array and interactive transaction patterns |
+| 7 | Raw SQL | CRITICAL | `raw-queries` | `$queryRaw` and `$executeRaw` safety |
+| 8 | Client Methods | MEDIUM | `client-methods` | Lifecycle methods, extensions, and `satisfies` patterns for `prisma-client` |
+
+## Reference Files
+
+Detailed API documentation for each category:
+
+```
+references/constructor.md        - PrismaClient constructor options
+references/model-queries.md      - CRUD operations
+references/query-options.md      - select, include, omit, where, orderBy
+references/filters.md            - Filter conditions and operators
+references/relations.md          - Relation queries and nested operations
+references/transactions.md       - Transaction API
+references/raw-queries.md        - $queryRaw, $executeRaw
+references/client-methods.md     - $connect, $disconnect, $on, $extends
+```
 
 ## Client Instantiation
 
@@ -93,6 +105,33 @@ const prisma = new PrismaClient({ adapter })
 | `skip` | Skip results (pagination) |
 | `cursor` | Cursor-based pagination |
 | `distinct` | Unique values only |
+
+## Filter Operators
+
+Scalar filters:
+
+| Operator | Description |
+|----------|-------------|
+| `equals` | Exact match |
+| `not` | Not equal |
+| `in` | In array |
+| `notIn` | Not in array |
+| `lt`, `lte` | Less than |
+| `gt`, `gte` | Greater than |
+| `contains` | String contains |
+| `startsWith` | String starts with |
+| `endsWith` | String ends with |
+| `mode` | Case sensitivity |
+
+Relation filters:
+
+| Operator | Description |
+|----------|-------------|
+| `some` | At least one related record matches |
+| `every` | All related records match |
+| `none` | No related records match |
+| `is` | Related record matches (1-to-1) |
+| `isNot` | Related record doesn't match |
 
 ## Client Methods
 
@@ -165,52 +204,8 @@ const [user, post] = await prisma.$transaction([
 ])
 ```
 
-## Rule Files
-
-Detailed API documentation:
-
-```
-references/constructor.md        - PrismaClient constructor options
-references/model-queries.md      - CRUD operations
-references/query-options.md      - select, include, omit, where, orderBy
-references/filters.md            - Filter conditions and operators
-references/relations.md          - Relation queries and nested operations
-references/transactions.md       - Transaction API
-references/raw-queries.md        - $queryRaw, $executeRaw
-references/client-methods.md     - $connect, $disconnect, $on, $extends
-```
-
-## Filter Operators
-
-| Operator | Description |
-|----------|-------------|
-| `equals` | Exact match |
-| `not` | Not equal |
-| `in` | In array |
-| `notIn` | Not in array |
-| `lt`, `lte` | Less than |
-| `gt`, `gte` | Greater than |
-| `contains` | String contains |
-| `startsWith` | String starts with |
-| `endsWith` | String ends with |
-| `mode` | Case sensitivity |
-
-## Relation Filters
-
-| Operator | Description |
-|----------|-------------|
-| `some` | At least one related record matches |
-| `every` | All related records match |
-| `none` | No related records match |
-| `is` | Related record matches (1-to-1) |
-| `isNot` | Related record doesn't match |
-
 ## Resources
 
 - [Prisma Client API Reference](https://www.prisma.io/docs/orm/reference/prisma-client-reference)
 - [CRUD Operations](https://www.prisma.io/docs/orm/prisma-client/queries/crud)
 - [Filtering and Sorting](https://www.prisma.io/docs/orm/prisma-client/queries/filtering-and-sorting)
-
-## How to Use
-
-Pick the category from the table above, then open the matching reference file for implementation details and examples.

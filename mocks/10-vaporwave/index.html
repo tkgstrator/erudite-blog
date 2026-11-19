@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Under+Ground — Vaporwave Edition</title>
+<style>
+  /* =====================================================
+     BASE / RESET
+  ===================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --neon-pink:    #ff2d78;
+    --neon-cyan:    #00f0ff;
+    --neon-purple:  #b44fff;
+    --neon-yellow:  #ffe84d;
+    --bg-dark:      #0d0016;
+    --bg-mid:       #1a0033;
+    --grid-line:    rgba(180, 79, 255, 0.25);
+    --text-main:    #e8d5ff;
+    --text-dim:     #9070bb;
+    --card-bg:      rgba(26, 0, 51, 0.85);
+    --card-border:  #b44fff;
+  }
+
+  html {
+    background: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* =====================================================
+     CRT SCANLINE OVERLAY
+  ===================================================== */
+  body {
+    position: relative;
+    min-height: 100vh;
+    background:
+      /* scanlines */
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0, 0, 0, 0.18) 3px,
+        rgba(0, 0, 0, 0.18) 4px
+      );
+  }
+
+  /* =====================================================
+     BACKGROUND: purple→pink gradient + perspective grid
+  ===================================================== */
+  .scene {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      180deg,
+      #0d0016 0%,
+      #1a0033 35%,
+      #2d0050 55%,
+      #5c0064 72%,
+      #8b0057 85%,
+      #c0105a 100%
+    );
+    overflow: hidden;
+  }
+
+  /* Horizon split */
+  .scene::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 52%;
+    background: linear-gradient(180deg, transparent 0%, rgba(13,0,22,0.7) 100%);
+  }
+
+  /* Perspective grid — SVG inline as data URI */
+  .grid-svg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    max-width: none;
+    opacity: 0.55;
+  }
+
+  /* =====================================================
+     GLITCH KEYFRAMES
+  ===================================================== */
+  @keyframes glitch-h {
+    0%   { clip-path: inset(0 0 95% 0); transform: translateX(0); }
+    5%   { clip-path: inset(20% 0 60% 0); transform: translateX(-4px); }
+    10%  { clip-path: inset(50% 0 30% 0); transform: translateX(3px); }
+    15%  { clip-path: inset(80% 0 5% 0);  transform: translateX(-2px); }
+    20%  { clip-path: inset(0 0 0 0);      transform: translateX(0); }
+    100% { clip-path: inset(0 0 0 0);      transform: translateX(0); }
+  }
+
+  @keyframes glitch-shift {
+    0%, 90%, 100% { transform: translateX(0) skewX(0deg); opacity: 1; }
+    91%  { transform: translateX(-3px) skewX(-1deg); opacity: 0.85; }
+    93%  { transform: translateX(3px) skewX(1deg); opacity: 0.9; }
+    95%  { transform: translateX(-1px) skewX(0deg); opacity: 1; }
+  }
+
+  @keyframes flicker {
+    0%, 97%, 100% { opacity: 1; }
+    98% { opacity: 0.6; }
+    99% { opacity: 0.9; }
+  }
+
+  @keyframes scanpulse {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+
+  @keyframes neon-pulse {
+    0%, 100% { text-shadow:
+      0 0 6px var(--neon-cyan),
+      0 0 14px var(--neon-cyan),
+      0 0 30px var(--neon-cyan),
+      -2px 0 0 rgba(255,45,120,0.7),
+       2px 0 0 rgba(0,240,255,0.7);
+    }
+    50% { text-shadow:
+      0 0 4px var(--neon-cyan),
+      0 0 10px var(--neon-cyan),
+      0 0 22px var(--neon-pink),
+      -3px 0 0 rgba(255,45,120,0.85),
+       3px 0 0 rgba(0,240,255,0.85);
+    }
+  }
+
+  @keyframes border-glow {
+    0%, 100% { box-shadow: 0 0 8px var(--neon-purple), 0 0 20px rgba(180,79,255,0.35); }
+    50%       { box-shadow: 0 0 14px var(--neon-pink),  0 0 30px rgba(255,45,120,0.45); }
+  }
+
+  /* Slow-scan line that travels down the screen */
+  .crt-scan {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0, 240, 255, 0.04),
+      transparent
+    );
+    pointer-events: none;
+    z-index: 9999;
+    animation: scanpulse 6s linear infinite;
+  }
+
+  /* =====================================================
+     WRAPPER
+  ===================================================== */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+    animation: flicker 8s linear infinite;
+  }
+
+  /* =====================================================
+     HEADER
+  ===================================================== */
+  header {
+    text-align: center;
+    padding: 48px 0 24px;
+    position: relative;
+  }
+
+  .site-title {
+    font-size: 76px;
+    font-weight: 900;
+    letter-spacing: 18px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    animation: neon-pulse 3s ease-in-out infinite, glitch-shift 7s ease infinite;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* Chromatic aberration pseudo-layers */
+  .site-title-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .site-title-wrap::before {
+    content: 'UNDER+GROUND';
+    position: absolute;
+    top: 0; left: -3px;
+    color: var(--neon-pink);
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    letter-spacing: 18px;
+    font-size: 76px;
+    font-weight: 900;
+    text-transform: uppercase;
+    animation: glitch-h 5s steps(1) infinite;
+    pointer-events: none;
+  }
+  .site-title-wrap::after {
+    content: 'UNDER+GROUND';
+    position: absolute;
+    top: 0; left: 3px;
+    color: var(--neon-cyan);
+    opacity: 0.4;
+    mix-blend-mode: screen;
+    letter-spacing: 18px;
+    font-size: 76px;
+    font-weight: 900;
+    text-transform: uppercase;
+    animation: glitch-h 5s steps(1) 0.3s infinite;
+    pointer-events: none;
+  }
+
+  .site-subtitle {
+    margin-top: 14px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  /* =====================================================
+     NAV
+  ===================================================== */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 24px 0;
+    border-top: 1px solid var(--neon-purple);
+    border-bottom: 1px solid var(--neon-purple);
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 10px 28px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.2s, background 0.2s;
+    border-right: 1px solid rgba(180,79,255,0.3);
+  }
+  nav a:first-child { border-left: 1px solid rgba(180,79,255,0.3); }
+  nav a:hover {
+    color: var(--neon-cyan);
+    background: rgba(0,240,255,0.07);
+    text-shadow: 0 0 8px var(--neon-cyan);
+  }
+
+  /* =====================================================
+     DIVIDER
+  ===================================================== */
+  .neon-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-purple), var(--neon-pink), var(--neon-cyan), var(--neon-purple), transparent);
+    margin: 32px 0;
+    box-shadow: 0 0 10px var(--neon-purple);
+  }
+
+  /* =====================================================
+     SECTION HEADING
+  ===================================================== */
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--neon-pink);
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px var(--neon-pink);
+  }
+
+  /* =====================================================
+     ARTICLE CARDS — CRT monitor frames
+  ===================================================== */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0;
+    position: relative;
+    animation: border-glow 4s ease-in-out infinite;
+    overflow: hidden;
+  }
+
+  /* CRT top bar */
+  .card-topbar {
+    background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+    height: 6px;
+    width: 100%;
+    opacity: 0.8;
+  }
+
+  /* CRT "bezel" corners — pure CSS */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 0; right: 0; bottom: 0;
+    border: 1px solid rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+
+  .card-inner {
+    padding: 18px 20px 20px;
+  }
+
+  .card-num {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .card-title a {
+    text-decoration: none;
+    color: var(--text-main);
+    transition: color 0.2s;
+  }
+  .card-title a:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-date {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    text-shadow: 0 0 4px var(--neon-cyan);
+    box-shadow: 0 0 6px rgba(0,240,255,0.3), inset 0 0 6px rgba(0,240,255,0.05);
+  }
+
+  /* Featured card (first article) spans full width */
+  .card.featured {
+    grid-column: 1 / -1;
+  }
+  .card.featured .card-title {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+  .card.featured .card-inner {
+    padding: 24px 28px 26px;
+  }
+
+  /* =====================================================
+     ABOUT STRIP
+  ===================================================== */
+  .about-strip {
+    border: 1px solid rgba(180,79,255,0.4);
+    padding: 24px 28px;
+    background: rgba(13,0,22,0.7);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    animation: border-glow 4s ease-in-out 2s infinite;
+  }
+
+  .about-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border: 2px solid var(--neon-pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink), inset 0 0 10px rgba(255,45,120,0.2);
+    text-shadow: 0 0 8px var(--neon-pink);
+  }
+
+  .about-text {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .about-text strong {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 6px var(--neon-yellow);
+  }
+
+  /* =====================================================
+     FOOTER
+  ===================================================== */
+  footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid rgba(180,79,255,0.3);
+  }
+
+  .footer-title {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+  .footer-links a {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 6px var(--neon-cyan);
+  }
+
+  .footer-copy {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(144,112,187,0.5);
+    text-transform: uppercase;
+  }
+
+  /* =====================================================
+     RETRO TAGLINE
+  ===================================================== */
+  .retro-bar {
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(90deg, transparent, rgba(180,79,255,0.15), transparent);
+    margin: 0 0 32px;
+  }
+  .retro-bar span {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--neon-purple);
+    text-shadow: 0 0 8px var(--neon-purple);
+  }
+</style>
+</head>
+<body>
+
+<!-- CRT travelling scanline -->
+<div class="crt-scan"></div>
+
+<!-- Fixed background scene -->
+<div class="scene">
+  <!-- Perspective grid rendered as inline SVG -->
+  <svg class="grid-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax meet"
+       xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gfade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#b44fff" stop-opacity="0"/>
+        <stop offset="40%" stop-color="#b44fff" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#ff2d78" stop-opacity="0.9"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Horizontal lines (converging toward horizon at y=0) -->
+    <g stroke="url(#gfade)" stroke-width="0.8" fill="none">
+      <!-- Lines spaced by perspective: closer = bigger gap -->
+      <line x1="0" y1="600" x2="1200" y2="600"/>
+      <line x1="0" y1="500" x2="1200" y2="500"/>
+      <line x1="0" y1="420" x2="1200" y2="420"/>
+      <line x1="0" y1="355" x2="1200" y2="355"/>
+      <line x1="0" y1="300" x2="1200" y2="300"/>
+      <line x1="0" y1="253" x2="1200" y2="253"/>
+      <line x1="0" y1="213" x2="1200" y2="213"/>
+      <line x1="0" y1="178" x2="1200" y2="178"/>
+      <line x1="0" y1="148" x2="1200" y2="148"/>
+      <line x1="0" y1="120" x2="1200" y2="120"/>
+      <line x1="0" y1="96"  x2="1200" y2="96"/>
+      <line x1="0" y1="74"  x2="1200" y2="74"/>
+      <line x1="0" y1="55"  x2="1200" y2="55"/>
+      <line x1="0" y1="38"  x2="1200" y2="38"/>
+      <line x1="0" y1="22"  x2="1200" y2="22"/>
+      <line x1="0" y1="8"   x2="1200" y2="8"/>
+    </g>
+
+    <!-- Vertical lines converging to vanishing point at (600, 0) -->
+    <g stroke="url(#gfade)" stroke-width="0.8" fill="none">
+      <line x1="600" y1="0" x2="-200"  y2="600"/>
+      <line x1="600" y1="0" x2="0"     y2="600"/>
+      <line x1="600" y1="0" x2="100"   y2="600"/>
+      <line x1="600" y1="0" x2="200"   y2="600"/>
+      <line x1="600" y1="0" x2="300"   y2="600"/>
+      <line x1="600" y1="0" x2="400"   y2="600"/>
+      <line x1="600" y1="0" x2="500"   y2="600"/>
+      <line x1="600" y1="0" x2="600"   y2="600"/>
+      <line x1="600" y1="0" x2="700"   y2="600"/>
+      <line x1="600" y1="0" x2="800"   y2="600"/>
+      <line x1="600" y1="0" x2="900"   y2="600"/>
+      <line x1="600" y1="0" x2="1000"  y2="600"/>
+      <line x1="600" y1="0" x2="1100"  y2="600"/>
+      <line x1="600" y1="0" x2="1200"  y2="600"/>
+      <line x1="600" y1="0" x2="1400"  y2="600"/>
+    </g>
+  </svg>
+</div>
+
+<!-- Main content -->
+<div class="wrapper">
+
+  <header>
+    <div class="site-title-wrap">
+      <div class="site-title">UNDER+GROUND</div>
+    </div>
+    <p class="site-subtitle">
+      えむいーと愉快な仲間たちの平凡な技術ブログ<br>
+      Nintendo Switch Hacking &nbsp;/&nbsp; Reverse Engineering &nbsp;/&nbsp; Generative AI
+    </p>
+  </header>
+
+  <nav>
+    <a href="/blog">Blog</a>
+    <a href="/authors">Authors</a>
+    <a href="/tags">Tags</a>
+    <a href="/about">About</a>
+    <a href="/search">Search</a>
+  </nav>
+
+  <div class="retro-bar">
+    <span>— Transmitting from the digital underground —</span>
+  </div>
+
+  <div class="neon-divider"></div>
+
+  <p class="section-label">// Latest Transmissions</p>
+
+  <div class="articles-grid">
+
+    <!-- Featured: most recent -->
+    <div class="card featured">
+      <div class="card-topbar"></div>
+      <div class="card-inner">
+        <div class="card-num">Entry_001 &nbsp;/&nbsp; 2026-06-12</div>
+        <div class="card-title">
+          <a href="/blog/kiosk-tool">棋桜を便利に使うツールを開発しました</a>
+        </div>
+        <div class="card-meta">
+          <span class="card-date">2026.06.12</span>
+          <div class="card-tags">
+            <span class="tag">Shogi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remaining articles -->
+    <div class="card">
+      <div class="card-topbar"></div>
+      <div class="card-inner">
+        <div class="card-num">Entry_002 &nbsp;/&nbsp; 2026-04-23</div>
+        <div class="card-title">
+          <a href="/blog/claude-code">Claude Code......嘘だよな</a>
+        </div>
+        <div class="card-meta">
+          <span class="card-date">2026.04.23</span>
+          <div class="card-tags">
+            <span class="tag">Claude Code</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-topbar"></div>
+      <div class="card-inner">
+        <div class="card-num">Entry_003 &nbsp;/&nbsp; 2026-04-09</div>
+        <div class="card-title">
+          <a href="/blog/reverse-repo">リバエン専用レポジトリを作成しました</a>
+        </div>
+        <div class="card-meta">
+          <span class="card-date">2026.04.09</span>
+          <div class="card-tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Frida</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-topbar"></div>
+      <div class="card-inner">
+        <div class="card-num">Entry_004 &nbsp;/&nbsp; 2026-03-15</div>
+        <div class="card-title">
+          <a href="/blog/kaguya-cinema">超かぐや姫を映画館で見てきた</a>
+        </div>
+        <div class="card-meta">
+          <span class="card-date">2026.03.15</span>
+          <div class="card-tags">
+            <span class="tag">Netflix</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-topbar"></div>
+      <div class="card-inner">
+        <div class="card-num">Entry_005 &nbsp;/&nbsp; 2026-03-06</div>
+        <div class="card-title">
+          <a href="/blog/kaguya-review">超かぐや姫を見てきた感想</a>
+        </div>
+        <div class="card-meta">
+          <span class="card-date">2026.03.06</span>
+          <div class="card-tags">
+            <span class="tag">Netflix</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="neon-divider" style="margin-top: 40px;"></div>
+
+  <div class="about-strip">
+    <div class="about-icon">&#9670;</div>
+    <div class="about-text">
+      <strong>Under+Ground</strong> は えむいーと愉快な仲間たち が運営する技術ブログ。<br>
+      Nintendo Switch ハッキング / Frida / Docker / リバースエンジニアリング / 生成 AI——<br>
+      地下から発信する、平凡だけど熱量だけはある、そういうやつ。
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-title">Under+Ground Broadcast Network</div>
+    <div class="footer-links">
+      <a href="/blog">Blog</a>
+      <a href="/authors">Authors</a>
+      <a href="/tags">Tags</a>
+      <a href="/about">About</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="footer-copy">&copy; 2024–2026 Under+Ground &nbsp;/&nbsp; えむいーと愉快な仲間たち</div>
+  </footer>
+
+</div><!-- /.wrapper -->
+
+</body>
+</html>

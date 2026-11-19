@@ -1,0 +1,83 @@
+- generic [active] [ref=e1]:
+  - img [ref=e3]
+  - generic [ref=e20]:
+    - banner [ref=e21]:
+      - generic [ref=e22]:
+        - text: UNDER+GROUND
+        - generic [ref=e23]: UNDER+GROUND
+        - text: UNDER+GROUND
+      - paragraph [ref=e24]:
+        - text: えむいーと愉快な仲間たちの平凡な技術ブログ
+        - text: Nintendo Switch Hacking / Reverse Engineering / Generative AI
+    - navigation [ref=e25]:
+      - link "Blog" [ref=e26] [cursor=pointer]:
+        - /url: /blog
+      - link "Authors" [ref=e27] [cursor=pointer]:
+        - /url: /authors
+      - link "Tags" [ref=e28] [cursor=pointer]:
+        - /url: /tags
+      - link "About" [ref=e29] [cursor=pointer]:
+        - /url: /about
+      - link "Search" [ref=e30] [cursor=pointer]:
+        - /url: /search
+    - generic [ref=e31]: — Transmitting from the digital underground —
+    - paragraph [ref=e33]: // Latest Transmissions
+    - generic [ref=e34]:
+      - generic [ref=e37]:
+        - generic [ref=e38]: Entry_001 / 2026-06-12
+        - link "棋桜を便利に使うツールを開発しました" [ref=e40] [cursor=pointer]:
+          - /url: /blog/kiosk-tool
+        - generic [ref=e41]:
+          - generic [ref=e42]: 2026.06.12
+          - generic [ref=e44]: Shogi
+      - generic [ref=e47]:
+        - generic [ref=e48]: Entry_002 / 2026-04-23
+        - link "Claude Code......嘘だよな" [ref=e50] [cursor=pointer]:
+          - /url: /blog/claude-code
+        - generic [ref=e51]:
+          - generic [ref=e52]: 2026.04.23
+          - generic [ref=e54]: Claude Code
+      - generic [ref=e57]:
+        - generic [ref=e58]: Entry_003 / 2026-04-09
+        - link "リバエン専用レポジトリを作成しました" [ref=e60] [cursor=pointer]:
+          - /url: /blog/reverse-repo
+        - generic [ref=e61]:
+          - generic [ref=e62]: 2026.04.09
+          - generic [ref=e63]:
+            - generic [ref=e64]: Docker
+            - generic [ref=e65]: Frida
+      - generic [ref=e68]:
+        - generic [ref=e69]: Entry_004 / 2026-03-15
+        - link "超かぐや姫を映画館で見てきた" [ref=e71] [cursor=pointer]:
+          - /url: /blog/kaguya-cinema
+        - generic [ref=e72]:
+          - generic [ref=e73]: 2026.03.15
+          - generic [ref=e75]: Netflix
+      - generic [ref=e78]:
+        - generic [ref=e79]: Entry_005 / 2026-03-06
+        - link "超かぐや姫を見てきた感想" [ref=e81] [cursor=pointer]:
+          - /url: /blog/kaguya-review
+        - generic [ref=e82]:
+          - generic [ref=e83]: 2026.03.06
+          - generic [ref=e85]: Netflix
+    - generic [ref=e87]:
+      - generic [ref=e88]: ◆
+      - generic [ref=e89]:
+        - strong [ref=e90]: Under+Ground
+        - text: は えむいーと愉快な仲間たち が運営する技術ブログ。
+        - text: Nintendo Switch ハッキング / Frida / Docker / リバースエンジニアリング / 生成 AI——
+        - text: 地下から発信する、平凡だけど熱量だけはある、そういうやつ。
+    - contentinfo [ref=e91]:
+      - generic [ref=e92]: Under+Ground Broadcast Network
+      - generic [ref=e93]:
+        - link "Blog" [ref=e94] [cursor=pointer]:
+          - /url: /blog
+        - link "Authors" [ref=e95] [cursor=pointer]:
+          - /url: /authors
+        - link "Tags" [ref=e96] [cursor=pointer]:
+          - /url: /tags
+        - link "About" [ref=e97] [cursor=pointer]:
+          - /url: /about
+        - link "RSS" [ref=e98] [cursor=pointer]:
+          - /url: /rss.xml
+      - generic [ref=e99]: © 2024–2026 Under+Ground / えむいーと愉快な仲間たち

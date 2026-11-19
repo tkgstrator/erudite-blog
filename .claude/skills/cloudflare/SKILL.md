@@ -11,13 +11,21 @@ references:
 
 # Cloudflare Platform Skill
 
-Consolidated skill for building on the Cloudflare platform. Use decision trees below to find the right product, then load detailed references.
+Consolidated skill for building on the Cloudflare platform.
 
-Your knowledge of Cloudflare APIs, types, limits, and pricing may be outdated. **Prefer retrieval over pre-training** — the references in this skill are starting points, not source of truth.
+## Workflow
+
+1. Pick the right product using the Decision Trees below.
+2. Load that product's detailed reference from the Product Index.
+3. Verify specifics against live sources (see Retrieval Sources).
 
 ## Retrieval Sources
 
-Fetch the **latest** information before citing specific numbers, API signatures, or configuration options. Do not rely on baked-in knowledge or these reference files alone.
+Pre-trained knowledge of Cloudflare APIs, types, limits, and pricing may be outdated.
+
+- **DO** fetch the latest information before citing specific numbers, API signatures, or configuration options.
+- **DO** treat the reference files in this skill as starting points, not the source of truth.
+- **DON'T** rely on baked-in knowledge or these reference files alone.
 
 | Source | How to retrieve | Use for |
 |--------|----------------|---------|
@@ -26,107 +34,89 @@ Fetch the **latest** information before citing specific numbers, API signatures,
 | Wrangler config schema | `node_modules/wrangler/config-schema.json` | Config fields, binding shapes, allowed values |
 | Product changelogs | `https://developers.cloudflare.com/changelog/` | Recent changes to limits, features, deprecations |
 
-When a reference file and the docs disagree, **trust the docs**. This is especially important for: numeric limits, pricing tiers, type signatures, and configuration options.
+**Conflict rule:** when a reference file and the docs disagree, trust the docs. This matters most for numeric limits, pricing tiers, type signatures, and configuration options.
 
-## Quick Decision Trees
+## Decision Trees
+
+Each entry maps a need to the reference directory to load. See the Product Index for full paths.
 
 ### "I need to run code"
 
-```
-Need to run code?
-├─ Serverless functions at the edge → workers/
-├─ Full-stack web app with Git deploys → pages/
-├─ Stateful coordination/real-time → durable-objects/
-├─ Long-running multi-step jobs → workflows/
-├─ Run containers → containers/
-├─ Multi-tenant (customers deploy code) → workers-for-platforms/
-├─ Scheduled tasks (cron) → cron-triggers/
-├─ Lightweight edge logic (modify HTTP) → snippets/
-├─ Process Worker execution events (logs/observability) → tail-workers/
-└─ Optimize latency to backend infrastructure → smart-placement/
-```
+- Serverless functions at the edge → `workers/`
+- Full-stack web app with Git deploys → `pages/`
+- Stateful coordination/real-time → `durable-objects/`
+- Long-running multi-step jobs → `workflows/`
+- Run containers → `containers/`
+- Multi-tenant (customers deploy code) → `workers-for-platforms/`
+- Scheduled tasks (cron) → `cron-triggers/`
+- Lightweight edge logic (modify HTTP) → `snippets/`
+- Process Worker execution events (logs/observability) → `tail-workers/`
+- Optimize latency to backend infrastructure → `smart-placement/`
 
 ### "I need to store data"
 
-```
-Need storage?
-├─ Key-value (config, sessions, cache) → kv/
-├─ Relational SQL → d1/ (SQLite) or hyperdrive/ (existing Postgres/MySQL)
-├─ Object/file storage (S3-compatible) → r2/
-├─ Message queue (async processing) → queues/
-├─ Vector embeddings (AI/semantic search) → vectorize/
-├─ Strongly-consistent per-entity state → durable-objects/ (DO storage)
-├─ Secrets management → secrets-store/
-├─ Streaming ETL to R2 → pipelines/
-└─ Persistent cache (long-term retention) → cache-reserve/
-```
+- Key-value (config, sessions, cache) → `kv/`
+- Relational SQL → `d1/` (SQLite) or `hyperdrive/` (existing Postgres/MySQL)
+- Object/file storage (S3-compatible) → `r2/`
+- Message queue (async processing) → `queues/`
+- Vector embeddings (AI/semantic search) → `vectorize/`
+- Strongly-consistent per-entity state → `durable-objects/` (DO storage)
+- Secrets management → `secrets-store/`
+- Streaming ETL to R2 → `pipelines/`
+- Persistent cache (long-term retention) → `cache-reserve/`
 
 ### "I need AI/ML"
 
-```
-Need AI?
-├─ Run inference (LLMs, embeddings, images) → workers-ai/
-├─ Vector database for RAG/search → vectorize/
-├─ Build stateful AI agents → agents-sdk/
-├─ Gateway for any AI provider (caching, routing) → ai-gateway/
-└─ AI-powered search widget → ai-search/
-```
+- Run inference (LLMs, embeddings, images) → `workers-ai/`
+- Vector database for RAG/search → `vectorize/`
+- Build stateful AI agents → `agents-sdk/`
+- Gateway for any AI provider (caching, routing) → `ai-gateway/`
+- AI-powered search widget → `ai-search/`
 
 ### "I need networking/connectivity"
 
-```
-Need networking?
-├─ Expose local service to internet → tunnel/
-├─ TCP/UDP proxy (non-HTTP) → spectrum/
-├─ WebRTC TURN server → turn/
-├─ Private network connectivity → network-interconnect/
-├─ Optimize routing → argo-smart-routing/
-├─ Optimize latency to backend (not user) → smart-placement/
-└─ Real-time video/audio → realtimekit/ or realtime-sfu/
-```
+- Expose local service to internet → `tunnel/`
+- TCP/UDP proxy (non-HTTP) → `spectrum/`
+- WebRTC TURN server → `turn/`
+- Private network connectivity → `network-interconnect/`
+- Optimize routing → `argo-smart-routing/`
+- Optimize latency to backend (not user) → `smart-placement/`
+- Real-time video/audio → `realtimekit/` or `realtime-sfu/`
 
 ### "I need security"
 
-```
-Need security?
-├─ Web Application Firewall → waf/
-├─ DDoS protection → ddos/
-├─ Bot detection/management → bot-management/
-├─ API protection → api-shield/
-├─ CAPTCHA alternative → turnstile/
-└─ Credential leak detection → waf/ (managed ruleset)
-```
+- Web Application Firewall → `waf/`
+- DDoS protection → `ddos/`
+- Bot detection/management → `bot-management/`
+- API protection → `api-shield/`
+- CAPTCHA alternative → `turnstile/`
+- Credential leak detection → `waf/` (managed ruleset)
 
 ### "I need media/content"
 
-```
-Need media?
-├─ Image optimization/transformation → images/
-├─ Video streaming/encoding → stream/
-├─ Browser automation/screenshots → browser-rendering/
-└─ Third-party script management → zaraz/
-```
+- Image optimization/transformation → `images/`
+- Video streaming/encoding → `stream/`
+- Browser automation/screenshots → `browser-rendering/`
+- Third-party script management → `zaraz/`
 
 ### "I need analytics/metrics data"
 
-```
-Need analytics?
-├─ Query across all Cloudflare products (HTTP, Workers, DNS, etc.) → graphql-api/
-├─ Custom high-cardinality metrics from Workers → analytics-engine/
-├─ Client-side (RUM) performance data → web-analytics/
-├─ Workers Logs and real-time debugging → observability/
-└─ Raw logs (Logpush to external tools) → Cloudflare docs
-```
+- Query across all Cloudflare products (HTTP, Workers, DNS, etc.) → `graphql-api/`
+- Custom high-cardinality metrics from Workers → `analytics-engine/`
+- Client-side (RUM) performance data → `web-analytics/`
+- Workers Logs and real-time debugging → `observability/`
+- Raw logs (Logpush to external tools) → Cloudflare docs
 
 ### "I need infrastructure-as-code"
 
-```
-Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
-```
+- Pulumi → `pulumi/`
+- Terraform → `terraform/`
+- REST API → `api/`
 
 ## Product Index
 
 ### Compute & Runtime
+
 | Product | Reference |
 |---------|-----------|
 | Workers | `references/workers/` |
@@ -142,6 +132,7 @@ Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
 | Smart Placement | `references/smart-placement/` |
 
 ### Storage & Data
+
 | Product | Reference |
 |---------|-----------|
 | KV | `references/kv/` |
@@ -156,6 +147,7 @@ Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
 | R2 SQL | `references/r2-sql/` |
 
 ### AI & Machine Learning
+
 | Product | Reference |
 |---------|-----------|
 | Workers AI | `references/workers-ai/` |
@@ -165,6 +157,7 @@ Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
 | AI Search | `references/ai-search/` |
 
 ### Networking & Connectivity
+
 | Product | Reference |
 |---------|-----------|
 | Tunnel | `references/tunnel/` |
@@ -175,6 +168,7 @@ Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
 | Workers VPC | `references/workers-vpc/` |
 
 ### Security
+
 | Product | Reference |
 |---------|-----------|
 | WAF | `references/waf/` |
@@ -184,6 +178,7 @@ Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
 | Turnstile | `references/turnstile/` |
 
 ### Media & Content
+
 | Product | Reference |
 |---------|-----------|
 | Images | `references/images/` |
@@ -192,12 +187,14 @@ Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
 | Zaraz | `references/zaraz/` |
 
 ### Real-Time Communication
+
 | Product | Reference |
 |---------|-----------|
 | RealtimeKit | `references/realtimekit/` |
 | Realtime SFU | `references/realtime-sfu/` |
 
 ### Developer Tools
+
 | Product | Reference |
 |---------|-----------|
 | Wrangler | `references/wrangler/` |
@@ -212,6 +209,7 @@ Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
 | Workers Playground | `references/workers-playground/` |
 
 ### Infrastructure as Code
+
 | Product | Reference |
 |---------|-----------|
 | Pulumi | `references/pulumi/` |
@@ -219,10 +217,10 @@ Need IaC? → pulumi/ (Pulumi), terraform/ (Terraform), or api/ (REST API)
 | API | `references/api/` |
 
 ### Other Services
+
 | Product | Reference |
 |---------|-----------|
 | Email Routing | `references/email-routing/` |
 | Email Workers | `references/email-workers/` |
 | Static Assets | `references/static-assets/` |
 | Bindings | `references/bindings/` |
-| Cache Reserve | `references/cache-reserve/` |

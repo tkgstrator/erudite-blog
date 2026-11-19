@@ -1,0 +1,120 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]: ██╗ ██╗███╗ ██╗██████╗ ███████╗██████╗ ██║ ██║████╗ ██║██╔══██╗██╔════╝██╔══██╗ ██║ ██║██╔██╗██║██║ ██║█████╗ ██████╔╝ ██║ ██║██║╚████║██║ ██║██╔══╝ ██╔══██╗ ╚██████╔╝██║ ╚███║██████╔╝███████╗██║ ██║ ╚═════╝ ╚═╝ ╚══╝╚═════╝ ╚══════╝╚═╝ ╚═╝ ▄▄ ██████╗ ██████╗ ██████╗ ██╗ ██╗███╗ ██╗██████╗ ████╗██╔════╝ ██╔══██╗██╔═══██╗██║ ██║████╗ ██║██╔══██╗ ██╔██║██║ ███╗██████╔╝██║ ██║██║ ██║██╔██╗██║██║ ██║ ██╔╝██║██║ ██║██╔══██╗██║ ██║██║ ██║██║╚████║██║ ██║ ▀▀▀ ██╔╝ ██║╚██████╔╝██║ ██║╚██████╔╝╚██████╔╝██║ ╚███║██████╔╝ ╚═╝ ╚═╝ ╚═════╝ ╚═╝ ╚═╝ ╚═════╝ ╚═════╝ ╚═╝ ╚══╝╚═════╝
+  - navigation [ref=e5]:
+    - text: ▐
+    - link "[ BLOG ]" [ref=e6] [cursor=pointer]:
+      - /url: "#"
+    - link "[ AUTHORS ]" [ref=e7] [cursor=pointer]:
+      - /url: "#"
+    - link "[ TAGS ]" [ref=e8] [cursor=pointer]:
+      - /url: "#"
+    - link "[ ABOUT ]" [ref=e9] [cursor=pointer]:
+      - /url: "#"
+    - link "[ SEARCH ]" [ref=e10] [cursor=pointer]:
+      - /url: "#"
+    - text: ▌
+  - generic [ref=e11]: ────────────────────────────────────────────────────────────────────────────────
+  - generic [ref=e12]:
+    - generic [ref=e13]: ░▒▓█ WELCOME TO THE UNDERGROUND BBS █▓▒░
+    - generic [ref=e14]: えむいーと愉快な仲間たちの平凡な技術ブログ。
+    - generic [ref=e15]: ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。
+    - generic [ref=e16]: "● SYSTEM ONLINE :: NODE: UG-JP-01 :: ▌ READY"
+  - generic [ref=e17]: ════════════════════════════════════════════════════════════════════════════════
+  - generic [ref=e18]:
+    - generic [ref=e19]: "╔══════════════════════════════════════════════════════════════════════════════╗ ║ ▓▓ LATEST POSTS :: えむいーBBS掲示板 :: POST COUNT: 5 ║ ╠══════════════════════════════════════════════════════════════════════════════╣"
+    - list [ref=e20]:
+      - listitem [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: "[#001]"
+          - generic [ref=e24]: 棋桜を便利に使うツールを開発しました
+          - generic [ref=e25]: ················
+          - generic [ref=e26]: "[Shogi]"
+          - generic [ref=e27]: 2026-06-12
+      - listitem [ref=e28]: │──────────────────────────────────────────────────────────────────────────│
+      - listitem [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: "[#002]"
+          - generic [ref=e32]: Claude Code......嘘だよな
+          - generic [ref=e33]: ···························
+          - generic [ref=e34]: "[Claude Code]"
+          - generic [ref=e35]: 2026-04-23
+      - listitem [ref=e36]: │──────────────────────────────────────────────────────────────────────────│
+      - listitem [ref=e37]:
+        - generic [ref=e38]:
+          - generic [ref=e39]: "[#003]"
+          - generic [ref=e40]: リバエン専用レポジトリを作成しました
+          - generic [ref=e41]: ················
+          - generic [ref=e42]: "[Docker/Frida]"
+          - generic [ref=e43]: 2026-04-09
+      - listitem [ref=e44]: │──────────────────────────────────────────────────────────────────────────│
+      - listitem [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e47]: "[#004]"
+          - generic [ref=e48]: 超かぐや姫を映画館で見てきた
+          - generic [ref=e49]: ·······················
+          - generic [ref=e50]: "[Netflix]"
+          - generic [ref=e51]: 2026-03-15
+      - listitem [ref=e52]: │──────────────────────────────────────────────────────────────────────────│
+      - listitem [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]: "[#005]"
+          - generic [ref=e56]: 超かぐや姫を見てきた感想
+          - generic [ref=e57]: ···························
+          - generic [ref=e58]: "[Netflix]"
+          - generic [ref=e59]: 2026-03-06
+    - generic [ref=e60]: ╚══════════════════════════════════════════════════════════════════════════════╝
+  - generic [ref=e61]:
+    - generic [ref=e62]:
+      - generic [ref=e63]: ┌── SYSTEM INFO ─────────────────────┐
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - generic [ref=e66]: NODE
+          - generic [ref=e67]: UG-JP-01
+        - generic [ref=e68]:
+          - generic [ref=e69]: SOFTWARE
+          - generic [ref=e70]: UNDER+GROUND v3.1
+        - generic [ref=e71]:
+          - generic [ref=e72]: PLATFORM
+          - generic [ref=e73]: Cloudflare Workers
+        - generic [ref=e74]:
+          - generic [ref=e75]: CHARSET
+          - generic [ref=e76]: UTF-8 / ANSI-JP
+        - generic [ref=e77]:
+          - generic [ref=e78]: POSTS
+          - generic [ref=e79]: 5 total
+        - generic [ref=e80]:
+          - generic [ref=e81]: AUTHORS
+          - generic [ref=e82]: えむいー + 仲間
+        - generic [ref=e83]:
+          - generic [ref=e84]: STATUS
+          - generic [ref=e85]: ● ONLINE
+      - generic [ref=e86]: └────────────────────────────────────┘
+    - generic [ref=e87]:
+      - generic [ref=e88]: ┌── TAG CLOUD ───────────────────────┐
+      - generic [ref=e89]:
+        - generic [ref=e90]: "[Shogi]"
+        - generic [ref=e91]: "[Claude Code]"
+        - generic [ref=e92]: "[Docker]"
+        - generic [ref=e93]: "[Frida]"
+        - generic [ref=e94]: "[Netflix]"
+        - generic [ref=e95]: "[Nintendo Switch]"
+        - generic [ref=e96]: "[Hacking]"
+        - generic [ref=e97]: "[AI]"
+        - generic [ref=e98]: "[Reverse Eng]"
+      - generic [ref=e99]: └────────────────────────────────────┘
+  - generic [ref=e100]:
+    - generic [ref=e101]: ╔══ ABOUT THIS BBS ════════════════════════════════════════════════════════════╗
+    - generic [ref=e102]:
+      - text: Under+Ground は、えむいーと愉快な仲間たちが運営する技術ブログです。
+      - text: ニンテンドースイッチのハッキング・リバースエンジニアリングから、
+      - text: Claude / 生成 AI 活用まで、気になったことを雑多に書き残しています。
+      - text: ▶ このサイトは Cloudflare Workers + Astro で動いています。
+      - text: ▶ 記事の無断転載は禁止ですが、技術的な内容の参考利用はご自由に。
+      - text: "▶ お問い合わせ: @mvc_eme まで。"
+      - generic [ref=e103]: █
+    - generic [ref=e104]: ╚══════════════════════════════════════════════════════════════════════════════╝
+  - generic [ref=e105]: ════════════════════════════════════════════════════════════════════════════════
+  - contentinfo [ref=e106]:
+    - generic [ref=e107]: "▓▓▓▒▒▒░░░ UNDER+GROUND BULLETIN BOARD SYSTEM ░░░▒▒▒▓▓▓ ┌──────────────────────────────────────────────────────────┐ │ NODE : UG-JP-01 SPEED : 115200 baud │ │ UPTIME : 99.9% CODEC : UTF-8 / CP932 │ │ SYSOP : えむいー ZONE : Asia/Tokyo │ └──────────────────────────────────────────────────────────┘ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"
+    - generic [ref=e108]: © 2026 Under+Ground. All rights reserved. _

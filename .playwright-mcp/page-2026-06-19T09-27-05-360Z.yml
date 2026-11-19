@@ -1,0 +1,313 @@
+- generic [ref=e2]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Logo Under+Ground" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "Logo" [ref=e7]
+        - generic [ref=e8]: Under+Ground
+      - generic [ref=e9]:
+        - navigation [ref=e10]:
+          - link "blog" [ref=e11] [cursor=pointer]:
+            - /url: /blog
+          - link "authors" [ref=e12] [cursor=pointer]:
+            - /url: /authors
+          - link "tags" [ref=e13] [cursor=pointer]:
+            - /url: /tags
+          - link "about" [ref=e14] [cursor=pointer]:
+            - /url: /about
+          - link "search" [ref=e15] [cursor=pointer]:
+            - /url: /search
+        - button "Toggle theme" [ref=e16]:
+          - img
+          - img
+          - generic [ref=e17]: Toggle theme
+  - main [ref=e18]:
+    - generic [ref=e20]:
+      - navigation "breadcrumb" [ref=e21]:
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - link [ref=e24] [cursor=pointer]:
+              - /url: /
+              - img [ref=e25]
+          - listitem [ref=e27]:
+            - img [ref=e28]
+          - listitem [ref=e30]:
+            - link "Blog" [ref=e31] [cursor=pointer]:
+              - /url: /blog
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - generic [ref=e35]: Blog
+          - listitem [ref=e36]:
+            - img [ref=e37]
+          - listitem [ref=e39]:
+            - link "Page 2" [disabled] [ref=e40]:
+              - generic [ref=e41]:
+                - img [ref=e42]
+                - generic [ref=e44]: Page 2
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e47]: "2026"
+          - list [ref=e48]:
+            - listitem [ref=e49]:
+              - link "JellyfinのメディアライブラリをDiscordで再生する JellyfinのコンテンツをDiscord上で流せるようにBotで実装しました t tkgstrator January 4, 2026 1 min read Docker TypeScript Jellyfin Discord" [ref=e51] [cursor=pointer]:
+                - /url: /blog/2026/01/jellyfin_discord_bot
+                - generic [ref=e52]:
+                  - heading "JellyfinのメディアライブラリをDiscordで再生する" [level=3] [ref=e53]
+                  - paragraph [ref=e54]: JellyfinのコンテンツをDiscord上で流せるようにBotで実装しました
+                  - generic [ref=e55]:
+                    - generic [ref=e56]:
+                      - generic [ref=e59]: t
+                      - generic [ref=e60]: tkgstrator
+                    - generic [ref=e61]: January 4, 2026
+                    - generic [ref=e62]: 1 min read
+                  - generic [ref=e63]:
+                    - generic [ref=e64]:
+                      - img
+                      - text: Docker
+                    - generic [ref=e65]:
+                      - img
+                      - text: TypeScript
+                    - generic [ref=e66]:
+                      - img
+                      - text: Jellyfin
+                    - generic [ref=e67]:
+                      - img
+                      - text: Discord
+            - listitem [ref=e68]:
+              - link "Aivis EngineをDiscordで利用する Aivis Engineでテキストチャットを読み上げるBotを作りました t tkgstrator January 1, 2026 1 min read Docker TypeScript Aivis Engine" [ref=e70] [cursor=pointer]:
+                - /url: /blog/2026/01/aivis
+                - generic [ref=e71]:
+                  - heading "Aivis EngineをDiscordで利用する" [level=3] [ref=e72]
+                  - paragraph [ref=e73]: Aivis Engineでテキストチャットを読み上げるBotを作りました
+                  - generic [ref=e74]:
+                    - generic [ref=e75]:
+                      - generic [ref=e78]: t
+                      - generic [ref=e79]: tkgstrator
+                    - generic [ref=e80]: January 1, 2026
+                    - generic [ref=e81]: 1 min read
+                  - generic [ref=e82]:
+                    - generic [ref=e83]:
+                      - img
+                      - text: Docker
+                    - generic [ref=e84]:
+                      - img
+                      - text: TypeScript
+                    - generic [ref=e85]:
+                      - img
+                      - text: Aivis Engine
+        - generic [ref=e86]:
+          - generic [ref=e87]: "2025"
+          - list [ref=e88]:
+            - listitem [ref=e89]:
+              - link "Aivis Engineを本番環境向けにリファクタリングする Aivis Engineは個人利用向けなので、大規模アクセスにも対応できるように修正します t tkgstrator December 31, 2025 1 min read Docker Python Aivis Engine" [ref=e91] [cursor=pointer]:
+                - /url: /blog/2025/12/aivis_engine
+                - generic [ref=e92]:
+                  - heading "Aivis Engineを本番環境向けにリファクタリングする" [level=3] [ref=e93]
+                  - paragraph [ref=e94]: Aivis Engineは個人利用向けなので、大規模アクセスにも対応できるように修正します
+                  - generic [ref=e95]:
+                    - generic [ref=e96]:
+                      - generic [ref=e99]: t
+                      - generic [ref=e100]: tkgstrator
+                    - generic [ref=e101]: December 31, 2025
+                    - generic [ref=e102]: 1 min read
+                  - generic [ref=e103]:
+                    - generic [ref=e104]:
+                      - img
+                      - text: Docker
+                    - generic [ref=e105]:
+                      - img
+                      - text: Python
+                    - generic [ref=e106]:
+                      - img
+                      - text: Aivis Engine
+            - listitem [ref=e107]:
+              - link "Jellyfinで日本語が中華フォントになる件 デフォルトだと何故か中国語のフォントになります t tkgstrator December 30, 2025 1 min read Jellyfin" [ref=e109] [cursor=pointer]:
+                - /url: /blog/2025/12/jellyfin_font
+                - generic [ref=e110]:
+                  - heading "Jellyfinで日本語が中華フォントになる件" [level=3] [ref=e111]
+                  - paragraph [ref=e112]: デフォルトだと何故か中国語のフォントになります
+                  - generic [ref=e113]:
+                    - generic [ref=e114]:
+                      - generic [ref=e117]: t
+                      - generic [ref=e118]: tkgstrator
+                    - generic [ref=e119]: December 30, 2025
+                    - generic [ref=e120]: 1 min read
+                  - generic [ref=e122]:
+                    - img
+                    - text: Jellyfin
+            - listitem [ref=e123]:
+              - link "EPGStationをCloudflare Tunnel経由でアクセスしたい 普通にデプロイすると動かないのでその対応です t tkgstrator December 28, 2025 1 min read EPGStation Cloudflare Tunnel" [ref=e125] [cursor=pointer]:
+                - /url: /blog/2025/12/epgstation
+                - generic [ref=e126]:
+                  - heading "EPGStationをCloudflare Tunnel経由でアクセスしたい" [level=3] [ref=e127]
+                  - paragraph [ref=e128]: 普通にデプロイすると動かないのでその対応です
+                  - generic [ref=e129]:
+                    - generic [ref=e130]:
+                      - generic [ref=e133]: t
+                      - generic [ref=e134]: tkgstrator
+                    - generic [ref=e135]: December 28, 2025
+                    - generic [ref=e136]: 1 min read
+                  - generic [ref=e137]:
+                    - generic [ref=e138]:
+                      - img
+                      - text: EPGStation
+                    - generic [ref=e139]:
+                      - img
+                      - text: Cloudflare Tunnel
+            - listitem [ref=e140]:
+              - link "VITS2でTTSのモデルを学習させた話 日本語対応のTTSモデルであるVITS2で学習させてみました t tkgstrator December 28, 2025 1 min read LLM VITS2" [ref=e142] [cursor=pointer]:
+                - /url: /blog/2025/12/vits2
+                - generic [ref=e143]:
+                  - heading "VITS2でTTSのモデルを学習させた話" [level=3] [ref=e144]
+                  - paragraph [ref=e145]: 日本語対応のTTSモデルであるVITS2で学習させてみました
+                  - generic [ref=e146]:
+                    - generic [ref=e147]:
+                      - generic [ref=e150]: t
+                      - generic [ref=e151]: tkgstrator
+                    - generic [ref=e152]: December 28, 2025
+                    - generic [ref=e153]: 1 min read
+                  - generic [ref=e154]:
+                    - generic [ref=e155]:
+                      - img
+                      - text: LLM
+                    - generic [ref=e156]:
+                      - img
+                      - text: VITS2
+            - listitem [ref=e157]:
+              - link "魔法少女的魔女審判をクリアした感想 知人に勧められてプレイしたので、その感想を多分期待していると思うので書きます t tkgstrator December 23, 2025 1 min read Steam ADV" [ref=e159] [cursor=pointer]:
+                - /url: /blog/2025/12/mgwt
+                - generic [ref=e160]:
+                  - heading "魔法少女的魔女審判をクリアした感想" [level=3] [ref=e161]
+                  - paragraph [ref=e162]: 知人に勧められてプレイしたので、その感想を多分期待していると思うので書きます
+                  - generic [ref=e163]:
+                    - generic [ref=e164]:
+                      - generic [ref=e167]: t
+                      - generic [ref=e168]: tkgstrator
+                    - generic [ref=e169]: December 23, 2025
+                    - generic [ref=e170]: 1 min read
+                  - generic [ref=e171]:
+                    - generic [ref=e172]:
+                      - img
+                      - text: Steam
+                    - generic [ref=e173]:
+                      - img
+                      - text: ADV
+            - listitem [ref=e174]:
+              - link "フロントエンドを開発して思ったこと デプロイするときの注意点についてまとめ t tkgstrator December 21, 2025 1 min read Vite React Cloudflare Workers" [ref=e176] [cursor=pointer]:
+                - /url: /blog/2025/12/frontend
+                - generic [ref=e177]:
+                  - heading "フロントエンドを開発して思ったこと" [level=3] [ref=e178]
+                  - paragraph [ref=e179]: デプロイするときの注意点についてまとめ
+                  - generic [ref=e180]:
+                    - generic [ref=e181]:
+                      - generic [ref=e184]: t
+                      - generic [ref=e185]: tkgstrator
+                    - generic [ref=e186]: December 21, 2025
+                    - generic [ref=e187]: 1 min read
+                  - generic [ref=e188]:
+                    - generic [ref=e189]:
+                      - img
+                      - text: Vite
+                    - generic [ref=e190]:
+                      - img
+                      - text: React
+                    - generic [ref=e191]:
+                      - img
+                      - text: Cloudflare Workers
+            - listitem [ref=e192]:
+              - link "ブラックフライデーで買おうかなっていうもの お金がないので高いものは買わないです t tkgstrator November 26, 2025 1 min read Amazon Black Friday" [ref=e194] [cursor=pointer]:
+                - /url: /blog/2025/11/black_friday
+                - generic [ref=e195]:
+                  - heading "ブラックフライデーで買おうかなっていうもの" [level=3] [ref=e196]
+                  - paragraph [ref=e197]: お金がないので高いものは買わないです
+                  - generic [ref=e198]:
+                    - generic [ref=e199]:
+                      - generic [ref=e202]: t
+                      - generic [ref=e203]: tkgstrator
+                    - generic [ref=e204]: November 26, 2025
+                    - generic [ref=e205]: 1 min read
+                  - generic [ref=e206]:
+                    - generic [ref=e207]:
+                      - img
+                      - text: Amazon
+                    - generic [ref=e208]:
+                      - img
+                      - text: Black Friday
+            - listitem [ref=e209]:
+              - link "モノレポで開発したときの備忘録 開発中に工夫したところなどをメモ代わりに記述します t tkgstrator November 25, 2025 1 min read Vite React Cloudflare Workers" [ref=e211] [cursor=pointer]:
+                - /url: /blog/2025/11/proxy
+                - generic [ref=e212]:
+                  - heading "モノレポで開発したときの備忘録" [level=3] [ref=e213]
+                  - paragraph [ref=e214]: 開発中に工夫したところなどをメモ代わりに記述します
+                  - generic [ref=e215]:
+                    - generic [ref=e216]:
+                      - generic [ref=e219]: t
+                      - generic [ref=e220]: tkgstrator
+                    - generic [ref=e221]: November 25, 2025
+                    - generic [ref=e222]: 1 min read
+                  - generic [ref=e223]:
+                    - generic [ref=e224]:
+                      - img
+                      - text: Vite
+                    - generic [ref=e225]:
+                      - img
+                      - text: React
+                    - generic [ref=e226]:
+                      - img
+                      - text: Cloudflare Workers
+      - navigation "pagination" [ref=e228]:
+        - list [ref=e229]:
+          - listitem [ref=e230]:
+            - link "Go to previous page" [ref=e231] [cursor=pointer]:
+              - /url: /blog/
+              - img
+              - generic [ref=e232]: Previous
+          - listitem [ref=e233]:
+            - link "1" [ref=e234] [cursor=pointer]:
+              - /url: /blog/
+          - listitem [ref=e235]:
+            - link "2" [ref=e236] [cursor=pointer]:
+              - /url: /blog/2
+          - listitem [ref=e237]:
+            - link "3" [ref=e238] [cursor=pointer]:
+              - /url: /blog/3
+          - listitem [ref=e239]:
+            - link "4" [ref=e240] [cursor=pointer]:
+              - /url: /blog/4
+          - listitem [ref=e241]:
+            - link "5" [ref=e242] [cursor=pointer]:
+              - /url: /blog/5
+          - listitem [ref=e243]:
+            - generic [ref=e244]:
+              - img [ref=e245]
+              - generic [ref=e249]: More pages
+          - listitem [ref=e250]:
+            - link "35" [ref=e251] [cursor=pointer]:
+              - /url: /blog/35
+          - listitem [ref=e252]:
+            - link "Go to next page" [ref=e253] [cursor=pointer]:
+              - /url: /blog/3
+              - generic [ref=e254]: Next
+              - img
+  - contentinfo [ref=e255]:
+    - generic [ref=e256]:
+      - generic [ref=e257]:
+        - generic [ref=e258]: © 2026 All rights reserved.
+        - paragraph [ref=e259]:
+          - text: Made by
+          - link "enscribe" [ref=e260] [cursor=pointer]:
+            - /url: https://github.com/jktrn
+          - text: "!"
+      - list [ref=e261]:
+        - listitem [ref=e262]:
+          - link "GitHub" [ref=e263] [cursor=pointer]:
+            - /url: https://github.com/tkgstrator
+            - img
+        - listitem [ref=e264]:
+          - link "Twitter" [ref=e265] [cursor=pointer]:
+            - /url: https://twitter.com/tkgling
+            - img
+        - listitem [ref=e266]:
+          - link "Email" [ref=e267] [cursor=pointer]:
+            - /url: mailto:tkgstrator@qleap.jp
+            - img

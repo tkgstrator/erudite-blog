@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Under+Ground — えむいーと愉快な仲間たちの平凡な技術ブログ</title>
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(80, 180, 240, 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 100%, rgba(57, 255, 20, 0.08) 0%, transparent 50%),
+      linear-gradient(135deg, #050510 0%, #0d1b3e 40%, #050510 100%);
+    background-attachment: fixed;
+    color: #c8dff5;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(126, 200, 227, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(57, 100, 180, 0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(30, 60, 120, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(180deg,
+      #3a5280 0%,
+      #2a3f6f 15%,
+      #1e3060 35%,
+      #0d1b3e 65%,
+      #071228 100%);
+    border-top: 4px solid #a8dff0;
+    border-bottom: 1px solid rgba(126, 200, 227, 0.3);
+    box-shadow:
+      0 6px 32px rgba(0, 0, 0, 0.8),
+      0 2px 0 rgba(255, 255, 255, 0.12) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.6) inset,
+      0 0 40px rgba(126, 200, 227, 0.08);
+    position: relative;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #7ec8e3, #b8d4f0, #7ec8e3, transparent);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 32px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-size: 3.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    background: linear-gradient(180deg,
+      #ffffff 0%,
+      #c0e8ff 20%,
+      #7ec8e3 40%,
+      #ffffff 55%,
+      #b8d4f0 75%,
+      #e8f6ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter:
+      drop-shadow(0 0 12px rgba(126, 200, 227, 0.9))
+      drop-shadow(0 0 30px rgba(126, 200, 227, 0.5))
+      drop-shadow(2px 2px 0px rgba(0,0,0,0.8));
+    line-height: 1;
+  }
+
+  .logo-sub {
+    font-size: 0.68rem;
+    color: #8db8d8;
+    letter-spacing: 0.04em;
+    padding-left: 2px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 7px 18px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #b8d4f0;
+    text-decoration: none;
+    background: rgba(126, 200, 227, 0.08);
+    border: 1px solid rgba(126, 200, 227, 0.25);
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.05) inset;
+  }
+
+  nav a:hover {
+    background: rgba(126, 200, 227, 0.22);
+    color: #ffffff;
+    box-shadow:
+      0 0 14px rgba(126, 200, 227, 0.5),
+      0 0 30px rgba(126, 200, 227, 0.2),
+      0 2px 8px rgba(0,0,0,0.4),
+      0 1px 0 rgba(255,255,255,0.1) inset;
+    border-color: rgba(126, 200, 227, 0.6);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1200px;
+    margin: 36px auto 28px;
+    padding: 0 32px;
+  }
+
+  .hero-inner {
+    background:
+      radial-gradient(ellipse at 80% 50%, rgba(57, 255, 20, 0.06) 0%, transparent 50%),
+      rgba(13, 27, 62, 0.65);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(126, 200, 227, 0.5);
+    border-radius: 22px;
+    padding: 32px 200px 32px 36px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+      0 0 60px rgba(126, 200, 227, 0.12),
+      0 12px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .hero-inner::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #7ec8e3 30%, #ffffff 50%, #7ec8e3 70%, transparent 100%);
+    opacity: 0.8;
+  }
+
+  .hero-inner::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #39ff14, #7ec8e3, #39ff14, transparent);
+    opacity: 0.7;
+  }
+
+  .hero-deco {
+    position: absolute;
+    top: 50%;
+    right: 32px;
+    transform: translateY(-50%);
+    font-size: 2.4rem;
+    line-height: 1.5;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-deco-star {
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(126, 200, 227, 0.9)) drop-shadow(0 0 20px rgba(57, 255, 20, 0.4));
+    animation: none;
+  }
+
+  .hero-deco-star:nth-child(1) { color: #7ec8e3; font-size: 2.8rem; }
+  .hero-deco-star:nth-child(2) { color: #39ff14; font-size: 1.8rem; opacity: 0.8; }
+  .hero-deco-star:nth-child(3) { color: #ff8cb4; font-size: 2.2rem; }
+  .hero-deco-star:nth-child(4) { color: #7ec8e3; font-size: 1.4rem; opacity: 0.7; }
+  .hero-deco-star:nth-child(5) { color: #ffffff; font-size: 2rem; }
+
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.15), rgba(126, 200, 227, 0.15));
+    border: 1px solid rgba(57, 255, 20, 0.4);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #39ff14;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #e8f4ff;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    text-shadow: 0 0 20px rgba(126, 200, 227, 0.4);
+  }
+
+  .hero-desc {
+    font-size: 0.82rem;
+    color: #8db8d8;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px 60px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    font-size: 1rem;
+    font-weight: 900;
+    color: #7ec8e3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(126, 200, 227, 0.4), transparent);
+  }
+
+  .section-deco {
+    color: #7ec8e3;
+    font-size: 1rem;
+  }
+
+  /* ── ARTICLE CARDS ── */
+  .articles {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 22px 26px;
+    position: relative;
+    text-decoration: none;
+    display: block;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-clip: padding-box;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(126, 200, 227, 0.5), rgba(57, 100, 180, 0.2), rgba(126, 200, 227, 0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(126, 200, 227, 0.12),
+      0 1px 0 rgba(255, 255, 255, 0.07) inset;
+  }
+
+  .card:hover::before {
+    background: linear-gradient(135deg, rgba(126, 200, 227, 0.8), rgba(57, 100, 180, 0.4), rgba(126, 200, 227, 0.6));
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .card-date {
+    font-size: 0.72rem;
+    color: #6a9bbf;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tag-pink {
+    background: rgba(255, 140, 180, 0.18);
+    border: 1px solid rgba(255, 140, 180, 0.45);
+    color: #ff8cb4;
+  }
+
+  .tag-green {
+    background: rgba(57, 255, 20, 0.12);
+    border: 1px solid rgba(57, 255, 20, 0.4);
+    color: #39ff14;
+  }
+
+  .tag-cyan {
+    background: rgba(126, 200, 227, 0.15);
+    border: 1px solid rgba(126, 200, 227, 0.4);
+    color: #7ec8e3;
+  }
+
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: #a8d8f0;
+    line-height: 1.4;
+    text-shadow: 0 0 12px rgba(126, 200, 227, 0.3);
+  }
+
+  .card:hover .card-title {
+    color: #c8ecff;
+  }
+
+  .card-arrow {
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(126, 200, 227, 0.35);
+    font-size: 1.1rem;
+    font-weight: 900;
+  }
+
+  .card:hover .card-arrow {
+    color: rgba(126, 200, 227, 0.7);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .widget {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 20px 22px;
+    position: relative;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .widget::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(126, 200, 227, 0.35), rgba(57, 100, 180, 0.15), rgba(184, 100, 200, 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .widget-title {
+    font-size: 0.78rem;
+    font-weight: 900;
+    color: #7ec8e3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .widget-title span {
+    color: #ff8cb4;
+  }
+
+  /* ABOUT WIDGET */
+  .about-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a3f6f, #0d1b3e);
+    border: 2px solid rgba(126, 200, 227, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    box-shadow: 0 0 18px rgba(126, 200, 227, 0.25);
+  }
+
+  .about-name {
+    font-size: 0.92rem;
+    font-weight: 900;
+    color: #c8dff5;
+    margin-bottom: 6px;
+  }
+
+  .about-desc {
+    font-size: 0.75rem;
+    color: #7a9bbf;
+    line-height: 1.65;
+  }
+
+  /* TAGS WIDGET */
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .tag-cloud .tag {
+    cursor: default;
+  }
+
+  /* STATS WIDGET */
+  .stats-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stats-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: #8db8d8;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(126, 200, 227, 0.1);
+  }
+
+  .stats-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .stats-num {
+    font-weight: 900;
+    color: #7ec8e3;
+    font-size: 0.9rem;
+  }
+
+  /* DECO WIDGET */
+  .deco-widget {
+    text-align: center;
+    padding: 18px 22px;
+  }
+
+  .deco-sparkle {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    letter-spacing: 6px;
+    display: block;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 6px rgba(126, 200, 227, 0.6));
+  }
+
+  .deco-msg {
+    font-size: 0.72rem;
+    color: #6a9bbf;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: linear-gradient(180deg, #0d1b3e 0%, #0a0a1a 100%);
+    border-top: 1px solid rgba(126, 200, 227, 0.25);
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #7ec8e3, #ff8cb4, #7ec8e3, transparent);
+    opacity: 0.7;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer-logo {
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    background: linear-gradient(180deg, #c0d8f0 0%, #7ec8e3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(126, 200, 227, 0.4));
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-nav a {
+    font-size: 0.72rem;
+    color: #6a9bbf;
+    text-decoration: none;
+    letter-spacing: 0.07em;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover {
+    color: #7ec8e3;
+  }
+
+  .footer-copy {
+    font-size: 0.68rem;
+    color: #3a5878;
+    letter-spacing: 0.06em;
+  }
+
+  .footer-hearts {
+    font-size: 0.9rem;
+    letter-spacing: 8px;
+    color: rgba(255, 140, 180, 0.45);
+    filter: drop-shadow(0 0 4px rgba(255, 140, 180, 0.3));
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="#">
+      <span class="logo-text">Under+Ground</span>
+      <span class="logo-sub">✦ えむいーと愉快な仲間たちの平凡な技術ブログ ✦</span>
+    </a>
+    <nav>
+      <a href="#">Blog</a>
+      <a href="#">Authors</a>
+      <a href="#">Tags</a>
+      <a href="#">About</a>
+      <a href="#">Search</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-deco">
+      <span class="hero-deco-star">★</span>
+      <span class="hero-deco-star">✦</span>
+      <span class="hero-deco-star">♥</span>
+      <span class="hero-deco-star">✦</span>
+      <span class="hero-deco-star">★</span>
+    </div>
+    <div class="hero-badge">✦ Welcome to Under+Ground ✦</div>
+    <h1 class="hero-title">ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。</h1>
+    <p class="hero-desc">えむいーと愉快な仲間たちによる平凡な技術ブログ。日常的なハックから最先端の AI まで、気の向くままに書き記していきます。</p>
+  </div>
+</section>
+
+<div class="main-layout">
+
+  <!-- ARTICLES -->
+  <main>
+    <div class="section-heading">
+      <span class="section-deco">★</span>
+      <h2>Recent Posts</h2>
+    </div>
+
+    <div class="articles">
+
+      <a class="card" href="#">
+        <div class="card-meta">
+          <span class="card-date">2026-06-12</span>
+          <span class="tag tag-cyan">Shogi</span>
+        </div>
+        <div class="card-title">棋桜を便利に使うツールを開発しました</div>
+        <span class="card-arrow">›</span>
+      </a>
+
+      <a class="card" href="#">
+        <div class="card-meta">
+          <span class="card-date">2026-04-23</span>
+          <span class="tag tag-green">Claude Code</span>
+        </div>
+        <div class="card-title">Claude Code......嘘だよな</div>
+        <span class="card-arrow">›</span>
+      </a>
+
+      <a class="card" href="#">
+        <div class="card-meta">
+          <span class="card-date">2026-04-09</span>
+          <span class="tag tag-cyan">Docker</span>
+          <span class="tag tag-pink">Frida</span>
+        </div>
+        <div class="card-title">リバエン専用レポジトリを作成しました</div>
+        <span class="card-arrow">›</span>
+      </a>
+
+      <a class="card" href="#">
+        <div class="card-meta">
+          <span class="card-date">2026-03-15</span>
+          <span class="tag tag-pink">Netflix</span>
+        </div>
+        <div class="card-title">超かぐや姫を映画館で見てきた</div>
+        <span class="card-arrow">›</span>
+      </a>
+
+      <a class="card" href="#">
+        <div class="card-meta">
+          <span class="card-date">2026-03-06</span>
+          <span class="tag tag-pink">Netflix</span>
+        </div>
+        <div class="card-title">超かぐや姫を見てきた感想</div>
+        <span class="card-arrow">›</span>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="widget">
+      <div class="widget-title"><span>♥</span> About</div>
+      <div class="about-avatar">🛸</div>
+      <div class="about-name">えむいー</div>
+      <div class="about-desc">技術好きの何でも屋。スイッチハックに始まり AI まで首を突っ込んでいます。</div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title"><span>★</span> Tags</div>
+      <div class="tag-cloud">
+        <span class="tag tag-pink">Netflix</span>
+        <span class="tag tag-green">Claude Code</span>
+        <span class="tag tag-cyan">Shogi</span>
+        <span class="tag tag-cyan">Docker</span>
+        <span class="tag tag-pink">Frida</span>
+        <span class="tag tag-green">AI</span>
+        <span class="tag tag-cyan">Switch</span>
+        <span class="tag tag-pink">Hack</span>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title"><span>✦</span> Stats</div>
+      <ul class="stats-list">
+        <li><span>総記事数</span><span class="stats-num">5</span></li>
+        <li><span>タグ数</span><span class="stats-num">6</span></li>
+        <li><span>著者数</span><span class="stats-num">1</span></li>
+        <li><span>最終更新</span><span class="stats-num">2026-06</span></li>
+      </ul>
+    </div>
+
+    <div class="widget deco-widget">
+      <span class="deco-sparkle">★ ✦ ♥</span>
+      <div class="deco-msg">
+        読んでくれてありがとう♥<br>
+        また来てね ✦
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">★ Under+Ground ★</div>
+    <nav class="footer-nav">
+      <a href="#">Blog</a>
+      <a href="#">Authors</a>
+      <a href="#">Tags</a>
+      <a href="#">About</a>
+      <a href="#">Search</a>
+    </nav>
+    <div class="footer-hearts">♥ ♥ ♥</div>
+    <div class="footer-copy">&copy; 2026 Under+Ground — All rights reserved ✦</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -11,6 +11,15 @@ metadata:
 
 This skill provides everything needed to implement a Prisma ORM v7 driver adapter for any database.
 
+## Critical Contract Rules
+
+These rules are easy to get wrong because they are not inferable from code examples:
+
+- **DO NOT** issue `COMMIT` or `ROLLBACK` SQL inside `Transaction.commit()` / `Transaction.rollback()`. They are **lifecycle hooks only** (release connections/resources). Prisma itself sends `COMMIT`/`ROLLBACK` via `executeRaw` on the transaction object.
+- **DO** issue `BEGIN` (with isolation level, if specified) in `startTransaction()` at depth 1, and `SAVEPOINT sp_N` for nested transactions.
+- **DO** wrap every driver error in `DriverAdapterError` with a proper `MappedError` kind — Prisma relies on this mapping to handle errors correctly.
+- **DO** validate the requested isolation level against what the target database supports, and throw `DriverAdapterError` with kind `InvalidIsolationLevel` otherwise.
+
 ## Architecture Overview
 
 ```
@@ -177,6 +186,13 @@ interface SqlMigrationAwareDriverAdapterFactory {
 
 ## Implementation Steps
 
+Implement four classes, in this order:
+
+1. **Queryable base class** — shared `queryRaw`/`executeRaw` logic
+2. **Transaction class** — extends the base; `commit`/`rollback` are lifecycle hooks only
+3. **Adapter class** — extends the base; adds `executeScript`, `startTransaction`, `getConnectionInfo`, `dispose`
+4. **Factory class** — creates adapters via `connect()` and `connectToShadowDb()`
+
 ### Step 1: Create the Queryable base class
 
 ```typescript
@@ -261,6 +277,12 @@ class MyTransaction extends MyQueryable<TClient> implements Transaction {
 
 ### Step 3: Create the Adapter class
 
+Key responsibilities:
+
+- Validate the isolation level; throw `DriverAdapterError` with kind `InvalidIsolationLevel` for unsupported levels.
+- Track transaction depth: issue `BEGIN` at depth 1, `SAVEPOINT sp_N` when nested.
+- Decrement depth on error and via the `release` callback passed to the transaction.
+
 ```typescript
 class MyAdapter extends MyQueryable<TClient> implements SqlDriverAdapter {
   #transactionDepth = 0;
@@ -336,6 +358,8 @@ class MyAdapter extends MyQueryable<TClient> implements SqlDriverAdapter {
 
 ### Step 4: Create the Factory class
 
+`connectToShadowDb()` uses the shadow database URL when configured, and falls back to the main URL otherwise.
+
 ```typescript
 export type MyAdapterConfig = {
   url: string;
@@ -369,7 +393,13 @@ export class MyAdapterFactory implements SqlMigrationAwareDriverAdapterFactory {
 
 ### Argument Mapping (input)
 
-Convert Prisma argument values to driver-native types:
+Convert Prisma argument values to driver-native types. Required conversions:
+
+- string → int (`scalarType: "int"`)
+- string → float (`scalarType: "float"`)
+- string → BigInt (`scalarType: "bigint"`)
+- base64 string → Buffer (`scalarType: "bytes"`)
+- boolean → 0/1 (SQLite only)
 
 ```typescript
 function mapArg(arg: unknown, argType: ArgType): unknown {
@@ -401,7 +431,11 @@ function mapArg(arg: unknown, argType: ArgType): unknown {
 
 ### Row Mapping (output)
 
-Convert driver result values to Prisma-expected types:
+Convert driver result values to Prisma-expected types. Required conversions:
+
+- bigint → string (Int64, JSON-safe)
+- Date → ISO 8601 string (DateTime)
+- JSON objects → stringified JSON
 
 ```typescript
 function mapRow(row: unknown[], columnTypes: ColumnType[]): ResultValue[] {
@@ -460,7 +494,7 @@ function inferColumnType(value: NonNullable<unknown>): ColumnType {
 
 ## Error Handling
 
-Map driver errors to `MappedError` for Prisma to handle correctly:
+Map driver errors to `MappedError` so Prisma can handle them correctly. Throw the result wrapped in `DriverAdapterError` (see `onError` in the base class).
 
 ```typescript
 function convertDriverError(error: unknown): MappedError {

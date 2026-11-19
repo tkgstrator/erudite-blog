@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Under+Ground — Terminal</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0a0e14;
+    --bg-inner: #0d1117;
+    --green:    #39d353;
+    --green-dim:#22863a;
+    --cyan:     #56d4dd;
+    --cyan-dim: #2a8a94;
+    --yellow:   #e3b341;
+    --red:      #f85149;
+    --blue:     #58a6ff;
+    --purple:   #bc8cff;
+    --white:    #cdd9e5;
+    --dim:      #4d5566;
+    --border:   #1c2128;
+  }
+
+  html, body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--green);
+    font-family: 'Courier New', 'Consolas', 'Lucida Console', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── WINDOW CHROME ── */
+  .window {
+    max-width: 1100px;
+    margin: 32px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px #00000099, 0 0 0 1px var(--border);
+  }
+
+  .titlebar {
+    background: #1c2128;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .tb-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .tb-red    { background: #ff5f57; }
+  .tb-yellow { background: #febc2e; }
+  .tb-green  { background: #28c840; }
+  .tb-title {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: var(--dim);
+    letter-spacing: .5px;
+  }
+
+  /* ── TERMINAL BODY ── */
+  .term {
+    background: var(--bg-inner);
+    padding: 28px 36px 48px;
+  }
+
+  /* ── BLOCK TYPES ── */
+  .block { margin-bottom: 28px; }
+  .block:last-child { margin-bottom: 0; }
+
+  /* prompt line */
+  .prompt {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    margin-bottom: 6px;
+    white-space: nowrap;
+  }
+  .ps-user  { color: var(--green); font-weight: 700; }
+  .ps-at    { color: var(--dim); }
+  .ps-host  { color: var(--cyan); font-weight: 700; }
+  .ps-colon { color: var(--dim); }
+  .ps-path  { color: var(--blue); }
+  .ps-git   {
+    color: var(--purple);
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  .ps-sym   { color: var(--green); margin-left: 4px; }
+  .ps-cmd   { color: var(--white); margin-left: 8px; }
+
+  /* output */
+  .out { padding-left: 0; }
+  .out-line { display: block; }
+
+  /* comment */
+  .cmt { color: var(--dim); font-style: italic; }
+
+  /* section header printed like a banner */
+  .banner {
+    color: var(--cyan);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  /* whoami / welcome output */
+  .welcome-box {
+    border: 1px solid var(--green-dim);
+    padding: 14px 20px;
+    margin: 8px 0 0;
+    border-radius: 2px;
+    background: #0a120a;
+  }
+  .welcome-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .welcome-title .plus { color: var(--yellow); }
+  .welcome-sub { color: var(--white); font-size: 13px; line-height: 1.7; }
+
+  /* ls -la style listing */
+  .ls-table { border-collapse: collapse; width: 100%; margin-top: 6px; }
+  .ls-table td {
+    padding: 2px 14px 2px 0;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  .ls-perms { color: var(--dim); }
+  .ls-links { color: var(--dim); text-align: right; }
+  .ls-user  { color: var(--cyan); }
+  .ls-size  { color: var(--yellow); text-align: right; }
+  .ls-date  { color: var(--dim); }
+  .ls-name  { color: var(--green); }
+  .ls-name:hover { color: var(--white); cursor: pointer; text-decoration: underline; }
+  .ls-name.dir { color: var(--blue); font-weight: 700; }
+  .ls-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 0 5px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .t-shogi   { background: #0d2116; color: var(--green); }
+  .t-claude  { background: #0d1a2e; color: var(--blue); }
+  .t-docker  { background: #1a0d2e; color: var(--purple); }
+  .t-frida   { background: #2e0d0d; color: var(--red); }
+  .t-netflix { background: #2e1e0d; color: var(--yellow); }
+
+  /* cat welcome.txt style */
+  .cat-out {
+    color: var(--white);
+    background: #0c0f16;
+    border-left: 2px solid var(--cyan-dim);
+    padding: 10px 16px;
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .cat-out strong { color: var(--cyan); }
+
+  /* nav: ps aux style */
+  .nav-row {
+    display: flex;
+    gap: 32px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .nav-item { color: var(--white); text-decoration: none; }
+  .nav-item:hover { color: var(--cyan); text-decoration: underline; }
+  .nav-pid { color: var(--dim); margin-right: 4px; }
+
+  /* cursor */
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--green);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1.1s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* grep highlight style */
+  .hl-match { background: #3a2200; color: var(--yellow); }
+
+  /* error / warning */
+  .err { color: var(--red); }
+  .ok  { color: var(--green); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #1c2128; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="window">
+
+  <!-- WINDOW TITLEBAR -->
+  <div class="titlebar">
+    <div class="tb-dot tb-red"></div>
+    <div class="tb-dot tb-yellow"></div>
+    <div class="tb-dot tb-green"></div>
+    <div class="tb-title">zsh — under+ground — 220x52</div>
+  </div>
+
+  <!-- TERMINAL BODY -->
+  <div class="term">
+
+    <!-- ── SESSION START ── -->
+    <div class="block">
+      <span class="out-line cmt"># Session started — Thu Jun 19 2026 JST</span>
+      <span class="out-line cmt"># Welcome to Under+Ground Blog Terminal v2.6.0</span>
+    </div>
+
+    <!-- ── whoami ── -->
+    <div class="block">
+      <div class="prompt">
+        <span class="ps-user">emue</span><span class="ps-at">@</span><span class="ps-host">underground</span><span class="ps-colon">:</span><span class="ps-path">~</span><span class="ps-git"> (main)</span><span class="ps-sym"> $</span>
+        <span class="ps-cmd">whoami &amp;&amp; cat welcome.txt</span>
+      </div>
+      <div class="out">
+        <span class="out-line" style="color:var(--cyan)">emue — えむいーと愉快な仲間たち</span>
+        <div class="cat-out">
+          <strong>Under+Ground</strong> へようこそ。<br>
+          えむいーと愉快な仲間たちの平凡な技術ブログ。<br>
+          ニンテンドースイッチハッキングから生成 AI まで幅広く扱います。<br><br>
+          <span style="color:var(--dim)">motto  : </span><span style="color:var(--green)">"hack everything, document the wreckage"</span><br>
+          <span style="color:var(--dim)">uptime : </span><span style="color:var(--white)">2026-06-19 — running since forever</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ps aux (nav) ── -->
+    <div class="block">
+      <div class="prompt">
+        <span class="ps-user">emue</span><span class="ps-at">@</span><span class="ps-host">underground</span><span class="ps-colon">:</span><span class="ps-path">~</span><span class="ps-git"> (main)</span><span class="ps-sym"> $</span>
+        <span class="ps-cmd">ps aux | grep -E "blog|nav" | awk '{print $1, $11}'</span>
+      </div>
+      <div class="out">
+        <span class="out-line cmt"># navigation processes</span>
+        <div class="nav-row">
+          <a class="nav-item" href="#"><span class="nav-pid">PID 101</span>./blog</a>
+          <a class="nav-item" href="#"><span class="nav-pid">PID 102</span>./authors</a>
+          <a class="nav-item" href="#"><span class="nav-pid">PID 103</span>./tags</a>
+          <a class="nav-item" href="#"><span class="nav-pid">PID 104</span>./about</a>
+          <a class="nav-item" href="#"><span class="nav-pid">PID 105</span>./search</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ls -la /posts ── -->
+    <div class="block">
+      <div class="prompt">
+        <span class="ps-user">emue</span><span class="ps-at">@</span><span class="ps-host">underground</span><span class="ps-colon">:</span><span class="ps-path">~</span><span class="ps-git"> (main)</span><span class="ps-sym"> $</span>
+        <span class="ps-cmd">ls -la /posts --sort=date | head -6</span>
+      </div>
+      <div class="out">
+        <span class="out-line cmt"># total 5 entries (showing latest)</span>
+        <table class="ls-table">
+          <tbody>
+            <tr>
+              <td class="ls-perms">-rw-r--r--</td>
+              <td class="ls-links">1</td>
+              <td class="ls-user">emue</td>
+              <td class="ls-size">4.2K</td>
+              <td class="ls-date">Jun 12 09:31</td>
+              <td class="ls-name">棋桜を便利に使うツールを開発しました.md<span class="ls-tag t-shogi">Shogi</span></td>
+            </tr>
+            <tr>
+              <td class="ls-perms">-rw-r--r--</td>
+              <td class="ls-links">1</td>
+              <td class="ls-user">emue</td>
+              <td class="ls-size">8.7K</td>
+              <td class="ls-date">Apr 23 23:14</td>
+              <td class="ls-name">Claude_Code……嘘だよな.md<span class="ls-tag t-claude">Claude Code</span></td>
+            </tr>
+            <tr>
+              <td class="ls-perms">-rw-r--r--</td>
+              <td class="ls-links">1</td>
+              <td class="ls-user">emue</td>
+              <td class="ls-size">3.1K</td>
+              <td class="ls-date">Apr  9 18:05</td>
+              <td class="ls-name">リバエン専用レポジトリを作成しました.md<span class="ls-tag t-docker">Docker</span><span class="ls-tag t-frida">Frida</span></td>
+            </tr>
+            <tr>
+              <td class="ls-perms">-rw-r--r--</td>
+              <td class="ls-links">1</td>
+              <td class="ls-user">emue</td>
+              <td class="ls-size">2.9K</td>
+              <td class="ls-date">Mar 15 14:22</td>
+              <td class="ls-name">超かぐや姫を映画館で見てきた.md<span class="ls-tag t-netflix">Netflix</span></td>
+            </tr>
+            <tr>
+              <td class="ls-perms">-rw-r--r--</td>
+              <td class="ls-links">1</td>
+              <td class="ls-user">emue</td>
+              <td class="ls-size">5.6K</td>
+              <td class="ls-date">Mar  6 11:48</td>
+              <td class="ls-name">超かぐや姫を見てきた感想.md<span class="ls-tag t-netflix">Netflix</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── cat latest post ── -->
+    <div class="block">
+      <div class="prompt">
+        <span class="ps-user">emue</span><span class="ps-at">@</span><span class="ps-host">underground</span><span class="ps-colon">:</span><span class="ps-path">~</span><span class="ps-git"> (main)</span><span class="ps-sym"> $</span>
+        <span class="ps-cmd">head -4 /posts/棋桜を便利に使うツールを開発しました.md</span>
+      </div>
+      <div class="out">
+        <div class="cat-out">
+          <span style="color:var(--dim)">---</span><br>
+          <strong>title:</strong>  <span style="color:var(--white)">棋桜を便利に使うツールを開発しました</span><br>
+          <strong>date:</strong>   <span style="color:var(--yellow)">2026-06-12</span><br>
+          <strong>tags:</strong>   <span style="color:var(--green)">[Shogi]</span><br>
+          <span style="color:var(--dim)">---</span><br>
+          <span style="color:var(--white)">将棋の棋桜をより便利に使うための CLI ツールを Rust で書いた話...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── grep for tags ── -->
+    <div class="block">
+      <div class="prompt">
+        <span class="ps-user">emue</span><span class="ps-at">@</span><span class="ps-host">underground</span><span class="ps-colon">:</span><span class="ps-path">~</span><span class="ps-git"> (main)</span><span class="ps-sym"> $</span>
+        <span class="ps-cmd">grep -r "tags:" /posts/ | awk -F': ' '{print $2}' | sort | uniq -c | sort -rn</span>
+      </div>
+      <div class="out">
+        <span class="out-line"><span style="color:var(--yellow)">  15</span>  <span style="color:var(--green)">Nintendo Switch</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">  12</span>  <span style="color:var(--blue)">Claude Code</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">   9</span>  <span style="color:var(--green)">Shogi</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">   8</span>  <span style="color:var(--yellow)">Netflix</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">   7</span>  <span style="color:var(--purple)">Docker</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">   6</span>  <span style="color:var(--red)">Frida</span></span>
+        <span class="out-line"><span style="color:var(--dim)">  ...</span>  <span style="color:var(--dim)">(and 23 more)</span></span>
+      </div>
+    </div>
+
+    <!-- ── git log ── -->
+    <div class="block">
+      <div class="prompt">
+        <span class="ps-user">emue</span><span class="ps-at">@</span><span class="ps-host">underground</span><span class="ps-colon">:</span><span class="ps-path">~/blog</span><span class="ps-git"> (main)</span><span class="ps-sym"> $</span>
+        <span class="ps-cmd">git log --oneline --decorate -5</span>
+      </div>
+      <div class="out">
+        <span class="out-line"><span style="color:var(--yellow)">a3f2c1d</span> <span style="color:var(--cyan)">(HEAD → main, origin/main)</span> <span style="color:var(--white)">post: 棋桜を便利に使うツールを開発しました</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">8b91e04</span> <span style="color:var(--white)">post: Claude Code......嘘だよな</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">4d70a2f</span> <span style="color:var(--white)">post: リバエン専用レポジトリを作成しました</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">c19e583</span> <span style="color:var(--white)">post: 超かぐや姫を映画館で見てきた</span></span>
+        <span class="out-line"><span style="color:var(--yellow)">f80b341</span> <span style="color:var(--white)">post: 超かぐや姫を見てきた感想</span></span>
+      </div>
+    </div>
+
+    <!-- ── uptime / stats ── -->
+    <div class="block">
+      <div class="prompt">
+        <span class="ps-user">emue</span><span class="ps-at">@</span><span class="ps-host">underground</span><span class="ps-colon">:</span><span class="ps-path">~/blog</span><span class="ps-git"> (main)</span><span class="ps-sym"> $</span>
+        <span class="ps-cmd">uptime &amp;&amp; df -h /posts</span>
+      </div>
+      <div class="out">
+        <span class="out-line" style="color:var(--white)">19:03:42 up 4 years, 207 days, 3 authors, load average: 0.12, 0.08, 0.05</span>
+        <span class="out-line cmt"># Filesystem      Size  Used  Avail  Use%  Mounted on</span>
+        <span class="out-line" style="color:var(--white)">/dev/blog         128G   42G    86G   33%  /posts</span>
+      </div>
+    </div>
+
+    <!-- ── active prompt / cursor ── -->
+    <div class="block" style="margin-bottom:0">
+      <div class="prompt">
+        <span class="ps-user">emue</span><span class="ps-at">@</span><span class="ps-host">underground</span><span class="ps-colon">:</span><span class="ps-path">~/blog</span><span class="ps-git"> (main)</span><span class="ps-sym"> $</span>
+        <span class="cursor"></span>
+      </div>
+    </div>
+
+  </div><!-- /term -->
+</div><!-- /window -->
+
+</body>
+</html>

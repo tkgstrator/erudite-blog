@@ -9,44 +9,53 @@ metadata:
 
 # Upgrade to Prisma ORM 7
 
-Complete guide for migrating from Prisma ORM v6 to v7. This upgrade introduces significant breaking changes around the new `prisma-client` generator, driver adapters, `prisma.config.ts`, explicit environment loading, and generated client entrypoints.
+Complete guide for migrating from Prisma ORM v6 to v7. The upgrade introduces significant breaking changes: the new `prisma-client` generator, required driver adapters, `prisma.config.ts`, explicit environment loading, and new generated client entrypoints.
 
 ## When to Apply
 
-Reference this skill when:
+Use this skill when:
+
 - Upgrading from Prisma v6 to v7
 - Updating to the `prisma-client` generator
 - Setting up driver adapters
 - Configuring `prisma.config.ts`
 - Fixing import errors after upgrade
 
-## Rule Categories by Priority
+## Requirements and Critical Notes
 
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | Schema Migration | CRITICAL | `schema-changes` |
-| 2 | Database Connectivity | CRITICAL | `driver-adapters` |
-| 3 | Module System | CRITICAL | `esm-support` |
-| 4 | Config and Env | HIGH | `prisma-config`, `env-variables` |
-| 5 | Removed Features | HIGH | `removed-features` |
-| 6 | Accelerate | HIGH | `accelerate-users` |
+- **DO NOT migrate MongoDB projects to Prisma 7.** MongoDB projects must stay on the latest Prisma 6.x release. Do not follow Prisma 7's SQL client path for MongoDB apps. (MongoDB has no SQL `@prisma/adapter-*` package in the published Prisma 7.6.0 packages.)
+- **Node.js**: 20.19.0 or later required.
+- **TypeScript**: 5.4.0 or later required.
+- **Latest stable Prisma ORM version**: `7.6.0`.
 
-## Quick Reference
+## Breaking Changes Summary
 
-- `schema-changes` - generator migration, required output paths, generated entrypoints, and `Prisma.validator` replacement
-- `driver-adapters` - required adapter installation for SQL providers, pool differences, and Prisma Postgres adapter choices
-- `esm-support` - ESM-first setup plus CommonJS fallback with `moduleFormat = "cjs"`
-- `prisma-config` - creating and using `prisma.config.ts`
-- `env-variables` - explicit environment loading
-- `removed-features` - removed middleware, metrics, and legacy CLI behavior
-- `accelerate-users` - migration notes for Accelerate users
+| Change | v6 | v7 |
+|--------|----|----|
+| Module format | Implicit / mixed | ESM-first, `moduleFormat = "cjs"` supported |
+| Generator provider | `prisma-client-js` | `prisma-client` is the default, while `prisma-client-js` still exists for legacy setups |
+| Output path | Auto (node_modules) | Required explicit |
+| Driver adapters | Optional | Required for SQL providers |
+| Config file | `.env` + schema | `prisma.config.ts` |
+| Env loading | Automatic | Manual (dotenv) |
+| Generated entrypoints | Single package export | `client`, `browser`, `models`, `enums` entrypoints |
+| Type-safe query fragments | `Prisma.validator()` | TypeScript `satisfies` |
+| Middleware | `$use()` | Client Extensions |
+| Metrics | Preview feature | Removed |
 
-## Important Notes
+## Reference Files
 
-- **MongoDB projects should stay on Prisma 6.x** - do not migrate MongoDB apps to Prisma 7's SQL client path
-- **Node.js 20.19.0+** required
-- **TypeScript 5.4.0+** required
-- **Latest stable Prisma ORM version**: `7.6.0`
+Each breaking change has a detailed migration guide in `references/`, listed here by priority. Read `schema-changes.md` and `driver-adapters.md` first, then apply the remaining files based on your project setup.
+
+| Priority | Impact | File | Covers |
+|----------|--------|------|--------|
+| 1 | CRITICAL | `references/schema-changes.md` | Generator migration, required output paths, generated entrypoints, imports, and `Prisma.validator` replacement |
+| 2 | CRITICAL | `references/driver-adapters.md` | Required adapter installation for SQL providers, pool differences, and Prisma Postgres adapter choices |
+| 3 | CRITICAL | `references/esm-support.md` | ESM-first setup plus CommonJS fallback with `moduleFormat = "cjs"` |
+| 4 | HIGH | `references/prisma-config.md` | Creating and using `prisma.config.ts` |
+| 4 | HIGH | `references/env-variables.md` | Explicit environment variable loading |
+| 5 | HIGH | `references/removed-features.md` | Removed middleware, metrics, and legacy CLI behavior/flags |
+| 6 | HIGH | `references/accelerate-users.md` | Migration notes / special handling for Accelerate users |
 
 ## Upgrade Steps Overview
 
@@ -78,35 +87,6 @@ npm install dotenv
 npx prisma generate
 ```
 
-## Breaking Changes Summary
-
-| Change | v6 | v7 |
-|--------|----|----|
-| Module format | Implicit / mixed | ESM-first, `moduleFormat = "cjs"` supported |
-| Generator provider | `prisma-client-js` | `prisma-client` is the default, while `prisma-client-js` still exists for legacy setups |
-| Output path | Auto (node_modules) | Required explicit |
-| Driver adapters | Optional | Required for SQL providers |
-| Config file | `.env` + schema | `prisma.config.ts` |
-| Env loading | Automatic | Manual (dotenv) |
-| Generated entrypoints | Single package export | `client`, `browser`, `models`, `enums` entrypoints |
-| Type-safe query fragments | `Prisma.validator()` | TypeScript `satisfies` |
-| Middleware | `$use()` | Client Extensions |
-| Metrics | Preview feature | Removed |
-
-## Rule Files
-
-Detailed migration guides for each breaking change:
-
-```
-references/esm-support.md        - ESM and CommonJS configuration
-references/schema-changes.md     - Generator, output, imports, and generated entrypoints
-references/driver-adapters.md    - Required driver adapter setup
-references/prisma-config.md      - New configuration file
-references/env-variables.md      - Environment variable loading
-references/removed-features.md   - Middleware, metrics, and CLI flags
-references/accelerate-users.md   - Special handling for Accelerate
-```
-
 ## Step-by-Step Migration
 
 ### 1. Update package.json for ESM-first projects
@@ -117,7 +97,7 @@ references/accelerate-users.md   - Special handling for Accelerate
 }
 ```
 
-If you need to stay on CommonJS, keep your app as CJS and set `moduleFormat = "cjs"` in the generator block instead of forcing ESM.
+If you need to stay on CommonJS: keep your app as CJS and set `moduleFormat = "cjs"` in the generator block instead of forcing ESM.
 
 ### 2. Update tsconfig.json
 
@@ -189,7 +169,7 @@ npm install @prisma/adapter-ppg @prisma/ppg
 npm install @prisma/adapter-neon
 ```
 
-MongoDB does not have a SQL `@prisma/adapter-*` package in the published Prisma 7.6.0 packages. If you're upgrading a MongoDB project, stop and keep that project on the latest Prisma 6.x release instead of following the standard Prisma 7 migration path.
+**MongoDB**: there is no SQL `@prisma/adapter-*` package for MongoDB in the published Prisma 7.6.0 packages. If you are upgrading a MongoDB project, STOP here — keep that project on the latest Prisma 6.x release instead of following the standard Prisma 7 migration path.
 
 ### 6. Update client instantiation
 
@@ -231,23 +211,22 @@ npx prisma migrate dev  # if needed
 ## Troubleshooting
 
 ### "Cannot find module" errors
-- Check that the generator `output` path matches your import path
-- Ensure `prisma generate` ran successfully
+
+- Check that the generator `output` path matches your import path.
+- Ensure `prisma generate` ran successfully.
 
 ### SSL certificate errors
-- Add `ssl: { rejectUnauthorized: false }` to the adapter config if you need to preserve old behavior
-- Or configure your certificates properly with `NODE_EXTRA_CA_CERTS` / OpenSSL CA settings
+
+- Add `ssl: { rejectUnauthorized: false }` to the adapter config if you need to preserve old behavior.
+- Or configure your certificates properly with `NODE_EXTRA_CA_CERTS` / OpenSSL CA settings.
 
 ### Connection timeout issues
-- Driver adapters use the underlying driver's defaults, which differ from v6
-- Configure pool settings explicitly on the adapter if needed
+
+- Driver adapters use the underlying driver's defaults, which differ from v6.
+- Configure pool settings explicitly on the adapter if needed.
 
 ## Resources
 
 - [Official v7 Upgrade Guide](https://www.prisma.io/docs/orm/more/upgrades/to-v7)
 - [Driver Adapters Documentation](https://www.prisma.io/docs/orm/core-concepts/supported-databases/database-drivers)
 - [Prisma Config Reference](https://www.prisma.io/docs/orm/reference/prisma-config-reference)
-
-## How to Use
-
-Follow `references/schema-changes.md` and `references/driver-adapters.md` first, then apply the remaining reference files based on your project setup.

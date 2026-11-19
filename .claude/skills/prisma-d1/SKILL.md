@@ -7,22 +7,24 @@ description: Prisma ORM with Cloudflare D1 — schema configuration, migration w
 
 Setup, migration, and deployment guide for Prisma with Cloudflare D1.
 
-## Retrieval Source
+## Reference Docs
 
 | Source | URL | Use for |
 |--------|-----|---------|
 | Prisma D1 Guide | `https://www.prisma.io/docs/guides/deployment/cloudflare-d1` | Official guide |
-| Prisma Migrate Diff | `https://www.prisma.io/docs/orm/reference/prisma-cli-reference#migrate-diff` | migrate diff options |
+| Prisma Migrate Diff | `https://www.prisma.io/docs/orm/reference/prisma-cli-reference#migrate-diff` | `migrate diff` options |
 | D1 Docs | `https://developers.cloudflare.com/d1` | D1 specs and limitations |
 
-## Required Packages
+## Install Packages
 
 ```bash
 bun add prisma --dev
 bun add @prisma/client @prisma/adapter-d1
 ```
 
-## Schema Configuration (prisma/schema.prisma)
+## Schema Configuration
+
+File: `prisma/schema.prisma`
 
 ```prisma
 generator client {
@@ -36,14 +38,17 @@ datasource db {
 }
 ```
 
-**Key points:**
-- `provider = "sqlite"` — D1 is SQLite-based
-- `runtime = "cloudflare"` — generates client for Cloudflare Workers runtime
-- `output` — must be explicitly specified
+Rules:
+
+- Set datasource `provider = "sqlite"` — D1 is SQLite-based.
+- Set `runtime = "cloudflare"` — generates a client for the Cloudflare Workers runtime.
+- Always specify `output` explicitly.
 
 ## Migration Workflow
 
-D1 does **not** use standard `prisma migrate dev`. Instead, use `prisma migrate diff` to generate SQL, then `wrangler d1 execute` to apply it.
+- DON'T use `prisma migrate dev` — it does not work with D1.
+- DO use `prisma migrate diff` to generate SQL, then `wrangler d1 execute` to apply it.
+- Local and remote D1 are separate databases. Apply every migration twice: once with `--local`, once with `--remote`.
 
 ### Initial Migration
 
@@ -81,20 +86,22 @@ bunx wrangler d1 execute <DB_NAME> --remote \
   --file="./migrations/0002_<description>.sql"
 ```
 
-### Migration Naming Convention
+### Migration File Naming
 
 Place sequentially numbered SQL files in the `migrations/` directory:
+
 - `0001_init.sql`
 - `0002_add_exercises.sql`
 - `0003_add_index.sql`
 
-## Prisma Client Generation
+## Client Generation
 
 ```bash
 bunx prisma generate
 ```
 
-Must be run after every schema change. Generates typed client at the `output` path.
+- Run this after every schema change — the client is not regenerated automatically.
+- Generates the typed client at the schema's `output` path.
 
 ## Using PrismaClient in Workers
 
@@ -112,12 +119,15 @@ const users = await prisma.user.findMany()
 ctx.waitUntil(prisma.$disconnect())
 ```
 
-**Important:**
-- `env.DB` must match the `binding` name in `wrangler.toml` / `wrangler.jsonc` `d1_databases`
-- Always call `prisma.$disconnect()` — prevents memory leaks
-- Use `ctx.waitUntil()` to disconnect asynchronously after response is sent
+Rules:
 
-## wrangler.toml D1 Binding Configuration
+- `env.DB` must match the `binding` name under `d1_databases` in `wrangler.toml` / `wrangler.jsonc`.
+- Always call `prisma.$disconnect()` — skipping it causes Workers memory exhaustion (memory leaks).
+- Wrap the disconnect in `ctx.waitUntil()` so it runs asynchronously after the response is sent.
+
+## D1 Binding Configuration
+
+File: `wrangler.toml`
 
 ```toml
 [[d1_databases]]
@@ -144,15 +154,16 @@ export default defineConfig({
 ```
 
 `.env`:
+
 ```
 DATABASE_URL="file:./prisma/db.sqlite"
 ```
 
 ## Common Pitfalls
 
-1. **`prisma migrate dev` does not work** — D1 requires `migrate diff` + `wrangler d1 execute` workflow
-2. **Forgetting `prisma generate`** — client must be regenerated after schema changes
-3. **Binding name mismatch** — `binding` in `wrangler.toml` must match `env.DB` in code
-4. **Missing `$disconnect()`** — causes Workers memory exhaustion
-5. **Local and remote are separate** — migrations must be applied independently with `--local` and `--remote`
-6. **SQLite limitations** — D1 is SQLite-based, so some Prisma features like `@db.Text` and `Json` type are unavailable
+1. Using `prisma migrate dev` — it does not work with D1. Use the `migrate diff` + `wrangler d1 execute` workflow instead.
+2. Forgetting `bunx prisma generate` after a schema change — the client must be regenerated.
+3. Binding name mismatch — `binding` in `wrangler.toml` must match `env.DB` in code.
+4. Missing `$disconnect()` — causes Workers memory exhaustion.
+5. Applying a migration to only one environment — local and remote are separate; apply with both `--local` and `--remote`.
+6. Assuming full Prisma feature support — D1 is SQLite-based, so some Prisma features (e.g. `@db.Text` and the `Json` type) are unavailable.

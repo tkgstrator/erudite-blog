@@ -9,19 +9,22 @@ metadata:
 
 # Prisma CLI Reference
 
-Complete reference for all Prisma CLI commands. This skill provides guidance on command usage, options, and best practices for current Prisma releases.
+Reference for all Prisma CLI commands in current Prisma releases: command usage, options, and best practices.
 
 ## When to Apply
 
-Reference this skill when:
+Use this skill when:
+
 - Setting up a new Prisma project (`prisma init`)
 - Generating Prisma Client (`prisma generate`)
 - Running database migrations (`prisma migrate`)
 - Managing database state (`prisma db push/pull`)
-- Using local development database (`prisma dev`)
+- Using the local development database (`prisma dev`)
 - Debugging Prisma issues (`prisma debug`)
 
 ## Rule Categories by Priority
+
+Priority and impact of each rule category, with the rule-file prefix used under `references/`:
 
 | Priority | Category | Impact | Prefix |
 |----------|----------|--------|--------|
@@ -33,6 +36,8 @@ Reference this skill when:
 | 6 | Utility | MEDIUM | `studio`, `validate`, `format`, `debug`, `mcp` |
 
 ## Command Categories
+
+Which commands belong to each category:
 
 | Category | Commands | Purpose |
 |----------|----------|---------|
@@ -79,7 +84,8 @@ prisma generate --generator client
 
 ### Bun Runtime
 
-When using Bun, always add the `--bun` flag so Prisma runs with the Bun runtime (otherwise it falls back to Node.js because of the CLI shebang):
+- **DO:** When using Bun, always add the `--bun` flag so Prisma runs with the Bun runtime.
+- **Why:** Without `--bun`, the CLI shebang causes Prisma to fall back to Node.js.
 
 ```bash
 bunx --bun prisma init
@@ -178,9 +184,9 @@ prisma format
 
 ## Current Prisma CLI Setup
 
-### New Configuration File
+### Configuration File
 
-Use `prisma.config.ts` for CLI configuration:
+Configure the CLI with `prisma.config.ts`:
 
 ```typescript
 import 'dotenv/config'
@@ -200,13 +206,13 @@ export default defineConfig({
 
 ### Current Command Behavior
 
-- Run `prisma generate` explicitly after `migrate dev`, `db push`, or other schema syncs when you need fresh client output
-- Run `prisma db seed` explicitly after `migrate dev` or `migrate reset` when you need seed data
-- Use `prisma db execute --file ...` for raw SQL scripts
+- **DO:** Run `prisma generate` explicitly after `migrate dev`, `db push`, or other schema syncs when you need fresh client output.
+- **DO:** Run `prisma db seed` explicitly after `migrate dev` or `migrate reset` when you need seed data.
+- **DO:** Use `prisma db execute --file ...` for raw SQL scripts.
 
 ### Environment Variables
 
-Load environment variables explicitly in `prisma.config.ts`, commonly with `dotenv`:
+- **DO:** Load environment variables explicitly in `prisma.config.ts`, commonly with `dotenv`:
 
 ```typescript
 // prisma.config.ts
@@ -215,7 +221,7 @@ import 'dotenv/config'
 
 ## Rule Files
 
-See individual rule files for detailed command documentation:
+Detailed per-command documentation lives in these rule files:
 
 ```
 references/init.md           - Project initialization
@@ -240,4 +246,5 @@ references/debug.md          - Debug info
 
 ## How to Use
 
-Use the command categories above for navigation, then open the specific command reference file you need.
+1. Navigate with the command-category tables above.
+2. Open the specific rule file under `references/` for the command you need.

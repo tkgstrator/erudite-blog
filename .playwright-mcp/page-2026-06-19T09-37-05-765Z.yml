@@ -1,0 +1,89 @@
+- generic [ref=e2]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Logo Under+Ground" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "Logo" [ref=e7]
+        - generic [ref=e8]: Under+Ground
+      - generic [ref=e9]:
+        - navigation [ref=e10]:
+          - link "blog" [ref=e11] [cursor=pointer]:
+            - /url: /blog
+          - link "authors" [ref=e12] [cursor=pointer]:
+            - /url: /authors
+          - link "tags" [ref=e13] [cursor=pointer]:
+            - /url: /tags
+          - link "about" [ref=e14] [cursor=pointer]:
+            - /url: /about
+          - link "search" [ref=e15] [cursor=pointer]:
+            - /url: /search
+        - button "Toggle theme" [ref=e16]:
+          - img
+          - img
+          - generic [ref=e17]: Toggle theme
+  - main [ref=e18]:
+    - generic [ref=e20]:
+      - navigation "breadcrumb" [ref=e21]:
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - link [ref=e24] [cursor=pointer]:
+              - /url: /
+              - img [ref=e25]
+          - listitem [ref=e27]:
+            - img [ref=e28]
+          - listitem [ref=e30]:
+            - link "Authors" [disabled] [ref=e31]:
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - generic [ref=e35]: Authors
+      - list [ref=e36]:
+        - listitem [ref=e37]:
+          - generic [ref=e39]:
+            - link "t" [ref=e40] [cursor=pointer]:
+              - /url: /authors/tkgstrator
+              - generic [ref=e43]: t
+            - generic [ref=e44]:
+              - generic [ref=e45]:
+                - generic [ref=e46]:
+                  - heading "tkgstrator" [level=3] [ref=e47]
+                  - generic [ref=e48]: (she/her)
+                - paragraph [ref=e49]: ゲーム解析から Web 開発、AI まで、気になった技術をひとまず触ってみる人。
+              - list [ref=e50]:
+                - listitem [ref=e51]:
+                  - link "Website" [ref=e52] [cursor=pointer]:
+                    - /url: https://tkgstrator.work
+                    - img
+                - listitem [ref=e53]:
+                  - link "GitHub" [ref=e54] [cursor=pointer]:
+                    - /url: https://github.com/tkgstrator
+                    - img
+                - listitem [ref=e55]:
+                  - link "Twitter" [ref=e56] [cursor=pointer]:
+                    - /url: https://twitter.com/tkgling
+                    - img
+                - listitem [ref=e57]:
+                  - link "Email" [ref=e58] [cursor=pointer]:
+                    - /url: mailto:tkgstrator@qleap.jp
+                    - img
+  - contentinfo [ref=e59]:
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - generic [ref=e62]: © 2026 All rights reserved.
+        - paragraph [ref=e63]:
+          - text: Made by
+          - link "enscribe" [ref=e64] [cursor=pointer]:
+            - /url: https://github.com/jktrn
+          - text: "!"
+      - list [ref=e65]:
+        - listitem [ref=e66]:
+          - link "GitHub" [ref=e67] [cursor=pointer]:
+            - /url: https://github.com/tkgstrator
+            - img
+        - listitem [ref=e68]:
+          - link "Twitter" [ref=e69] [cursor=pointer]:
+            - /url: https://twitter.com/tkgling
+            - img
+        - listitem [ref=e70]:
+          - link "Email" [ref=e71] [cursor=pointer]:
+            - /url: mailto:tkgstrator@qleap.jp
+            - img

@@ -1,5 +1,6 @@
 {
   "containerEnv": {
+    "CLAUDE_CODE_AUTO_MODE_SERVER": "0",
     "CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
   },
   "customizations": {
@@ -64,6 +65,9 @@
   "postAttachCommand": "/bin/sh .devcontainer/postAttachCommand.sh",
   "postCreateCommand": "/bin/sh .devcontainer/postCreateCommand.sh",
   "remoteEnv": {
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+    "CODEX_HOME": "${containerWorkspaceFolder}/.codex",
+    "CLAUDE_CODE_AUTO_MODE_SERVER": "0",
     "ANTHROPIC_AUTH_TOKEN": "${localEnv:ANTHROPIC_AUTH_TOKEN}",
     "ANTHROPIC_BASE_URL": "${localEnv:ANTHROPIC_BASE_URL}",
     "UV_LINK_MODE": "copy",
